@@ -1,0 +1,46 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+
+package(default_visibility = ["//visibility:public"])
+
+proto_library(
+  name = "enum_authenticate_third_party_proto",
+  srcs = ["enum_authenticate_third_party.proto"],
+  deps = []
+)
+
+proto_library(
+  name = "enum_system_role_proto",
+  srcs = ["enum_system_role.proto"],
+  deps = []
+)
+
+proto_library(
+  name = "profile_proto",
+  srcs = ["profile.proto"],
+  deps = []
+)
+
+proto_library(
+  name = "session_proto",
+  srcs = ["session.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:empty_proto",
+    "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:paginate_proto",
+  ]
+)
+
+proto_library(
+  name = "user_proto",
+  srcs = ["user.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:field_mask_proto",
+    "@com_google_protobuf//:empty_proto",
+    "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:paginate_proto",
+    ":enum_authenticate_third_party_proto",
+    ":enum_system_role_proto",
+  ]
+)

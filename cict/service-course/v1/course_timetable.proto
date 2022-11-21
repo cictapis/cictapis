@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package cict.service_course.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/server-auth/cict/service_course/v1;service_course";
+
+import "google/api/annotations.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/paginate.proto";
+import "cict/service-course/v1/course_timetable_day.proto";
+
+service CourseTimetable {
+  rpc GetUserTimetable(GetUserTimetableRequest) returns (GetUserTimetableResponse) {
+    option (google.api.http) = {
+      get: "/api/course/v1/course_timetable/get"
+    };
+    option (common.v1.crudPolicy) = AUTH;
+  }
+}
+
+message GetUserTimetableRequest {
+  uint64 userId = 1;
+
+  uint64 courseId = 2;
+
+  uint64 weekId = 3;
+}
+
+message GetUserTimetableResponse {
+  repeated CourseTimetableDay courseTimetableDays = 1;
+}

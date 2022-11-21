@@ -1,0 +1,30 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+
+package(default_visibility = ["//visibility:public"])
+
+proto_library(
+  name = "annotations_proto",
+  srcs = ["annotations.proto"],
+  deps = [
+    "@com_google_protobuf//:descriptor_proto",
+    ":crud_policy_proto",
+  ]
+)
+
+proto_library(
+  name = "config_proto",
+  srcs = ["config.proto"],
+  deps = []
+)
+
+proto_library(
+  name = "crud_policy_proto",
+  srcs = ["crud_policy.proto"],
+  deps = []
+)
+
+proto_library(
+  name = "paginate_proto",
+  srcs = ["paginate.proto"],
+  deps = []
+)

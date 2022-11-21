@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package cict.common.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/server-auth/cict/common/v1;common";
+
+message Config {
+  OtTracerConfig ot_tracer_config = 1;
+
+  OtLoggerConfig ot_logger_config = 2;
+
+  OtMetricConfig ot_metric_config = 3;
+
+  RedisConfig redis_config = 4;
+
+  ServerConfig server_config = 5;
+
+  DatabaseConfig database_config = 6;
+
+  MetadataConfig metadata_config = 7;
+}
+
+message OtTracerConfig {
+  string endpoints = 1;
+
+  bool use_ssl_credentials = 2;
+
+  string ssl_credentials_cacert_path = 3;
+}
+
+message OtLoggerConfig {
+
+}
+
+message OtMetricConfig {
+
+}
+
+message ServerConfig {
+  string address = 1;
+
+  int32 port = 2;
+}
+
+message DatabaseConfig {
+  string address = 1;
+
+  int32 port = 2;
+
+  string user_name = 3;
+
+  string password = 4;
+
+  string database = 5;
+
+  bool migrations = 6;
+}
+
+message MetadataConfig {
+  string session_id = 1;
+
+  string internal_auth_error = 2;
+}
+
+message RedisConfig {
+  string address = 1;
+
+  int32 port = 2;
+
+  string redis_db = 3;
+
+  string redis_default_db = 4;
+
+  int32 min_idl_conns = 5;
+
+  int32 pool_size = 6;
+
+  int32 pool_timeout = 7;
+
+  int32 session_timeout = 8;
+}

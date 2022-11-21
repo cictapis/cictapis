@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package cict.service_auth.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/server-auth/cict/service_auth/v1;service_auth";
+
+message EnumSystemRole {
+  enum SystemRole {
+    UNSPECIFIED = 0;
+  
+    USER = 1;
+  
+    ADMIN = 2;
+  
+    SUPPER_USER = 3;
+  }
+}

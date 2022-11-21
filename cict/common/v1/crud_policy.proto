@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package cict.common.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/server-auth/cict/common/v1;common";
+
+message CrudPolicyEnum {
+  enum CrudPolicy {
+    // Not specfied, should show fatal error.
+    UNSPECIFIED = 0;
+
+    // Supper user can operate admin.
+    SUPPER_USER = 1;
+
+    // Admin can operate data
+    // Supper user can operate data.
+    ADMIN = 2;
+
+    // User can operate data
+    // Admin, supperuser can operate data
+    USER = 3;
+
+    // Auth user can operate
+    AUTH = 4;
+
+    // Anonymous user can operate.
+    ANONYMOUS = 5;
+
+    // Anyone can operate.
+    ANYONE = 6;
+
+    // System can operate.
+    SYSTEM = 7;
+
+    // User can operate their own data; admin, supperuser can operate data.
+    STANDARD_PRIVACY = 8;
+  }
+}

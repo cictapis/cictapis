@@ -1,0 +1,141 @@
+syntax = "proto3";
+
+package cict.service_course.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/server-auth/cict/service_course/v1;service_course";
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/empty.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/paginate.proto";
+import "cict/service-course/v1/course_timetable_week.proto";
+import "cict/service-course/v1/exam_schedule.proto";
+import "cict/service-course/v1/exam_score.proto";
+
+service CourseService {
+  rpc MutateCourse(MutateCourseRequest) returns (MutateCourseResponse) {
+    option (google.api.http) = {
+      post: "/api/course/v1/course/mutate",
+      body: "*"
+    };
+    option (common.v1.crudPolicy) = ADMIN;
+  }
+
+  rpc GetCourse(GetCourseRequest) returns (GetCourseResponse) {
+    option (google.api.http) = {
+      get: "/api/course/v1/course/get"
+    };
+    option (common.v1.crudPolicy) = ANYONE;
+  }
+
+  rpc ListCourse(ListCourseRequest) returns (ListCourseResponse) {
+    option (google.api.http) = {
+      get: "/api/course/v1/course/list"
+    };
+    option (common.v1.crudPolicy) = ANYONE;
+  }
+
+  rpc RegisterCourse(RegisterCourseRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/api/course/v1/course/register",
+      body: "*"
+    };
+    option (common.v1.crudPolicy) = USER;
+  }
+}
+
+message MutateCourseRequest {
+  google.protobuf.FieldMask updateMask = 4;
+
+  oneof operation {
+    Course create = 1;
+
+    Course update = 2;
+
+    Course delete = 3;
+  }
+}
+
+message MutateCourseResponse {
+  uint64 mutatedId = 1;
+}
+
+message GetCourseRequest {
+  uint64 id = 1;
+}
+
+message GetCourseResponse {
+  Course course = 1;
+}
+
+message ListCourseRequest {
+  cict.common.v1.PaginateRequest paginate = 1;
+}
+
+message ListCourseResponse {
+  repeated Course courses = 1;
+}
+
+message RegisterCourseRequest {
+  uint64 userId = 1;
+
+  uint64 courseId = 2;
+}
+
+message Course {
+  // @gotags: gorm:"primaryKey"
+  uint64 id = 1;
+
+  // @gotags: gorm:"<-"
+  string name = 2;
+
+  // @gotags: gorm:"<-"
+  string description = 3;
+
+  // @gotags: gorm:"<-"
+  string fromDate = 4;
+
+  // @gotags: gorm:"<-"
+  string toDate = 5;
+
+  // @gotags: gorm:"<-"
+  uint32 capacity = 6;
+
+  // @gotags: gorm:"<-"
+  uint32 size = 7;
+
+  // Belong to CourseField
+  uint64 courseFieldId = 8;
+
+  // Has many relationships CourseTimetableWeek
+  repeated CourseTimetableWeek courseTimetableWeeks = 9;
+
+  // Has many relationships ExamSchedule
+  repeated ExamSchedule examSchedules = 10;
+
+  // Many to many relationship User
+  repeated User users = 11;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updatedAt = 12;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 createdAt = 13;
+}
+
+message User {
+  // @gotags: gorm:"primaryKey"
+  uint64 id = 1;
+
+  // Many to many relationships Course
+  repeated Course courses = 2;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updatedAt = 3;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 createdAt = 4;
+}

@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
+
+go_proto_library(
+  name = "cict_service_dormitory_v1_go_proto",
+  compilers = ["@io_bazel_rules_go//proto:go_grpc"],
+  importpath = "github.com/cictapis/server-auth/cict/service-dormitory/v1",
+  protos = [
+    "@com_github_cict_cictapis//cict/service-dormitory/v1:registration_form_proto",
+    "@com_github_cict_cictapis//cict/service-dormitory/v1:user_proto",
+  ],
+  deps = [
+    "//google/api:google_api_go_proto",
+    "//cict/common/v1:cict_common_v1_go_proto",
+  ],
+  visibility = ["//visibility:public"]
+)

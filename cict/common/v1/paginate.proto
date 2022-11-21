@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package cict.common.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/server-auth/cict/common/v1;common";
+
+message PaginateRequest {
+  int32 page = 1;
+
+  int32 per_page = 2;
+}
+
+message PaginateResponse {
+  int32 current_page = 1;
+
+  int32 per_page = 2;
+
+  int32 total = 3;
+
+  int32 last_page = 4;
+
+  string first_page_url = 5;
+
+  string last_page_url = 6;
+
+  string next_page_url = 7;
+
+  string prev_page_url = 8;
+
+  int32 from = 9;
+
+  int32 to = 10;
+}

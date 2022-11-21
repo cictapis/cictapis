@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package cict.service_course.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/server-auth/cict/service_course/v1;service_course";
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/paginate.proto";
+import "cict/service-course/v1/course_timetable_day.proto";
+
+service CourseTimetableWeekService {
+  rpc MutateCourseTimetableWeek(MutateCourseTimetableWeekRequest) returns (MutateCourseTimetableWeekResponse) {
+    option (google.api.http) = {
+      post: "/api/course/v1/course_timetable_week/mutate",
+      body: "*"
+    };
+    option (common.v1.crudPolicy) = ADMIN;
+  }
+
+  rpc GetCourseTimetableWeek(GetCourseTimetableWeekRequest) returns (GetCourseTimetableWeekResponse) {
+    option (google.api.http) = {
+      get: "/api/course/v1/course_timetable_week/get"
+    };
+    option (common.v1.crudPolicy) = ANYONE;
+  }
+
+  rpc ListCourseTimetableWeek(ListCourseTimetableWeekRequest) returns (ListCourseTimetableWeekResponse) {
+    option (google.api.http) = {
+      get: "/api/course/v1/course_timetable_week/list"
+    };
+    option (common.v1.crudPolicy) = ANYONE;
+  }
+}
+
+message MutateCourseTimetableWeekRequest {
+  google.protobuf.FieldMask updateMask = 4;
+
+  oneof operation {
+    CourseTimetableWeek create = 1;
+
+    CourseTimetableWeek update = 2;
+
+    CourseTimetableWeek delete = 3;
+  }
+}
+
+message MutateCourseTimetableWeekResponse {
+  uint64 mutatedId = 1;
+}
+
+message GetCourseTimetableWeekRequest {
+  uint64 id = 1;
+}
+
+message GetCourseTimetableWeekResponse {
+  CourseTimetableWeek courseTimetableWeek = 1;
+}
+
+message ListCourseTimetableWeekRequest {
+  cict.common.v1.PaginateRequest paginate = 1;
+}
+
+message ListCourseTimetableWeekResponse {
+  repeated CourseTimetableWeek courseTimetableWeeks = 1;
+}
+
+message CourseTimetableWeek {
+  // @gotags: gorm:"primaryKey"
+  uint64 id = 1;
+
+  // Belong to relationship
+  uint64 courseId = 2;
+
+  // @gotags: gorm:"<-"
+  uint32 week = 3;
+
+  // @gotags: gorm:"<-"
+  bool active = 4;
+
+  // HasMany relationship CourseTimetableDay
+  repeated CourseTimetableDay courseTimetableDays = 5;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updatedAt = 6;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 createdAt = 7;
+}

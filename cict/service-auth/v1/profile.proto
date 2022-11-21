@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package cict.service_auth.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/server-auth/cict/service_auth/v1;service_auth";
+
+service ProfileService {
+
+}
+
+message Profile {
+  // @gotags: gorm:"primaryKey"
+  uint64 id = 1;
+}

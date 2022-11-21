@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package cict.service_auth.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/server-auth/cict/service_auth/v1;service_auth";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/paginate.proto";
+
+service SessionService {
+  rpc AuthenticateSession(AuthenticateSessionRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/api/auth/v1/session/authenticate_session",
+      body: "*"
+    };
+    option (common.v1.crudPolicy) = SYSTEM;
+  }
+}
+
+message AuthenticateSessionRequest {
+  string sessionId = 1;
+}
+
+message Session {
+  string id = 1;
+
+  uint64 userId = 2;
+
+  string email = 3;
+
+  string name = 4;
+}

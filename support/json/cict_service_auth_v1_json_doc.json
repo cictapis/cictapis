@@ -1,0 +1,994 @@
+{
+  "files": [
+    {
+      "name": "cict/service-auth/v1/enum_authenticate_third_party.proto",
+      "description": "",
+      "package": "cict.service_auth.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [
+        {
+          "name": "AuthenticateThirdParty",
+          "longName": "EnumAuthenticateThirdParty.AuthenticateThirdParty",
+          "fullName": "cict.service_auth.v1.EnumAuthenticateThirdParty.AuthenticateThirdParty",
+          "description": "",
+          "values": [
+            {
+              "name": "UNSPECIFIED",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "GMAIL_ORGANIZATION",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "REGIS",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "EnumAuthenticateThirdParty",
+          "longName": "EnumAuthenticateThirdParty",
+          "fullName": "cict.service_auth.v1.EnumAuthenticateThirdParty",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        }
+      ],
+      "services": []
+    },
+    {
+      "name": "cict/service-auth/v1/enum_system_role.proto",
+      "description": "",
+      "package": "cict.service_auth.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": false,
+      "enums": [
+        {
+          "name": "SystemRole",
+          "longName": "EnumSystemRole.SystemRole",
+          "fullName": "cict.service_auth.v1.EnumSystemRole.SystemRole",
+          "description": "",
+          "values": [
+            {
+              "name": "UNSPECIFIED",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "USER",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "ADMIN",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "SUPPER_USER",
+              "number": "3",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "EnumSystemRole",
+          "longName": "EnumSystemRole",
+          "fullName": "cict.service_auth.v1.EnumSystemRole",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        }
+      ],
+      "services": []
+    },
+    {
+      "name": "cict/service-auth/v1/profile.proto",
+      "description": "",
+      "package": "cict.service_auth.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "Profile",
+          "longName": "Profile",
+          "fullName": "cict.service_auth.v1.Profile",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "@gotags: gorm:\"primaryKey\"",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "ProfileService",
+          "longName": "ProfileService",
+          "fullName": "cict.service_auth.v1.ProfileService",
+          "description": "",
+          "methods": null
+        }
+      ]
+    },
+    {
+      "name": "cict/service-auth/v1/session.proto",
+      "description": "",
+      "package": "cict.service_auth.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "AuthenticateSessionRequest",
+          "longName": "AuthenticateSessionRequest",
+          "fullName": "cict.service_auth.v1.AuthenticateSessionRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "sessionId",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "Session",
+          "longName": "Session",
+          "fullName": "cict.service_auth.v1.Session",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "userId",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "email",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "SessionService",
+          "longName": "SessionService",
+          "fullName": "cict.service_auth.v1.SessionService",
+          "description": "",
+          "methods": [
+            {
+              "name": "AuthenticateSession",
+              "description": "",
+              "requestType": "AuthenticateSessionRequest",
+              "requestLongType": "AuthenticateSessionRequest",
+              "requestFullType": "cict.service_auth.v1.AuthenticateSessionRequest",
+              "requestStreaming": false,
+              "responseType": "Empty",
+              "responseLongType": ".google.protobuf.Empty",
+              "responseFullType": "google.protobuf.Empty",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/api/auth/v1/session/authenticate_session",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cict/service-auth/v1/user.proto",
+      "description": "",
+      "package": "cict.service_auth.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "GetUserRequest",
+          "longName": "GetUserRequest",
+          "fullName": "cict.service_auth.v1.GetUserRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetUserResponse",
+          "longName": "GetUserResponse",
+          "fullName": "cict.service_auth.v1.GetUserResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "user",
+              "description": "",
+              "label": "",
+              "type": "User",
+              "longType": "User",
+              "fullType": "cict.service_auth.v1.User",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListUserRequest",
+          "longName": "ListUserRequest",
+          "fullName": "cict.service_auth.v1.ListUserRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "paginate",
+              "description": "",
+              "label": "",
+              "type": "PaginateRequest",
+              "longType": "cict.common.v1.PaginateRequest",
+              "fullType": "cict.common.v1.PaginateRequest",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListUserResponse",
+          "longName": "ListUserResponse",
+          "fullName": "cict.service_auth.v1.ListUserResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "users",
+              "description": "",
+              "label": "repeated",
+              "type": "User",
+              "longType": "User",
+              "fullType": "cict.service_auth.v1.User",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "LoginRequest",
+          "longName": "LoginRequest",
+          "fullName": "cict.service_auth.v1.LoginRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "email",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "password",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "validatePassword",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "LoginResponse",
+          "longName": "LoginResponse",
+          "fullName": "cict.service_auth.v1.LoginResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "user",
+              "description": "",
+              "label": "",
+              "type": "User",
+              "longType": "User",
+              "fullType": "cict.service_auth.v1.User",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "sessionId",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "LogoutRequest",
+          "longName": "LogoutRequest",
+          "fullName": "cict.service_auth.v1.LogoutRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "sessionId",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "MutateUserRequest",
+          "longName": "MutateUserRequest",
+          "fullName": "cict.service_auth.v1.MutateUserRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "create",
+              "description": "",
+              "label": "",
+              "type": "User",
+              "longType": "User",
+              "fullType": "cict.service_auth.v1.User",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operation",
+              "defaultValue": ""
+            },
+            {
+              "name": "update",
+              "description": "",
+              "label": "",
+              "type": "User",
+              "longType": "User",
+              "fullType": "cict.service_auth.v1.User",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operation",
+              "defaultValue": ""
+            },
+            {
+              "name": "delete",
+              "description": "",
+              "label": "",
+              "type": "User",
+              "longType": "User",
+              "fullType": "cict.service_auth.v1.User",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operation",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "MutateUserResponse",
+          "longName": "MutateUserResponse",
+          "fullName": "cict.service_auth.v1.MutateUserResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "mutatedId",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "User",
+          "longName": "User",
+          "fullName": "cict.service_auth.v1.User",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "@gotags: gorm:\"primaryKey\"",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "authenticateThirdParty",
+              "description": "@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "AuthenticateThirdParty",
+              "longType": "EnumAuthenticateThirdParty.AuthenticateThirdParty",
+              "fullType": "cict.service_auth.v1.EnumAuthenticateThirdParty.AuthenticateThirdParty",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "gmailOrganization",
+              "description": "allow read and write\n\n@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "regisUsername",
+              "description": "@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "regisPassword",
+              "description": "@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "allow read and write\n\n@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "avatar",
+              "description": "allow read and write\n\n@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "systemRole",
+              "description": "allow read and write\n\n@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "SystemRole",
+              "longType": "EnumSystemRole.SystemRole",
+              "fullType": "cict.service_auth.v1.EnumSystemRole.SystemRole",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "updatedAt",
+              "description": "@gotags: gorm:\"autoUpdateTime:nano\"",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "createdAt",
+              "description": "@gotags: gorm:\"autoCreateTime:nano\"",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "UserService",
+          "longName": "UserService",
+          "fullName": "cict.service_auth.v1.UserService",
+          "description": "",
+          "methods": [
+            {
+              "name": "Login",
+              "description": "",
+              "requestType": "LoginRequest",
+              "requestLongType": "LoginRequest",
+              "requestFullType": "cict.service_auth.v1.LoginRequest",
+              "requestStreaming": false,
+              "responseType": "LoginResponse",
+              "responseLongType": "LoginResponse",
+              "responseFullType": "cict.service_auth.v1.LoginResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/api/auth/v1/user/login",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Logout",
+              "description": "",
+              "requestType": "LogoutRequest",
+              "requestLongType": "LogoutRequest",
+              "requestFullType": "cict.service_auth.v1.LogoutRequest",
+              "requestStreaming": false,
+              "responseType": "Empty",
+              "responseLongType": ".google.protobuf.Empty",
+              "responseFullType": "google.protobuf.Empty",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/api/auth/v1/user/logout",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "MutateUser",
+              "description": "",
+              "requestType": "MutateUserRequest",
+              "requestLongType": "MutateUserRequest",
+              "requestFullType": "cict.service_auth.v1.MutateUserRequest",
+              "requestStreaming": false,
+              "responseType": "MutateUserResponse",
+              "responseLongType": "MutateUserResponse",
+              "responseFullType": "cict.service_auth.v1.MutateUserResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/api/auth/v1/user/mutate",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "GetUser",
+              "description": "",
+              "requestType": "GetUserRequest",
+              "requestLongType": "GetUserRequest",
+              "requestFullType": "cict.service_auth.v1.GetUserRequest",
+              "requestStreaming": false,
+              "responseType": "GetUserResponse",
+              "responseLongType": "GetUserResponse",
+              "responseFullType": "cict.service_auth.v1.GetUserResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/api/auth/v1/user/get"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "ListUser",
+              "description": "",
+              "requestType": "ListUserRequest",
+              "requestLongType": "ListUserRequest",
+              "requestFullType": "cict.service_auth.v1.ListUserRequest",
+              "requestStreaming": false,
+              "responseType": "ListUserResponse",
+              "responseLongType": "ListUserResponse",
+              "responseFullType": "cict.service_auth.v1.ListUserResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/api/auth/v1/user/list"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scalarValueTypes": [
+    {
+      "protoType": "double",
+      "notes": "",
+      "cppType": "double",
+      "csType": "double",
+      "goType": "float64",
+      "javaType": "double",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "float",
+      "notes": "",
+      "cppType": "float",
+      "csType": "float",
+      "goType": "float32",
+      "javaType": "float",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "int32",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "int64",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "uint32",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "uint64",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint32",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint64",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "fixed32",
+      "notes": "Always four bytes. More efficient than uint32 if values are often greater than 2^28.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "fixed64",
+      "notes": "Always eight bytes. More efficient than uint64 if values are often greater than 2^56.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "sfixed32",
+      "notes": "Always four bytes.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sfixed64",
+      "notes": "Always eight bytes.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "bool",
+      "notes": "",
+      "cppType": "bool",
+      "csType": "bool",
+      "goType": "bool",
+      "javaType": "boolean",
+      "phpType": "boolean",
+      "pythonType": "boolean",
+      "rubyType": "TrueClass/FalseClass"
+    },
+    {
+      "protoType": "string",
+      "notes": "A string must always contain UTF-8 encoded or 7-bit ASCII text.",
+      "cppType": "string",
+      "csType": "string",
+      "goType": "string",
+      "javaType": "String",
+      "phpType": "string",
+      "pythonType": "str/unicode",
+      "rubyType": "String (UTF-8)"
+    },
+    {
+      "protoType": "bytes",
+      "notes": "May contain any arbitrary sequence of bytes.",
+      "cppType": "string",
+      "csType": "ByteString",
+      "goType": "[]byte",
+      "javaType": "ByteString",
+      "phpType": "string",
+      "pythonType": "str",
+      "rubyType": "String (ASCII-8BIT)"
+    }
+  ]
+}

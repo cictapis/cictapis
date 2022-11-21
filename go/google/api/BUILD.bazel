@@ -1,0 +1,13 @@
+load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
+
+go_proto_library(
+  name = "google_api_go_proto",
+  compilers = ["@io_bazel_rules_go//proto:go_grpc"],
+  importpath = "github.com/cictapis/server-auth/google/api/annotations",
+  protos = [
+    "@com_github_cict_cictapis//google/api:annotations_proto",
+    "@com_github_cict_cictapis//google/api:http_proto",
+  ],
+  deps = [],
+  visibility = ["//visibility:public"]
+)

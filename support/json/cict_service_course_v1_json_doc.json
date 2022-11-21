@@ -1,0 +1,2697 @@
+{
+  "files": [
+    {
+      "name": "cict/service-course/v1/course_field.proto",
+      "description": "",
+      "package": "cict.service_course.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "CourseField",
+          "longName": "CourseField",
+          "fullName": "cict.service_course.v1.CourseField",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "@gotags: gorm:\"primaryKey\"",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "courses",
+              "description": "Has many relationships with Course",
+              "label": "repeated",
+              "type": "Course",
+              "longType": "Course",
+              "fullType": "cict.service_course.v1.Course",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "updatedAt",
+              "description": "@gotags: gorm:\"autoUpdateTime:nano\"",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "createdAt",
+              "description": "@gotags: gorm:\"autoCreateTime:nano\"",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetCourseFieldRequest",
+          "longName": "GetCourseFieldRequest",
+          "fullName": "cict.service_course.v1.GetCourseFieldRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetCourseFieldResponse",
+          "longName": "GetCourseFieldResponse",
+          "fullName": "cict.service_course.v1.GetCourseFieldResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "courseField",
+              "description": "",
+              "label": "",
+              "type": "CourseField",
+              "longType": "CourseField",
+              "fullType": "cict.service_course.v1.CourseField",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListCourseFieldRequest",
+          "longName": "ListCourseFieldRequest",
+          "fullName": "cict.service_course.v1.ListCourseFieldRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "paginate",
+              "description": "",
+              "label": "",
+              "type": "PaginateRequest",
+              "longType": "cict.common.v1.PaginateRequest",
+              "fullType": "cict.common.v1.PaginateRequest",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListCourseFieldResponse",
+          "longName": "ListCourseFieldResponse",
+          "fullName": "cict.service_course.v1.ListCourseFieldResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "courseFields",
+              "description": "",
+              "label": "repeated",
+              "type": "CourseField",
+              "longType": "CourseField",
+              "fullType": "cict.service_course.v1.CourseField",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "MutateCourseFieldRequest",
+          "longName": "MutateCourseFieldRequest",
+          "fullName": "cict.service_course.v1.MutateCourseFieldRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "updateMask",
+              "description": "",
+              "label": "",
+              "type": "FieldMask",
+              "longType": "google.protobuf.FieldMask",
+              "fullType": "google.protobuf.FieldMask",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "create",
+              "description": "",
+              "label": "",
+              "type": "Course",
+              "longType": "Course",
+              "fullType": "cict.service_course.v1.Course",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operation",
+              "defaultValue": ""
+            },
+            {
+              "name": "update",
+              "description": "",
+              "label": "",
+              "type": "Course",
+              "longType": "Course",
+              "fullType": "cict.service_course.v1.Course",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operation",
+              "defaultValue": ""
+            },
+            {
+              "name": "delete",
+              "description": "",
+              "label": "",
+              "type": "Course",
+              "longType": "Course",
+              "fullType": "cict.service_course.v1.Course",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operation",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "MutateCourseFieldResponse",
+          "longName": "MutateCourseFieldResponse",
+          "fullName": "cict.service_course.v1.MutateCourseFieldResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "mutatedId",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "CourseFieldService",
+          "longName": "CourseFieldService",
+          "fullName": "cict.service_course.v1.CourseFieldService",
+          "description": "",
+          "methods": [
+            {
+              "name": "MutateCourseField",
+              "description": "",
+              "requestType": "MutateCourseFieldRequest",
+              "requestLongType": "MutateCourseFieldRequest",
+              "requestFullType": "cict.service_course.v1.MutateCourseFieldRequest",
+              "requestStreaming": false,
+              "responseType": "MutateCourseFieldResponse",
+              "responseLongType": "MutateCourseFieldResponse",
+              "responseFullType": "cict.service_course.v1.MutateCourseFieldResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/api/course/v1/course_field/mutate",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "GetCourseField",
+              "description": "",
+              "requestType": "GetCourseFieldRequest",
+              "requestLongType": "GetCourseFieldRequest",
+              "requestFullType": "cict.service_course.v1.GetCourseFieldRequest",
+              "requestStreaming": false,
+              "responseType": "GetCourseFieldResponse",
+              "responseLongType": "GetCourseFieldResponse",
+              "responseFullType": "cict.service_course.v1.GetCourseFieldResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/api/course/v1/course_field/get"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "ListCourseField",
+              "description": "",
+              "requestType": "ListCourseFieldRequest",
+              "requestLongType": "ListCourseFieldRequest",
+              "requestFullType": "cict.service_course.v1.ListCourseFieldRequest",
+              "requestStreaming": false,
+              "responseType": "ListCourseFieldResponse",
+              "responseLongType": "ListCourseFieldResponse",
+              "responseFullType": "cict.service_course.v1.ListCourseFieldResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/api/course/v1/course_field/list"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cict/service-course/v1/course_timetable_day.proto",
+      "description": "",
+      "package": "cict.service_course.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "CourseTimetableDay",
+          "longName": "CourseTimetableDay",
+          "fullName": "cict.service_course.v1.CourseTimetableDay",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "@gotags: gorm:\"primaryKey\"",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "day",
+              "description": "@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "active",
+              "description": "@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "courseTimetableWeekId",
+              "description": "Belong to relationship CourseTimetableWeek",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "updatedAt",
+              "description": "@gotags: gorm:\"autoUpdateTime:nano\"",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "createdAt",
+              "description": "@gotags: gorm:\"autoCreateTime:nano\"",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetCourseTimetableDayRequest",
+          "longName": "GetCourseTimetableDayRequest",
+          "fullName": "cict.service_course.v1.GetCourseTimetableDayRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetCourseTimetableDayResponse",
+          "longName": "GetCourseTimetableDayResponse",
+          "fullName": "cict.service_course.v1.GetCourseTimetableDayResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "courseTimetableDay",
+              "description": "",
+              "label": "",
+              "type": "CourseTimetableDay",
+              "longType": "CourseTimetableDay",
+              "fullType": "cict.service_course.v1.CourseTimetableDay",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListCourseTimetableDayRequest",
+          "longName": "ListCourseTimetableDayRequest",
+          "fullName": "cict.service_course.v1.ListCourseTimetableDayRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "paginate",
+              "description": "",
+              "label": "",
+              "type": "PaginateRequest",
+              "longType": "cict.common.v1.PaginateRequest",
+              "fullType": "cict.common.v1.PaginateRequest",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListCourseTimetableDayResponse",
+          "longName": "ListCourseTimetableDayResponse",
+          "fullName": "cict.service_course.v1.ListCourseTimetableDayResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "courseTimetableDays",
+              "description": "",
+              "label": "repeated",
+              "type": "CourseTimetableDay",
+              "longType": "CourseTimetableDay",
+              "fullType": "cict.service_course.v1.CourseTimetableDay",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "MutateCourseTimetableDayRequest",
+          "longName": "MutateCourseTimetableDayRequest",
+          "fullName": "cict.service_course.v1.MutateCourseTimetableDayRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "updateMask",
+              "description": "",
+              "label": "",
+              "type": "FieldMask",
+              "longType": "google.protobuf.FieldMask",
+              "fullType": "google.protobuf.FieldMask",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "create",
+              "description": "",
+              "label": "",
+              "type": "CourseTimetableDay",
+              "longType": "CourseTimetableDay",
+              "fullType": "cict.service_course.v1.CourseTimetableDay",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operation",
+              "defaultValue": ""
+            },
+            {
+              "name": "update",
+              "description": "",
+              "label": "",
+              "type": "CourseTimetableDay",
+              "longType": "CourseTimetableDay",
+              "fullType": "cict.service_course.v1.CourseTimetableDay",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operation",
+              "defaultValue": ""
+            },
+            {
+              "name": "delete",
+              "description": "",
+              "label": "",
+              "type": "CourseTimetableDay",
+              "longType": "CourseTimetableDay",
+              "fullType": "cict.service_course.v1.CourseTimetableDay",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operation",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "MutateCourseTimetableDayResponse",
+          "longName": "MutateCourseTimetableDayResponse",
+          "fullName": "cict.service_course.v1.MutateCourseTimetableDayResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "mutatedId",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "CourseTimetableDayService",
+          "longName": "CourseTimetableDayService",
+          "fullName": "cict.service_course.v1.CourseTimetableDayService",
+          "description": "",
+          "methods": [
+            {
+              "name": "MutateCourseTimetableDay",
+              "description": "",
+              "requestType": "MutateCourseTimetableDayRequest",
+              "requestLongType": "MutateCourseTimetableDayRequest",
+              "requestFullType": "cict.service_course.v1.MutateCourseTimetableDayRequest",
+              "requestStreaming": false,
+              "responseType": "MutateCourseTimetableDayResponse",
+              "responseLongType": "MutateCourseTimetableDayResponse",
+              "responseFullType": "cict.service_course.v1.MutateCourseTimetableDayResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/api/course/v1/course_timetable_day/mutate",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "GetCourseTimetableDay",
+              "description": "",
+              "requestType": "GetCourseTimetableDayRequest",
+              "requestLongType": "GetCourseTimetableDayRequest",
+              "requestFullType": "cict.service_course.v1.GetCourseTimetableDayRequest",
+              "requestStreaming": false,
+              "responseType": "GetCourseTimetableDayResponse",
+              "responseLongType": "GetCourseTimetableDayResponse",
+              "responseFullType": "cict.service_course.v1.GetCourseTimetableDayResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/api/course/v1/course_timetable_day/get"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "ListCourseTimetableDay",
+              "description": "",
+              "requestType": "ListCourseTimetableDayRequest",
+              "requestLongType": "ListCourseTimetableDayRequest",
+              "requestFullType": "cict.service_course.v1.ListCourseTimetableDayRequest",
+              "requestStreaming": false,
+              "responseType": "ListCourseTimetableDayResponse",
+              "responseLongType": "ListCourseTimetableDayResponse",
+              "responseFullType": "cict.service_course.v1.ListCourseTimetableDayResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/api/course/v1/course_timetable_day/list"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cict/service-course/v1/course_timetable_week.proto",
+      "description": "",
+      "package": "cict.service_course.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "CourseTimetableWeek",
+          "longName": "CourseTimetableWeek",
+          "fullName": "cict.service_course.v1.CourseTimetableWeek",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "@gotags: gorm:\"primaryKey\"",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "courseId",
+              "description": "Belong to relationship",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "week",
+              "description": "@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "active",
+              "description": "@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "courseTimetableDays",
+              "description": "HasMany relationship CourseTimetableDay",
+              "label": "repeated",
+              "type": "CourseTimetableDay",
+              "longType": "CourseTimetableDay",
+              "fullType": "cict.service_course.v1.CourseTimetableDay",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "updatedAt",
+              "description": "@gotags: gorm:\"autoUpdateTime:nano\"",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "createdAt",
+              "description": "@gotags: gorm:\"autoCreateTime:nano\"",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetCourseTimetableWeekRequest",
+          "longName": "GetCourseTimetableWeekRequest",
+          "fullName": "cict.service_course.v1.GetCourseTimetableWeekRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetCourseTimetableWeekResponse",
+          "longName": "GetCourseTimetableWeekResponse",
+          "fullName": "cict.service_course.v1.GetCourseTimetableWeekResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "courseTimetableWeek",
+              "description": "",
+              "label": "",
+              "type": "CourseTimetableWeek",
+              "longType": "CourseTimetableWeek",
+              "fullType": "cict.service_course.v1.CourseTimetableWeek",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListCourseTimetableWeekRequest",
+          "longName": "ListCourseTimetableWeekRequest",
+          "fullName": "cict.service_course.v1.ListCourseTimetableWeekRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "paginate",
+              "description": "",
+              "label": "",
+              "type": "PaginateRequest",
+              "longType": "cict.common.v1.PaginateRequest",
+              "fullType": "cict.common.v1.PaginateRequest",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListCourseTimetableWeekResponse",
+          "longName": "ListCourseTimetableWeekResponse",
+          "fullName": "cict.service_course.v1.ListCourseTimetableWeekResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "courseTimetableWeeks",
+              "description": "",
+              "label": "repeated",
+              "type": "CourseTimetableWeek",
+              "longType": "CourseTimetableWeek",
+              "fullType": "cict.service_course.v1.CourseTimetableWeek",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "MutateCourseTimetableWeekRequest",
+          "longName": "MutateCourseTimetableWeekRequest",
+          "fullName": "cict.service_course.v1.MutateCourseTimetableWeekRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "updateMask",
+              "description": "",
+              "label": "",
+              "type": "FieldMask",
+              "longType": "google.protobuf.FieldMask",
+              "fullType": "google.protobuf.FieldMask",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "create",
+              "description": "",
+              "label": "",
+              "type": "CourseTimetableWeek",
+              "longType": "CourseTimetableWeek",
+              "fullType": "cict.service_course.v1.CourseTimetableWeek",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operation",
+              "defaultValue": ""
+            },
+            {
+              "name": "update",
+              "description": "",
+              "label": "",
+              "type": "CourseTimetableWeek",
+              "longType": "CourseTimetableWeek",
+              "fullType": "cict.service_course.v1.CourseTimetableWeek",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operation",
+              "defaultValue": ""
+            },
+            {
+              "name": "delete",
+              "description": "",
+              "label": "",
+              "type": "CourseTimetableWeek",
+              "longType": "CourseTimetableWeek",
+              "fullType": "cict.service_course.v1.CourseTimetableWeek",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operation",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "MutateCourseTimetableWeekResponse",
+          "longName": "MutateCourseTimetableWeekResponse",
+          "fullName": "cict.service_course.v1.MutateCourseTimetableWeekResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "mutatedId",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "CourseTimetableWeekService",
+          "longName": "CourseTimetableWeekService",
+          "fullName": "cict.service_course.v1.CourseTimetableWeekService",
+          "description": "",
+          "methods": [
+            {
+              "name": "MutateCourseTimetableWeek",
+              "description": "",
+              "requestType": "MutateCourseTimetableWeekRequest",
+              "requestLongType": "MutateCourseTimetableWeekRequest",
+              "requestFullType": "cict.service_course.v1.MutateCourseTimetableWeekRequest",
+              "requestStreaming": false,
+              "responseType": "MutateCourseTimetableWeekResponse",
+              "responseLongType": "MutateCourseTimetableWeekResponse",
+              "responseFullType": "cict.service_course.v1.MutateCourseTimetableWeekResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/api/course/v1/course_timetable_week/mutate",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "GetCourseTimetableWeek",
+              "description": "",
+              "requestType": "GetCourseTimetableWeekRequest",
+              "requestLongType": "GetCourseTimetableWeekRequest",
+              "requestFullType": "cict.service_course.v1.GetCourseTimetableWeekRequest",
+              "requestStreaming": false,
+              "responseType": "GetCourseTimetableWeekResponse",
+              "responseLongType": "GetCourseTimetableWeekResponse",
+              "responseFullType": "cict.service_course.v1.GetCourseTimetableWeekResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/api/course/v1/course_timetable_week/get"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "ListCourseTimetableWeek",
+              "description": "",
+              "requestType": "ListCourseTimetableWeekRequest",
+              "requestLongType": "ListCourseTimetableWeekRequest",
+              "requestFullType": "cict.service_course.v1.ListCourseTimetableWeekRequest",
+              "requestStreaming": false,
+              "responseType": "ListCourseTimetableWeekResponse",
+              "responseLongType": "ListCourseTimetableWeekResponse",
+              "responseFullType": "cict.service_course.v1.ListCourseTimetableWeekResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/api/course/v1/course_timetable_week/list"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cict/service-course/v1/course_timetable.proto",
+      "description": "",
+      "package": "cict.service_course.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "GetUserTimetableRequest",
+          "longName": "GetUserTimetableRequest",
+          "fullName": "cict.service_course.v1.GetUserTimetableRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "userId",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "courseId",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "weekId",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetUserTimetableResponse",
+          "longName": "GetUserTimetableResponse",
+          "fullName": "cict.service_course.v1.GetUserTimetableResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "courseTimetableDays",
+              "description": "",
+              "label": "repeated",
+              "type": "CourseTimetableDay",
+              "longType": "CourseTimetableDay",
+              "fullType": "cict.service_course.v1.CourseTimetableDay",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "CourseTimetable",
+          "longName": "CourseTimetable",
+          "fullName": "cict.service_course.v1.CourseTimetable",
+          "description": "",
+          "methods": [
+            {
+              "name": "GetUserTimetable",
+              "description": "",
+              "requestType": "GetUserTimetableRequest",
+              "requestLongType": "GetUserTimetableRequest",
+              "requestFullType": "cict.service_course.v1.GetUserTimetableRequest",
+              "requestStreaming": false,
+              "responseType": "GetUserTimetableResponse",
+              "responseLongType": "GetUserTimetableResponse",
+              "responseFullType": "cict.service_course.v1.GetUserTimetableResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/api/course/v1/course_timetable/get"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cict/service-course/v1/course.proto",
+      "description": "",
+      "package": "cict.service_course.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "Course",
+          "longName": "Course",
+          "fullName": "cict.service_course.v1.Course",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "@gotags: gorm:\"primaryKey\"",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "fromDate",
+              "description": "@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "toDate",
+              "description": "@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "capacity",
+              "description": "@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "size",
+              "description": "@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "courseFieldId",
+              "description": "Belong to CourseField",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "courseTimetableWeeks",
+              "description": "Has many relationships CourseTimetableWeek",
+              "label": "repeated",
+              "type": "CourseTimetableWeek",
+              "longType": "CourseTimetableWeek",
+              "fullType": "cict.service_course.v1.CourseTimetableWeek",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "examSchedules",
+              "description": "Has many relationships ExamSchedule",
+              "label": "repeated",
+              "type": "ExamSchedule",
+              "longType": "ExamSchedule",
+              "fullType": "cict.service_course.v1.ExamSchedule",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "users",
+              "description": "Many to many relationship User",
+              "label": "repeated",
+              "type": "User",
+              "longType": "User",
+              "fullType": "cict.service_course.v1.User",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "updatedAt",
+              "description": "@gotags: gorm:\"autoUpdateTime:nano\"",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "createdAt",
+              "description": "@gotags: gorm:\"autoCreateTime:nano\"",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetCourseRequest",
+          "longName": "GetCourseRequest",
+          "fullName": "cict.service_course.v1.GetCourseRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetCourseResponse",
+          "longName": "GetCourseResponse",
+          "fullName": "cict.service_course.v1.GetCourseResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "course",
+              "description": "",
+              "label": "",
+              "type": "Course",
+              "longType": "Course",
+              "fullType": "cict.service_course.v1.Course",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListCourseRequest",
+          "longName": "ListCourseRequest",
+          "fullName": "cict.service_course.v1.ListCourseRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "paginate",
+              "description": "",
+              "label": "",
+              "type": "PaginateRequest",
+              "longType": "cict.common.v1.PaginateRequest",
+              "fullType": "cict.common.v1.PaginateRequest",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListCourseResponse",
+          "longName": "ListCourseResponse",
+          "fullName": "cict.service_course.v1.ListCourseResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "courses",
+              "description": "",
+              "label": "repeated",
+              "type": "Course",
+              "longType": "Course",
+              "fullType": "cict.service_course.v1.Course",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "MutateCourseRequest",
+          "longName": "MutateCourseRequest",
+          "fullName": "cict.service_course.v1.MutateCourseRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "updateMask",
+              "description": "",
+              "label": "",
+              "type": "FieldMask",
+              "longType": "google.protobuf.FieldMask",
+              "fullType": "google.protobuf.FieldMask",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "create",
+              "description": "",
+              "label": "",
+              "type": "Course",
+              "longType": "Course",
+              "fullType": "cict.service_course.v1.Course",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operation",
+              "defaultValue": ""
+            },
+            {
+              "name": "update",
+              "description": "",
+              "label": "",
+              "type": "Course",
+              "longType": "Course",
+              "fullType": "cict.service_course.v1.Course",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operation",
+              "defaultValue": ""
+            },
+            {
+              "name": "delete",
+              "description": "",
+              "label": "",
+              "type": "Course",
+              "longType": "Course",
+              "fullType": "cict.service_course.v1.Course",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operation",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "MutateCourseResponse",
+          "longName": "MutateCourseResponse",
+          "fullName": "cict.service_course.v1.MutateCourseResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "mutatedId",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "RegisterCourseRequest",
+          "longName": "RegisterCourseRequest",
+          "fullName": "cict.service_course.v1.RegisterCourseRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "userId",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "courseId",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "User",
+          "longName": "User",
+          "fullName": "cict.service_course.v1.User",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "@gotags: gorm:\"primaryKey\"",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "courses",
+              "description": "Many to many relationships Course",
+              "label": "repeated",
+              "type": "Course",
+              "longType": "Course",
+              "fullType": "cict.service_course.v1.Course",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "updatedAt",
+              "description": "@gotags: gorm:\"autoUpdateTime:nano\"",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "createdAt",
+              "description": "@gotags: gorm:\"autoCreateTime:nano\"",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "CourseService",
+          "longName": "CourseService",
+          "fullName": "cict.service_course.v1.CourseService",
+          "description": "",
+          "methods": [
+            {
+              "name": "MutateCourse",
+              "description": "",
+              "requestType": "MutateCourseRequest",
+              "requestLongType": "MutateCourseRequest",
+              "requestFullType": "cict.service_course.v1.MutateCourseRequest",
+              "requestStreaming": false,
+              "responseType": "MutateCourseResponse",
+              "responseLongType": "MutateCourseResponse",
+              "responseFullType": "cict.service_course.v1.MutateCourseResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/api/course/v1/course/mutate",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "GetCourse",
+              "description": "",
+              "requestType": "GetCourseRequest",
+              "requestLongType": "GetCourseRequest",
+              "requestFullType": "cict.service_course.v1.GetCourseRequest",
+              "requestStreaming": false,
+              "responseType": "GetCourseResponse",
+              "responseLongType": "GetCourseResponse",
+              "responseFullType": "cict.service_course.v1.GetCourseResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/api/course/v1/course/get"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "ListCourse",
+              "description": "",
+              "requestType": "ListCourseRequest",
+              "requestLongType": "ListCourseRequest",
+              "requestFullType": "cict.service_course.v1.ListCourseRequest",
+              "requestStreaming": false,
+              "responseType": "ListCourseResponse",
+              "responseLongType": "ListCourseResponse",
+              "responseFullType": "cict.service_course.v1.ListCourseResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/api/course/v1/course/list"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "RegisterCourse",
+              "description": "",
+              "requestType": "RegisterCourseRequest",
+              "requestLongType": "RegisterCourseRequest",
+              "requestFullType": "cict.service_course.v1.RegisterCourseRequest",
+              "requestStreaming": false,
+              "responseType": "Empty",
+              "responseLongType": ".google.protobuf.Empty",
+              "responseFullType": "google.protobuf.Empty",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/api/course/v1/course/register",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cict/service-course/v1/exam_schedule.proto",
+      "description": "",
+      "package": "cict.service_course.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "ExamSchedule",
+          "longName": "ExamSchedule",
+          "fullName": "cict.service_course.v1.ExamSchedule",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "@gotags: gorm:\"primaryKey\"",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "examDate",
+              "description": "@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "courseId",
+              "description": "Belong to relationships Course",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "updatedAt",
+              "description": "@gotags: gorm:\"autoUpdateTime:nano\"",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "createdAt",
+              "description": "@gotags: gorm:\"autoCreateTime:nano\"",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetExamScheduleRequest",
+          "longName": "GetExamScheduleRequest",
+          "fullName": "cict.service_course.v1.GetExamScheduleRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetExamScheduleResponse",
+          "longName": "GetExamScheduleResponse",
+          "fullName": "cict.service_course.v1.GetExamScheduleResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "course",
+              "description": "",
+              "label": "",
+              "type": "ExamSchedule",
+              "longType": "ExamSchedule",
+              "fullType": "cict.service_course.v1.ExamSchedule",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetUpcomingExamScheduleRequest",
+          "longName": "GetUpcomingExamScheduleRequest",
+          "fullName": "cict.service_course.v1.GetUpcomingExamScheduleRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "courseId",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetUpcomingExamScheduleResponse",
+          "longName": "GetUpcomingExamScheduleResponse",
+          "fullName": "cict.service_course.v1.GetUpcomingExamScheduleResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "examSchedules",
+              "description": "",
+              "label": "repeated",
+              "type": "ExamSchedule",
+              "longType": "ExamSchedule",
+              "fullType": "cict.service_course.v1.ExamSchedule",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListExamScheduleRequest",
+          "longName": "ListExamScheduleRequest",
+          "fullName": "cict.service_course.v1.ListExamScheduleRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "paginate",
+              "description": "",
+              "label": "",
+              "type": "PaginateRequest",
+              "longType": "cict.common.v1.PaginateRequest",
+              "fullType": "cict.common.v1.PaginateRequest",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListExamScheduleResponse",
+          "longName": "ListExamScheduleResponse",
+          "fullName": "cict.service_course.v1.ListExamScheduleResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "courses",
+              "description": "",
+              "label": "repeated",
+              "type": "ExamSchedule",
+              "longType": "ExamSchedule",
+              "fullType": "cict.service_course.v1.ExamSchedule",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "MutateExamScheduleRequest",
+          "longName": "MutateExamScheduleRequest",
+          "fullName": "cict.service_course.v1.MutateExamScheduleRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "updateMask",
+              "description": "",
+              "label": "",
+              "type": "FieldMask",
+              "longType": "google.protobuf.FieldMask",
+              "fullType": "google.protobuf.FieldMask",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "create",
+              "description": "",
+              "label": "",
+              "type": "ExamSchedule",
+              "longType": "ExamSchedule",
+              "fullType": "cict.service_course.v1.ExamSchedule",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operation",
+              "defaultValue": ""
+            },
+            {
+              "name": "update",
+              "description": "",
+              "label": "",
+              "type": "ExamSchedule",
+              "longType": "ExamSchedule",
+              "fullType": "cict.service_course.v1.ExamSchedule",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operation",
+              "defaultValue": ""
+            },
+            {
+              "name": "delete",
+              "description": "",
+              "label": "",
+              "type": "ExamSchedule",
+              "longType": "ExamSchedule",
+              "fullType": "cict.service_course.v1.ExamSchedule",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operation",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "MutateExamScheduleResponse",
+          "longName": "MutateExamScheduleResponse",
+          "fullName": "cict.service_course.v1.MutateExamScheduleResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "mutatedId",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "ExamScheduleService",
+          "longName": "ExamScheduleService",
+          "fullName": "cict.service_course.v1.ExamScheduleService",
+          "description": "",
+          "methods": [
+            {
+              "name": "MutateExamSchedule",
+              "description": "",
+              "requestType": "MutateExamScheduleRequest",
+              "requestLongType": "MutateExamScheduleRequest",
+              "requestFullType": "cict.service_course.v1.MutateExamScheduleRequest",
+              "requestStreaming": false,
+              "responseType": "MutateExamScheduleResponse",
+              "responseLongType": "MutateExamScheduleResponse",
+              "responseFullType": "cict.service_course.v1.MutateExamScheduleResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/api/course/v1/exam_schedule/mutate",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "GetExamSchedule",
+              "description": "",
+              "requestType": "GetExamScheduleRequest",
+              "requestLongType": "GetExamScheduleRequest",
+              "requestFullType": "cict.service_course.v1.GetExamScheduleRequest",
+              "requestStreaming": false,
+              "responseType": "GetExamScheduleResponse",
+              "responseLongType": "GetExamScheduleResponse",
+              "responseFullType": "cict.service_course.v1.GetExamScheduleResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/api/course/v1/exam_schedule/get"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "ListExamSchedule",
+              "description": "",
+              "requestType": "ListExamScheduleRequest",
+              "requestLongType": "ListExamScheduleRequest",
+              "requestFullType": "cict.service_course.v1.ListExamScheduleRequest",
+              "requestStreaming": false,
+              "responseType": "ListExamScheduleResponse",
+              "responseLongType": "ListExamScheduleResponse",
+              "responseFullType": "cict.service_course.v1.ListExamScheduleResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/api/course/v1/exam_schedule/post"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "GetUpcomingExamSchedule",
+              "description": "",
+              "requestType": "GetUpcomingExamScheduleRequest",
+              "requestLongType": "GetUpcomingExamScheduleRequest",
+              "requestFullType": "cict.service_course.v1.GetUpcomingExamScheduleRequest",
+              "requestStreaming": false,
+              "responseType": "GetUpcomingExamScheduleResponse",
+              "responseLongType": "GetUpcomingExamScheduleResponse",
+              "responseFullType": "cict.service_course.v1.GetUpcomingExamScheduleResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/api/course/v1/exam_schedule/get_upcoming"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cict/service-course/v1/exam_score.proto",
+      "description": "",
+      "package": "cict.service_course.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "ExamScore",
+          "longName": "ExamScore",
+          "fullName": "cict.service_course.v1.ExamScore",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "@gotags: gorm:\"primaryKey\"",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "score",
+              "description": "@gotags: gorm:\"\u003c-\"",
+              "label": "",
+              "type": "float",
+              "longType": "float",
+              "fullType": "float",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "examScheduleId",
+              "description": "Belong to relationship ExamSchedule",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "userId",
+              "description": "Belong to relationship User",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "updatedAt",
+              "description": "@gotags: gorm:\"autoUpdateTime:nano\"",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "createdAt",
+              "description": "@gotags: gorm:\"autoCreateTime:nano\"",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetExamScoreRequest",
+          "longName": "GetExamScoreRequest",
+          "fullName": "cict.service_course.v1.GetExamScoreRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetExamScoreResponse",
+          "longName": "GetExamScoreResponse",
+          "fullName": "cict.service_course.v1.GetExamScoreResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "examScore",
+              "description": "",
+              "label": "",
+              "type": "ExamScore",
+              "longType": "ExamScore",
+              "fullType": "cict.service_course.v1.ExamScore",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListExamScoreRequest",
+          "longName": "ListExamScoreRequest",
+          "fullName": "cict.service_course.v1.ListExamScoreRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "paginate",
+              "description": "",
+              "label": "",
+              "type": "PaginateRequest",
+              "longType": "cict.common.v1.PaginateRequest",
+              "fullType": "cict.common.v1.PaginateRequest",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListExamScoreResponse",
+          "longName": "ListExamScoreResponse",
+          "fullName": "cict.service_course.v1.ListExamScoreResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "examScores",
+              "description": "",
+              "label": "repeated",
+              "type": "ExamScore",
+              "longType": "ExamScore",
+              "fullType": "cict.service_course.v1.ExamScore",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "MutateExamScoreRequest",
+          "longName": "MutateExamScoreRequest",
+          "fullName": "cict.service_course.v1.MutateExamScoreRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "updateMask",
+              "description": "",
+              "label": "",
+              "type": "FieldMask",
+              "longType": "google.protobuf.FieldMask",
+              "fullType": "google.protobuf.FieldMask",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "create",
+              "description": "",
+              "label": "",
+              "type": "ExamScore",
+              "longType": "ExamScore",
+              "fullType": "cict.service_course.v1.ExamScore",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operation",
+              "defaultValue": ""
+            },
+            {
+              "name": "update",
+              "description": "",
+              "label": "",
+              "type": "ExamScore",
+              "longType": "ExamScore",
+              "fullType": "cict.service_course.v1.ExamScore",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operation",
+              "defaultValue": ""
+            },
+            {
+              "name": "delete",
+              "description": "",
+              "label": "",
+              "type": "ExamScore",
+              "longType": "ExamScore",
+              "fullType": "cict.service_course.v1.ExamScore",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operation",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "MutateExamScoreResponse",
+          "longName": "MutateExamScoreResponse",
+          "fullName": "cict.service_course.v1.MutateExamScoreResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "mutatedId",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "ExamScoreService",
+          "longName": "ExamScoreService",
+          "fullName": "cict.service_course.v1.ExamScoreService",
+          "description": "",
+          "methods": [
+            {
+              "name": "MutateExamScore",
+              "description": "",
+              "requestType": "MutateExamScoreRequest",
+              "requestLongType": "MutateExamScoreRequest",
+              "requestFullType": "cict.service_course.v1.MutateExamScoreRequest",
+              "requestStreaming": false,
+              "responseType": "MutateExamScoreResponse",
+              "responseLongType": "MutateExamScoreResponse",
+              "responseFullType": "cict.service_course.v1.MutateExamScoreResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/api/course/v1/exam_score/mutate",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "GetExamScore",
+              "description": "",
+              "requestType": "GetExamScoreRequest",
+              "requestLongType": "GetExamScoreRequest",
+              "requestFullType": "cict.service_course.v1.GetExamScoreRequest",
+              "requestStreaming": false,
+              "responseType": "GetExamScoreResponse",
+              "responseLongType": "GetExamScoreResponse",
+              "responseFullType": "cict.service_course.v1.GetExamScoreResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/api/course/v1/exam_score/get"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "ListExamScore",
+              "description": "",
+              "requestType": "ListExamScoreRequest",
+              "requestLongType": "ListExamScoreRequest",
+              "requestFullType": "cict.service_course.v1.ListExamScoreRequest",
+              "requestStreaming": false,
+              "responseType": "ListExamScoreResponse",
+              "responseLongType": "ListExamScoreResponse",
+              "responseFullType": "cict.service_course.v1.ListExamScoreResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/api/course/v1/exam_score/list"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scalarValueTypes": [
+    {
+      "protoType": "double",
+      "notes": "",
+      "cppType": "double",
+      "csType": "double",
+      "goType": "float64",
+      "javaType": "double",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "float",
+      "notes": "",
+      "cppType": "float",
+      "csType": "float",
+      "goType": "float32",
+      "javaType": "float",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "int32",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "int64",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "uint32",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "uint64",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint32",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint64",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "fixed32",
+      "notes": "Always four bytes. More efficient than uint32 if values are often greater than 2^28.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "fixed64",
+      "notes": "Always eight bytes. More efficient than uint64 if values are often greater than 2^56.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "sfixed32",
+      "notes": "Always four bytes.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sfixed64",
+      "notes": "Always eight bytes.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "bool",
+      "notes": "",
+      "cppType": "bool",
+      "csType": "bool",
+      "goType": "bool",
+      "javaType": "boolean",
+      "phpType": "boolean",
+      "pythonType": "boolean",
+      "rubyType": "TrueClass/FalseClass"
+    },
+    {
+      "protoType": "string",
+      "notes": "A string must always contain UTF-8 encoded or 7-bit ASCII text.",
+      "cppType": "string",
+      "csType": "string",
+      "goType": "string",
+      "javaType": "String",
+      "phpType": "string",
+      "pythonType": "str/unicode",
+      "rubyType": "String (UTF-8)"
+    },
+    {
+      "protoType": "bytes",
+      "notes": "May contain any arbitrary sequence of bytes.",
+      "cppType": "string",
+      "csType": "ByteString",
+      "goType": "[]byte",
+      "javaType": "ByteString",
+      "phpType": "string",
+      "pythonType": "str",
+      "rubyType": "String (ASCII-8BIT)"
+    }
+  ]
+}

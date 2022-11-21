@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+package cict.service_course.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/server-auth/cict/service_course/v1;service_course";
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/paginate.proto";
+import "cict/service-course/v1/course.proto";
+
+service CourseFieldService {
+  rpc MutateCourseField(MutateCourseFieldRequest) returns (MutateCourseFieldResponse) {
+    option (google.api.http) = {
+      post: "/api/course/v1/course_field/mutate",
+      body: "*"
+    };
+    option (common.v1.crudPolicy) = ADMIN;
+  }
+
+  rpc GetCourseField(GetCourseFieldRequest) returns (GetCourseFieldResponse) {
+    option (google.api.http) = {
+      get: "/api/course/v1/course_field/get",
+    };
+    option (common.v1.crudPolicy) = ANYONE;
+  }
+
+  rpc ListCourseField(ListCourseFieldRequest) returns (ListCourseFieldResponse) {
+    option (google.api.http) = {
+      get: "/api/course/v1/course_field/list"
+    };
+    option (common.v1.crudPolicy) = ANYONE;
+  }
+}
+
+message MutateCourseFieldRequest {
+  google.protobuf.FieldMask updateMask = 4;
+
+  oneof operation {
+    Course create = 1;
+
+    Course update = 2;
+
+    Course delete = 3;
+  }
+}
+
+message MutateCourseFieldResponse {
+  uint64 mutatedId = 1;
+}
+
+message GetCourseFieldRequest {
+  uint64 id = 1;
+}
+
+message GetCourseFieldResponse {
+  CourseField courseField = 1;
+}
+
+message ListCourseFieldRequest {
+  cict.common.v1.PaginateRequest paginate = 1;
+}
+
+message ListCourseFieldResponse {
+  repeated CourseField courseFields = 1;
+}
+
+message CourseField {
+  // @gotags: gorm:"primaryKey"
+  uint64 id = 1;
+
+  // @gotags: gorm:"<-"
+  string name = 2;
+
+  // Has many relationships with Course
+  repeated Course courses = 3;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updatedAt = 4;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 createdAt = 5;
+}

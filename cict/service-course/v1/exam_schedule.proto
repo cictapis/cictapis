@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+package cict.service_course.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/server-auth/cict/service_course/v1;service_course";
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/paginate.proto";
+
+service ExamScheduleService {
+  rpc MutateExamSchedule(MutateExamScheduleRequest) returns (MutateExamScheduleResponse) {
+    option (google.api.http) = {
+      post: "/api/course/v1/exam_schedule/mutate",
+      body: "*"
+    };
+    option (common.v1.crudPolicy) = ADMIN;
+  }
+
+  rpc GetExamSchedule(GetExamScheduleRequest) returns (GetExamScheduleResponse) {
+    option (google.api.http) = {
+      get: "/api/course/v1/exam_schedule/get",
+    };
+    option (common.v1.crudPolicy) = AUTH;
+  }
+
+  rpc ListExamSchedule(ListExamScheduleRequest) returns (ListExamScheduleResponse) {
+    option (google.api.http) = {
+      get: "/api/course/v1/exam_schedule/post",
+    };
+    option (common.v1.crudPolicy) = AUTH;
+  }
+
+  rpc GetUpcomingExamSchedule(GetUpcomingExamScheduleRequest) returns (GetUpcomingExamScheduleResponse) {
+    option (google.api.http) = {
+      get: "/api/course/v1/exam_schedule/get_upcoming"
+    };
+    option (common.v1.crudPolicy) = AUTH;
+  }
+}
+
+message MutateExamScheduleRequest {
+  google.protobuf.FieldMask updateMask = 4;
+
+  oneof operation {
+    ExamSchedule create = 1;
+
+    ExamSchedule update = 2;
+
+    ExamSchedule delete = 3;
+  }
+}
+
+message MutateExamScheduleResponse {
+  uint64 mutatedId = 1;
+}
+
+message GetExamScheduleRequest {
+  uint64 id = 1;
+}
+
+message GetExamScheduleResponse {
+  ExamSchedule course = 1;
+}
+
+message ListExamScheduleRequest {
+  cict.common.v1.PaginateRequest paginate = 1;
+}
+
+message ListExamScheduleResponse {
+  repeated ExamSchedule courses = 1;
+}
+
+message GetUpcomingExamScheduleRequest {
+  uint64 courseId = 1;
+}
+
+message GetUpcomingExamScheduleResponse {
+  repeated ExamSchedule examSchedules = 1;
+}
+
+message ExamSchedule {
+  // @gotags: gorm:"primaryKey"
+  uint64 id = 1;
+
+  // @gotags: gorm:"<-"
+  string name = 2;
+
+  // @gotags: gorm:"<-"
+  string description = 3;
+
+  // @gotags: gorm:"<-"
+  string examDate = 4;
+
+  // Belong to relationships Course
+  uint64 courseId = 5;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updatedAt = 6;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 createdAt = 7;
+}

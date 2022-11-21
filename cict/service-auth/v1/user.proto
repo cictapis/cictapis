@@ -1,0 +1,143 @@
+syntax = "proto3";
+
+package cict.service_auth.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/server-auth/cict/service_auth/v1;service_auth";
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/empty.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/paginate.proto";
+import "cict/service-auth/v1/enum_authenticate_third_party.proto";
+import "cict/service-auth/v1/enum_system_role.proto";
+
+service UserService {
+  rpc Login(LoginRequest) returns (LoginResponse) {
+    option (google.api.http) = {
+      post: "/api/auth/v1/user/login",
+      body: "*"
+    };
+    option (common.v1.crudPolicy) = ANONYMOUS;
+  }
+
+  rpc Logout(LogoutRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/api/auth/v1/user/logout",
+      body: "*"
+    };
+    option (common.v1.crudPolicy) = AUTH;
+  }
+
+  rpc MutateUser(MutateUserRequest) returns (MutateUserResponse) {
+    option (google.api.http) = {
+      post: "/api/auth/v1/user/mutate",
+      body: "*"
+    };
+    option (common.v1.crudPolicy) = ADMIN;
+  }
+
+  rpc GetUser(GetUserRequest) returns (GetUserResponse) {
+    option (google.api.http) = {
+      get: "/api/auth/v1/user/get"
+    };
+    option (common.v1.crudPolicy) = AUTH;
+  }
+
+  rpc ListUser(ListUserRequest) returns (ListUserResponse) {
+    option (google.api.http) = {
+      get: "/api/auth/v1/user/list"
+    };
+    option (common.v1.crudPolicy) = ADMIN;
+  }
+}
+
+message LoginRequest {
+  string email = 1;
+
+  string password = 2;
+
+  string validatePassword = 3;
+}
+
+message LoginResponse {
+  User user = 1;
+
+  string sessionId = 2;
+}
+
+message LogoutRequest {
+  string sessionId = 1;
+}
+
+message MutateUserRequest {
+  oneof operation {
+    User create = 1;
+
+    User update = 2;
+
+    User delete = 3;
+  }
+}
+
+message MutateUserResponse {
+  uint64 mutatedId = 1;
+}
+
+message GetUserRequest {
+  uint64 id = 1;
+}
+
+message GetUserResponse {
+  User user = 1;
+}
+
+message ListUserRequest {
+  cict.common.v1.PaginateRequest paginate = 1;
+}
+
+message ListUserResponse {
+  repeated User users = 1;
+}
+
+message User {
+  // @gotags: gorm:"primaryKey"
+  uint64 id = 1;
+
+  // @gotags: gorm:"<-"
+  EnumAuthenticateThirdParty.AuthenticateThirdParty authenticateThirdParty = 2;
+
+  // allow read and write
+  //
+  // @gotags: gorm:"<-"
+  string gmailOrganization = 3;
+
+  // @gotags: gorm:"<-"
+  string regisUsername = 4;
+
+  // @gotags: gorm:"<-"
+  string regisPassword = 5;
+
+  // allow read and write
+  //
+  // @gotags: gorm:"<-"
+  string name = 6;
+
+  // allow read and write
+  //
+  // @gotags: gorm:"<-"
+  string avatar = 7;
+
+  // allow read and write
+  //
+  // @gotags: gorm:"<-"
+  EnumSystemRole.SystemRole systemRole = 8;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updatedAt  = 9;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 createdAt = 10;
+}

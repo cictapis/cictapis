@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+package cict.service_course.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/server-auth/cict/service_course/v1;service_course";
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/paginate.proto";
+
+service ExamScoreService {
+  rpc MutateExamScore(MutateExamScoreRequest) returns (MutateExamScoreResponse) {
+    option (google.api.http) = {
+      post: "/api/course/v1/exam_score/mutate",
+      body: "*",
+    };
+    option (common.v1.crudPolicy) = ADMIN;
+  }
+
+  rpc GetExamScore(GetExamScoreRequest) returns (GetExamScoreResponse) {
+    option (google.api.http) = {
+      get: "/api/course/v1/exam_score/get",
+    };
+    option (common.v1.crudPolicy) = ANYONE;
+  }
+
+  rpc ListExamScore(ListExamScoreRequest) returns (ListExamScoreResponse) {
+    option (google.api.http) = {
+      get: "/api/course/v1/exam_score/list"
+    };
+    option (common.v1.crudPolicy) = ANYONE;
+  }
+}
+
+message MutateExamScoreRequest {
+  google.protobuf.FieldMask updateMask = 4;
+
+  oneof operation {
+    ExamScore create = 1;
+
+    ExamScore update = 2;
+
+    ExamScore delete = 3;
+  }
+}
+
+message MutateExamScoreResponse {
+  uint64 mutatedId = 1;
+}
+
+message GetExamScoreRequest {
+  uint64 id = 1;
+}
+
+message GetExamScoreResponse {
+  ExamScore examScore = 1;
+}
+
+message ListExamScoreRequest {
+  cict.common.v1.PaginateRequest paginate = 1;
+}
+
+message ListExamScoreResponse {
+  repeated ExamScore examScores = 1;
+}
+
+message ExamScore {  
+  // @gotags: gorm:"primaryKey"
+  uint64 id = 1;
+
+  // @gotags: gorm:"<-"
+  float score = 2;
+
+  // Belong to relationship ExamSchedule
+  uint64 examScheduleId = 3;
+
+  // Belong to relationship User
+  uint64 userId = 4;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updatedAt = 5;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 createdAt = 6;
+}

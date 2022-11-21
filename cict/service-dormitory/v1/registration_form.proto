@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package cict.service_dormitory.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/server-auth/cict/service_dormitory/v1;service_dormitory";
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/paginate.proto";
+
+service RegistrationFormService {
+  rpc MutateRegistrationForm(MutateRegistrationFormRequest) returns (MutateRegistrationFormResponse) {
+    option (google.api.http) = {
+      post: "/api/dormitory/v1/registration_form/mutate",
+      body: "*"
+    };
+    option (common.v1.crudPolicy) = STANDARD_PRIVACY;
+  }
+
+  rpc GetRegistrationForm(GetRegistrationFormRequest) returns (GetRegistrationFormResponse) {
+    option (google.api.http) = {
+      get: "/api/dormitory/v1/registration_form/get"
+    };
+    option (common.v1.crudPolicy) = STANDARD_PRIVACY;
+  }
+
+  rpc ListRegistrationForm(ListRegistrationFormRequest) returns (ListRegistrationFormResponse) {
+    option (google.api.http) = {
+      get: "/api/dormitory/v1/registration_form/list"
+    };
+    option (common.v1.crudPolicy) = STANDARD_PRIVACY;
+  }
+}
+
+message MutateRegistrationFormRequest {
+  google.protobuf.FieldMask updateMask = 4;
+
+  oneof operation {
+    RegistrationForm create = 1;
+
+    RegistrationForm update = 2;
+
+    RegistrationForm delete = 3;
+  }
+}
+
+message MutateRegistrationFormResponse {
+  uint64 mutatedId = 1;
+}
+
+message GetRegistrationFormRequest {
+  uint64 id = 1;
+}
+
+message GetRegistrationFormResponse {
+  RegistrationForm registrationForm = 1;
+}
+
+message ListRegistrationFormRequest {
+  cict.common.v1.PaginateRequest paginate = 1;
+}
+
+message ListRegistrationFormResponse {
+  repeated RegistrationForm registrationForms = 1;
+}
+
+message RegistrationForm {
+  // @gotags: gorm:"primaryKey"
+  uint64 id = 1;
+
+  // Belong to relationships
+  uint64 userId = 2;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updatedAt = 3;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 createdAt = 4;
+}
