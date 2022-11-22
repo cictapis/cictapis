@@ -1,0 +1,2112 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "annotations",
+    "description": "",
+    "version": "1"
+  },
+  "paths": {
+    "/cict/service_auth/v1/SessionService/AuthenticateSession": {
+      "post": {
+        "operationId": "cict.service_auth.v1.SessionService.AuthenticateSession",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_auth.v1.AuthenticateSessionRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/google.protobuf.Empty"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_auth/v1/UserService/Login": {
+      "post": {
+        "operationId": "cict.service_auth.v1.UserService.Login",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_auth.v1.LoginRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_auth.v1.LoginResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_auth/v1/UserService/Logout": {
+      "post": {
+        "operationId": "cict.service_auth.v1.UserService.Logout",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_auth.v1.LogoutRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/google.protobuf.Empty"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_auth/v1/UserService/MutateUser": {
+      "post": {
+        "operationId": "cict.service_auth.v1.UserService.MutateUser",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_auth.v1.MutateUserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_auth.v1.MutateUserResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_auth/v1/UserService/GetUser": {
+      "post": {
+        "operationId": "cict.service_auth.v1.UserService.GetUser",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_auth.v1.GetUserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_auth.v1.GetUserResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_auth/v1/UserService/ListUser": {
+      "post": {
+        "operationId": "cict.service_auth.v1.UserService.ListUser",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_auth.v1.ListUserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_auth.v1.ListUserResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_course/v1/CourseFieldService/MutateCourseField": {
+      "post": {
+        "operationId": "cict.service_course.v1.CourseFieldService.MutateCourseField",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.MutateCourseFieldRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.MutateCourseFieldResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_course/v1/CourseFieldService/GetCourseField": {
+      "post": {
+        "operationId": "cict.service_course.v1.CourseFieldService.GetCourseField",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.GetCourseFieldRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.GetCourseFieldResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_course/v1/CourseFieldService/ListCourseField": {
+      "post": {
+        "operationId": "cict.service_course.v1.CourseFieldService.ListCourseField",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.ListCourseFieldRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.ListCourseFieldResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_course/v1/CourseTimetableDayService/MutateCourseTimetableDay": {
+      "post": {
+        "operationId": "cict.service_course.v1.CourseTimetableDayService.MutateCourseTimetableDay",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.MutateCourseTimetableDayRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.MutateCourseTimetableDayResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_course/v1/CourseTimetableDayService/GetCourseTimetableDay": {
+      "post": {
+        "operationId": "cict.service_course.v1.CourseTimetableDayService.GetCourseTimetableDay",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.GetCourseTimetableDayRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.GetCourseTimetableDayResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_course/v1/CourseTimetableDayService/ListCourseTimetableDay": {
+      "post": {
+        "operationId": "cict.service_course.v1.CourseTimetableDayService.ListCourseTimetableDay",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.ListCourseTimetableDayRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.ListCourseTimetableDayResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_course/v1/CourseTimetableWeekService/MutateCourseTimetableWeek": {
+      "post": {
+        "operationId": "cict.service_course.v1.CourseTimetableWeekService.MutateCourseTimetableWeek",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.MutateCourseTimetableWeekRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.MutateCourseTimetableWeekResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_course/v1/CourseTimetableWeekService/GetCourseTimetableWeek": {
+      "post": {
+        "operationId": "cict.service_course.v1.CourseTimetableWeekService.GetCourseTimetableWeek",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.GetCourseTimetableWeekRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.GetCourseTimetableWeekResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_course/v1/CourseTimetableWeekService/ListCourseTimetableWeek": {
+      "post": {
+        "operationId": "cict.service_course.v1.CourseTimetableWeekService.ListCourseTimetableWeek",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.ListCourseTimetableWeekRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.ListCourseTimetableWeekResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_course/v1/CourseTimetable/GetUserTimetable": {
+      "post": {
+        "operationId": "cict.service_course.v1.CourseTimetable.GetUserTimetable",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.GetUserTimetableRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.GetUserTimetableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_course/v1/CourseService/MutateCourse": {
+      "post": {
+        "operationId": "cict.service_course.v1.CourseService.MutateCourse",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.MutateCourseRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.MutateCourseResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_course/v1/CourseService/GetCourse": {
+      "post": {
+        "operationId": "cict.service_course.v1.CourseService.GetCourse",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.GetCourseRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.GetCourseResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_course/v1/CourseService/ListCourse": {
+      "post": {
+        "operationId": "cict.service_course.v1.CourseService.ListCourse",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.ListCourseRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.ListCourseResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_course/v1/CourseService/RegisterCourse": {
+      "post": {
+        "operationId": "cict.service_course.v1.CourseService.RegisterCourse",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.RegisterCourseRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/google.protobuf.Empty"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_course/v1/ExamScheduleService/MutateExamSchedule": {
+      "post": {
+        "operationId": "cict.service_course.v1.ExamScheduleService.MutateExamSchedule",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.MutateExamScheduleRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.MutateExamScheduleResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_course/v1/ExamScheduleService/GetExamSchedule": {
+      "post": {
+        "operationId": "cict.service_course.v1.ExamScheduleService.GetExamSchedule",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.GetExamScheduleRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.GetExamScheduleResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_course/v1/ExamScheduleService/ListExamSchedule": {
+      "post": {
+        "operationId": "cict.service_course.v1.ExamScheduleService.ListExamSchedule",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.ListExamScheduleRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.ListExamScheduleResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_course/v1/ExamScheduleService/GetUpcomingExamSchedule": {
+      "post": {
+        "operationId": "cict.service_course.v1.ExamScheduleService.GetUpcomingExamSchedule",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.GetUpcomingExamScheduleRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.GetUpcomingExamScheduleResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_course/v1/ExamScoreService/MutateExamScore": {
+      "post": {
+        "operationId": "cict.service_course.v1.ExamScoreService.MutateExamScore",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.MutateExamScoreRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.MutateExamScoreResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_course/v1/ExamScoreService/GetExamScore": {
+      "post": {
+        "operationId": "cict.service_course.v1.ExamScoreService.GetExamScore",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.GetExamScoreRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.GetExamScoreResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_course/v1/ExamScoreService/ListExamScore": {
+      "post": {
+        "operationId": "cict.service_course.v1.ExamScoreService.ListExamScore",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.ListExamScoreRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_course.v1.ListExamScoreResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_dormitory/v1/RegistrationFormService/MutateRegistrationForm": {
+      "post": {
+        "operationId": "cict.service_dormitory.v1.RegistrationFormService.MutateRegistrationForm",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_dormitory.v1.MutateRegistrationFormRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_dormitory.v1.MutateRegistrationFormResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_dormitory/v1/RegistrationFormService/GetRegistrationForm": {
+      "post": {
+        "operationId": "cict.service_dormitory.v1.RegistrationFormService.GetRegistrationForm",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_dormitory.v1.GetRegistrationFormRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_dormitory.v1.GetRegistrationFormResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cict/service_dormitory/v1/RegistrationFormService/ListRegistrationForm": {
+      "post": {
+        "operationId": "cict.service_dormitory.v1.RegistrationFormService.ListRegistrationForm",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_dormitory.v1.ListRegistrationFormRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/cict.service_dormitory.v1.ListRegistrationFormResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/test": {
+      "get": {
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "GetDataResponse"
+            }
+          }
+        },
+        "params": []
+      }
+    }
+  },
+  "definitions": {
+    "google.protobuf.FieldMask": {
+      "type": "object",
+      "properties": {
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "google.protobuf.Empty": {
+      "type": "object",
+      "properties": {}
+    },
+    "google.api.Http": {
+      "type": "object",
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/google.api.HttpRule"
+          },
+          "description": "A list of HTTP configuration rules that apply to individual API methods.\n\n**NOTE:** All service configuration rules follow \"last one wins\" order."
+        },
+        "fully_decode_reserved_expansion": {
+          "type": "boolean",
+          "description": "When set to true, URL path parameters will be fully URI-decoded except in\ncases of single segment matches in reserved expansion, where \"%2F\" will be\nleft encoded.\n\nThe default behavior is to not decode RFC 6570 reserved characters in multi\nsegment matches."
+        }
+      },
+      "description": "Defines the HTTP configuration for an API service. It contains a list of\n[HttpRule][google.api.HttpRule], each specifying the mapping of an RPC method\nto one or more HTTP REST API methods."
+    },
+    "google.api.HttpRule": {
+      "type": "object",
+      "properties": {
+        "selector": {
+          "type": "string",
+          "description": "Selects a method to which this rule applies.\n\nRefer to [selector][google.api.DocumentationRule.selector] for syntax details."
+        },
+        "get": {
+          "type": "string",
+          "description": "Maps to HTTP GET. Used for listing and getting information about\nresources."
+        },
+        "put": {
+          "type": "string",
+          "description": "Maps to HTTP PUT. Used for replacing a resource."
+        },
+        "post": {
+          "type": "string",
+          "description": "Maps to HTTP POST. Used for creating a resource or performing an action."
+        },
+        "delete": {
+          "type": "string",
+          "description": "Maps to HTTP DELETE. Used for deleting a resource."
+        },
+        "patch": {
+          "type": "string",
+          "description": "Maps to HTTP PATCH. Used for updating a resource."
+        },
+        "custom": {
+          "$ref": "#/definitions/google.api.CustomHttpPattern",
+          "description": "The custom pattern is used for specifying an HTTP method that is not\nincluded in the `pattern` field, such as HEAD, or \"*\" to leave the\nHTTP method unspecified for this rule. The wild-card rule is useful\nfor services that provide content to Web (HTML) clients."
+        },
+        "body": {
+          "type": "string",
+          "description": "The name of the request field whose value is mapped to the HTTP request\nbody, or `*` for mapping all request fields not captured by the path\npattern to the HTTP body, or omitted for not having any HTTP request body.\n\nNOTE: the referred field must be present at the top-level of the request\nmessage type."
+        },
+        "response_body": {
+          "type": "string",
+          "description": "Optional. The name of the response field whose value is mapped to the HTTP\nresponse body. When omitted, the entire response message will be used\nas the HTTP response body.\n\nNOTE: The referred field must be present at the top-level of the response\nmessage type."
+        },
+        "additional_bindings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/google.api.HttpRule"
+          },
+          "description": "Additional HTTP bindings for the selector. Nested bindings must\nnot contain an `additional_bindings` field themselves (that is,\nthe nesting may only be one level deep)."
+        }
+      },
+      "description": "# gRPC Transcoding\n\ngRPC Transcoding is a feature for mapping between a gRPC method and one or\nmore HTTP REST endpoints. It allows developers to build a single API service\nthat supports both gRPC APIs and REST APIs. Many systems, including [Google\nAPIs](https://github.com/googleapis/googleapis),\n[Cloud Endpoints](https://cloud.google.com/endpoints), [gRPC\nGateway](https://github.com/grpc-ecosystem/grpc-gateway),\nand [Envoy](https://github.com/envoyproxy/envoy) proxy support this feature\nand use it for large scale production services.\n\n`HttpRule` defines the schema of the gRPC/REST mapping. The mapping specifies\nhow different portions of the gRPC request message are mapped to the URL\npath, URL query parameters, and HTTP request body. It also controls how the\ngRPC response message is mapped to the HTTP response body. `HttpRule` is\ntypically specified as an `google.api.http` annotation on the gRPC method.\n\nEach mapping specifies a URL path template and an HTTP method. The path\ntemplate may refer to one or more fields in the gRPC request message, as long\nas each field is a non-repeated field with a primitive (non-message) type.\nThe path template controls how fields of the request message are mapped to\nthe URL path.\n\nExample:\n\nservice Messaging {\nrpc GetMessage(GetMessageRequest) returns (Message) {\noption (google.api.http) = {\nget: \"/v1/{name=messages/*}\"\n};\n}\n}\nmessage GetMessageRequest {\nstring name = 1; // Mapped to URL path.\n}\nmessage Message {\nstring text = 1; // The resource content.\n}\n\nThis enables an HTTP REST to gRPC mapping as below:\n\nHTTP | gRPC\n-----|-----\n`GET /v1/messages/123456`  | `GetMessage(name: \"messages/123456\")`\n\nAny fields in the request message which are not bound by the path template\nautomatically become HTTP query parameters if there is no HTTP request body.\nFor example:\n\nservice Messaging {\nrpc GetMessage(GetMessageRequest) returns (Message) {\noption (google.api.http) = {\nget:\"/v1/messages/{message_id}\"\n};\n}\n}\nmessage GetMessageRequest {\nmessage SubMessage {\nstring subfield = 1;\n}\nstring message_id = 1; // Mapped to URL path.\nint64 revision = 2;    // Mapped to URL query parameter `revision`.\nSubMessage sub = 3;    // Mapped to URL query parameter `sub.subfield`.\n}\n\nThis enables a HTTP JSON to RPC mapping as below:\n\nHTTP | gRPC\n-----|-----\n`GET /v1/messages/123456?revision=2&sub.subfield=foo` |\n`GetMessage(message_id: \"123456\" revision: 2 sub: SubMessage(subfield:\n\"foo\"))`\n\nNote that fields which are mapped to URL query parameters must have a\nprimitive type or a repeated primitive type or a non-repeated message type.\nIn the case of a repeated type, the parameter can be repeated in the URL\nas `...?param=A&param=B`. In the case of a message type, each field of the\nmessage is mapped to a separate parameter, such as\n`...?foo.a=A&foo.b=B&foo.c=C`.\n\nFor HTTP methods that allow a request body, the `body` field\nspecifies the mapping. Consider a REST update method on the\nmessage resource collection:\n\nservice Messaging {\nrpc UpdateMessage(UpdateMessageRequest) returns (Message) {\noption (google.api.http) = {\npatch: \"/v1/messages/{message_id}\"\nbody: \"message\"\n};\n}\n}\nmessage UpdateMessageRequest {\nstring message_id = 1; // mapped to the URL\nMessage message = 2;   // mapped to the body\n}\n\nThe following HTTP JSON to RPC mapping is enabled, where the\nrepresentation of the JSON in the request body is determined by\nprotos JSON encoding:\n\nHTTP | gRPC\n-----|-----\n`PATCH /v1/messages/123456 { \"text\": \"Hi!\" }` | `UpdateMessage(message_id:\n\"123456\" message { text: \"Hi!\" })`\n\nThe special name `*` can be used in the body mapping to define that\nevery field not bound by the path template should be mapped to the\nrequest body.  This enables the following alternative definition of\nthe update method:\n\nservice Messaging {\nrpc UpdateMessage(Message) returns (Message) {\noption (google.api.http) = {\npatch: \"/v1/messages/{message_id}\"\nbody: \"*\"\n};\n}\n}\nmessage Message {\nstring message_id = 1;\nstring text = 2;\n}\n\n\nThe following HTTP JSON to RPC mapping is enabled:\n\nHTTP | gRPC\n-----|-----\n`PATCH /v1/messages/123456 { \"text\": \"Hi!\" }` | `UpdateMessage(message_id:\n\"123456\" text: \"Hi!\")`\n\nNote that when using `*` in the body mapping, it is not possible to\nhave HTTP parameters, as all fields not bound by the path end in\nthe body. This makes this option more rarely used in practice when\ndefining REST APIs. The common usage of `*` is in custom methods\nwhich don't use the URL at all for transferring data.\n\nIt is possible to define multiple HTTP methods for one RPC by using\nthe `additional_bindings` option. Example:\n\nservice Messaging {\nrpc GetMessage(GetMessageRequest) returns (Message) {\noption (google.api.http) = {\nget: \"/v1/messages/{message_id}\"\nadditional_bindings {\nget: \"/v1/users/{user_id}/messages/{message_id}\"\n}\n};\n}\n}\nmessage GetMessageRequest {\nstring message_id = 1;\nstring user_id = 2;\n}\n\nThis enables the following two alternative HTTP JSON to RPC mappings:\n\nHTTP | gRPC\n-----|-----\n`GET /v1/messages/123456` | `GetMessage(message_id: \"123456\")`\n`GET /v1/users/me/messages/123456` | `GetMessage(user_id: \"me\" message_id:\n\"123456\")`\n\n## Rules for HTTP mapping\n\n1. Leaf request fields (recursive expansion nested messages in the request\nmessage) are classified into three categories:\n- Fields referred by the path template. They are passed via the URL path.\n- Fields referred by the [HttpRule.body][google.api.HttpRule.body]. They are passed via the HTTP\nrequest body.\n- All other fields are passed via the URL query parameters, and the\nparameter name is the field path in the request message. A repeated\nfield can be represented as multiple query parameters under the same\nname.\n2. If [HttpRule.body][google.api.HttpRule.body] is \"*\", there is no URL query parameter, all fields\nare passed via URL path and HTTP request body.\n3. If [HttpRule.body][google.api.HttpRule.body] is omitted, there is no HTTP request body, all\nfields are passed via URL path and URL query parameters.\n\n### Path template syntax\n\nTemplate = \"/\" Segments [ Verb ] ;\nSegments = Segment { \"/\" Segment } ;\nSegment  = \"*\" | \"**\" | LITERAL | Variable ;\nVariable = \"{\" FieldPath [ \"=\" Segments ] \"}\" ;\nFieldPath = IDENT { \".\" IDENT } ;\nVerb     = \":\" LITERAL ;\n\nThe syntax `*` matches a single URL path segment. The syntax `**` matches\nzero or more URL path segments, which must be the last part of the URL path\nexcept the `Verb`.\n\nThe syntax `Variable` matches part of the URL path as specified by its\ntemplate. A variable template must not contain other variables. If a variable\nmatches a single path segment, its template may be omitted, e.g. `{var}`\nis equivalent to `{var=*}`.\n\nThe syntax `LITERAL` matches literal text in the URL path. If the `LITERAL`\ncontains any reserved character, such characters should be percent-encoded\nbefore the matching.\n\nIf a variable contains exactly one path segment, such as `\"{var}\"` or\n`\"{var=*}\"`, when such a variable is expanded into a URL path on the client\nside, all characters except `[-_.~0-9a-zA-Z]` are percent-encoded. The\nserver side does the reverse decoding. Such variables show up in the\n[Discovery\nDocument](https://developers.google.com/discovery/v1/reference/apis) as\n`{var}`.\n\nIf a variable contains multiple path segments, such as `\"{var=foo/*}\"`\nor `\"{var=**}\"`, when such a variable is expanded into a URL path on the\nclient side, all characters except `[-_.~/0-9a-zA-Z]` are percent-encoded.\nThe server side does the reverse decoding, except \"%2F\" and \"%2f\" are left\nunchanged. Such variables show up in the\n[Discovery\nDocument](https://developers.google.com/discovery/v1/reference/apis) as\n`{+var}`.\n\n## Using gRPC API Service Configuration\n\ngRPC API Service Configuration (service config) is a configuration language\nfor configuring a gRPC service to become a user-facing product. The\nservice config is simply the YAML representation of the `google.api.Service`\nproto message.\n\nAs an alternative to annotating your proto file, you can configure gRPC\ntranscoding in your service config YAML files. You do this by specifying a\n`HttpRule` that maps the gRPC method to a REST endpoint, achieving the same\neffect as the proto annotation. This can be particularly useful if you\nhave a proto that is reused in multiple services. Note that any transcoding\nspecified in the service config will override any matching transcoding\nconfiguration in the proto.\n\nExample:\n\nhttp:\nrules:\n# Selects a gRPC method and applies HttpRule to it.\n- selector: example.v1.Messaging.GetMessage\nget: /v1/messages/{message_id}/{sub.subfield}\n\n## Special notes\n\nWhen gRPC Transcoding is used to map a gRPC to JSON REST endpoints, the\nproto to JSON conversion must follow the [proto3\nspecification](https://developers.google.com/protocol-buffers/docs/proto3#json).\n\nWhile the single segment variable follows the semantics of\n[RFC 6570](https://tools.ietf.org/html/rfc6570) Section 3.2.2 Simple String\nExpansion, the multi segment variable **does not** follow RFC 6570 Section\n3.2.3 Reserved Expansion. The reason is that the Reserved Expansion\ndoes not expand special characters like `?` and `#`, which would lead\nto invalid URLs. As the result, gRPC Transcoding uses a custom encoding\nfor multi segment variables.\n\nThe path variables **must not** refer to any repeated or mapped field,\nbecause client libraries are not capable of handling such variable expansion.\n\nThe path variables **must not** capture the leading \"/\" character. The reason\nis that the most common use case \"{var}\" does not capture the leading \"/\"\ncharacter. For consistency, all path variables must share the same behavior.\n\nRepeated message fields must not be mapped to URL query parameters, because\nno client library can support such complicated mapping.\n\nIf an API needs to use a JSON array for request or response body, it can map\nthe request or response body to a repeated field. However, some gRPC\nTranscoding implementations may not support this feature."
+    },
+    "google.api.CustomHttpPattern": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "The name of this custom HTTP verb."
+        },
+        "path": {
+          "type": "string",
+          "description": "The path matched by this custom verb."
+        }
+      },
+      "description": "A custom pattern is used for defining custom HTTP verb."
+    },
+    "cict.common.v1.Config": {
+      "type": "object",
+      "properties": {
+        "ot_tracer_config": {
+          "$ref": "#/definitions/cict.common.v1.OtTracerConfig"
+        },
+        "ot_logger_config": {
+          "$ref": "#/definitions/cict.common.v1.OtLoggerConfig"
+        },
+        "ot_metric_config": {
+          "$ref": "#/definitions/cict.common.v1.OtMetricConfig"
+        },
+        "redis_config": {
+          "$ref": "#/definitions/cict.common.v1.RedisConfig"
+        },
+        "server_config": {
+          "$ref": "#/definitions/cict.common.v1.ServerConfig"
+        },
+        "database_config": {
+          "$ref": "#/definitions/cict.common.v1.DatabaseConfig"
+        },
+        "metadata_config": {
+          "$ref": "#/definitions/cict.common.v1.MetadataConfig"
+        }
+      }
+    },
+    "cict.common.v1.OtTracerConfig": {
+      "type": "object",
+      "properties": {
+        "endpoints": {
+          "type": "string"
+        },
+        "use_ssl_credentials": {
+          "type": "boolean"
+        },
+        "ssl_credentials_cacert_path": {
+          "type": "string"
+        }
+      }
+    },
+    "cict.common.v1.OtLoggerConfig": {
+      "type": "object",
+      "properties": {}
+    },
+    "cict.common.v1.OtMetricConfig": {
+      "type": "object",
+      "properties": {}
+    },
+    "cict.common.v1.ServerConfig": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "cict.common.v1.DatabaseConfig": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "user_name": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "database": {
+          "type": "string"
+        },
+        "migrations": {
+          "type": "boolean"
+        }
+      }
+    },
+    "cict.common.v1.MetadataConfig": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string"
+        },
+        "internal_auth_error": {
+          "type": "string"
+        }
+      }
+    },
+    "cict.common.v1.RedisConfig": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "redis_db": {
+          "type": "string"
+        },
+        "redis_default_db": {
+          "type": "string"
+        },
+        "min_idl_conns": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pool_size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pool_timeout": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "session_timeout": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "cict.common.v1.CrudPolicyEnum": {
+      "type": "object",
+      "properties": {}
+    },
+    "cict.common.v1.PaginateRequest": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "per_page": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "cict.common.v1.PaginateResponse": {
+      "type": "object",
+      "properties": {
+        "current_page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "per_page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "last_page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "first_page_url": {
+          "type": "string"
+        },
+        "last_page_url": {
+          "type": "string"
+        },
+        "next_page_url": {
+          "type": "string"
+        },
+        "prev_page_url": {
+          "type": "string"
+        },
+        "from": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "to": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "cict.service_auth.v1.EnumAuthenticateThirdParty": {
+      "type": "object",
+      "properties": {}
+    },
+    "cict.service_auth.v1.EnumSystemRole": {
+      "type": "object",
+      "properties": {}
+    },
+    "cict.service_auth.v1.Profile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"primaryKey\""
+        }
+      }
+    },
+    "cict.service_auth.v1.AuthenticateSessionRequest": {
+      "type": "object",
+      "properties": {
+        "sessionId": {
+          "type": "string"
+        }
+      }
+    },
+    "cict.service_auth.v1.Session": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "cict.service_auth.v1.LoginRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "validatePassword": {
+          "type": "string"
+        }
+      }
+    },
+    "cict.service_auth.v1.LoginResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/cict.service_auth.v1.User"
+        },
+        "sessionId": {
+          "type": "string"
+        }
+      }
+    },
+    "cict.service_auth.v1.LogoutRequest": {
+      "type": "object",
+      "properties": {
+        "sessionId": {
+          "type": "string"
+        }
+      }
+    },
+    "cict.service_auth.v1.MutateUserRequest": {
+      "type": "object",
+      "properties": {
+        "create": {
+          "$ref": "#/definitions/cict.service_auth.v1.User"
+        },
+        "update": {
+          "$ref": "#/definitions/cict.service_auth.v1.User"
+        },
+        "delete": {
+          "$ref": "#/definitions/cict.service_auth.v1.User"
+        }
+      }
+    },
+    "cict.service_auth.v1.MutateUserResponse": {
+      "type": "object",
+      "properties": {
+        "mutatedId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "cict.service_auth.v1.GetUserRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "cict.service_auth.v1.GetUserResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/cict.service_auth.v1.User"
+        }
+      }
+    },
+    "cict.service_auth.v1.ListUserRequest": {
+      "type": "object",
+      "properties": {
+        "paginate": {
+          "$ref": "#/definitions/cict.common.v1.PaginateRequest"
+        }
+      }
+    },
+    "cict.service_auth.v1.ListUserResponse": {
+      "type": "object",
+      "properties": {
+        "users": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cict.service_auth.v1.User"
+          }
+        }
+      }
+    },
+    "cict.service_auth.v1.User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"primaryKey\""
+        },
+        "authenticateThirdParty": {
+          "$ref": "#/definitions/cict.service_auth.v1.EnumAuthenticateThirdParty.AuthenticateThirdParty",
+          "description": "@gotags: gorm:\"<-\""
+        },
+        "gmailOrganization": {
+          "type": "string",
+          "description": "allow read and write\n\n@gotags: gorm:\"<-\""
+        },
+        "regisUsername": {
+          "type": "string",
+          "description": "@gotags: gorm:\"<-\""
+        },
+        "regisPassword": {
+          "type": "string",
+          "description": "@gotags: gorm:\"<-\""
+        },
+        "name": {
+          "type": "string",
+          "description": "allow read and write\n\n@gotags: gorm:\"<-\""
+        },
+        "avatar": {
+          "type": "string",
+          "description": "allow read and write\n\n@gotags: gorm:\"<-\""
+        },
+        "systemRole": {
+          "$ref": "#/definitions/cict.service_auth.v1.EnumSystemRole.SystemRole",
+          "description": "allow read and write\n\n@gotags: gorm:\"<-\""
+        },
+        "updatedAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"autoUpdateTime:nano\""
+        },
+        "createdAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"autoCreateTime:nano\""
+        }
+      }
+    },
+    "cict.service_course.v1.MutateCourseFieldRequest": {
+      "type": "object",
+      "properties": {
+        "updateMask": {
+          "$ref": "#/definitions/google.protobuf.FieldMask"
+        },
+        "create": {
+          "$ref": "#/definitions/cict.service_course.v1.Course"
+        },
+        "update": {
+          "$ref": "#/definitions/cict.service_course.v1.Course"
+        },
+        "delete": {
+          "$ref": "#/definitions/cict.service_course.v1.Course"
+        }
+      }
+    },
+    "cict.service_course.v1.MutateCourseFieldResponse": {
+      "type": "object",
+      "properties": {
+        "mutatedId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "cict.service_course.v1.GetCourseFieldRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "cict.service_course.v1.GetCourseFieldResponse": {
+      "type": "object",
+      "properties": {
+        "courseField": {
+          "$ref": "#/definitions/cict.service_course.v1.CourseField"
+        }
+      }
+    },
+    "cict.service_course.v1.ListCourseFieldRequest": {
+      "type": "object",
+      "properties": {
+        "paginate": {
+          "$ref": "#/definitions/cict.common.v1.PaginateRequest"
+        }
+      }
+    },
+    "cict.service_course.v1.ListCourseFieldResponse": {
+      "type": "object",
+      "properties": {
+        "courseFields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cict.service_course.v1.CourseField"
+          }
+        }
+      }
+    },
+    "cict.service_course.v1.CourseField": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"primaryKey\""
+        },
+        "name": {
+          "type": "string",
+          "description": "@gotags: gorm:\"<-\""
+        },
+        "courses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cict.service_course.v1.Course"
+          },
+          "description": "Has many relationships with Course"
+        },
+        "updatedAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"autoUpdateTime:nano\""
+        },
+        "createdAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"autoCreateTime:nano\""
+        }
+      }
+    },
+    "cict.service_course.v1.MutateCourseTimetableDayRequest": {
+      "type": "object",
+      "properties": {
+        "updateMask": {
+          "$ref": "#/definitions/google.protobuf.FieldMask"
+        },
+        "create": {
+          "$ref": "#/definitions/cict.service_course.v1.CourseTimetableDay"
+        },
+        "update": {
+          "$ref": "#/definitions/cict.service_course.v1.CourseTimetableDay"
+        },
+        "delete": {
+          "$ref": "#/definitions/cict.service_course.v1.CourseTimetableDay"
+        }
+      }
+    },
+    "cict.service_course.v1.MutateCourseTimetableDayResponse": {
+      "type": "object",
+      "properties": {
+        "mutatedId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "cict.service_course.v1.GetCourseTimetableDayRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "cict.service_course.v1.GetCourseTimetableDayResponse": {
+      "type": "object",
+      "properties": {
+        "courseTimetableDay": {
+          "$ref": "#/definitions/cict.service_course.v1.CourseTimetableDay"
+        }
+      }
+    },
+    "cict.service_course.v1.ListCourseTimetableDayRequest": {
+      "type": "object",
+      "properties": {
+        "paginate": {
+          "$ref": "#/definitions/cict.common.v1.PaginateRequest"
+        }
+      }
+    },
+    "cict.service_course.v1.ListCourseTimetableDayResponse": {
+      "type": "object",
+      "properties": {
+        "courseTimetableDays": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cict.service_course.v1.CourseTimetableDay"
+          }
+        }
+      }
+    },
+    "cict.service_course.v1.CourseTimetableDay": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"primaryKey\""
+        },
+        "day": {
+          "type": "integer",
+          "format": "int32",
+          "description": "@gotags: gorm:\"<-\""
+        },
+        "active": {
+          "type": "boolean",
+          "description": "@gotags: gorm:\"<-\""
+        },
+        "courseTimetableWeekId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Belong to relationship CourseTimetableWeek"
+        },
+        "updatedAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"autoUpdateTime:nano\""
+        },
+        "createdAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"autoCreateTime:nano\""
+        }
+      }
+    },
+    "cict.service_course.v1.MutateCourseTimetableWeekRequest": {
+      "type": "object",
+      "properties": {
+        "updateMask": {
+          "$ref": "#/definitions/google.protobuf.FieldMask"
+        },
+        "create": {
+          "$ref": "#/definitions/cict.service_course.v1.CourseTimetableWeek"
+        },
+        "update": {
+          "$ref": "#/definitions/cict.service_course.v1.CourseTimetableWeek"
+        },
+        "delete": {
+          "$ref": "#/definitions/cict.service_course.v1.CourseTimetableWeek"
+        }
+      }
+    },
+    "cict.service_course.v1.MutateCourseTimetableWeekResponse": {
+      "type": "object",
+      "properties": {
+        "mutatedId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "cict.service_course.v1.GetCourseTimetableWeekRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "cict.service_course.v1.GetCourseTimetableWeekResponse": {
+      "type": "object",
+      "properties": {
+        "courseTimetableWeek": {
+          "$ref": "#/definitions/cict.service_course.v1.CourseTimetableWeek"
+        }
+      }
+    },
+    "cict.service_course.v1.ListCourseTimetableWeekRequest": {
+      "type": "object",
+      "properties": {
+        "paginate": {
+          "$ref": "#/definitions/cict.common.v1.PaginateRequest"
+        }
+      }
+    },
+    "cict.service_course.v1.ListCourseTimetableWeekResponse": {
+      "type": "object",
+      "properties": {
+        "courseTimetableWeeks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cict.service_course.v1.CourseTimetableWeek"
+          }
+        }
+      }
+    },
+    "cict.service_course.v1.CourseTimetableWeek": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"primaryKey\""
+        },
+        "courseId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Belong to relationship"
+        },
+        "week": {
+          "type": "integer",
+          "format": "int32",
+          "description": "@gotags: gorm:\"<-\""
+        },
+        "active": {
+          "type": "boolean",
+          "description": "@gotags: gorm:\"<-\""
+        },
+        "courseTimetableDays": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cict.service_course.v1.CourseTimetableDay"
+          },
+          "description": "HasMany relationship CourseTimetableDay"
+        },
+        "updatedAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"autoUpdateTime:nano\""
+        },
+        "createdAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"autoCreateTime:nano\""
+        }
+      }
+    },
+    "cict.service_course.v1.GetUserTimetableRequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "courseId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "weekId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "cict.service_course.v1.GetUserTimetableResponse": {
+      "type": "object",
+      "properties": {
+        "courseTimetableDays": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cict.service_course.v1.CourseTimetableDay"
+          }
+        }
+      }
+    },
+    "cict.service_course.v1.MutateCourseRequest": {
+      "type": "object",
+      "properties": {
+        "updateMask": {
+          "$ref": "#/definitions/google.protobuf.FieldMask"
+        },
+        "create": {
+          "$ref": "#/definitions/cict.service_course.v1.Course"
+        },
+        "update": {
+          "$ref": "#/definitions/cict.service_course.v1.Course"
+        },
+        "delete": {
+          "$ref": "#/definitions/cict.service_course.v1.Course"
+        }
+      }
+    },
+    "cict.service_course.v1.MutateCourseResponse": {
+      "type": "object",
+      "properties": {
+        "mutatedId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "cict.service_course.v1.GetCourseRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "cict.service_course.v1.GetCourseResponse": {
+      "type": "object",
+      "properties": {
+        "course": {
+          "$ref": "#/definitions/cict.service_course.v1.Course"
+        }
+      }
+    },
+    "cict.service_course.v1.ListCourseRequest": {
+      "type": "object",
+      "properties": {
+        "paginate": {
+          "$ref": "#/definitions/cict.common.v1.PaginateRequest"
+        }
+      }
+    },
+    "cict.service_course.v1.ListCourseResponse": {
+      "type": "object",
+      "properties": {
+        "courses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cict.service_course.v1.Course"
+          }
+        }
+      }
+    },
+    "cict.service_course.v1.RegisterCourseRequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "courseId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "cict.service_course.v1.Course": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"primaryKey\""
+        },
+        "name": {
+          "type": "string",
+          "description": "@gotags: gorm:\"<-\""
+        },
+        "description": {
+          "type": "string",
+          "description": "@gotags: gorm:\"<-\""
+        },
+        "fromDate": {
+          "type": "string",
+          "description": "@gotags: gorm:\"<-\""
+        },
+        "toDate": {
+          "type": "string",
+          "description": "@gotags: gorm:\"<-\""
+        },
+        "capacity": {
+          "type": "integer",
+          "format": "int32",
+          "description": "@gotags: gorm:\"<-\""
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32",
+          "description": "@gotags: gorm:\"<-\""
+        },
+        "courseFieldId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Belong to CourseField"
+        },
+        "courseTimetableWeeks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cict.service_course.v1.CourseTimetableWeek"
+          },
+          "description": "Has many relationships CourseTimetableWeek"
+        },
+        "examSchedules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cict.service_course.v1.ExamSchedule"
+          },
+          "description": "Has many relationships ExamSchedule"
+        },
+        "users": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cict.service_auth.v1.User"
+          },
+          "description": "Many to many relationship User"
+        },
+        "updatedAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"autoUpdateTime:nano\""
+        },
+        "createdAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"autoCreateTime:nano\""
+        }
+      }
+    },
+    "cict.service_course.v1.User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"primaryKey\""
+        },
+        "courses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cict.service_course.v1.Course"
+          },
+          "description": "Many to many relationships Course"
+        },
+        "updatedAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"autoUpdateTime:nano\""
+        },
+        "createdAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"autoCreateTime:nano\""
+        }
+      }
+    },
+    "cict.service_course.v1.MutateExamScheduleRequest": {
+      "type": "object",
+      "properties": {
+        "updateMask": {
+          "$ref": "#/definitions/google.protobuf.FieldMask"
+        },
+        "create": {
+          "$ref": "#/definitions/cict.service_course.v1.ExamSchedule"
+        },
+        "update": {
+          "$ref": "#/definitions/cict.service_course.v1.ExamSchedule"
+        },
+        "delete": {
+          "$ref": "#/definitions/cict.service_course.v1.ExamSchedule"
+        }
+      }
+    },
+    "cict.service_course.v1.MutateExamScheduleResponse": {
+      "type": "object",
+      "properties": {
+        "mutatedId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "cict.service_course.v1.GetExamScheduleRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "cict.service_course.v1.GetExamScheduleResponse": {
+      "type": "object",
+      "properties": {
+        "course": {
+          "$ref": "#/definitions/cict.service_course.v1.ExamSchedule"
+        }
+      }
+    },
+    "cict.service_course.v1.ListExamScheduleRequest": {
+      "type": "object",
+      "properties": {
+        "paginate": {
+          "$ref": "#/definitions/cict.common.v1.PaginateRequest"
+        }
+      }
+    },
+    "cict.service_course.v1.ListExamScheduleResponse": {
+      "type": "object",
+      "properties": {
+        "courses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cict.service_course.v1.ExamSchedule"
+          }
+        }
+      }
+    },
+    "cict.service_course.v1.GetUpcomingExamScheduleRequest": {
+      "type": "object",
+      "properties": {
+        "courseId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "cict.service_course.v1.GetUpcomingExamScheduleResponse": {
+      "type": "object",
+      "properties": {
+        "examSchedules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cict.service_course.v1.ExamSchedule"
+          }
+        }
+      }
+    },
+    "cict.service_course.v1.ExamSchedule": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"primaryKey\""
+        },
+        "name": {
+          "type": "string",
+          "description": "@gotags: gorm:\"<-\""
+        },
+        "description": {
+          "type": "string",
+          "description": "@gotags: gorm:\"<-\""
+        },
+        "examDate": {
+          "type": "string",
+          "description": "@gotags: gorm:\"<-\""
+        },
+        "courseId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Belong to relationships Course"
+        },
+        "updatedAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"autoUpdateTime:nano\""
+        },
+        "createdAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"autoCreateTime:nano\""
+        }
+      }
+    },
+    "cict.service_course.v1.MutateExamScoreRequest": {
+      "type": "object",
+      "properties": {
+        "updateMask": {
+          "$ref": "#/definitions/google.protobuf.FieldMask"
+        },
+        "create": {
+          "$ref": "#/definitions/cict.service_course.v1.ExamScore"
+        },
+        "update": {
+          "$ref": "#/definitions/cict.service_course.v1.ExamScore"
+        },
+        "delete": {
+          "$ref": "#/definitions/cict.service_course.v1.ExamScore"
+        }
+      }
+    },
+    "cict.service_course.v1.MutateExamScoreResponse": {
+      "type": "object",
+      "properties": {
+        "mutatedId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "cict.service_course.v1.GetExamScoreRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "cict.service_course.v1.GetExamScoreResponse": {
+      "type": "object",
+      "properties": {
+        "examScore": {
+          "$ref": "#/definitions/cict.service_course.v1.ExamScore"
+        }
+      }
+    },
+    "cict.service_course.v1.ListExamScoreRequest": {
+      "type": "object",
+      "properties": {
+        "paginate": {
+          "$ref": "#/definitions/cict.common.v1.PaginateRequest"
+        }
+      }
+    },
+    "cict.service_course.v1.ListExamScoreResponse": {
+      "type": "object",
+      "properties": {
+        "examScores": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cict.service_course.v1.ExamScore"
+          }
+        }
+      }
+    },
+    "cict.service_course.v1.ExamScore": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"primaryKey\""
+        },
+        "score": {
+          "type": "number",
+          "format": "float",
+          "description": "@gotags: gorm:\"<-\""
+        },
+        "examScheduleId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Belong to relationship ExamSchedule"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Belong to relationship User"
+        },
+        "updatedAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"autoUpdateTime:nano\""
+        },
+        "createdAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"autoCreateTime:nano\""
+        }
+      }
+    },
+    "cict.service_dormitory.v1.MutateRegistrationFormRequest": {
+      "type": "object",
+      "properties": {
+        "updateMask": {
+          "$ref": "#/definitions/google.protobuf.FieldMask"
+        },
+        "create": {
+          "$ref": "#/definitions/cict.service_dormitory.v1.RegistrationForm"
+        },
+        "update": {
+          "$ref": "#/definitions/cict.service_dormitory.v1.RegistrationForm"
+        },
+        "delete": {
+          "$ref": "#/definitions/cict.service_dormitory.v1.RegistrationForm"
+        }
+      }
+    },
+    "cict.service_dormitory.v1.MutateRegistrationFormResponse": {
+      "type": "object",
+      "properties": {
+        "mutatedId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "cict.service_dormitory.v1.GetRegistrationFormRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "cict.service_dormitory.v1.GetRegistrationFormResponse": {
+      "type": "object",
+      "properties": {
+        "registrationForm": {
+          "$ref": "#/definitions/cict.service_dormitory.v1.RegistrationForm"
+        }
+      }
+    },
+    "cict.service_dormitory.v1.ListRegistrationFormRequest": {
+      "type": "object",
+      "properties": {
+        "paginate": {
+          "$ref": "#/definitions/cict.common.v1.PaginateRequest"
+        }
+      }
+    },
+    "cict.service_dormitory.v1.ListRegistrationFormResponse": {
+      "type": "object",
+      "properties": {
+        "registrationForms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cict.service_dormitory.v1.RegistrationForm"
+          }
+        }
+      }
+    },
+    "cict.service_dormitory.v1.RegistrationForm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"primaryKey\""
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Belong to relationships"
+        },
+        "updatedAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"autoUpdateTime:nano\""
+        },
+        "createdAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"autoCreateTime:nano\""
+        }
+      }
+    },
+    "cict.service_dormitory.v1.User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"primaryKey\""
+        },
+        "registrationForms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cict.service_dormitory.v1.RegistrationForm"
+          },
+          "description": "Has many relationship RegistrationForm"
+        },
+        "updatedAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"autoUpdateTime:nano\""
+        },
+        "createdAt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "@gotags: gorm:\"autoCreateTime:nano\""
+        }
+      }
+    },
+    "cict.common.v1.CrudPolicyEnum.CrudPolicy": {
+      "type": "number",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "description": "0 - UNSPECIFIED // Not specfied, should show fatal error.\n1 - SUPPER_USER // Supper user can operate admin.\n2 - ADMIN // Admin can operate data\nSupper user can operate data.\n3 - USER // User can operate data\nAdmin, supperuser can operate data\n4 - AUTH // Auth user can operate\n5 - ANONYMOUS // Anonymous user can operate.\n6 - ANYONE // Anyone can operate.\n7 - SYSTEM // System can operate.\n8 - STANDARD_PRIVACY // User can operate their own data; admin, supperuser can operate data."
+    },
+    "cict.service_auth.v1.EnumAuthenticateThirdParty.AuthenticateThirdParty": {
+      "type": "number",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "description": "0 - UNSPECIFIED \n1 - GMAIL_ORGANIZATION \n2 - REGIS "
+    },
+    "cict.service_auth.v1.EnumSystemRole.SystemRole": {
+      "type": "number",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "description": "0 - UNSPECIFIED \n1 - USER \n2 - ADMIN \n3 - SUPPER_USER "
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "token"
+      }
+    }
+  },
+  "security": [
+    {
+      "cookieAuth": []
+    }
+  ]
+}
