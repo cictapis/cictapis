@@ -19,7 +19,7 @@ package google.api;
 import "google/api/http.proto";
 import "google/protobuf/descriptor.proto";
 
-option go_package = "github.com/cictapis/server-auth/google/api/annotations;annotations";
+option go_package = "github.com/cictapis/cict-auth/google/api;annotations";
 
 extend google.protobuf.MethodOptions {
   // See `HttpRule`.

@@ -3,7 +3,7 @@ syntax = "proto3";
 package cict.service_dormitory.v1;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/server-auth/cict/service_dormitory/v1;service_dormitory";
+option go_package = "github.com/cictapis/cict-auth/cict/service_dormitory/v1;service_dormitory";
 
 import "google/api/annotations.proto";
 import "google/protobuf/field_mask.proto";

@@ -3,7 +3,7 @@ syntax = "proto3";
 package cict.service_auth.v1;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/server-auth/cict/service_auth/v1;service_auth";
+option go_package = "github.com/cictapis/cict-auth/cict/service_auth/v1;service_auth";
 
 message EnumAuthenticateThirdParty {
   enum AuthenticateThirdParty {
