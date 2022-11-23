@@ -1,0 +1,243 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "cict/service-course/v1/exam_score.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "ExamScoreService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/course/v1/exam_score/get": {
+      "get": {
+        "operationId": "ExamScoreService_GetExamScore",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetExamScoreResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "ExamScoreService"
+        ]
+      }
+    },
+    "/api/course/v1/exam_score/list": {
+      "get": {
+        "operationId": "ExamScoreService_ListExamScore",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListExamScoreResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "paginate.page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paginate.perPage",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ExamScoreService"
+        ]
+      }
+    },
+    "/api/course/v1/exam_score/mutate": {
+      "post": {
+        "operationId": "ExamScoreService_MutateExamScore",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1MutateExamScoreResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1MutateExamScoreRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ExamScoreService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1ExamScore": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "@gotags: gorm:\"primaryKey\""
+        },
+        "score": {
+          "type": "number",
+          "format": "float",
+          "title": "@gotags: gorm:\"\u003c-\""
+        },
+        "examScheduleId": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Belong to relationship ExamSchedule"
+        },
+        "userId": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Belong to relationship User"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "int64",
+          "title": "@gotags: gorm:\"autoUpdateTime:nano\""
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "int64",
+          "title": "@gotags: gorm:\"autoCreateTime:nano\""
+        }
+      }
+    },
+    "v1GetExamScoreResponse": {
+      "type": "object",
+      "properties": {
+        "examScore": {
+          "$ref": "#/definitions/v1ExamScore"
+        }
+      }
+    },
+    "v1ListExamScoreResponse": {
+      "type": "object",
+      "properties": {
+        "examScores": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ExamScore"
+          }
+        }
+      }
+    },
+    "v1MutateExamScoreRequest": {
+      "type": "object",
+      "properties": {
+        "updateMask": {
+          "type": "string"
+        },
+        "create": {
+          "$ref": "#/definitions/v1ExamScore"
+        },
+        "update": {
+          "$ref": "#/definitions/v1ExamScore"
+        },
+        "delete": {
+          "$ref": "#/definitions/v1ExamScore"
+        }
+      }
+    },
+    "v1MutateExamScoreResponse": {
+      "type": "object",
+      "properties": {
+        "mutatedId": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "v1PaginateRequest": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "perPage": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  }
+}

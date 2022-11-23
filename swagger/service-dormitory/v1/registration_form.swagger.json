@@ -1,0 +1,233 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "cict/service-dormitory/v1/registration_form.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "RegistrationFormService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/dormitory/v1/registration_form/get": {
+      "get": {
+        "operationId": "RegistrationFormService_GetRegistrationForm",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetRegistrationFormResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "RegistrationFormService"
+        ]
+      }
+    },
+    "/api/dormitory/v1/registration_form/list": {
+      "get": {
+        "operationId": "RegistrationFormService_ListRegistrationForm",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListRegistrationFormResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "paginate.page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paginate.perPage",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "RegistrationFormService"
+        ]
+      }
+    },
+    "/api/dormitory/v1/registration_form/mutate": {
+      "post": {
+        "operationId": "RegistrationFormService_MutateRegistrationForm",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1MutateRegistrationFormResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1MutateRegistrationFormRequest"
+            }
+          }
+        ],
+        "tags": [
+          "RegistrationFormService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1GetRegistrationFormResponse": {
+      "type": "object",
+      "properties": {
+        "registrationForm": {
+          "$ref": "#/definitions/v1RegistrationForm"
+        }
+      }
+    },
+    "v1ListRegistrationFormResponse": {
+      "type": "object",
+      "properties": {
+        "registrationForms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1RegistrationForm"
+          }
+        }
+      }
+    },
+    "v1MutateRegistrationFormRequest": {
+      "type": "object",
+      "properties": {
+        "updateMask": {
+          "type": "string"
+        },
+        "create": {
+          "$ref": "#/definitions/v1RegistrationForm"
+        },
+        "update": {
+          "$ref": "#/definitions/v1RegistrationForm"
+        },
+        "delete": {
+          "$ref": "#/definitions/v1RegistrationForm"
+        }
+      }
+    },
+    "v1MutateRegistrationFormResponse": {
+      "type": "object",
+      "properties": {
+        "mutatedId": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "v1PaginateRequest": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "perPage": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1RegistrationForm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "@gotags: gorm:\"primaryKey\""
+        },
+        "userId": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Belong to relationships"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "int64",
+          "title": "@gotags: gorm:\"autoUpdateTime:nano\""
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "int64",
+          "title": "@gotags: gorm:\"autoCreateTime:nano\""
+        }
+      }
+    }
+  }
+}
