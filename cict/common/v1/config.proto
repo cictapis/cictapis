@@ -14,11 +14,13 @@ message Config {
 
   RedisConfig redisConfig = 4;
 
-  ServerConfig serverConfig = 5;
+  ServiceEndpointConfig serviceAuthEndpointConfig = 5;
 
-  DatabaseConfig databaseConfig = 6;
+  ServiceEndpointConfig serviceCourseEndpointConfig = 6;
 
-  MetadataConfig metadataConfig = 7;
+  DatabaseConfig databaseConfig = 7;
+
+  MetadataConfig metadataConfig = 8;
 }
 
 message OtTracerConfig {
@@ -37,7 +39,7 @@ message OtMetricConfig {
 
 }
 
-message ServerConfig {
+message ServiceEndpointConfig {
   string address = 1;
 
   int32 port = 2;

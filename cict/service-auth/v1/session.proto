@@ -9,6 +9,7 @@ import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 
 import "cict/common/v1/annotations.proto";
+import "cict/common/v1/crud_policy.proto";
 
 service SessionService {
   rpc AuthenticateSession(AuthenticateSessionRequest) returns (google.protobuf.Empty) {
@@ -22,6 +23,8 @@ service SessionService {
 
 message AuthenticateSessionRequest {
   string sessionId = 1;
+
+  common.v1.CrudPolicyEnum.CrudPolicy crudPolicy = 2;
 }
 
 message Session {
