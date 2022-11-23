@@ -1,0 +1,26 @@
+load("@rules_proto_grpc//grpc-gateway:defs.bzl", "gateway_grpc_library", "gateway_openapiv2_compile")
+
+gateway_grpc_library(
+    name = "cict_common_v1_api_gateway_library",
+    importpath = "github.com/cictapis/cict-auth/cict/common/v1",
+    protos = [
+        "@com_github_cict_cictapis//cict/common/v1:annotations_proto",
+        "@com_github_cict_cictapis//cict/common/v1:config_proto",
+        "@com_github_cict_cictapis//cict/common/v1:crud_policy_proto",
+        "@com_github_cict_cictapis//cict/common/v1:paginate_proto",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@org_golang_google_protobuf//types/descriptorpb:go_default_library",
+    ],
+)
+
+gateway_openapiv2_compile(
+    name = "cict_common_v1_api_gateway_grpc",
+    protos = [
+      "@com_github_cict_cictapis//cict/common/v1:annotations_proto",
+      "@com_github_cict_cictapis//cict/common/v1:config_proto",
+      "@com_github_cict_cictapis//cict/common/v1:crud_policy_proto",
+      "@com_github_cict_cictapis//cict/common/v1:paginate_proto",
+    ],
+)

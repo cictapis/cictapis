@@ -8,12 +8,14 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  check_build_all:
 
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
       - uses: bazelbuild/setup-bazelisk@v2
-      - run: bazel build //envoy:cict_proto_descriptor
-      - run: cd go && bazel build //...
+      - name: Build target go
+        run: cd go && bazel build //...
+      - name: Build target grpc-gateway 
+        run: cd grpc-gateway && bazel build //...

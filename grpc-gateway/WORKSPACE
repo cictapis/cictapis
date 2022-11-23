@@ -1,5 +1,5 @@
 workspace(
-    name = "com_github_cict_cictapis_go"
+    name = "com_github_cict_cictapis_grpc_gateway"
 )
 
 local_repository(
@@ -28,6 +28,28 @@ rules_proto_dependencies()
 
 rules_proto_toolchains()
 
-load("@rules_proto_grpc//doc:repositories.bzl", rules_proto_grpc_doc_repos = "doc_repos")
+load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")  # buildifier: disable=same-origin-load
 
-rules_proto_grpc_doc_repos()
+io_bazel_rules_go()
+
+bazel_gazelle()
+
+load("@rules_proto_grpc//grpc-gateway:repositories.bzl", rules_proto_grpc_gateway_repos = "gateway_repos")
+
+rules_proto_grpc_gateway_repos()
+
+load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
+
+go_rules_dependencies()
+
+go_register_toolchains(
+    version = "1.18.3",
+)
+
+load("@grpc_ecosystem_grpc_gateway//:repositories.bzl", "go_repositories")
+
+go_repositories()
+
+load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+
+gazelle_dependencies()

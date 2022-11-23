@@ -1,0 +1,139 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "cict/service-course/v1/course_timetable.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "CourseTimetable"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/course/v1/course_timetable/get": {
+      "get": {
+        "operationId": "CourseTimetable_GetUserTimetable",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetUserTimetableResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "courseId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "weekId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "CourseTimetable"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1CourseTimetableDay": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "@gotags: gorm:\"primaryKey\""
+        },
+        "day": {
+          "type": "integer",
+          "format": "int64",
+          "title": "@gotags: gorm:\"\u003c-\""
+        },
+        "active": {
+          "type": "boolean",
+          "title": "@gotags: gorm:\"\u003c-\""
+        },
+        "courseTimetableWeekId": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Belong to relationship CourseTimetableWeek"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "int64",
+          "title": "@gotags: gorm:\"autoUpdateTime:nano\""
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "int64",
+          "title": "@gotags: gorm:\"autoCreateTime:nano\""
+        }
+      }
+    },
+    "v1GetUserTimetableResponse": {
+      "type": "object",
+      "properties": {
+        "courseTimetableDays": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1CourseTimetableDay"
+          }
+        }
+      }
+    }
+  }
+}
