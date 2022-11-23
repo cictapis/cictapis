@@ -6,27 +6,27 @@ option cc_enable_arenas = true;
 option go_package = "github.com/cictapis/cict-auth/cict/common/v1";
 
 message Config {
-  OtTracerConfig ot_tracer_config = 1;
+  OtTracerConfig otTracerConfig = 1;
 
-  OtLoggerConfig ot_logger_config = 2;
+  OtLoggerConfig otLoggerConfig = 2;
 
-  OtMetricConfig ot_metric_config = 3;
+  OtMetricConfig otMetricConfig = 3;
 
-  RedisConfig redis_config = 4;
+  RedisConfig redisConfig = 4;
 
-  ServerConfig server_config = 5;
+  ServerConfig serverConfig = 5;
 
-  DatabaseConfig database_config = 6;
+  DatabaseConfig databaseConfig = 6;
 
-  MetadataConfig metadata_config = 7;
+  MetadataConfig metadataConfig = 7;
 }
 
 message OtTracerConfig {
   string endpoints = 1;
 
-  bool use_ssl_credentials = 2;
+  bool useSslCredentials = 2;
 
-  string ssl_credentials_cacert_path = 3;
+  string sslCredentialsCacertPath = 3;
 }
 
 message OtLoggerConfig {
@@ -48,7 +48,7 @@ message DatabaseConfig {
 
   int32 port = 2;
 
-  string user_name = 3;
+  string userName = 3;
 
   string password = 4;
 
@@ -58,9 +58,7 @@ message DatabaseConfig {
 }
 
 message MetadataConfig {
-  string session_id = 1;
-
-  string internal_auth_error = 2;
+  string sessionId = 1;
 }
 
 message RedisConfig {
@@ -68,15 +66,15 @@ message RedisConfig {
 
   int32 port = 2;
 
-  string redis_db = 3;
+  string redisDb = 3;
 
-  string redis_default_db = 4;
+  string redisDefaultDb = 4;
 
-  int32 min_idl_conns = 5;
+  int32 minIdlConns = 5;
 
-  int32 pool_size = 6;
+  int32 poolSize = 6;
 
-  int32 pool_timeout = 7;
+  int32 poolTimeout = 7;
 
-  int32 session_timeout = 8;
+  int32 sessionTimeout = 8;
 }

@@ -15,6 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: bazelbuild/setup-bazelisk@v2
+      - name: Build proto descriptor
+        run: bazel build //:cict_proto_descriptor
       - name: Build target go
         run: cd go && bazel build //...
       - name: Build target grpc-gateway 
