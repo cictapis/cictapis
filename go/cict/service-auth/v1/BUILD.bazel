@@ -12,7 +12,7 @@ go_proto_library(
     "@com_github_cict_cictapis//cict/service-auth/v1:user_proto",
   ],
   deps = [
-    "//google/api:google_api_go_proto",
+    "//google/api:google_api_annotations_go_proto",
     "//cict/common/v1:cict_common_v1_go_proto",
   ],
   visibility = ["//visibility:public"]
