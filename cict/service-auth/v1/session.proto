@@ -9,7 +9,6 @@ import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 
 import "cict/common/v1/annotations.proto";
-import "cict/common/v1/paginate.proto";
 
 service SessionService {
   rpc AuthenticateSession(AuthenticateSessionRequest) returns (google.protobuf.Empty) {

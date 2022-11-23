@@ -3,9 +3,6 @@ load("//:defs.bzl", "proto_descriptor")
 proto_descriptor(
   name = "cict_proto_descriptor",
   srcs = [
-    "//google/api:annotations.proto",
-    "//google/api:http.proto",
-
     "//cict/common/v1:annotations.proto",
     "//cict/common/v1:config.proto",
     "//cict/common/v1:crud_policy.proto",
@@ -30,6 +27,7 @@ proto_descriptor(
   ],
   out = "cictapis.descriptor",
   external_deps = [
-    "well_known_protos"
+    "well_known_protos",
+    "@go_googleapis//google/api:annotations_proto",
   ]
 )
