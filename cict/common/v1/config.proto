@@ -14,11 +14,13 @@ message Config {
 
   RedisConfig redisConfig = 4;
 
-  ServiceEndpointConfig serviceAuthEndpointConfig = 5;
+  ServiceEndpointConfig serverConfig = 5;
 
-  ServiceEndpointConfig serviceCourseEndpointConfig = 6;
+  ServiceEndpointConfig serviceAuthEndpointConfig = 6;
 
-  DatabaseConfig databaseConfig = 7;
+  ServiceEndpointConfig serviceCourseEndpointConfig = 7;
+
+  DatabaseConfig databaseConfig = 8;
 
   MetadataConfig metadataConfig = 8;
 }
