@@ -20,9 +20,11 @@ message Config {
 
   ServiceEndpointConfig serviceCourseEndpointConfig = 7;
 
-  DatabaseConfig databaseConfig = 8;
+  DatabaseEndpointConfig databaseAuthEndpointConfig = 8;
 
-  MetadataConfig metadataConfig = 9;
+  DatabaseEndpointConfig databaseCourseEndpointConfig = 9;
+  
+  MetadataConfig metadataConfig = 10;
 }
 
 message OtTracerConfig {
@@ -47,7 +49,7 @@ message ServiceEndpointConfig {
   int32 port = 2;
 }
 
-message DatabaseConfig {
+message DatabaseEndpointConfig {
   string address = 1;
 
   int32 port = 2;
