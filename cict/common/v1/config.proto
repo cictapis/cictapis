@@ -22,7 +22,7 @@ message Config {
 
   DatabaseConfig databaseConfig = 8;
 
-  MetadataConfig metadataConfig = 8;
+  MetadataConfig metadataConfig = 9;
 }
 
 message OtTracerConfig {
