@@ -28,7 +28,7 @@ proto_descriptor(
     "//cict/service-dormitory/v1:registration_form.proto",
     "//cict/service-dormitory/v1:user.proto",
   ],
-  out = "cictauth.descriptor",
+  out = "cict.descriptor",
   external_deps = [
     "well_known_protos"
   ]
