@@ -117,6 +117,7 @@ message Course {
   repeated ExamSchedule examSchedules = 10;
 
   // Many to many relationship User
+  // @gotags: gorm:"many2many:user_courses"
   repeated User users = 11;
 
   // @gotags: gorm:"autoUpdateTime:nano"
@@ -131,6 +132,7 @@ message User {
   uint64 id = 1;
 
   // Many to many relationships Course
+  // @gotags: gorm:"many2many:user_courses"
   repeated Course courses = 2;
 
   // @gotags: gorm:"autoUpdateTime:nano"
