@@ -24,6 +24,12 @@ proto_library(
 )
 
 proto_library(
+  name = "message_slim_proto",
+  srcs = ["message_slim.proto"],
+  deps = []
+)
+
+proto_library(
   name = "paginate_proto",
   srcs = ["paginate.proto"],
   deps = []

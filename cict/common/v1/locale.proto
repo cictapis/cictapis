@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package cict.common.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/common/v1";
+
+message Locale {
+  Translation vi = 1;
+
+  Translation en = 2;
+}
+
+message LocaleTranslation {
+  string grpcOk = 1;
+
+  string grpcCanceled = 2;
+
+  string grpcUnknown = 3;
+
+  string grpcInvalidArgument = 4;
+
+  string grpcDeadlineExceeded = 5;
+
+  string grpcNotFound = 6;
+
+  string grpcAldreadyExists = 7;
+
+  string grpcResourceExhausted = 8;
+
+  string grpcFailedCondition = 9;
+
+  string grpcAborted = 10;
+  
+  string grpcOutOfRange = 11;
+
+  string grpcInternal = 12;
+
+  string grpcUnavailable = 13;
+
+  string grpcDatabaLoss = 14;
+
+  string grpcUnauthenticated = 15;
+}

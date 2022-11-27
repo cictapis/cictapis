@@ -12,3 +12,7 @@ import "cict/common/v1/crud_policy.proto";
 extend google.protobuf.MethodOptions {
   CrudPolicyEnum.CrudPolicy crudPolicy = 1000001;
 }
+
+extend google.protobuf.ServiceOptions {
+  string serviceName = 1000001;
+}
