@@ -83,4 +83,13 @@ message CourseField {
 
   // @gotags: gorm:"autoCreateTime:nano"
   int64 createdAt = 5;
+
+  // @gotags: json:"createdById"
+  uint64 createdById = 6;
+
+  // @gotags: json:"updatedById"
+  uint64 updatedById = 7;
+
+  // @gotags: json:"ownedById"
+  uint64 ownedById = 8;
 }
