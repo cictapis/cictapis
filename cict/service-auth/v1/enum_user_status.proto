@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package cict.service_auth.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_auth/v1;service_auth";
+
+message EnumUserStatus {
+  enum UserStatus {
+    UNSPECIFIED = 0;
+
+    ACTIVE = 1;
+
+    NEED_EMAIL_VERIFICATION = 2;
+
+    DEACTIVE = 3;
+  }
+}

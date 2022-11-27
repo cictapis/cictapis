@@ -9,10 +9,12 @@ proto_descriptor(
     "//cict/common/v1:annotations.proto",
     "//cict/common/v1:config.proto",
     "//cict/common/v1:crud_policy.proto",
+    "//cict/common/v1:message_slim.proto",
     "//cict/common/v1:paginate.proto",
 
     "//cict/service-auth/v1:enum_authenticate_third_party.proto",
     "//cict/service-auth/v1:enum_system_role.proto",
+    "//cict/service-auth/v1:enum_user_status.proto",
     "//cict/service-auth/v1:profile.proto",
     "//cict/service-auth/v1:session.proto",
     "//cict/service-auth/v1:user.proto",

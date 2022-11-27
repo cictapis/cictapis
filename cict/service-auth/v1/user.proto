@@ -13,8 +13,11 @@ import "cict/common/v1/annotations.proto";
 import "cict/common/v1/paginate.proto";
 import "cict/service-auth/v1/enum_authenticate_third_party.proto";
 import "cict/service-auth/v1/enum_system_role.proto";
+import "cict/service-auth/v1/enum_user_status.proto";
 
 service UserService {
+  option (common.v1.serviceName) = "users";
+
   rpc Login(LoginRequest) returns (LoginResponse) {
     option (google.api.http) = {
       post: "/api/auth/v1/user/login",
@@ -36,7 +39,7 @@ service UserService {
       post: "/api/auth/v1/user/mutate",
       body: "*"
     };
-    option (common.v1.crudPolicy) = ADMIN;
+    option (common.v1.crudPolicy) = OWNER;
   }
 
   rpc GetUser(GetUserRequest) returns (GetUserResponse) {
@@ -103,41 +106,62 @@ message ListUserResponse {
 }
 
 message User {
-  // @gotags: gorm:"primaryKey"
+  // @gotags: json:"id" gorm:"primaryKey"
   uint64 id = 1;
 
-  // @gotags: gorm:"<-"
+  // @gotags: json:"authenticateThirdParty" gorm:"<-"
   EnumAuthenticateThirdParty.AuthenticateThirdParty authenticateThirdParty = 2;
 
   // allow read and write
   //
-  // @gotags: gorm:"<-"
+  // @gotags: json:"gmailOrganization" gorm:"<-"
   string gmailOrganization = 3;
 
-  // @gotags: gorm:"<-"
+  // @gotags: json:"regisUsername" gorm:"<-"
   string regisUsername = 4;
 
-  // @gotags: gorm:"<-"
+  // @gotags: json:"regisPassword" gorm:"<-"
   string regisPassword = 5;
 
   // allow read and write
   //
-  // @gotags: gorm:"<-"
+  // @gotags: json:"name" gorm:"<-"
   string name = 6;
 
   // allow read and write
   //
-  // @gotags: gorm:"<-"
+  // @gotags: json:"avatar" gorm:"<-"
   string avatar = 7;
 
   // allow read and write
   //
-  // @gotags: gorm:"<-"
+  // @gotags: json:"systemRole" gorm:"<-"
   EnumSystemRole.SystemRole systemRole = 8;
 
-  // @gotags: gorm:"autoUpdateTime:nano"
-  int64 updatedAt  = 9;
+  // @gotags: json:"userStatus" gorm:"<-"
+  EnumUserStatus.UserStatus userStatus = 9;
 
-  // @gotags: gorm:"autoCreateTime:nano"
-  int64 createdAt = 10;
+  // @gotags: json:"updatedAt" gorm:"autoUpdateTime:nano"
+  int64 updatedAt = 10;
+
+  // @gotags: json:"createdAt" gorm:"autoCreateTime:nano"
+  int64 createdAt = 11;
+
+  // @gotags: json:"createdById"
+  uint64 createdById = 12;
+
+  // @gotags: json:"createdBy" gorm:"foreignkey:createdById"
+  User createdBy = 13;
+
+  // @gotags: json:"updatedById"
+  uint64 updatedById = 14;
+
+  // @gotags: json:"updatedBy" gorm:"foreignkey:updatedById"
+  User updatedBy = 15;
+
+  // @gotags: json:"ownedById"
+  uint64 ownedById = 16;
+
+  // @gotags: json:"ownedBy" gorm:"foreignkey:ownedById"
+  User ownedBy = 17;
 }

@@ -15,6 +15,12 @@ proto_library(
 )
 
 proto_library(
+  name = "enum_user_status_proto",
+  srcs = ["enum_user_status.proto"],
+  deps = []
+)
+
+proto_library(
   name = "profile_proto",
   srcs = ["profile.proto"],
   deps = []
@@ -28,6 +34,8 @@ proto_library(
     "@com_google_protobuf//:empty_proto",
     "//cict/common/v1:annotations_proto",
     "//cict/common/v1:crud_policy_proto",
+    "//cict/common/v1:message_slim_proto",
+    ":enum_system_role_proto",
   ]
 )
 
@@ -42,5 +50,6 @@ proto_library(
     "//cict/common/v1:paginate_proto",
     ":enum_authenticate_third_party_proto",
     ":enum_system_role_proto",
+    ":enum_user_status_proto",
   ]
 )

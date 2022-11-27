@@ -10,6 +10,8 @@ import "google/protobuf/empty.proto";
 
 import "cict/common/v1/annotations.proto";
 import "cict/common/v1/crud_policy.proto";
+import "cict/common/v1/message_slim.proto";
+import "cict/service-auth/v1/enum_system_role.proto";
 
 service SessionService {
   rpc AuthenticateSession(AuthenticateSessionRequest) returns (google.protobuf.Empty) {
@@ -25,6 +27,10 @@ message AuthenticateSessionRequest {
   string sessionId = 1;
 
   common.v1.CrudPolicyEnum.CrudPolicy crudPolicy = 2;
+
+  string serviceName = 3;
+
+  cict.common.v1.MessageSlim messageSlim = 4;
 }
 
 message Session {
@@ -35,4 +41,6 @@ message Session {
   string email = 3;
 
   string name = 4;
+
+  EnumSystemRole.SystemRole systemRole = 5;
 }

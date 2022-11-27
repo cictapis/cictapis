@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package cict.common.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/common/v1";
+
+message MessageSlim {
+  // @gotags: json:"id" 
+  uint64 id = 1;
+
+  // @gotags: json:"updatedAt"
+  int64 updatedAt = 2;
+
+  // @gotags: json:"createdAt"
+  int64 createdAt = 3;
+
+  // @gotags: json:"createdById"
+  uint64 createdById = 4;
+
+  // @gotags: json:"updatedById"
+  uint64 updatedById = 5;
+
+  // @gotags: json:"ownedById"
+  uint64 ownedById = 6;
+}

@@ -33,7 +33,9 @@ message CrudPolicyEnum {
     // System can operate.
     SYSTEM = 7;
 
-    // User can operate their own data; admin, supperuser can operate data.
-    STANDARD_PRIVACY = 8;
+    // User can operate their own data.
+    // Admin can operate their own data and user data.
+    // Supper user can operate data.
+    OWNER = 8;
   }
 }

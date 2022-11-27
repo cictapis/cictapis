@@ -17,21 +17,21 @@ service RegistrationFormService {
       post: "/api/dormitory/v1/registration_form/mutate",
       body: "*"
     };
-    option (common.v1.crudPolicy) = STANDARD_PRIVACY;
+    option (common.v1.crudPolicy) = OWNER;
   }
 
   rpc GetRegistrationForm(GetRegistrationFormRequest) returns (GetRegistrationFormResponse) {
     option (google.api.http) = {
       get: "/api/dormitory/v1/registration_form/get"
     };
-    option (common.v1.crudPolicy) = STANDARD_PRIVACY;
+    option (common.v1.crudPolicy) = OWNER;
   }
 
   rpc ListRegistrationForm(ListRegistrationFormRequest) returns (ListRegistrationFormResponse) {
     option (google.api.http) = {
       get: "/api/dormitory/v1/registration_form/list"
     };
-    option (common.v1.crudPolicy) = STANDARD_PRIVACY;
+    option (common.v1.crudPolicy) = OWNER;
   }
 }
 
