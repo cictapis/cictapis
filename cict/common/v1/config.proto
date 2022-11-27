@@ -48,11 +48,13 @@ message ServiceEndpointConfig {
 
   int32 port = 2;
 
-  string serverCertPem = 3;
+  string caCertPem = 3;
 
-  string serverKeyPem = 4;
+  string serverCertPem = 4;
 
-  bool tlsEnable = 5;
+  string serverKeyPem = 5;
+
+  bool tlsEnable = 6;
 }
 
 message DatabaseEndpointConfig {
