@@ -6,9 +6,9 @@ option cc_enable_arenas = true;
 option go_package = "github.com/cictapis/cict-auth/cict/common/v1";
 
 message Locale {
-  Translation vi = 1;
+  LocaleTranslation vi = 1;
 
-  Translation en = 2;
+  LocaleTranslation en = 2;
 }
 
 message LocaleTranslation {
