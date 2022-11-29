@@ -31,6 +31,12 @@ proto_library(
 )
 
 proto_library(
+  name = "locale_proto",
+  srcs = ["locale.proto"],
+  deps = []
+)
+
+proto_library(
   name = "message_slim_proto",
   srcs = ["message_slim.proto"],
   deps = []
