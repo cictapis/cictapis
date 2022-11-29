@@ -14,31 +14,42 @@ import "cict/common/v1/paginate.proto";
 service ExamScheduleService {
   rpc MutateExamSchedule(MutateExamScheduleRequest) returns (MutateExamScheduleResponse) {
     option (google.api.http) = {
-      post: "/api/course/v1/exam_schedule/mutate",
+      post: "/api/service_course/v1/exam_schedule/mutate",
       body: "*"
     };
-    option (common.v1.crudPolicy) = ADMIN;
+    option (common.v1.cict) = {
+      crudPolicy: ADMIN,
+    };
   }
 
   rpc GetExamSchedule(GetExamScheduleRequest) returns (GetExamScheduleResponse) {
     option (google.api.http) = {
-      get: "/api/course/v1/exam_schedule/get",
+      get: "/api/service_course/v1/exam_schedule/get",
     };
-    option (common.v1.crudPolicy) = AUTH;
+    option (common.v1.cict) = {
+      crudPolicy: AUTH,
+      systemApiExporter: CICT_SERVICE_COURSE_EXAM_SCHEDULE_GET_EXAM_SCHEDULE,
+    };
   }
 
   rpc ListExamSchedule(ListExamScheduleRequest) returns (ListExamScheduleResponse) {
     option (google.api.http) = {
-      get: "/api/course/v1/exam_schedule/post",
+      get: "/api/service_course/v1/exam_schedule/post",
     };
-    option (common.v1.crudPolicy) = AUTH;
+    option (common.v1.cict) = {
+      crudPolicy: AUTH,
+      systemApiExporter: CICT_SERVICE_COURSE_EXAM_SCHEDULE_LIST_EXAM_SCHEDULE,
+    };
   }
 
   rpc GetUpcomingExamSchedule(GetUpcomingExamScheduleRequest) returns (GetUpcomingExamScheduleResponse) {
     option (google.api.http) = {
-      get: "/api/course/v1/exam_schedule/get_upcoming"
+      get: "/api/service_course/v1/exam_schedule/get_upcoming"
     };
-    option (common.v1.crudPolicy) = AUTH;
+    option (common.v1.cict) = {
+      crudPolicy: AUTH,
+      systemApiExporter: CICT_SERVICE_COURSE_EXAM_SCHEDULE_GET_UPCOMING_EXAM_SCHEDULE,
+    };
   }
 }
 

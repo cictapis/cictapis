@@ -7,12 +7,19 @@ option go_package = "github.com/cictapis/cict-auth/cict/common/v1";
 
 import "google/protobuf/descriptor.proto";
 
-import "cict/common/v1/crud_policy.proto";
+import "cict/common/v1/enum_crud_policy.proto";
+import "cict/common/v1/enum_system_api_exporter.proto";
 
 extend google.protobuf.MethodOptions {
-  CrudPolicyEnum.CrudPolicy crudPolicy = 1000001;
+  AnnotationsCictMethodOptions cict = 1000001;
 }
 
 extend google.protobuf.ServiceOptions {
   string serviceName = 1000001;
+}
+
+message AnnotationsCictMethodOptions {
+  EnumCrudPolicy.CrudPolicy crudPolicy = 1;
+
+  EnumSystemApiExporter.SystemApiExporter systemApiExporter = 2;
 }

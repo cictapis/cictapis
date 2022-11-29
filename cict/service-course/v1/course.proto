@@ -18,32 +18,42 @@ import "cict/service-course/v1/exam_score.proto";
 service CourseService {
   rpc MutateCourse(MutateCourseRequest) returns (MutateCourseResponse) {
     option (google.api.http) = {
-      post: "/api/course/v1/course/mutate",
+      post: "/api/service_course/v1/course/mutate",
       body: "*"
     };
-    option (common.v1.crudPolicy) = ADMIN;
+    option (common.v1.cict) = {
+      crudPolicy: ADMIN,
+    };
   }
 
   rpc GetCourse(GetCourseRequest) returns (GetCourseResponse) {
     option (google.api.http) = {
-      get: "/api/course/v1/course/get"
+      get: "/api/service_course/v1/course/get"
     };
-    option (common.v1.crudPolicy) = ANYONE;
+    option (common.v1.cict) = {
+      crudPolicy: ANYONE,
+      systemApiExporter: CICT_SERVICE_COURSE_COURSE_GET_COURSE,
+    };
   }
 
   rpc ListCourse(ListCourseRequest) returns (ListCourseResponse) {
     option (google.api.http) = {
-      get: "/api/course/v1/course/list"
+      get: "/api/service_course/v1/course/list"
     };
-    option (common.v1.crudPolicy) = ANYONE;
+    option (common.v1.cict) = {
+      crudPolicy: ANYONE,
+      systemApiExporter: CICT_SERVICE_COURSE_COURSE_LIST_COURSE,
+    };
   }
 
   rpc RegisterCourse(RegisterCourseRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/api/course/v1/course/register",
+      post: "/api/service_course/v1/course/register",
       body: "*"
     };
-    option (common.v1.crudPolicy) = USER;
+    option (common.v1.cict) = {
+      crudPolicy: USER,
+    };
   }
 }
 

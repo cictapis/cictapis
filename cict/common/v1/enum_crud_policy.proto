@@ -5,12 +5,12 @@ package cict.common.v1;
 option cc_enable_arenas = true;
 option go_package = "github.com/cictapis/cict-auth/cict/common/v1";
 
-message CrudPolicyEnum {
+message EnumCrudPolicy {
   enum CrudPolicy {
     // Not specfied, should show fatal error.
     UNSPECIFIED = 0;
 
-    // Supper user can operate admin.
+    // Supper user can operate data.
     SUPPER_USER = 1;
 
     // Admin can operate data

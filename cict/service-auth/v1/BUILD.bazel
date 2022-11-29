@@ -21,6 +21,28 @@ proto_library(
 )
 
 proto_library(
+  name = "license_scope_proto",
+  srcs = ["license_scope.proto"],
+  deps = [
+    ":user_proto",
+    "//cict/common/v1:enum_system_api_exporter_proto",
+  ]
+)
+
+proto_library(
+  name = "organization_accessor_proto",
+  srcs = ["organization_accessor.proto"],
+  deps = [
+    "@go_googleapis//google/api:annotations_proto",
+    "@com_google_protobuf//protobuf:empty_proto",
+    "@com_google_protobuf//protobuf:field_mask_proto",
+    "//cict/common/v1:annotations_proto",
+    ":user_proto",
+    ":license_scope_proto",
+  ]
+)
+
+proto_library(
   name = "profile_proto",
   srcs = ["profile.proto"],
   deps = []
@@ -33,7 +55,7 @@ proto_library(
     "@go_googleapis//google/api:annotations_proto",
     "@com_google_protobuf//:empty_proto",
     "//cict/common/v1:annotations_proto",
-    "//cict/common/v1:crud_policy_proto",
+    "//cict/common/v1:enum_system_api_exporter_proto",
     "//cict/common/v1:message_slim_proto",
     ":enum_system_role_proto",
   ]

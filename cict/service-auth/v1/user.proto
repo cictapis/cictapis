@@ -20,40 +20,52 @@ service UserService {
 
   rpc Login(LoginRequest) returns (LoginResponse) {
     option (google.api.http) = {
-      post: "/api/auth/v1/user/login",
+      post: "/api/service_auth/v1/user/login",
       body: "*"
     };
-    option (common.v1.crudPolicy) = ANONYMOUS;
+    option (common.v1.cict) = {
+      crudPolicy: ANONYMOUS,
+    };
   }
 
   rpc Logout(LogoutRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/api/auth/v1/user/logout",
+      post: "/api/service_auth/v1/user/logout",
       body: "*"
     };
-    option (common.v1.crudPolicy) = AUTH;
+    option (common.v1.cict) = {
+      crudPolicy: AUTH,
+    };
   }
 
   rpc MutateUser(MutateUserRequest) returns (MutateUserResponse) {
     option (google.api.http) = {
-      post: "/api/auth/v1/user/mutate",
+      post: "/api/service_auth/v1/user/mutate",
       body: "*"
     };
-    option (common.v1.crudPolicy) = OWNER;
+    option (common.v1.cict) = {
+      crudPolicy: OWNER,
+    };
   }
 
   rpc GetUser(GetUserRequest) returns (GetUserResponse) {
     option (google.api.http) = {
-      get: "/api/auth/v1/user/get"
+      get: "/api/service_auth/v1/user/get"
     };
-    option (common.v1.crudPolicy) = AUTH;
+    option (common.v1.cict) = {
+      crudPolicy: AUTH,
+      systemApiExporter: CICT_SERVICE_AUTH_USER_SERVICE_GET_USER,
+    };
   }
 
   rpc ListUser(ListUserRequest) returns (ListUserResponse) {
     option (google.api.http) = {
       get: "/api/auth/v1/user/list"
     };
-    option (common.v1.crudPolicy) = ADMIN;
+    option (common.v1.cict) = {
+      crudPolicy: ADMIN,
+      systemApiExporter: CICT_SERVICE_AUTH_USER_SERVICE_LIST_USER,
+    };
   }
 }
 
@@ -142,26 +154,26 @@ message User {
   EnumUserStatus.UserStatus userStatus = 9;
 
   // @gotags: json:"updatedAt" gorm:"autoUpdateTime:nano"
-  int64 updatedAt = 10;
+  int64 updatedAt = 100;
 
   // @gotags: json:"createdAt" gorm:"autoCreateTime:nano"
-  int64 createdAt = 11;
+  int64 createdAt = 101;
 
   // @gotags: json:"createdById"
-  uint64 createdById = 12;
+  uint64 createdById = 102;
 
   // @gotags: json:"createdBy" gorm:"foreignkey:createdById"
-  User createdBy = 13;
+  User createdBy = 103;
 
   // @gotags: json:"updatedById"
-  uint64 updatedById = 14;
+  uint64 updatedById = 104;
 
   // @gotags: json:"updatedBy" gorm:"foreignkey:updatedById"
-  User updatedBy = 15;
+  User updatedBy = 105;
 
   // @gotags: json:"ownedById"
-  uint64 ownedById = 16;
+  uint64 ownedById = 106;
 
   // @gotags: json:"ownedBy" gorm:"foreignkey:ownedById"
-  User ownedBy = 17;
+  User ownedBy = 107;
 }

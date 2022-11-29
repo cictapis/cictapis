@@ -14,5 +14,7 @@ message EnumSystemRole {
     ADMIN = 2;
   
     SUPPER_USER = 3;
+
+    ORGANIZATION = 4;
   }
 }

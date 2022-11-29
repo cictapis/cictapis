@@ -15,24 +15,32 @@ import "cict/service-course/v1/course.proto";
 service CourseFieldService {
   rpc MutateCourseField(MutateCourseFieldRequest) returns (MutateCourseFieldResponse) {
     option (google.api.http) = {
-      post: "/api/course/v1/course_field/mutate",
+      post: "/api/service_course/v1/course_field/mutate",
       body: "*"
     };
-    option (common.v1.crudPolicy) = ADMIN;
+    option (common.v1.cict) = {
+      crudPolicy: ADMIN,
+    };
   }
 
   rpc GetCourseField(GetCourseFieldRequest) returns (GetCourseFieldResponse) {
     option (google.api.http) = {
-      get: "/api/course/v1/course_field/get",
+      get: "/api/service_course/v1/course_field/get",
     };
-    option (common.v1.crudPolicy) = ANYONE;
+    option (common.v1.cict) = {
+      crudPolicy: ANYONE,
+      systemApiExporter: CICT_SERVICE_COURSE_COURSE_FIELD_GET_COURSE_FIELD,
+    };
   }
 
   rpc ListCourseField(ListCourseFieldRequest) returns (ListCourseFieldResponse) {
     option (google.api.http) = {
-      get: "/api/course/v1/course_field/list"
+      get: "/api/service_course/v1/course_field/list"
     };
-    option (common.v1.crudPolicy) = ANYONE;
+    option (common.v1.cict) = {
+      crudPolicy: ANYONE,
+      systemApiExporter: CICT_SERVICE_COURSE_COURSE_FIELD_LIST_COURSE_FIELD,
+    };
   }
 }
 

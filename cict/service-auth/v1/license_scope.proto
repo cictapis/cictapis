@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package cict.service_auth.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_auth/v1;service_auth";
+
+import "cict/service-auth/v1/user.proto";
+import "cict/common/v1/enum_system_api_exporter.proto";
+
+service LicenseScopeService {
+
+}
+
+message LicenseScope {
+  // @gotags: json:"id" gorm:"primaryKey"
+  uint64 id = 1;
+
+  // @gotags: json:"serviceName" gorm:"<-"
+  string serviceName = 2;
+
+  // @gotags: json:"organizationAccessorId"
+  uint64 organizationAccessorId = 3;
+
+  // @gotags: json:"systemApiExporter" gorm:"<-"
+  cict.common.v1.EnumSystemApiExporter.SystemApiExporter systemApiExporter = 4;
+
+  // @gotags: json:"updatedAt" gorm:"autoUpdateTime:nano"
+  int64 updatedAt = 100;
+
+  // @gotags: json:"createdAt" gorm:"autoCreateTime:nano"
+  int64 createdAt = 101;
+
+  // @gotags: json:"createdById"
+  uint64 createdById = 102;
+
+  // @gotags: json:"createdBy" gorm:"foreignkey:createdById"
+  User createdBy = 103;
+
+  // @gotags: json:"updatedById"
+  uint64 updatedById = 104;
+
+  // @gotags: json:"updatedBy" gorm:"foreignkey:updatedById"
+  User updatedBy = 105;
+
+  // @gotags: json:"ownedById"
+  uint64 ownedById = 106;
+
+  // @gotags: json:"ownedBy" gorm:"foreignkey:ownedById"
+  User ownedBy = 107;
+}

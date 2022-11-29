@@ -14,9 +14,12 @@ import "cict/service-course/v1/course_timetable_day.proto";
 service CourseTimetable {
   rpc GetUserTimetable(GetUserTimetableRequest) returns (GetUserTimetableResponse) {
     option (google.api.http) = {
-      get: "/api/course/v1/course_timetable/get"
+      get: "/api/service_course/v1/course_timetable/get"
     };
-    option (common.v1.crudPolicy) = AUTH;
+    option (common.v1.cict) = {
+      crudPolicy: AUTH,
+      systemApiExporter: CICT_SERVICE_COURSE_COURSE_TIMETABLE_GET_USER_TIMETABLE,
+    };
   }
 }
 

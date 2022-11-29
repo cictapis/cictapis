@@ -14,24 +14,32 @@ import "cict/common/v1/paginate.proto";
 service CourseTimetableDayService {
   rpc MutateCourseTimetableDay(MutateCourseTimetableDayRequest) returns (MutateCourseTimetableDayResponse) {
     option (google.api.http) = {
-      post: "/api/course/v1/course_timetable_day/mutate",
+      post: "/api/service_course/v1/course_timetable_day/mutate",
       body: "*"
     };
-    option (common.v1.crudPolicy) = ADMIN;
+    option (common.v1.cict) = {
+      crudPolicy: ADMIN,
+    };
   }
 
   rpc GetCourseTimetableDay(GetCourseTimetableDayRequest) returns (GetCourseTimetableDayResponse) {
     option (google.api.http) = {
-      get: "/api/course/v1/course_timetable_day/get"
+      get: "/api/service_course/v1/course_timetable_day/get"
     };
-    option (common.v1.crudPolicy) = ANYONE;
+    option (common.v1.cict) = {
+      crudPolicy: ANYONE,
+      systemApiExporter: CICT_SERVICE_COURSE_COURSE_TIMETABLE_DAY_GET_COURSE_TIMETABLE_DAY,
+    };
   }
 
   rpc ListCourseTimetableDay(ListCourseTimetableDayRequest) returns (ListCourseTimetableDayResponse) {
     option (google.api.http) = {
-      get: "/api/course/v1/course_timetable_day/list"
+      get: "/api/service_course/v1/course_timetable_day/list"
     };
-    option (common.v1.crudPolicy) = ANYONE;
+    option (common.v1.cict) = {
+      crudPolicy: ANYONE,
+      systemApiExporter: CICT_SERVICE_COURSE_COURSE_TIMETABLE_DAY_LIST_COURSE_TIMETABLE_DAY,
+    };
   }
 }
 

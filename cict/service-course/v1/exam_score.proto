@@ -14,24 +14,32 @@ import "cict/common/v1/paginate.proto";
 service ExamScoreService {
   rpc MutateExamScore(MutateExamScoreRequest) returns (MutateExamScoreResponse) {
     option (google.api.http) = {
-      post: "/api/course/v1/exam_score/mutate",
+      post: "/api/service_course/v1/exam_score/mutate",
       body: "*",
     };
-    option (common.v1.crudPolicy) = ADMIN;
+    option (common.v1.cict) = {
+      crudPolicy: ADMIN,
+    };
   }
 
   rpc GetExamScore(GetExamScoreRequest) returns (GetExamScoreResponse) {
     option (google.api.http) = {
-      get: "/api/course/v1/exam_score/get",
+      get: "/api/service_course/v1/exam_score/get",
     };
-    option (common.v1.crudPolicy) = ANYONE;
+    option (common.v1.cict) = {
+      crudPolicy: ANYONE,
+      systemApiExporter: CICT_SERVICE_COURSE_EXAM_SCORE_GET_EXAM_SCORE,
+    };
   }
 
   rpc ListExamScore(ListExamScoreRequest) returns (ListExamScoreResponse) {
     option (google.api.http) = {
-      get: "/api/course/v1/exam_score/list"
+      get: "/api/service_course/v1/exam_score/list"
     };
-    option (common.v1.crudPolicy) = ANYONE;
+    option (common.v1.cict) = {
+      crudPolicy: ANYONE,
+      systemApiExporter: CICT_SERVICE_COURSE_EXAM_SCORE_LIST_EXAM_SCORE,
+    };
   }
 }
 

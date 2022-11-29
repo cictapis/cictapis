@@ -14,24 +14,32 @@ import "cict/common/v1/paginate.proto";
 service RegistrationFormService {
   rpc MutateRegistrationForm(MutateRegistrationFormRequest) returns (MutateRegistrationFormResponse) {
     option (google.api.http) = {
-      post: "/api/dormitory/v1/registration_form/mutate",
+      post: "/api/service_dormitory/v1/registration_form/mutate",
       body: "*"
     };
-    option (common.v1.crudPolicy) = OWNER;
+    option (common.v1.cict) = {
+      crudPolicy: OWNER,
+    };
   }
 
   rpc GetRegistrationForm(GetRegistrationFormRequest) returns (GetRegistrationFormResponse) {
     option (google.api.http) = {
-      get: "/api/dormitory/v1/registration_form/get"
+      get: "/api/service_dormitory/v1/registration_form/get"
     };
-    option (common.v1.crudPolicy) = OWNER;
+    option (common.v1.cict) = {
+      crudPolicy: OWNER,
+      systemApiExporter: CICT_SERVICE_DORMITORY_REGISTRATION_FORM_SERVICE_GET_REGISTRATION_FORM,
+    };
   }
 
   rpc ListRegistrationForm(ListRegistrationFormRequest) returns (ListRegistrationFormResponse) {
     option (google.api.http) = {
-      get: "/api/dormitory/v1/registration_form/list"
+      get: "/api/service_dormitory/v1/registration_form/list"
     };
-    option (common.v1.crudPolicy) = OWNER;
+    option (common.v1.cict) = {
+      crudPolicy: OWNER,
+      systemApiExporter: CICT_SERVICE_DORMITORY_REGISTRATION_FORM_SERVICE_LIST_REGISTRATION_FORM,
+    };
   }
 }
 

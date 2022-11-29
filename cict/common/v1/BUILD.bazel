@@ -7,7 +7,8 @@ proto_library(
   srcs = ["annotations.proto"],
   deps = [
     "@com_google_protobuf//:descriptor_proto",
-    ":crud_policy_proto",
+    ":enum_crud_policy_proto",
+    ":enum_system_api_exporter_proto",
   ]
 )
 
@@ -18,8 +19,14 @@ proto_library(
 )
 
 proto_library(
-  name = "crud_policy_proto",
-  srcs = ["crud_policy.proto"],
+  name = "enum_crud_policy_proto",
+  srcs = ["enum_crud_policy.proto"],
+  deps = []
+)
+
+proto_library(
+  name = "enum_system_api_exporter_proto",
+  srcs = ["enum_system_api_exporter.proto"],
   deps = []
 )
 

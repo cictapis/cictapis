@@ -80,15 +80,17 @@ message RedisConfig {
 
   int32 port = 2;
 
-  string redisDb = 3;
+  string redisPassword = 3;
 
-  string redisDefaultDb = 4;
+  int32 redisDb = 4;
 
-  int32 minIdlConns = 5;
+  string redisDefaultDb = 5;
 
-  int32 poolSize = 6;
+  int32 minIdlConns = 6;
 
-  int32 poolTimeout = 7;
+  int32 poolSize = 7;
 
-  int32 sessionTimeout = 8;
+  int32 poolTimeout = 8;
+
+  int32 sessionTimeout = 9;
 }

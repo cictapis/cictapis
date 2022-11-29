@@ -15,24 +15,32 @@ import "cict/service-course/v1/course_timetable_day.proto";
 service CourseTimetableWeekService {
   rpc MutateCourseTimetableWeek(MutateCourseTimetableWeekRequest) returns (MutateCourseTimetableWeekResponse) {
     option (google.api.http) = {
-      post: "/api/course/v1/course_timetable_week/mutate",
+      post: "/api/service_course/v1/course_timetable_week/mutate",
       body: "*"
     };
-    option (common.v1.crudPolicy) = ADMIN;
+    option (common.v1.cict) = {
+      crudPolicy: ADMIN,
+    };
   }
 
   rpc GetCourseTimetableWeek(GetCourseTimetableWeekRequest) returns (GetCourseTimetableWeekResponse) {
     option (google.api.http) = {
-      get: "/api/course/v1/course_timetable_week/get"
+      get: "/api/service_course/v1/course_timetable_week/get"
     };
-    option (common.v1.crudPolicy) = ANYONE;
+    option (common.v1.cict) = {
+      crudPolicy: ANYONE,
+      systemApiExporter: CICT_SERVICE_COURSE_COURSE_TIMETABLE_WEEK_GET_COURSE_TIMETABLE_WEEK,
+    };
   }
 
   rpc ListCourseTimetableWeek(ListCourseTimetableWeekRequest) returns (ListCourseTimetableWeekResponse) {
     option (google.api.http) = {
-      get: "/api/course/v1/course_timetable_week/list"
+      get: "/api/service_course/v1/course_timetable_week/list"
     };
-    option (common.v1.crudPolicy) = ANYONE;
+    option (common.v1.cict) = {
+      crudPolicy: ANYONE,
+      systemApiExporter: CICT_SERVICE_COURSE_COURSE_TIMETABLE_WEEK_LIST_COURSE_TIMETABLE_WEEK,
+    };
   }
 }
 
