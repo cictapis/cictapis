@@ -34,9 +34,11 @@ proto_library(
   srcs = ["organization_accessor.proto"],
   deps = [
     "@go_googleapis//google/api:annotations_proto",
-    "@com_google_protobuf//protobuf:empty_proto",
-    "@com_google_protobuf//protobuf:field_mask_proto",
+    "@com_google_protobuf//:empty_proto",
+    "@com_google_protobuf//:field_mask_proto",
     "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mutate_operation_proto",
+    "//cict/common/v1:paginate_proto",
     ":user_proto",
     ":license_scope_proto",
   ]
@@ -69,6 +71,8 @@ proto_library(
     "@com_google_protobuf//:field_mask_proto",
     "@com_google_protobuf//:empty_proto",
     "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mutate_operation_proto",
+    "//cict/common/v1:enum_system_api_exporter_proto",
     "//cict/common/v1:paginate_proto",
     ":enum_authenticate_third_party_proto",
     ":enum_system_role_proto",

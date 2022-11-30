@@ -10,17 +10,21 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/field_mask.proto";
 
 import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mutate_operation.proto";
+import "cict/common/v1/paginate.proto";
 import "cict/service-auth/v1/user.proto";
 import "cict/service-auth/v1/license_scope.proto";
 
 service OrganizationAccessorService {
+  option (common.v1.service_name) = "organization_accessors";
+
   rpc MutateOrganizationAccessor(MutateOrganizationAccessorRequest) returns (MutateOrganizationAccessorResponse) {
     option (google.api.http) = {
       post: "/api/service_auth/v1/organization_accessor/mutate",
       body: "*"
     };
     option (common.v1.cict) = {
-      crudPolicy: ADMIN,
+      crud_policy: ADMIN,
     };
   }
 
@@ -29,8 +33,8 @@ service OrganizationAccessorService {
       get: "/api/service_auth/v1/organization_accessor/get",
     };
     option (common.v1.cict) = {
-      crudPolicy: OWNER,
-      systemApiExporter: CICT_SERVICE_AUTH_ORGANIZATION_ACCESSOR_SERVICE_GET_ORGANIZATION_ACCESSOR,
+      crud_policy: OWNER,
+      system_api_exporter: CICT_SERVICE_AUTH_ORGANIZATION_ACCESSOR_SERVICE_GET_ORGANIZATION_ACCESSOR,
     };
   }
 
@@ -39,10 +43,46 @@ service OrganizationAccessorService {
       get: "/api/service_auth/v1/organization_accessor/list",
     };
     option (common.v1.cict) = {
-      crudPolicy: ADMIN,
-      systemApiExporter: CICT_SERVICE_AUTH_ORGANIZATION_ACCESSOR_SERVICE_LIST_ORGANIZATION_ACCESSOR,
+      crud_policy: ADMIN,
+      system_api_exporter: CICT_SERVICE_AUTH_ORGANIZATION_ACCESSOR_SERVICE_LIST_ORGANIZATION_ACCESSOR,
     };
   }
+}
+
+message MutateOrganizationAccessorRequest {
+  common.v1.EnumMutateOperation.MutateOperation mutate_operation = 1;
+
+  repeated MutateOrganizationAccessorOperation operations = 2;
+
+  bool partial_failure = 3;
+
+  google.protobuf.FieldMask update_mask = 4;
+}
+
+message MutateOrganizationAccessorOperation {
+  OrganizationAccessor organization_accessor = 1;
+}
+
+message MutateOrganizationAccessorResponse {
+  repeated uint64 mutated_ids = 1;
+}
+
+message GetOrganizationAccessorRequest {
+  uint64 id = 1;
+}
+
+message GetOrganizationAccessorResponse {
+  OrganizationAccessor organization_accessor = 1;
+}
+
+message ListOrganizationAccessorRequest {
+  common.v1.PaginateRequest paginate = 1;
+}
+
+message ListOrganizationAccessorResponse {
+  common.v1.PaginateResponse paginate = 1;
+
+  repeated OrganizationAccessor organization_accessors = 2;
 }
 
 message OrganizationAccessor {
@@ -52,42 +92,42 @@ message OrganizationAccessor {
   // @gotags: json:"license" gorm:"<-"
   string license = 2;
 
-  // @gotags: json:"expireAt" gorm:"<-"
-  string expiredAt = 4;
+  // @gotags: json:"expired_at" gorm:"<-"
+  string expired_at = 4;
 
-  // @gotags: json:"licenseScopes"
-  repeated LicenseScope licenseScopes = 5;
+  // @gotags: json:"license_scopes"
+  repeated LicenseScope license_scopes = 5;
 
-  // @gotags: json:"belongToId"
-  uint64 belongToId = 6;
+  // @gotags: json:"belong_to_id"
+  uint64 belong_to_id = 6;
 
-  // @gotags: json:"user" gorm:"foreignKey:belongToId"
-  User belongTo = 7;
+  // @gotags: json:"belong_to" gorm:"foreignKey:belong_to_id"
+  User belong_to = 7;
 
-  // @gotags: json:"organizationName" gorm:"<-"
-  string organizationName = 8;
+  // @gotags: json:"organization_name" gorm:"<-"
+  string organization_name = 8;
 
-  // @gotags: json:"updatedAt" gorm:"autoUpdateTime:nano"
-  int64 updatedAt = 100;
+  // @gotags: json:"updated_at" gorm:"autoUpdateTime:nano"
+  int64 updated_at = 100;
 
-  // @gotags: json:"createdAt" gorm:"autoCreateTime:nano"
-  int64 createdAt = 101;
+  // @gotags: json:"created_at" gorm:"autoCreateTime:nano"
+  int64 created_at = 101;
 
-  // @gotags: json:"createdById"
-  uint64 createdById = 102;
+  // @gotags: json:"created_by_id"
+  uint64 created_by_id = 102;
 
-  // @gotags: json:"createdBy" gorm:"foreignkey:createdById"
-  User createdBy = 103;
+  // @gotags: json:"created_by" gorm:"foreignkey:created_by_id"
+  User created_by = 103;
 
-  // @gotags: json:"updatedById"
-  uint64 updatedById = 104;
+  // @gotags: json:"updated_by_id"
+  uint64 updated_by_id = 104;
 
-  // @gotags: json:"updatedBy" gorm:"foreignkey:updatedById"
-  User updatedBy = 105;
+  // @gotags: json:"updated_by" gorm:"foreignkey:updated_by_id"
+  User updated_by = 105;
 
-  // @gotags: json:"ownedById"
-  uint64 ownedById = 106;
+  // @gotags: json:"owned_by_id"
+  uint64 owned_by_id = 106;
 
-  // @gotags: json:"ownedBy" gorm:"foreignkey:ownedById"
-  User ownedBy = 107;
+  // @gotags: json:"owned_by" gorm:"foreignkey:owned_by_id"
+  User owned_by = 107;
 }

@@ -17,20 +17,20 @@ service CourseTimetable {
       get: "/api/service_course/v1/course_timetable/get"
     };
     option (common.v1.cict) = {
-      crudPolicy: AUTH,
-      systemApiExporter: CICT_SERVICE_COURSE_COURSE_TIMETABLE_GET_USER_TIMETABLE,
+      crud_policy: AUTH,
+      system_api_exporter: CICT_SERVICE_COURSE_COURSE_TIMETABLE_GET_USER_TIMETABLE,
     };
   }
 }
 
 message GetUserTimetableRequest {
-  uint64 userId = 1;
+  uint64 user_id = 1;
 
-  uint64 courseId = 2;
+  uint64 course_id = 2;
 
-  uint64 weekId = 3;
+  uint64 week_id = 3;
 }
 
 message GetUserTimetableResponse {
-  repeated CourseTimetableDay courseTimetableDays = 1;
+  repeated CourseTimetableDay course_timetable_days = 1;
 }

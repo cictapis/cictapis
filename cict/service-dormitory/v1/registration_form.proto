@@ -18,7 +18,7 @@ service RegistrationFormService {
       body: "*"
     };
     option (common.v1.cict) = {
-      crudPolicy: OWNER,
+      crud_policy: OWNER,
     };
   }
 
@@ -27,8 +27,8 @@ service RegistrationFormService {
       get: "/api/service_dormitory/v1/registration_form/get"
     };
     option (common.v1.cict) = {
-      crudPolicy: OWNER,
-      systemApiExporter: CICT_SERVICE_DORMITORY_REGISTRATION_FORM_SERVICE_GET_REGISTRATION_FORM,
+      crud_policy: OWNER,
+      system_api_exporter: CICT_SERVICE_DORMITORY_REGISTRATION_FORM_SERVICE_GET_REGISTRATION_FORM,
     };
   }
 
@@ -37,14 +37,14 @@ service RegistrationFormService {
       get: "/api/service_dormitory/v1/registration_form/list"
     };
     option (common.v1.cict) = {
-      crudPolicy: OWNER,
-      systemApiExporter: CICT_SERVICE_DORMITORY_REGISTRATION_FORM_SERVICE_LIST_REGISTRATION_FORM,
+      crud_policy: OWNER,
+      system_api_exporter: CICT_SERVICE_DORMITORY_REGISTRATION_FORM_SERVICE_LIST_REGISTRATION_FORM,
     };
   }
 }
 
 message MutateRegistrationFormRequest {
-  google.protobuf.FieldMask updateMask = 4;
+  google.protobuf.FieldMask update_mask = 4;
 
   oneof operation {
     RegistrationForm create = 1;
@@ -64,7 +64,7 @@ message GetRegistrationFormRequest {
 }
 
 message GetRegistrationFormResponse {
-  RegistrationForm registrationForm = 1;
+  RegistrationForm registration_form = 1;
 }
 
 message ListRegistrationFormRequest {
@@ -72,7 +72,7 @@ message ListRegistrationFormRequest {
 }
 
 message ListRegistrationFormResponse {
-  repeated RegistrationForm registrationForms = 1;
+  repeated RegistrationForm registration_forms = 1;
 }
 
 message RegistrationForm {
@@ -80,11 +80,11 @@ message RegistrationForm {
   uint64 id = 1;
 
   // Belong to relationships
-  uint64 userId = 2;
+  uint64 user_id = 2;
 
   // @gotags: gorm:"autoUpdateTime:nano"
-  int64 updatedAt = 3;
+  int64 updated_at = 3;
 
   // @gotags: gorm:"autoCreateTime:nano"
-  int64 createdAt = 4;
+  int64 created_at = 4;
 }

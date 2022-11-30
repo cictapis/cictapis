@@ -12,33 +12,33 @@ message Locale {
 }
 
 message LocaleTranslation {
-  string grpcOk = 1;
+  string grpc_ok = 1;
 
-  string grpcCanceled = 2;
+  string grpc_canceled = 2;
 
-  string grpcUnknown = 3;
+  string grpc_unknown = 3;
 
-  string grpcInvalidArgument = 4;
+  string grpc_invalid_argument = 4;
 
-  string grpcDeadlineExceeded = 5;
+  string grpc_deadline_exceeded = 5;
 
-  string grpcNotFound = 6;
+  string grpc_not_found = 6;
 
-  string grpcAldreadyExists = 7;
+  string grpc_aldready_exists = 7;
 
-  string grpcResourceExhausted = 8;
+  string grpc_resource_exhausted = 8;
 
-  string grpcFailedCondition = 9;
+  string grpc_failed_condition = 9;
 
-  string grpcAborted = 10;
+  string grpc_aborted = 10;
   
-  string grpcOutOfRange = 11;
+  string grpc_out_of_range = 11;
 
-  string grpcInternal = 12;
+  string grpc_internal = 12;
 
-  string grpcUnavailable = 13;
+  string grpc_unavailable = 13;
 
-  string grpcDatabaLoss = 14;
+  string grpc_data_loss = 14;
 
-  string grpcUnauthenticated = 15;
+  string grpc_unauthenticated = 15;
 }

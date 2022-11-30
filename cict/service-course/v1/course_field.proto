@@ -19,7 +19,7 @@ service CourseFieldService {
       body: "*"
     };
     option (common.v1.cict) = {
-      crudPolicy: ADMIN,
+      crud_policy: ADMIN,
     };
   }
 
@@ -28,8 +28,8 @@ service CourseFieldService {
       get: "/api/service_course/v1/course_field/get",
     };
     option (common.v1.cict) = {
-      crudPolicy: ANYONE,
-      systemApiExporter: CICT_SERVICE_COURSE_COURSE_FIELD_GET_COURSE_FIELD,
+      crud_policy: ANYONE,
+      system_api_exporter: CICT_SERVICE_COURSE_COURSE_FIELD_GET_COURSE_FIELD,
     };
   }
 
@@ -38,14 +38,14 @@ service CourseFieldService {
       get: "/api/service_course/v1/course_field/list"
     };
     option (common.v1.cict) = {
-      crudPolicy: ANYONE,
-      systemApiExporter: CICT_SERVICE_COURSE_COURSE_FIELD_LIST_COURSE_FIELD,
+      crud_policy: ANYONE,
+      system_api_exporter: CICT_SERVICE_COURSE_COURSE_FIELD_LIST_COURSE_FIELD,
     };
   }
 }
 
 message MutateCourseFieldRequest {
-  google.protobuf.FieldMask updateMask = 4;
+  google.protobuf.FieldMask update_mask = 4;
 
   oneof operation {
     Course create = 1;
@@ -57,7 +57,7 @@ message MutateCourseFieldRequest {
 }
 
 message MutateCourseFieldResponse {
-  uint64 mutatedId = 1;
+  uint64 mutated_id = 1;
 }
 
 message GetCourseFieldRequest {
@@ -65,15 +65,17 @@ message GetCourseFieldRequest {
 }
 
 message GetCourseFieldResponse {
-  CourseField courseField = 1;
+  CourseField course_field = 1;
 }
 
 message ListCourseFieldRequest {
-  cict.common.v1.PaginateRequest paginate = 1;
+  common.v1.PaginateRequest paginate = 1;
 }
 
 message ListCourseFieldResponse {
-  repeated CourseField courseFields = 1;
+  common.v1.PaginateResponse paginate = 1;
+
+  repeated CourseField course_fields = 2;
 }
 
 message CourseField {
@@ -87,17 +89,17 @@ message CourseField {
   repeated Course courses = 3;
 
   // @gotags: gorm:"autoUpdateTime:nano"
-  int64 updatedAt = 4;
+  int64 updated_at = 4;
 
   // @gotags: gorm:"autoCreateTime:nano"
-  int64 createdAt = 5;
+  int64 created_at = 5;
 
-  // @gotags: json:"createdById"
-  uint64 createdById = 6;
+  // @gotags: json:"created_by_id"
+  uint64 created_by_id = 6;
 
-  // @gotags: json:"updatedById"
-  uint64 updatedById = 7;
+  // @gotags: json:"updated_by_id"
+  uint64 updated_by_id = 7;
 
-  // @gotags: json:"ownedById"
-  uint64 ownedById = 8;
+  // @gotags: json:"owned_by_id"
+  uint64 owned_by_id = 8;
 }

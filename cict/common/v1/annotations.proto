@@ -15,11 +15,11 @@ extend google.protobuf.MethodOptions {
 }
 
 extend google.protobuf.ServiceOptions {
-  string serviceName = 1000001;
+  string service_name = 1000001;
 }
 
 message AnnotationsCictMethodOptions {
-  EnumCrudPolicy.CrudPolicy crudPolicy = 1;
+  EnumCrudPolicy.CrudPolicy crud_policy = 1;
 
-  EnumSystemApiExporter.SystemApiExporter systemApiExporter = 2;
+  EnumSystemApiExporter.SystemApiExporter system_api_exporter = 2;
 }

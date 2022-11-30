@@ -6,33 +6,33 @@ option cc_enable_arenas = true;
 option go_package = "github.com/cictapis/cict-auth/cict/common/v1";
 
 message Config {
-  OtTracerConfig otTracerConfig = 1;
+  OtTracerConfig ot_tracer_config = 1;
 
-  OtLoggerConfig otLoggerConfig = 2;
+  OtLoggerConfig ot_logger_config = 2;
 
-  OtMetricConfig otMetricConfig = 3;
+  OtMetricConfig ot_metric_config = 3;
 
-  RedisConfig redisConfig = 4;
+  RedisConfig redis_config = 4;
 
-  ServiceEndpointConfig serverConfig = 5;
+  ServiceEndpointConfig server_config = 5;
 
-  ServiceEndpointConfig serviceAuthEndpointConfig = 6;
+  ServiceEndpointConfig service_auth_endpoint_config = 6;
 
-  ServiceEndpointConfig serviceCourseEndpointConfig = 7;
+  ServiceEndpointConfig service_course_endpoint_config = 7;
 
-  DatabaseEndpointConfig databaseAuthEndpointConfig = 8;
+  DatabaseEndpointConfig database_auth_endpoint_config = 8;
 
-  DatabaseEndpointConfig databaseCourseEndpointConfig = 9;
+  DatabaseEndpointConfig database_course_endpoint_config = 9;
   
-  MetadataConfig metadataConfig = 10;
+  MetadataConfig metadata_config = 10;
 }
 
 message OtTracerConfig {
   string endpoints = 1;
 
-  bool useSslCredentials = 2;
+  bool use_ssl_credentials = 2;
 
-  string sslCredentialsCacertPath = 3;
+  string ssl_credentials_ca_cert_path = 3;
 }
 
 message OtLoggerConfig {
@@ -48,13 +48,13 @@ message ServiceEndpointConfig {
 
   int32 port = 2;
 
-  string caCertPem = 3;
+  string ca_cert_pem = 3;
 
-  string serverCertPem = 4;
+  string server_cert_pem = 4;
 
-  string serverKeyPem = 5;
+  string server_key_pem = 5;
 
-  bool tlsEnable = 6;
+  bool tls_enable = 6;
 }
 
 message DatabaseEndpointConfig {
@@ -62,7 +62,7 @@ message DatabaseEndpointConfig {
 
   int32 port = 2;
 
-  string userName = 3;
+  string username = 3;
 
   string password = 4;
 
@@ -72,7 +72,7 @@ message DatabaseEndpointConfig {
 }
 
 message MetadataConfig {
-  string sessionId = 1;
+  string session_id = 1;
 }
 
 message RedisConfig {
@@ -80,17 +80,17 @@ message RedisConfig {
 
   int32 port = 2;
 
-  string redisPassword = 3;
+  string redis_password = 3;
 
-  int32 redisDb = 4;
+  int32 redis_db = 4;
 
-  string redisDefaultDb = 5;
+  string redis_default_db = 5;
 
-  int32 minIdlConns = 6;
+  int32 min_idl_conns = 6;
 
-  int32 poolSize = 7;
+  int32 pool_size = 7;
 
-  int32 poolTimeout = 8;
+  int32 pool_timeout = 8;
 
-  int32 sessionTimeout = 9;
+  int32 session_timeout = 9;
 }

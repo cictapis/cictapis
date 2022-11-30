@@ -5,7 +5,10 @@ gateway_openapiv2_compile(
     protos = [
       "@com_github_cict_cictapis//cict/common/v1:annotations_proto",
       "@com_github_cict_cictapis//cict/common/v1:config_proto",
-      "@com_github_cict_cictapis//cict/common/v1:crud_policy_proto",
+      "@com_github_cict_cictapis//cict/common/v1:enum_crud_policy_proto",
+      "@com_github_cict_cictapis//cict/common/v1:enum_mutate_operation_proto",
+      "@com_github_cict_cictapis//cict/common/v1:enum_system_api_exporter_proto",
+      "@com_github_cict_cictapis//cict/common/v1:local_proto",
       "@com_github_cict_cictapis//cict/common/v1:message_slim_proto",
       "@com_github_cict_cictapis//cict/common/v1:paginate_proto",
     ],

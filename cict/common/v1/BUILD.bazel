@@ -25,6 +25,12 @@ proto_library(
 )
 
 proto_library(
+  name = "enum_mutate_operation_proto",
+  srcs = ["enum_mutate_operation.proto"],
+  deps = []
+)
+
+proto_library(
   name = "enum_system_api_exporter_proto",
   srcs = ["enum_system_api_exporter.proto"],
   deps = []

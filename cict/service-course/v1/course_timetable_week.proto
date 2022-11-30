@@ -19,7 +19,7 @@ service CourseTimetableWeekService {
       body: "*"
     };
     option (common.v1.cict) = {
-      crudPolicy: ADMIN,
+      crud_policy: ADMIN,
     };
   }
 
@@ -28,8 +28,8 @@ service CourseTimetableWeekService {
       get: "/api/service_course/v1/course_timetable_week/get"
     };
     option (common.v1.cict) = {
-      crudPolicy: ANYONE,
-      systemApiExporter: CICT_SERVICE_COURSE_COURSE_TIMETABLE_WEEK_GET_COURSE_TIMETABLE_WEEK,
+      crud_policy: ANYONE,
+      system_api_exporter: CICT_SERVICE_COURSE_COURSE_TIMETABLE_WEEK_GET_COURSE_TIMETABLE_WEEK,
     };
   }
 
@@ -38,14 +38,14 @@ service CourseTimetableWeekService {
       get: "/api/service_course/v1/course_timetable_week/list"
     };
     option (common.v1.cict) = {
-      crudPolicy: ANYONE,
-      systemApiExporter: CICT_SERVICE_COURSE_COURSE_TIMETABLE_WEEK_LIST_COURSE_TIMETABLE_WEEK,
+      crud_policy: ANYONE,
+      system_api_exporter: CICT_SERVICE_COURSE_COURSE_TIMETABLE_WEEK_LIST_COURSE_TIMETABLE_WEEK,
     };
   }
 }
 
 message MutateCourseTimetableWeekRequest {
-  google.protobuf.FieldMask updateMask = 4;
+  google.protobuf.FieldMask update_mask = 4;
 
   oneof operation {
     CourseTimetableWeek create = 1;
@@ -57,7 +57,7 @@ message MutateCourseTimetableWeekRequest {
 }
 
 message MutateCourseTimetableWeekResponse {
-  uint64 mutatedId = 1;
+  uint64 mutated_id = 1;
 }
 
 message GetCourseTimetableWeekRequest {
@@ -65,7 +65,7 @@ message GetCourseTimetableWeekRequest {
 }
 
 message GetCourseTimetableWeekResponse {
-  CourseTimetableWeek courseTimetableWeek = 1;
+  CourseTimetableWeek course_timetable_week = 1;
 }
 
 message ListCourseTimetableWeekRequest {
@@ -73,7 +73,7 @@ message ListCourseTimetableWeekRequest {
 }
 
 message ListCourseTimetableWeekResponse {
-  repeated CourseTimetableWeek courseTimetableWeeks = 1;
+  repeated CourseTimetableWeek course_timetable_weeks = 1;
 }
 
 message CourseTimetableWeek {
@@ -81,7 +81,7 @@ message CourseTimetableWeek {
   uint64 id = 1;
 
   // Belong to relationship
-  uint64 courseId = 2;
+  uint64 course_id = 2;
 
   // @gotags: gorm:"<-"
   uint32 week = 3;
@@ -90,11 +90,11 @@ message CourseTimetableWeek {
   bool active = 4;
 
   // HasMany relationship CourseTimetableDay
-  repeated CourseTimetableDay courseTimetableDays = 5;
+  repeated CourseTimetableDay course_timetable_days = 5;
 
   // @gotags: gorm:"autoUpdateTime:nano"
-  int64 updatedAt = 6;
+  int64 updated_at = 6;
 
   // @gotags: gorm:"autoCreateTime:nano"
-  int64 createdAt = 7;
+  int64 created_at = 7;
 }

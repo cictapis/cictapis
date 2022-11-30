@@ -18,7 +18,7 @@ service ExamScoreService {
       body: "*",
     };
     option (common.v1.cict) = {
-      crudPolicy: ADMIN,
+      crud_policy: ADMIN,
     };
   }
 
@@ -27,8 +27,8 @@ service ExamScoreService {
       get: "/api/service_course/v1/exam_score/get",
     };
     option (common.v1.cict) = {
-      crudPolicy: ANYONE,
-      systemApiExporter: CICT_SERVICE_COURSE_EXAM_SCORE_GET_EXAM_SCORE,
+      crud_policy: ANYONE,
+      system_api_exporter: CICT_SERVICE_COURSE_EXAM_SCORE_GET_EXAM_SCORE,
     };
   }
 
@@ -37,14 +37,14 @@ service ExamScoreService {
       get: "/api/service_course/v1/exam_score/list"
     };
     option (common.v1.cict) = {
-      crudPolicy: ANYONE,
-      systemApiExporter: CICT_SERVICE_COURSE_EXAM_SCORE_LIST_EXAM_SCORE,
+      crud_policy: ANYONE,
+      system_api_exporter: CICT_SERVICE_COURSE_EXAM_SCORE_LIST_EXAM_SCORE,
     };
   }
 }
 
 message MutateExamScoreRequest {
-  google.protobuf.FieldMask updateMask = 4;
+  google.protobuf.FieldMask update_mask = 4;
 
   oneof operation {
     ExamScore create = 1;
@@ -56,7 +56,7 @@ message MutateExamScoreRequest {
 }
 
 message MutateExamScoreResponse {
-  uint64 mutatedId = 1;
+  uint64 mutated_id = 1;
 }
 
 message GetExamScoreRequest {
@@ -64,7 +64,7 @@ message GetExamScoreRequest {
 }
 
 message GetExamScoreResponse {
-  ExamScore examScore = 1;
+  ExamScore exam_score = 1;
 }
 
 message ListExamScoreRequest {
@@ -72,7 +72,7 @@ message ListExamScoreRequest {
 }
 
 message ListExamScoreResponse {
-  repeated ExamScore examScores = 1;
+  repeated ExamScore exam_scores = 1;
 }
 
 message ExamScore {  
@@ -83,14 +83,14 @@ message ExamScore {
   float score = 2;
 
   // Belong to relationship ExamSchedule
-  uint64 examScheduleId = 3;
+  uint64 exam_schedule_id = 3;
 
   // Belong to relationship User
-  uint64 userId = 4;
+  uint64 user_id = 4;
 
   // @gotags: gorm:"autoUpdateTime:nano"
-  int64 updatedAt = 5;
+  int64 updated_at = 5;
 
   // @gotags: gorm:"autoCreateTime:nano"
-  int64 createdAt = 6;
+  int64 created_at = 6;
 }

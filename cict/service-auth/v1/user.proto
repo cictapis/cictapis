@@ -10,13 +10,14 @@ import "google/protobuf/field_mask.proto";
 import "google/protobuf/empty.proto";
 
 import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mutate_operation.proto";
 import "cict/common/v1/paginate.proto";
 import "cict/service-auth/v1/enum_authenticate_third_party.proto";
 import "cict/service-auth/v1/enum_system_role.proto";
 import "cict/service-auth/v1/enum_user_status.proto";
 
 service UserService {
-  option (common.v1.serviceName) = "users";
+  option (common.v1.service_name) = "users";
 
   rpc Login(LoginRequest) returns (LoginResponse) {
     option (google.api.http) = {
@@ -24,7 +25,7 @@ service UserService {
       body: "*"
     };
     option (common.v1.cict) = {
-      crudPolicy: ANONYMOUS,
+      crud_policy: ANONYMOUS,
     };
   }
 
@@ -34,7 +35,7 @@ service UserService {
       body: "*"
     };
     option (common.v1.cict) = {
-      crudPolicy: AUTH,
+      crud_policy: AUTH,
     };
   }
 
@@ -44,7 +45,7 @@ service UserService {
       body: "*"
     };
     option (common.v1.cict) = {
-      crudPolicy: OWNER,
+      crud_policy: OWNER,
     };
   }
 
@@ -53,8 +54,8 @@ service UserService {
       get: "/api/service_auth/v1/user/get"
     };
     option (common.v1.cict) = {
-      crudPolicy: AUTH,
-      systemApiExporter: CICT_SERVICE_AUTH_USER_SERVICE_GET_USER,
+      crud_policy: AUTH,
+      system_api_exporter: CICT_SERVICE_AUTH_USER_SERVICE_GET_USER,
     };
   }
 
@@ -63,8 +64,8 @@ service UserService {
       get: "/api/auth/v1/user/list"
     };
     option (common.v1.cict) = {
-      crudPolicy: ADMIN,
-      systemApiExporter: CICT_SERVICE_AUTH_USER_SERVICE_LIST_USER,
+      crud_policy: ADMIN,
+      system_api_exporter: CICT_SERVICE_AUTH_USER_SERVICE_LIST_USER,
     };
   }
 }
@@ -74,31 +75,35 @@ message LoginRequest {
 
   string password = 2;
 
-  string validatePassword = 3;
+  string validate_password = 3;
 }
 
 message LoginResponse {
   User user = 1;
 
-  string sessionId = 2;
+  string session_id = 2;
 }
 
 message LogoutRequest {
-  string sessionId = 1;
+  string session_id = 1;
 }
 
 message MutateUserRequest {
-  oneof operation {
-    User create = 1;
+  common.v1.EnumMutateOperation.MutateOperation mutate_operation = 1;
 
-    User update = 2;
+  repeated MutateUserOperation operations = 2;
 
-    User delete = 3;
-  }
+  bool partial_failure = 3;
+
+  google.protobuf.FieldMask update_mask = 4;
+}
+
+message MutateUserOperation {
+  User user = 1;
 }
 
 message MutateUserResponse {
-  uint64 mutatedId = 1;
+  repeated uint64 mutated_ids = 1;
 }
 
 message GetUserRequest {
@@ -110,70 +115,63 @@ message GetUserResponse {
 }
 
 message ListUserRequest {
-  cict.common.v1.PaginateRequest paginate = 1;
+  common.v1.PaginateRequest paginate = 1;
 }
 
 message ListUserResponse {
-  repeated User users = 1;
+  common.v1.PaginateResponse paginate = 1;
+
+  repeated User users = 2;
 }
 
 message User {
-  // @gotags: json:"id" gorm:"primaryKey"
+  // @gotags: json:"id" gorm:"column:id;primary_key"
   uint64 id = 1;
 
-  // @gotags: json:"authenticateThirdParty" gorm:"<-"
-  EnumAuthenticateThirdParty.AuthenticateThirdParty authenticateThirdParty = 2;
+  // @gotags: json:"authenticate_third_party" gorm:"column:authenticate_third_party;<-"
+  EnumAuthenticateThirdParty.AuthenticateThirdParty authenticate_third_party = 2;
 
   // allow read and write
   //
-  // @gotags: json:"gmailOrganization" gorm:"<-"
-  string gmailOrganization = 3;
+  // @gotags: json:"gmail_organization" gorm:"column:gmail_organization;<-"
+  string gmail_organization = 3;
 
-  // @gotags: json:"regisUsername" gorm:"<-"
-  string regisUsername = 4;
+  // @gotags: json:"regis_username" gorm:"column:regis_username;<-"
+  string regis_username = 4;
 
-  // @gotags: json:"regisPassword" gorm:"<-"
-  string regisPassword = 5;
+  // @gotags: json:"regis_password" gorm:"column:regis_password;<-"
+  string regis_password = 5;
 
   // allow read and write
   //
-  // @gotags: json:"name" gorm:"<-"
+  // @gotags: json:"name" gorm:"column:name;<-"
   string name = 6;
 
   // allow read and write
   //
-  // @gotags: json:"avatar" gorm:"<-"
+  // @gotags: json:"avatar" gorm:"column:avatar;<-"
   string avatar = 7;
 
   // allow read and write
   //
-  // @gotags: json:"systemRole" gorm:"<-"
-  EnumSystemRole.SystemRole systemRole = 8;
+  // @gotags: json:"system_role,omitempty" gorm:"column:system_role;<-"
+  EnumSystemRole.SystemRole system_role = 8;
 
-  // @gotags: json:"userStatus" gorm:"<-"
-  EnumUserStatus.UserStatus userStatus = 9;
+  // @gotags: json:"user_status,omitempty" gorm:"column:user_status;<-"
+  EnumUserStatus.UserStatus user_status = 9;
 
-  // @gotags: json:"updatedAt" gorm:"autoUpdateTime:nano"
-  int64 updatedAt = 100;
+  // @gotags: json:"updated_at" gorm:"column:updated_at;autoUpdateTime:nano"
+  int64 updated_at = 100;
 
-  // @gotags: json:"createdAt" gorm:"autoCreateTime:nano"
-  int64 createdAt = 101;
+  // @gotags: json:"created_at" gorm:"column:created_at;autoCreateTime:nano"
+  int64 created_at = 101;
 
-  // @gotags: json:"createdById"
-  uint64 createdById = 102;
+  // @gotags: json:"created_by_id" gorm:"column:created_by_id;<-:create"
+  uint64 created_by_id = 102;
 
-  // @gotags: json:"createdBy" gorm:"foreignkey:createdById"
-  User createdBy = 103;
+  // @gotags: json:"updated_by_id" gorm:"column:updated_by_id;<-:create"
+  uint64 updated_by_id = 103;
 
-  // @gotags: json:"updatedById"
-  uint64 updatedById = 104;
-
-  // @gotags: json:"updatedBy" gorm:"foreignkey:updatedById"
-  User updatedBy = 105;
-
-  // @gotags: json:"ownedById"
-  uint64 ownedById = 106;
-
-  // @gotags: json:"ownedBy" gorm:"foreignkey:ownedById"
-  User ownedBy = 107;
+  // @gotags: json:"owned_by_id" gorm:"column:owned_by_id;<-:create"
+  uint64 owned_by_id = 104;
 }

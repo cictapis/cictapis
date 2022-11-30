@@ -10,19 +10,22 @@ import "google/protobuf/field_mask.proto";
 import "google/protobuf/empty.proto";
 
 import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mutate_operation.proto";
 import "cict/common/v1/paginate.proto";
 import "cict/service-course/v1/course_timetable_week.proto";
 import "cict/service-course/v1/exam_schedule.proto";
 import "cict/service-course/v1/exam_score.proto";
 
 service CourseService {
+  option (common.v1.service_name) = "courses";
+
   rpc MutateCourse(MutateCourseRequest) returns (MutateCourseResponse) {
     option (google.api.http) = {
       post: "/api/service_course/v1/course/mutate",
       body: "*"
     };
     option (common.v1.cict) = {
-      crudPolicy: ADMIN,
+      crud_policy: ADMIN,
     };
   }
 
@@ -31,8 +34,8 @@ service CourseService {
       get: "/api/service_course/v1/course/get"
     };
     option (common.v1.cict) = {
-      crudPolicy: ANYONE,
-      systemApiExporter: CICT_SERVICE_COURSE_COURSE_GET_COURSE,
+      crud_policy: ANYONE,
+      system_api_exporter: CICT_SERVICE_COURSE_COURSE_GET_COURSE,
     };
   }
 
@@ -41,8 +44,8 @@ service CourseService {
       get: "/api/service_course/v1/course/list"
     };
     option (common.v1.cict) = {
-      crudPolicy: ANYONE,
-      systemApiExporter: CICT_SERVICE_COURSE_COURSE_LIST_COURSE,
+      crud_policy: ANYONE,
+      system_api_exporter: CICT_SERVICE_COURSE_COURSE_LIST_COURSE,
     };
   }
 
@@ -52,25 +55,27 @@ service CourseService {
       body: "*"
     };
     option (common.v1.cict) = {
-      crudPolicy: USER,
+      crud_policy: USER,
     };
   }
 }
 
 message MutateCourseRequest {
-  google.protobuf.FieldMask updateMask = 4;
+  common.v1.EnumMutateOperation.MutateOperation mutate_operation = 1;
 
-  oneof operation {
-    Course create = 1;
+  repeated MutateCourseOperation operations = 2;
 
-    Course update = 2;
+  bool partial_failure = 3;
 
-    Course delete = 3;
-  }
+  google.protobuf.FieldMask update_mask = 4;
+}
+
+message MutateCourseOperation {
+  Course course = 1;
 }
 
 message MutateCourseResponse {
-  uint64 mutatedId = 1;
+  repeated uint64 mutated_ids = 1;
 }
 
 message GetCourseRequest {
@@ -86,13 +91,15 @@ message ListCourseRequest {
 }
 
 message ListCourseResponse {
-  repeated Course courses = 1;
+  cict.common.v1.PaginateResponse paginate = 1;
+
+  repeated Course courses = 2;
 }
 
 message RegisterCourseRequest {
-  uint64 userId = 1;
+  uint64 user_id = 1;
 
-  uint64 courseId = 2;
+  uint64 course_id = 2;
 }
 
 message Course {
@@ -106,10 +113,10 @@ message Course {
   string description = 3;
 
   // @gotags: gorm:"<-"
-  string fromDate = 4;
+  string from_date = 4;
 
   // @gotags: gorm:"<-"
-  string toDate = 5;
+  string to_date = 5;
 
   // @gotags: gorm:"<-"
   uint32 capacity = 6;
@@ -118,23 +125,23 @@ message Course {
   uint32 size = 7;
 
   // Belong to CourseField
-  uint64 courseFieldId = 8;
+  uint64 course_field_id = 8;
 
   // Has many relationships CourseTimetableWeek
-  repeated CourseTimetableWeek courseTimetableWeeks = 9;
+  repeated CourseTimetableWeek course_timetable_weeks = 9;
 
   // Has many relationships ExamSchedule
-  repeated ExamSchedule examSchedules = 10;
+  repeated ExamSchedule exam_schedules = 10;
 
   // Many to many relationship User
   // @gotags: gorm:"many2many:user_courses"
   repeated User users = 11;
 
   // @gotags: gorm:"autoUpdateTime:nano"
-  int64 updatedAt = 12;
+  int64 updated_at = 12;
 
   // @gotags: gorm:"autoCreateTime:nano"
-  int64 createdAt = 13;
+  int64 created_at = 13;
 }
 
 message User {
@@ -146,8 +153,8 @@ message User {
   repeated Course courses = 2;
 
   // @gotags: gorm:"autoUpdateTime:nano"
-  int64 updatedAt = 3;
+  int64 updated_at = 3;
 
   // @gotags: gorm:"autoCreateTime:nano"
-  int64 createdAt = 4;
+  int64 created_at = 4;
 }

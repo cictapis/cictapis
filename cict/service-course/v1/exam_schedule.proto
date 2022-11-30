@@ -18,7 +18,7 @@ service ExamScheduleService {
       body: "*"
     };
     option (common.v1.cict) = {
-      crudPolicy: ADMIN,
+      crud_policy: ADMIN,
     };
   }
 
@@ -27,8 +27,8 @@ service ExamScheduleService {
       get: "/api/service_course/v1/exam_schedule/get",
     };
     option (common.v1.cict) = {
-      crudPolicy: AUTH,
-      systemApiExporter: CICT_SERVICE_COURSE_EXAM_SCHEDULE_GET_EXAM_SCHEDULE,
+      crud_policy: AUTH,
+      system_api_exporter: CICT_SERVICE_COURSE_EXAM_SCHEDULE_GET_EXAM_SCHEDULE,
     };
   }
 
@@ -37,8 +37,8 @@ service ExamScheduleService {
       get: "/api/service_course/v1/exam_schedule/post",
     };
     option (common.v1.cict) = {
-      crudPolicy: AUTH,
-      systemApiExporter: CICT_SERVICE_COURSE_EXAM_SCHEDULE_LIST_EXAM_SCHEDULE,
+      crud_policy: AUTH,
+      system_api_exporter: CICT_SERVICE_COURSE_EXAM_SCHEDULE_LIST_EXAM_SCHEDULE,
     };
   }
 
@@ -47,14 +47,14 @@ service ExamScheduleService {
       get: "/api/service_course/v1/exam_schedule/get_upcoming"
     };
     option (common.v1.cict) = {
-      crudPolicy: AUTH,
-      systemApiExporter: CICT_SERVICE_COURSE_EXAM_SCHEDULE_GET_UPCOMING_EXAM_SCHEDULE,
+      crud_policy: AUTH,
+      system_api_exporter: CICT_SERVICE_COURSE_EXAM_SCHEDULE_GET_UPCOMING_EXAM_SCHEDULE,
     };
   }
 }
 
 message MutateExamScheduleRequest {
-  google.protobuf.FieldMask updateMask = 4;
+  google.protobuf.FieldMask update_mask = 4;
 
   oneof operation {
     ExamSchedule create = 1;
@@ -86,11 +86,11 @@ message ListExamScheduleResponse {
 }
 
 message GetUpcomingExamScheduleRequest {
-  uint64 courseId = 1;
+  uint64 course_id = 1;
 }
 
 message GetUpcomingExamScheduleResponse {
-  repeated ExamSchedule examSchedules = 1;
+  repeated ExamSchedule exam_schedules = 1;
 }
 
 message ExamSchedule {
@@ -104,14 +104,14 @@ message ExamSchedule {
   string description = 3;
 
   // @gotags: gorm:"<-"
-  string examDate = 4;
+  string exam_date = 4;
 
   // Belong to relationships Course
-  uint64 courseId = 5;
+  uint64 course_id = 5;
 
   // @gotags: gorm:"autoUpdateTime:nano"
-  int64 updatedAt = 6;
+  int64 updated_at = 6;
 
   // @gotags: gorm:"autoCreateTime:nano"
-  int64 createdAt = 7;
+  int64 created_at = 7;
 }

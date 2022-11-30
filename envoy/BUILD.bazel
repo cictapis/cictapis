@@ -9,6 +9,7 @@ proto_descriptor(
     "//cict/common/v1:annotations.proto",
     "//cict/common/v1:config.proto",
     "//cict/common/v1:enum_crud_policy.proto",
+    "//cict/common/v1:enum_mutate_operation_proto",
     "//cict/common/v1:enum_system_api_exporter.proto",
     "//cict/common/v1:locale.proto",
     "//cict/common/v1:message_slim.proto",

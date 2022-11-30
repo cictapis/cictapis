@@ -20,31 +20,31 @@ service SessionService {
       body: "*"
     };
     option (common.v1.cict) = {
-      crudPolicy: SYSTEM
+      crud_policy: SYSTEM
     };
   }
 }
 
 message AuthenticateSessionRequest {
-  string sessionId = 1;
+  string session_id = 1;
 
-  common.v1.AnnotationsCictMethodOptions cictAnnotations = 2;
+  common.v1.AnnotationsCictMethodOptions cict_annotations = 2;
 
-  string serviceName = 3;
+  string service_name = 3;
 
-  cict.common.v1.MessageSlim messageSlim = 4;
+  cict.common.v1.MessageSlim message_slim = 4;
 }
 
 message Session {
   string id = 1;
 
-  uint64 userId = 2;
+  uint64 user_id = 2;
 
   string email = 3;
 
   string name = 4;
 
-  EnumSystemRole.SystemRole systemRole = 5;
+  EnumSystemRole.SystemRole system_role = 5;
 
-  repeated common.v1.EnumSystemApiExporter.SystemApiExporter systemApiExporters = 6;
+  repeated common.v1.EnumSystemApiExporter.SystemApiExporter system_api_exporters = 6;
 }
