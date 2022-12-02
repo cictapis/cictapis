@@ -6,6 +6,7 @@ option cc_enable_arenas = true;
 option go_package = "github.com/cictapis/cict-auth/cict/common/v1";
 
 import "google/protobuf/descriptor.proto";
+import "google/protobuf/field_mask.proto";
 
 import "cict/common/v1/enum_crud_policy.proto";
 import "cict/common/v1/enum_system_api_exporter.proto";
@@ -16,6 +17,10 @@ extend google.protobuf.MethodOptions {
 
 extend google.protobuf.ServiceOptions {
   string service_name = 1000001;
+}
+
+extend google.protobuf.MessageOptions {
+  google.protobuf.FieldMask default_mask = 1000001;
 }
 
 message AnnotationsCictMethodOptions {

@@ -76,13 +76,11 @@ message GetOrganizationAccessorResponse {
 }
 
 message ListOrganizationAccessorRequest {
-  common.v1.PaginateRequest paginate = 1;
+  common.v1.Paginate paginate = 1;
 }
 
 message ListOrganizationAccessorResponse {
-  common.v1.PaginateResponse paginate = 1;
-
-  repeated OrganizationAccessor organization_accessors = 2;
+  repeated OrganizationAccessor organization_accessors = 1;
 }
 
 message OrganizationAccessor {

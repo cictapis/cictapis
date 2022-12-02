@@ -69,13 +69,11 @@ message GetCourseFieldResponse {
 }
 
 message ListCourseFieldRequest {
-  common.v1.PaginateRequest paginate = 1;
+  common.v1.Paginate paginate = 1;
 }
 
 message ListCourseFieldResponse {
-  common.v1.PaginateResponse paginate = 1;
-
-  repeated CourseField course_fields = 2;
+  repeated CourseField course_fields = 1;
 }
 
 message CourseField {

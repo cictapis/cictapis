@@ -6,6 +6,7 @@ gateway_openapiv2_compile(
       "@com_github_cict_cictapis//cict/common/v1:annotations_proto",
       "@com_github_cict_cictapis//cict/common/v1:config_proto",
       "@com_github_cict_cictapis//cict/common/v1:enum_crud_policy_proto",
+      "@com_github_cict_cictapis//cict/common/v1:enum_mask_behavior_proto",
       "@com_github_cict_cictapis//cict/common/v1:enum_mutate_operation_proto",
       "@com_github_cict_cictapis//cict/common/v1:enum_system_api_exporter_proto",
       "@com_github_cict_cictapis//cict/common/v1:locale_proto",
