@@ -78,7 +78,7 @@ message GetExamScheduleResponse {
 }
 
 message ListExamScheduleRequest {
-  cict.common.v1.PaginateRequest paginate = 1;
+  cict.common.v1.Paginate paginate = 1;
 }
 
 message ListExamScheduleResponse {

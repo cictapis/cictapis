@@ -87,13 +87,11 @@ message GetCourseResponse {
 }
 
 message ListCourseRequest {
-  cict.common.v1.PaginateRequest paginate = 1;
+  cict.common.v1.Paginate paginate = 1;
 }
 
 message ListCourseResponse {
-  cict.common.v1.PaginateResponse paginate = 1;
-
-  repeated Course courses = 2;
+  repeated Course courses = 1;
 }
 
 message RegisterCourseRequest {

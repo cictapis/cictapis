@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package cict.common.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/common/v1";
+
+message EnumMaskBehavior {
+  enum MaskBehavior {
+    // Not specified, should show fatal error
+    UNSPECIFIED = 0;
+
+    // Take all fields, which is user's mask intersect with default mask.
+    PLUS = 1;
+
+    // Take all fields from default mask
+    MULTIPLE = 2;
+
+    // Take all fields, which is default mask minus user's mask
+    MINUS = 3;
+  }
+}

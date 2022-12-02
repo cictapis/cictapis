@@ -71,6 +71,7 @@ proto_library(
     "@com_google_protobuf//:field_mask_proto",
     "@com_google_protobuf//:empty_proto",
     "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mask_behavior_proto",
     "//cict/common/v1:enum_mutate_operation_proto",
     "//cict/common/v1:enum_system_api_exporter_proto",
     "//cict/common/v1:paginate_proto",

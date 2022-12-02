@@ -11,6 +11,7 @@ import "google/protobuf/empty.proto";
 
 import "cict/common/v1/annotations.proto";
 import "cict/common/v1/enum_mutate_operation.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
 import "cict/common/v1/paginate.proto";
 import "cict/service-auth/v1/enum_authenticate_third_party.proto";
 import "cict/service-auth/v1/enum_system_role.proto";
@@ -29,7 +30,7 @@ service UserService {
     };
   }
 
-  rpc Logout(LogoutRequest) returns (google.protobuf.Empty) {
+  rpc Logout(google.protobuf.Empty) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post: "/api/service_auth/v1/user/logout",
       body: "*"
@@ -54,7 +55,7 @@ service UserService {
       get: "/api/service_auth/v1/user/get"
     };
     option (common.v1.cict) = {
-      crud_policy: AUTH,
+      crud_policy: OWNER,
       system_api_exporter: CICT_SERVICE_AUTH_USER_SERVICE_GET_USER,
     };
   }
@@ -84,44 +85,83 @@ message LoginResponse {
   string session_id = 2;
 }
 
-message LogoutRequest {
-  string session_id = 1;
-}
-
 message MutateUserRequest {
-  common.v1.EnumMutateOperation.MutateOperation mutate_operation = 1;
+  oneof operation {
+    MutateUserCreate create = 1;
 
-  repeated MutateUserOperation operations = 2;
+    MutateUserUpdate update = 2;
 
-  bool partial_failure = 3;
+    MutateUserDelete delete = 3;
+  }
 
-  google.protobuf.FieldMask update_mask = 4;
+  bool partial_failure = 4;
 }
 
-message MutateUserOperation {
-  User user = 1;
+message MutateUserCreate {
+
+  option (common.v1.default_mask) = {
+    paths: ["authenticate_third_party","avatar","gmail_organization","name","password","regis_username","user_status"]
+  };
+
+  repeated User users = 1;
+}
+
+message MutateUserUpdate {
+
+  option (common.v1.default_mask) = {
+    paths: ["authenticate_third_party","avatar","name","password","user_status"]
+  };
+
+  repeated string ids = 1;
+
+  User user = 2;
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 3;
+
+  google.protobuf.FieldMask mask = 4;
+}
+
+message MutateUserDelete {
+  repeated string ids = 1;
 }
 
 message MutateUserResponse {
-  repeated uint64 mutated_ids = 1;
+  int64 affected_rows = 1;
 }
 
 message GetUserRequest {
+
+  option (common.v1.default_mask) = {
+    paths: ["id","authenticate_third_party","avatar","gmail_organization","name","regis_username","user_status","updated_at","created_at","created_by_id","updated_by_id","owned_by_id"]
+  };
+
   uint64 id = 1;
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 2;
+
+  google.protobuf.FieldMask mask = 3;
 }
 
 message GetUserResponse {
+
   User user = 1;
 }
 
 message ListUserRequest {
-  common.v1.PaginateRequest paginate = 1;
+
+  option (common.v1.default_mask) = {
+    paths: ["id","authenticate_third_party","avatar","gmail_organization","name","regis_username","user_status","updated_at","created_at","created_by_id","updated_by_id","owned_by_id"]
+  };
+
+  common.v1.Paginate paginate = 1;
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 2;
+
+  google.protobuf.FieldMask mask = 3;
 }
 
 message ListUserResponse {
-  common.v1.PaginateResponse paginate = 1;
-
-  repeated User users = 2;
+  repeated User users = 1;
 }
 
 message User {
@@ -139,8 +179,8 @@ message User {
   // @gotags: json:"regis_username" gorm:"column:regis_username;<-"
   string regis_username = 4;
 
-  // @gotags: json:"regis_password" gorm:"column:regis_password;<-"
-  string regis_password = 5;
+  // @gotags: json:"password" gorm:"column:password;<-"
+  string password = 5;
 
   // allow read and write
   //
