@@ -13,7 +13,6 @@ proto_descriptor(
     "//cict/common/v1:enum_mutate_operation.proto",
     "//cict/common/v1:enum_system_api_exporter.proto",
     "//cict/common/v1:locale.proto",
-    "//cict/common/v1:message_slim.proto",
     "//cict/common/v1:paginate.proto",
 
     "//cict/service-auth/v1:enum_authenticate_third_party.proto",
@@ -24,6 +23,7 @@ proto_descriptor(
     "//cict/service-auth/v1:profile.proto",
     # SessionService serve internal cluster's services, do not export in envoy proxy
     # "//cict/service-auth/v1:session.proto",
+    "//cict/service-auth/v1:user_slim.proto",
     "//cict/service-auth/v1:user.proto",
 
     "//cict/service-course/v1:course_field.proto",

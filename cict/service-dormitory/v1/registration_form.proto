@@ -18,7 +18,7 @@ service RegistrationFormService {
       body: "*"
     };
     option (common.v1.cict) = {
-      crud_policy: OWNER,
+      crud_policy: USER,
     };
   }
 
@@ -27,7 +27,7 @@ service RegistrationFormService {
       get: "/api/service_dormitory/v1/registration_form/get"
     };
     option (common.v1.cict) = {
-      crud_policy: OWNER,
+      crud_policy: USER,
       system_api_exporter: CICT_SERVICE_DORMITORY_REGISTRATION_FORM_SERVICE_GET_REGISTRATION_FORM,
     };
   }
@@ -37,7 +37,7 @@ service RegistrationFormService {
       get: "/api/service_dormitory/v1/registration_form/list"
     };
     option (common.v1.cict) = {
-      crud_policy: OWNER,
+      crud_policy: USER,
       system_api_exporter: CICT_SERVICE_DORMITORY_REGISTRATION_FORM_SERVICE_LIST_REGISTRATION_FORM,
     };
   }

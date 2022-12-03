@@ -32,10 +32,5 @@ message EnumCrudPolicy {
 
     // System can operate.
     SYSTEM = 7;
-
-    // User can operate their own data.
-    // Admin can operate their own data and user data.
-    // Supper user can operate data.
-    OWNER = 8;
   }
 }

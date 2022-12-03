@@ -13,39 +13,33 @@ service LicenseScopeService {
 }
 
 message LicenseScope {
-  // @gotags: json:"id" gorm:"primaryKey"
+  // @gotags: gorm:"primaryKey"
   uint64 id = 1;
 
-  // @gotags: json:"service_name" gorm:"<-"
   string service_name = 2;
 
-  // @gotags: json:"organization_accessor_id"
   uint64 organization_accessor_id = 3;
 
-  // @gotags: json:"system_api_exporter" gorm:"<-"
   cict.common.v1.EnumSystemApiExporter.SystemApiExporter system_api_exporter = 4;
 
-  // @gotags: json:"updated_at" gorm:"autoUpdateTime:nano"
+  // @gotags: gorm:"autoUpdateTime:nano"
   int64 updated_at = 100;
 
-  // @gotags: json:"created_at" gorm:"autoCreateTime:nano"
+  // @gotags: gorm:"autoCreateTime:nano"
   int64 created_at = 101;
 
-  // @gotags: json:"created_by_id"
   uint64 created_by_id = 102;
 
-  // @gotags: json:"created_by" gorm:"foreignkey:created_by_id"
+  // @gotags: gorm:"foreignkey:created_by_id"
   User created_by = 103;
 
-  // @gotags: json:"updated_by_id"
   uint64 updated_by_id = 104;
 
-  // @gotags: json:"updated_by" gorm:"foreignkey:updated_by_id"
+  // @gotags: gorm:"foreignkey:updated_by_id"
   User updated_by = 105;
 
-  // @gotags: json:"owned_by_id"
   uint64 owned_by_id = 106;
 
-  // @gotags: json:"owned_by" gorm:"foreignkey:owned_by_id"
+  // @gotags: gorm:"foreignkey:owned_by_id"
   User owned_by = 107;
 }
