@@ -55,12 +55,19 @@ proto_library(
   srcs = ["session.proto"],
   deps = [
     "@go_googleapis//google/api:annotations_proto",
-    "@com_google_protobuf//:empty_proto",
     "//cict/common/v1:annotations_proto",
     "//cict/common/v1:enum_system_api_exporter_proto",
-    "//cict/common/v1:message_slim_proto",
     ":enum_system_role_proto",
+    ":user_slim_proto",
   ]
+)
+
+proto_library(
+  name = "user_slim_proto",
+  srcs = ["user_slim.proto"],
+  deps = [
+    ":enum_system_role_proto",
+  ],
 )
 
 proto_library(

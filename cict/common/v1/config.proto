@@ -73,6 +73,8 @@ message DatabaseEndpointConfig {
 
 message MetadataConfig {
   string session_id = 1;
+
+  string user_slim = 2;
 }
 
 message RedisConfig {

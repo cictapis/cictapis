@@ -16,8 +16,6 @@ import "cict/service-auth/v1/user.proto";
 import "cict/service-auth/v1/license_scope.proto";
 
 service OrganizationAccessorService {
-  option (common.v1.service_name) = "organization_accessors";
-
   rpc MutateOrganizationAccessor(MutateOrganizationAccessorRequest) returns (MutateOrganizationAccessorResponse) {
     option (google.api.http) = {
       post: "/api/service_auth/v1/organization_accessor/mutate",
@@ -33,7 +31,7 @@ service OrganizationAccessorService {
       get: "/api/service_auth/v1/organization_accessor/get",
     };
     option (common.v1.cict) = {
-      crud_policy: OWNER,
+      crud_policy: USER,
       system_api_exporter: CICT_SERVICE_AUTH_ORGANIZATION_ACCESSOR_SERVICE_GET_ORGANIZATION_ACCESSOR,
     };
   }
@@ -84,48 +82,39 @@ message ListOrganizationAccessorResponse {
 }
 
 message OrganizationAccessor {
-  // @gotags: json:"id" gorm:"primaryKey"
+  // @gotags: gorm:"primaryKey"
   uint64 id = 1;
 
-  // @gotags: json:"license" gorm:"<-"
   string license = 2;
 
-  // @gotags: json:"expired_at" gorm:"<-"
   string expired_at = 4;
 
-  // @gotags: json:"license_scopes"
   repeated LicenseScope license_scopes = 5;
 
-  // @gotags: json:"belong_to_id"
   uint64 belong_to_id = 6;
 
-  // @gotags: json:"belong_to" gorm:"foreignKey:belong_to_id"
   User belong_to = 7;
 
-  // @gotags: json:"organization_name" gorm:"<-"
   string organization_name = 8;
 
-  // @gotags: json:"updated_at" gorm:"autoUpdateTime:nano"
+  // @gotags: gorm:"autoUpdateTime:nano"
   int64 updated_at = 100;
 
-  // @gotags: json:"created_at" gorm:"autoCreateTime:nano"
+  // @gotags: gorm:"autoCreateTime:nano"
   int64 created_at = 101;
 
-  // @gotags: json:"created_by_id"
   uint64 created_by_id = 102;
 
-  // @gotags: json:"created_by" gorm:"foreignkey:created_by_id"
+  // @gotags: gorm:"foreignkey:created_by_id"
   User created_by = 103;
 
-  // @gotags: json:"updated_by_id"
   uint64 updated_by_id = 104;
 
-  // @gotags: json:"updated_by" gorm:"foreignkey:updated_by_id"
+  // @gotags: gorm:"foreignkey:updated_by_id"
   User updated_by = 105;
 
-  // @gotags: json:"owned_by_id"
   uint64 owned_by_id = 106;
 
-  // @gotags: json:"owned_by" gorm:"foreignkey:owned_by_id"
+  // @gotags: gorm:"foreignkey:owned_by_id"
   User owned_by = 107;
 }

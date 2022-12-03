@@ -17,8 +17,6 @@ import "cict/service-course/v1/exam_schedule.proto";
 import "cict/service-course/v1/exam_score.proto";
 
 service CourseService {
-  option (common.v1.service_name) = "courses";
-
   rpc MutateCourse(MutateCourseRequest) returns (MutateCourseResponse) {
     option (google.api.http) = {
       post: "/api/service_course/v1/course/mutate",

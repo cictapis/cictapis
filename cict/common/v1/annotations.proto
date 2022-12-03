@@ -15,10 +15,6 @@ extend google.protobuf.MethodOptions {
   AnnotationsCictMethodOptions cict = 1000001;
 }
 
-extend google.protobuf.ServiceOptions {
-  string service_name = 1000001;
-}
-
 extend google.protobuf.MessageOptions {
   google.protobuf.FieldMask default_mask = 1000001;
 }

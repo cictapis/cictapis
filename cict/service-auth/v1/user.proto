@@ -18,8 +18,6 @@ import "cict/service-auth/v1/enum_system_role.proto";
 import "cict/service-auth/v1/enum_user_status.proto";
 
 service UserService {
-  option (common.v1.service_name) = "users";
-
   rpc Login(LoginRequest) returns (LoginResponse) {
     option (google.api.http) = {
       post: "/api/service_auth/v1/user/login",
@@ -46,7 +44,18 @@ service UserService {
       body: "*"
     };
     option (common.v1.cict) = {
-      crud_policy: OWNER,
+      crud_policy: ADMIN,
+    };
+  }
+
+  // owner
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {
+    option (google.api.http) = {
+      post: "/api/service_auth/v1/user/create",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: USER,
     };
   }
 
@@ -55,7 +64,7 @@ service UserService {
       get: "/api/service_auth/v1/user/get"
     };
     option (common.v1.cict) = {
-      crud_policy: OWNER,
+      crud_policy: USER,
       system_api_exporter: CICT_SERVICE_AUTH_USER_SERVICE_GET_USER,
     };
   }
@@ -89,9 +98,7 @@ message MutateUserRequest {
   oneof operation {
     MutateUserCreate create = 1;
 
-    MutateUserUpdate update = 2;
-
-    MutateUserDelete delete = 3;
+    MutateUserDelete delete = 2;
   }
 
   bool partial_failure = 4;
@@ -100,14 +107,21 @@ message MutateUserRequest {
 message MutateUserCreate {
 
   option (common.v1.default_mask) = {
-    paths: ["authenticate_third_party","avatar","gmail_organization","name","password","regis_username","user_status"]
+    paths: ["authenticate_third_party","avatar","email","name","password","regis_username","user_status"]
   };
 
   repeated User users = 1;
 }
 
-message MutateUserUpdate {
+message MutateUserDelete {
+  repeated string ids = 1;
+}
 
+message MutateUserResponse {
+  int64 affected_rows = 1;
+}
+
+message UpdateUserRequest {
   option (common.v1.default_mask) = {
     paths: ["authenticate_third_party","avatar","name","password","user_status"]
   };
@@ -119,20 +133,18 @@ message MutateUserUpdate {
   common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 3;
 
   google.protobuf.FieldMask mask = 4;
+
+  bool partial_failure = 5;
 }
 
-message MutateUserDelete {
-  repeated string ids = 1;
-}
-
-message MutateUserResponse {
-  int64 affected_rows = 1;
+message UpdateUserResponse {
+  int64 updated_rows = 1;
 }
 
 message GetUserRequest {
 
   option (common.v1.default_mask) = {
-    paths: ["id","authenticate_third_party","avatar","gmail_organization","name","regis_username","user_status","updated_at","created_at","created_by_id","updated_by_id","owned_by_id"]
+    paths: ["id","authenticate_third_party","avatar","email","name","regis_username","user_status","updated_at","created_at","created_by_id","updated_by_id","owned_by_id"]
   };
 
   uint64 id = 1;
@@ -150,7 +162,7 @@ message GetUserResponse {
 message ListUserRequest {
 
   option (common.v1.default_mask) = {
-    paths: ["id","authenticate_third_party","avatar","gmail_organization","name","regis_username","user_status","updated_at","created_at","created_by_id","updated_by_id","owned_by_id"]
+    paths: ["id","authenticate_third_party","avatar","email","name","regis_username","user_status","updated_at","created_at","created_by_id","updated_by_id","owned_by_id"]
   };
 
   common.v1.Paginate paginate = 1;
@@ -165,53 +177,34 @@ message ListUserResponse {
 }
 
 message User {
-  // @gotags: json:"id" gorm:"column:id;primary_key"
+  // @gotags: gorm:"primary_key"
   uint64 id = 1;
 
-  // @gotags: json:"authenticate_third_party" gorm:"column:authenticate_third_party;<-"
   EnumAuthenticateThirdParty.AuthenticateThirdParty authenticate_third_party = 2;
 
-  // allow read and write
-  //
-  // @gotags: json:"gmail_organization" gorm:"column:gmail_organization;<-"
-  string gmail_organization = 3;
+  string email = 3;
 
-  // @gotags: json:"regis_username" gorm:"column:regis_username;<-"
   string regis_username = 4;
 
-  // @gotags: json:"password" gorm:"column:password;<-"
   string password = 5;
 
-  // allow read and write
-  //
-  // @gotags: json:"name" gorm:"column:name;<-"
   string name = 6;
 
-  // allow read and write
-  //
-  // @gotags: json:"avatar" gorm:"column:avatar;<-"
   string avatar = 7;
 
-  // allow read and write
-  //
-  // @gotags: json:"system_role,omitempty" gorm:"column:system_role;<-"
   EnumSystemRole.SystemRole system_role = 8;
 
-  // @gotags: json:"user_status,omitempty" gorm:"column:user_status;<-"
   EnumUserStatus.UserStatus user_status = 9;
 
-  // @gotags: json:"updated_at" gorm:"column:updated_at;autoUpdateTime:nano"
+  // @gotags: gorm:"autoUpdateTime:nano"
   int64 updated_at = 100;
 
-  // @gotags: json:"created_at" gorm:"column:created_at;autoCreateTime:nano"
+  // @gotags: gorm:"autoCreateTime:nano"
   int64 created_at = 101;
 
-  // @gotags: json:"created_by_id" gorm:"column:created_by_id;<-:create"
   uint64 created_by_id = 102;
 
-  // @gotags: json:"updated_by_id" gorm:"column:updated_by_id;<-:create"
   uint64 updated_by_id = 103;
 
-  // @gotags: json:"owned_by_id" gorm:"column:owned_by_id;<-:create"
   uint64 owned_by_id = 104;
 }

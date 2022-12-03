@@ -11,7 +11,6 @@ go_proto_library(
     "@com_github_cict_cictapis//cict/common/v1:enum_mask_behavior_proto",
     "@com_github_cict_cictapis//cict/common/v1:enum_mutate_operation_proto",
     "@com_github_cict_cictapis//cict/common/v1:enum_system_api_exporter_proto",
-    "@com_github_cict_cictapis//cict/common/v1:message_slim_proto",
     "@com_github_cict_cictapis//cict/common/v1:paginate_proto",
   ],
   visibility = ["//visibility:public"]
