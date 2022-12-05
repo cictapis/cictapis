@@ -6,11 +6,7 @@ option cc_enable_arenas = true;
 option go_package = "github.com/cictapis/cict-auth/cict/common/v1";
 
 message Config {
-  OtTracerConfig ot_tracer_config = 1;
-
-  OtLoggerConfig ot_logger_config = 2;
-
-  OtMetricConfig ot_metric_config = 3;
+  OtlpConfig otlp_config = 1;
 
   RedisConfig redis_config = 4;
 
@@ -27,20 +23,14 @@ message Config {
   MetadataConfig metadata_config = 10;
 }
 
-message OtTracerConfig {
-  string endpoints = 1;
+message OtlpConfig {
+  string address = 1;
 
-  bool use_ssl_credentials = 2;
+  int32 port = 2;
 
-  string ssl_credentials_ca_cert_path = 3;
-}
+  bool use_ssl_credentials = 3;
 
-message OtLoggerConfig {
-
-}
-
-message OtMetricConfig {
-
+  string ssl_credentials_ca_cert_path = 4;
 }
 
 message ServiceEndpointConfig {
@@ -77,6 +67,8 @@ message MetadataConfig {
   string user_slim = 2;
 
   string locale = 3;
+
+  string tracer = 4;
 }
 
 message RedisConfig {
