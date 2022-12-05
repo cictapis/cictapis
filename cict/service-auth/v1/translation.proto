@@ -1,20 +1,14 @@
 syntax = "proto3";
 
-package cict.common.v1;
+package cict.service_auth.v1;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/cict-auth/cict/common/v1";
+option go_package = "github.com/cictapis/cict-auth/cict/service_auth/v1;service_auth";
 
-message Locale {
-  LocaleTranslation vi = 1;
-
-  LocaleTranslation en = 2;
-}
-
-message LocaleTranslation {
+message Translation {
   string grpc_ok = 1;
 
-  string grpc_canceled = 2;
+  string grpc_cancelled = 2;
 
   string grpc_unknown = 3;
 
@@ -28,7 +22,7 @@ message LocaleTranslation {
 
   string grpc_resource_exhausted = 8;
 
-  string grpc_failed_condition = 9;
+  string grpc_failed_precondition = 9;
 
   string grpc_aborted = 10;
   
@@ -41,4 +35,8 @@ message LocaleTranslation {
   string grpc_data_loss = 14;
 
   string grpc_unauthenticated = 15;
+
+  string grpc_permission_denied = 16;
+
+  string vld_confirm_password_not_match = 17;
 }

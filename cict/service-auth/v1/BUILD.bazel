@@ -21,6 +21,15 @@ proto_library(
 )
 
 proto_library(
+  name = "facade_proto",
+  srcs = ["facade.proto"],
+  deps = [
+    ":translation_proto",
+    ":user_slim_proto",
+  ]
+)
+
+proto_library(
   name = "license_scope_proto",
   srcs = ["license_scope.proto"],
   deps = [
@@ -60,6 +69,12 @@ proto_library(
     ":enum_system_role_proto",
     ":user_slim_proto",
   ]
+)
+
+proto_library(
+  name = "translation_proto",
+  srcs = ["translation.proto"],
+  deps = []
 )
 
 proto_library(
