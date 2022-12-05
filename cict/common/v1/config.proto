@@ -75,6 +75,8 @@ message MetadataConfig {
   string session_id = 1;
 
   string user_slim = 2;
+
+  string locale = 3;
 }
 
 message RedisConfig {
@@ -86,13 +88,11 @@ message RedisConfig {
 
   int32 redis_db = 4;
 
-  string redis_default_db = 5;
+  int32 min_idl_conns = 5;
 
-  int32 min_idl_conns = 6;
+  int32 pool_size = 6;
 
-  int32 pool_size = 7;
+  int32 pool_timeout = 7;
 
-  int32 pool_timeout = 8;
-
-  int32 session_timeout = 9;
+  int32 session_timeout = 8;
 }

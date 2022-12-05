@@ -26,6 +26,12 @@ proto_library(
 )
 
 proto_library(
+  name = "enum_locale_proto",
+  srcs = ["enum_locale.proto"],
+  deps = []
+)
+
+proto_library(
   name = "enum_mask_behavior_proto",
   srcs = ["enum_mask_behavior.proto"],
   deps = []
@@ -40,12 +46,6 @@ proto_library(
 proto_library(
   name = "enum_system_api_exporter_proto",
   srcs = ["enum_system_api_exporter.proto"],
-  deps = []
-)
-
-proto_library(
-  name = "locale_proto",
-  srcs = ["locale.proto"],
   deps = []
 )
 
