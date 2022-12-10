@@ -1,0 +1,11 @@
+load("@rules_proto_grpc//java:defs.bzl", "java_grpc_library")
+
+java_grpc_library(
+  name = "google_api_annotations_java_proto",
+  protos = [
+    "@com_github_cict_cictapis//google/api:annotations_proto",
+    "@com_github_cict_cictapis//google/api:http_proto",
+  ],
+  deps = [],
+  visibility = ["//visibility:public"]
+)

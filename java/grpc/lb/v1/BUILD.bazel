@@ -1,0 +1,10 @@
+load("@rules_proto_grpc//java:defs.bzl", "java_grpc_library")
+
+java_grpc_library(
+  name = "grpc_lb_v1_java_proto",
+  protos = [
+    "@com_github_cict_cictapis//grpc/lb/v1:load_balancer_proto",
+  ],
+  deps = [],
+  visibility = ["//visibility:public"]
+)

@@ -6,7 +6,7 @@ proto_library(
   name = "course_field_proto",
   srcs = ["course_field.proto"],
   deps = [
-    "@go_googleapis//google/api:annotations_proto",
+    "//google/api:annotations_proto",
     "@com_google_protobuf//:field_mask_proto",
     "//cict/common/v1:annotations_proto",
     "//cict/common/v1:paginate_proto",
@@ -18,7 +18,7 @@ proto_library(
   name = "course_timetable_day_proto",
   srcs = ["course_timetable_day.proto"],
   deps = [
-    "@go_googleapis//google/api:annotations_proto",
+    "//google/api:annotations_proto",
     "@com_google_protobuf//:field_mask_proto",
     "//cict/common/v1:annotations_proto",
     "//cict/common/v1:paginate_proto",
@@ -29,7 +29,7 @@ proto_library(
   name = "course_timetable_week_proto",
   srcs = ["course_timetable_week.proto"],
   deps = [
-    "@go_googleapis//google/api:annotations_proto",
+    "//google/api:annotations_proto",
     "@com_google_protobuf//:field_mask_proto",
     "//cict/common/v1:annotations_proto",
     "//cict/common/v1:paginate_proto",
@@ -41,7 +41,7 @@ proto_library(
   name = "course_timetable_proto",
   srcs = ["course_timetable.proto"],
   deps = [
-    "@go_googleapis//google/api:annotations_proto",
+    "//google/api:annotations_proto",
     "//cict/common/v1:annotations_proto",
     "//cict/common/v1:paginate_proto",
     ":course_timetable_day_proto",
@@ -52,7 +52,7 @@ proto_library(
   name = "course_proto",
   srcs = ["course.proto"],
   deps = [
-    "@go_googleapis//google/api:annotations_proto",
+    "//google/api:annotations_proto",
     "@com_google_protobuf//:empty_proto",
     "@com_google_protobuf//:field_mask_proto",
     "//cict/common/v1:annotations_proto",
@@ -68,7 +68,7 @@ proto_library(
   name = "exam_schedule_proto",
   srcs = ["exam_schedule.proto"],
   deps = [
-    "@go_googleapis//google/api:annotations_proto",
+    "//google/api:annotations_proto",
     "@com_google_protobuf//:field_mask_proto",
     "//cict/common/v1:annotations_proto",
     "//cict/common/v1:paginate_proto",
@@ -79,7 +79,7 @@ proto_library(
   name = "exam_score_proto",
   srcs = ["exam_score.proto"],
   deps = [
-    "@go_googleapis//google/api:annotations_proto",
+    "//google/api:annotations_proto",
     "@com_google_protobuf//:field_mask_proto",
     "//cict/common/v1:annotations_proto",
     "//cict/common/v1:paginate_proto",

@@ -20,8 +20,7 @@ option cc_enable_arenas = true;
 option go_package = "github.com/cictapis/cict-auth/google/api/annotations;annotations";
 option java_multiple_files = true;
 option java_outer_classname = "HttpProto";
-option java_package = "com.google.api";
-option objc_class_prefix = "GAPI";
+option java_package = "com.github.cictapis.cict_auth.google.api";
 
 // Defines the HTTP configuration for an API service. It contains a list of
 // [HttpRule][google.api.HttpRule], each specifying the mapping of an RPC method

@@ -6,6 +6,8 @@ proto_descriptor(
     "//google/api:annotations.proto",
     "//google/api:http.proto",
 
+    "//grpc/lb/v1:load_balancer.proto",
+
     "//cict/common/v1:annotations.proto",
     "//cict/common/v1:config.proto",
     "//cict/common/v1:enum_crud_policy.proto",

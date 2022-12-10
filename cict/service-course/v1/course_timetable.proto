@@ -4,6 +4,9 @@ package cict.service_course.v1;
 
 option cc_enable_arenas = true;
 option go_package = "github.com/cictapis/cict-auth/cict/service_course/v1;service_course";
+option java_multiple_files = true;
+option java_outer_classname = "CourseTimetableProto";
+option java_package = "com.github.cictapis.cict_auth.cict.service_course.v1";
 
 import "google/api/annotations.proto";
 
