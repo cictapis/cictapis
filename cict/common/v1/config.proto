@@ -6,7 +6,9 @@ option cc_enable_arenas = true;
 option go_package = "github.com/cictapis/cict-auth/cict/common/v1";
 
 message Config {
-  OtlpConfig otlp_config = 1;
+  TelemetryConfig otlp_config = 1;
+
+  TelemetryConfig jaeger_config = 2;
 
   RedisConfig redis_config = 4;
 
@@ -19,11 +21,11 @@ message Config {
   DatabaseEndpointConfig database_auth_endpoint_config = 8;
 
   DatabaseEndpointConfig database_course_endpoint_config = 9;
-  
+
   MetadataConfig metadata_config = 10;
 }
 
-message OtlpConfig {
+message TelemetryConfig {
   string address = 1;
 
   int32 port = 2;
