@@ -155,8 +155,9 @@ message GetUserRequest {
 }
 
 message GetUserResponse {
-
   User user = 1;
+
+  string msg = 2;
 }
 
 message ListUserRequest {

@@ -58,6 +58,8 @@ message MutateCourseFieldRequest {
 
 message MutateCourseFieldResponse {
   uint64 mutated_id = 1;
+
+  string msg = 2;
 }
 
 message GetCourseFieldRequest {
