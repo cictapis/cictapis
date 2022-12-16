@@ -19,7 +19,6 @@ proto_descriptor(
     "//cict/service-auth/v1:enum_system_role.proto",
     "//cict/service-auth/v1:enum_user_status.proto",
     "//cict/service-auth/v1:facade.proto",
-    "//cict/service-auth/v1:insecure_ca_tunnel.proto",
     "//cict/service-auth/v1:license_scope.proto",
     "//cict/service-auth/v1:organization_accessor.proto",
     "//cict/service-auth/v1:profile.proto",
