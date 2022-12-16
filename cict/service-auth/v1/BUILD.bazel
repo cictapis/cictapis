@@ -30,6 +30,16 @@ proto_library(
 )
 
 proto_library(
+  name = "insecure_ca_tunnel_proto",
+  srcs = ["insecure_ca_tunnel.proto"],
+  deps = [
+    "@go_googleapis//google/api:annotations_proto",
+    "@com_google_protobuf//:empty_proto",
+    "//cict/common/v1:annotations_proto",
+  ]
+)
+
+proto_library(
   name = "license_scope_proto",
   srcs = ["license_scope.proto"],
   deps = [
