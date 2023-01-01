@@ -1,0 +1,22 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+
+package(default_visibility = ["//visibility:public"])
+
+proto_library(
+  name = "file_proto",
+  srcs = ["file.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:empty_proto",
+    "//cict/common/v1:annotations_proto",
+  ]
+)
+
+proto_library(
+  name = "uploader_proto",
+  srcs = ["uploader.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "//cict/common/v1:annotations_proto",
+  ]
+)

@@ -28,7 +28,6 @@ service ExamScoreService {
     };
     option (common.v1.cict) = {
       crud_policy: ANYONE,
-      system_api_exporter: CICT_SERVICE_COURSE_EXAM_SCORE_GET_EXAM_SCORE,
     };
   }
 
@@ -38,7 +37,6 @@ service ExamScoreService {
     };
     option (common.v1.cict) = {
       crud_policy: ANYONE,
-      system_api_exporter: CICT_SERVICE_COURSE_EXAM_SCORE_LIST_EXAM_SCORE,
     };
   }
 }

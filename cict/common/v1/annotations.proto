@@ -9,7 +9,6 @@ import "google/protobuf/descriptor.proto";
 import "google/protobuf/field_mask.proto";
 
 import "cict/common/v1/enum_crud_policy.proto";
-import "cict/common/v1/enum_system_api_exporter.proto";
 
 extend google.protobuf.MethodOptions {
   AnnotationsCictMethodOptions cict = 1000001;
@@ -21,6 +20,4 @@ extend google.protobuf.MessageOptions {
 
 message AnnotationsCictMethodOptions {
   EnumCrudPolicy.CrudPolicy crud_policy = 1;
-
-  EnumSystemApiExporter.SystemApiExporter system_api_exporter = 2;
 }

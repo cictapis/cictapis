@@ -8,7 +8,6 @@ option go_package = "github.com/cictapis/cict-auth/cict/service_auth/v1;service_
 import "google/api/annotations.proto";
 
 import "cict/common/v1/annotations.proto";
-import "cict/common/v1/enum_system_api_exporter.proto";
 import "cict/service-auth/v1/enum_system_role.proto";
 import "cict/service-auth/v1/user_slim.proto";
 
@@ -45,6 +44,4 @@ message Session {
   string name = 4;
 
   EnumSystemRole.SystemRole system_role = 5;
-
-  repeated common.v1.EnumSystemApiExporter.SystemApiExporter system_api_exporters = 6;
 }

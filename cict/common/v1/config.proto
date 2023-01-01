@@ -23,6 +23,8 @@ message Config {
   DatabaseEndpointConfig database_course_endpoint_config = 9;
 
   MetadataConfig metadata_config = 10;
+
+  GoogleCredentialConfig google_credential_config = 11;
 }
 
 message TelemetryConfig {
@@ -39,14 +41,6 @@ message ServiceEndpointConfig {
   string address = 1;
 
   int32 port = 2;
-
-  string ca_cert_pem = 3;
-
-  string server_cert_pem = 4;
-
-  string server_key_pem = 5;
-
-  bool tls_enable = 6;
 }
 
 message DatabaseEndpointConfig {
@@ -89,4 +83,28 @@ message RedisConfig {
   int32 pool_timeout = 7;
 
   int32 session_timeout = 8;
+}
+
+message GoogleCredentialConfig {
+  string type = 1;
+
+  string project_id = 2;
+
+  string private_key_id = 3;
+
+  string private_key = 4;
+
+  string client_email = 5;
+
+  string client_id = 6;
+
+  string auth_uri = 7;
+
+  string token_uri = 8;
+
+  string auth_provider_x509_cert_url = 9;
+
+  string client_x509_cert_url = 10;
+
+  string root_dir_id = 11;
 }

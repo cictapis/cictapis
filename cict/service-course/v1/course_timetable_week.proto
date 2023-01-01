@@ -29,7 +29,6 @@ service CourseTimetableWeekService {
     };
     option (common.v1.cict) = {
       crud_policy: ANYONE,
-      system_api_exporter: CICT_SERVICE_COURSE_COURSE_TIMETABLE_WEEK_GET_COURSE_TIMETABLE_WEEK,
     };
   }
 
@@ -39,7 +38,6 @@ service CourseTimetableWeekService {
     };
     option (common.v1.cict) = {
       crud_policy: ANYONE,
-      system_api_exporter: CICT_SERVICE_COURSE_COURSE_TIMETABLE_WEEK_LIST_COURSE_TIMETABLE_WEEK,
     };
   }
 }

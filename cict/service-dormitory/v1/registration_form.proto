@@ -28,7 +28,6 @@ service RegistrationFormService {
     };
     option (common.v1.cict) = {
       crud_policy: USER,
-      system_api_exporter: CICT_SERVICE_DORMITORY_REGISTRATION_FORM_SERVICE_GET_REGISTRATION_FORM,
     };
   }
 
@@ -38,7 +37,6 @@ service RegistrationFormService {
     };
     option (common.v1.cict) = {
       crud_policy: USER,
-      system_api_exporter: CICT_SERVICE_DORMITORY_REGISTRATION_FORM_SERVICE_LIST_REGISTRATION_FORM,
     };
   }
 }

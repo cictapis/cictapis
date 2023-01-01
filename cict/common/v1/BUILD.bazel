@@ -9,7 +9,6 @@ proto_library(
     "@com_google_protobuf//:descriptor_proto",
     "@com_google_protobuf//:field_mask_proto",
     ":enum_crud_policy_proto",
-    ":enum_system_api_exporter_proto",
   ]
 )
 
@@ -40,12 +39,6 @@ proto_library(
 proto_library(
   name = "enum_mutate_operation_proto",
   srcs = ["enum_mutate_operation.proto"],
-  deps = []
-)
-
-proto_library(
-  name = "enum_system_api_exporter_proto",
-  srcs = ["enum_system_api_exporter.proto"],
   deps = []
 )
 

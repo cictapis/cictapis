@@ -29,7 +29,6 @@ service CourseFieldService {
     };
     option (common.v1.cict) = {
       crud_policy: ANYONE,
-      system_api_exporter: CICT_SERVICE_COURSE_COURSE_FIELD_GET_COURSE_FIELD,
     };
   }
 
@@ -39,7 +38,6 @@ service CourseFieldService {
     };
     option (common.v1.cict) = {
       crud_policy: ANYONE,
-      system_api_exporter: CICT_SERVICE_COURSE_COURSE_FIELD_LIST_COURSE_FIELD,
     };
   }
 }
