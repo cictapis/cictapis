@@ -65,7 +65,6 @@ service UserService {
     };
     option (common.v1.cict) = {
       crud_policy: USER,
-      system_api_exporter: CICT_SERVICE_AUTH_USER_SERVICE_GET_USER,
     };
   }
 
@@ -75,7 +74,6 @@ service UserService {
     };
     option (common.v1.cict) = {
       crud_policy: ADMIN,
-      system_api_exporter: CICT_SERVICE_AUTH_USER_SERVICE_LIST_USER,
     };
   }
 }

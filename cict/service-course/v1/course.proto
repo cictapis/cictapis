@@ -33,7 +33,6 @@ service CourseService {
     };
     option (common.v1.cict) = {
       crud_policy: ANYONE,
-      system_api_exporter: CICT_SERVICE_COURSE_COURSE_GET_COURSE,
     };
   }
 
@@ -43,7 +42,6 @@ service CourseService {
     };
     option (common.v1.cict) = {
       crud_policy: ANYONE,
-      system_api_exporter: CICT_SERVICE_COURSE_COURSE_LIST_COURSE,
     };
   }
 

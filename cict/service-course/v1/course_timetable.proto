@@ -18,7 +18,6 @@ service CourseTimetable {
     };
     option (common.v1.cict) = {
       crud_policy: AUTH,
-      system_api_exporter: CICT_SERVICE_COURSE_COURSE_TIMETABLE_GET_USER_TIMETABLE,
     };
   }
 }

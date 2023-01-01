@@ -28,7 +28,6 @@ service ExamScheduleService {
     };
     option (common.v1.cict) = {
       crud_policy: AUTH,
-      system_api_exporter: CICT_SERVICE_COURSE_EXAM_SCHEDULE_GET_EXAM_SCHEDULE,
     };
   }
 
@@ -38,7 +37,6 @@ service ExamScheduleService {
     };
     option (common.v1.cict) = {
       crud_policy: AUTH,
-      system_api_exporter: CICT_SERVICE_COURSE_EXAM_SCHEDULE_LIST_EXAM_SCHEDULE,
     };
   }
 
@@ -48,7 +46,6 @@ service ExamScheduleService {
     };
     option (common.v1.cict) = {
       crud_policy: AUTH,
-      system_api_exporter: CICT_SERVICE_COURSE_EXAM_SCHEDULE_GET_UPCOMING_EXAM_SCHEDULE,
     };
   }
 }
