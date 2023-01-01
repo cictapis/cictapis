@@ -18,6 +18,8 @@ message Config {
 
   ServiceEndpointConfig service_course_endpoint_config = 7;
 
+  ServiceEndpointConfig service_file_uploader_config = 12;
+
   DatabaseEndpointConfig database_auth_endpoint_config = 8;
 
   DatabaseEndpointConfig database_course_endpoint_config = 9;
