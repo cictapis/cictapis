@@ -12,6 +12,7 @@ proto_descriptor(
     "//cict/common/v1:enum_locale.proto",
     "//cict/common/v1:enum_mask_behavior.proto",
     "//cict/common/v1:enum_mutate_operation.proto",
+    "//cict/common/v1:queue_format.proto",
     "//cict/common/v1:paginate.proto",
 
     "//cict/service-auth/v1:enum_authenticate_third_party.proto",
