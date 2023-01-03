@@ -47,6 +47,8 @@ message ServiceEndpointConfig {
   string address = 1;
 
   int32 port = 2;
+
+  string alias_name = 3;
 }
 
 message DatabaseEndpointConfig {
