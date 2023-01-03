@@ -47,3 +47,9 @@ proto_library(
   srcs = ["paginate.proto"],
   deps = []
 )
+
+proto_library(
+  name = "queue_format_proto",
+  srcs = ["queue_format.proto"],
+  deps = []
+)

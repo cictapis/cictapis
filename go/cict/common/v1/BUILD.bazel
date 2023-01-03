@@ -12,6 +12,7 @@ go_proto_library(
     "@com_github_cict_cictapis//cict/common/v1:enum_mask_behavior_proto",
     "@com_github_cict_cictapis//cict/common/v1:enum_mutate_operation_proto",
     "@com_github_cict_cictapis//cict/common/v1:paginate_proto",
+    "@com_github_cict_cictapis//cict/common/v1:queue_format_proto",
   ],
   visibility = ["//visibility:public"]
 )

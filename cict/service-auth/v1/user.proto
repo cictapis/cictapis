@@ -38,27 +38,6 @@ service UserService {
     };
   }
 
-  rpc MutateUser(MutateUserRequest) returns (MutateUserResponse) {
-    option (google.api.http) = {
-      post: "/api/service_auth/v1/user/mutate",
-      body: "*"
-    };
-    option (common.v1.cict) = {
-      crud_policy: ADMIN,
-    };
-  }
-
-  // owner
-  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {
-    option (google.api.http) = {
-      post: "/api/service_auth/v1/user/create",
-      body: "*"
-    };
-    option (common.v1.cict) = {
-      crud_policy: USER,
-    };
-  }
-
   rpc GetUser(GetUserRequest) returns (GetUserResponse) {
     option (google.api.http) = {
       get: "/api/service_auth/v1/user/get"
@@ -74,6 +53,26 @@ service UserService {
     };
     option (common.v1.cict) = {
       crud_policy: ADMIN,
+    };
+  }
+  
+  rpc MutateUser(MutateUserRequest) returns (MutateUserResponse) {
+    option (google.api.http) = {
+      post: "/api/service_auth/v1/user/mutate",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: ADMIN,
+    };
+  }
+
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {
+    option (google.api.http) = {
+      post: "/api/service_auth/v1/user/create",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: USER,
     };
   }
 }

@@ -27,6 +27,10 @@ message Config {
   MetadataConfig metadata_config = 10;
 
   GoogleCredentialConfig google_credential_config = 11;
+
+  KafkaConfig kafka_config = 13;
+
+  KafkaTopicsConfig kafka_topics_config = 14;
 }
 
 message TelemetryConfig {
@@ -109,4 +113,28 @@ message GoogleCredentialConfig {
   string client_x509_cert_url = 10;
 
   string root_dir_id = 11;
+}
+
+message KafkaConfig {
+  repeated string brokers = 1;
+
+  string group_id = 2;
+
+  bool init_topic = 3;
+
+  int32 max_pool_size = 4;
+}
+
+message KafkaTopicsConfig {
+  message KafkaTopic {
+    string topic_name = 1;
+
+    int32 partitions = 2;
+    
+    int32 replication_factor = 3;
+  }
+
+  KafkaTopic user_mutate = 1;
+
+  KafkaTopic user_update = 2;
 }
