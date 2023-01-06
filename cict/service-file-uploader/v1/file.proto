@@ -55,6 +55,8 @@ message UploadRequest {
 
 message UploadResponse {
   string id = 1;
+
+  string web_content_link = 2;
 }
 
 message DeleteFileRequest {
