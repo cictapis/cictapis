@@ -36,16 +36,6 @@ proto_library(
 )
 
 proto_library(
-  name = "secure_proto",
-  srcs = ["secure.proto"],
-  deps = [
-    "//google/api:annotations_proto",
-    "@com_google_protobuf//:empty_proto",
-    "//cict/common/v1:annotations_proto",
-  ]
-)
-
-proto_library(
   name = "session_proto",
   srcs = ["session.proto"],
   deps = [

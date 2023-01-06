@@ -72,9 +72,7 @@ message MetadataConfig {
 
   string tracer = 4;
 
-  string csrf_token = 5;
-
-  string md_wrapper = 6;
+  string md_wrapper = 5;
 }
 
 message RedisConfig {

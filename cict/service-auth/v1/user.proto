@@ -38,7 +38,7 @@ service UserService {
     };
   }
 
-  rpc Logout(LogoutRequest) returns (google.protobuf.Empty) {
+  rpc Logout(google.protobuf.Empty) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post: "/api/service_auth/v1/user/logout",
       body: "*"
@@ -93,8 +93,6 @@ message LoginRequest {
   string password = 2;
 
   string validate_password = 3;
-
-  string csrf_token = 4;
 }
 
 message LoginResponse {
@@ -109,8 +107,6 @@ message LoginResponse {
 
 message GoogleLoginRequest {
   string id_token = 1;
-
-  string csrf_token = 2;
 }
 
 message GoogleLoginResponse {  
@@ -123,10 +119,6 @@ message GoogleLoginResponse {
   string session_id = 2;
 }
 
-message LogoutRequest {
-  string csrf_token = 1;
-}
-
 message MutateUserRequest {
   oneof operation {
     MutateUserCreate create = 1;
@@ -135,8 +127,6 @@ message MutateUserRequest {
   }
 
   bool partial_failure = 4;
-
-  string csrf_token = 5;
 }
 
 message MutateUserCreate {
@@ -169,8 +159,6 @@ message UpdateUserRequest {
   google.protobuf.FieldMask mask = 4;
 
   bool partial_failure = 5;
-
-  string csrf_token = 6;
 }
 
 message UpdateUserResponse {
