@@ -8,7 +8,7 @@ option go_package = "github.com/cictapis/cict-auth/cict/service_auth/v1;service_
 import "cict/service-auth/v1/enum_system_role.proto";
 
 message UserSlim {
-  uint64 id = 1;
+  string id = 1;
 
   string name = 2;
 

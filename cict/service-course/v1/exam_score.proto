@@ -54,11 +54,11 @@ message MutateExamScoreRequest {
 }
 
 message MutateExamScoreResponse {
-  uint64 mutated_id = 1;
+  string mutated_id = 1;
 }
 
 message GetExamScoreRequest {
-  uint64 id = 1;
+  string id = 1;
 }
 
 message GetExamScoreResponse {
@@ -74,17 +74,17 @@ message ListExamScoreResponse {
 }
 
 message ExamScore {  
-  // @gotags: gorm:"primaryKey"
-  uint64 id = 1;
+  // @gotags: gorm:"primary_key;type:varchar(16);default:uuid()"
+  string id = 1;
 
   // @gotags: gorm:"<-"
   float score = 2;
 
   // Belong to relationship ExamSchedule
-  uint64 exam_schedule_id = 3;
+  string exam_schedule_id = 3;
 
   // Belong to relationship User
-  uint64 user_id = 4;
+  string user_id = 4;
 
   // @gotags: gorm:"autoUpdateTime:nano"
   int64 updated_at = 5;

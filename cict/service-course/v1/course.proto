@@ -71,11 +71,11 @@ message MutateCourseOperation {
 }
 
 message MutateCourseResponse {
-  repeated uint64 mutated_ids = 1;
+  repeated string mutated_ids = 1;
 }
 
 message GetCourseRequest {
-  uint64 id = 1;
+  string id = 1;
 }
 
 message GetCourseResponse {
@@ -91,14 +91,14 @@ message ListCourseResponse {
 }
 
 message RegisterCourseRequest {
-  uint64 user_id = 1;
+  string user_id = 1;
 
-  uint64 course_id = 2;
+  string course_id = 2;
 }
 
 message Course {
   // @gotags: gorm:"primaryKey"
-  uint64 id = 1;
+  string id = 1;
 
   // @gotags: gorm:"<-"
   string name = 2;
@@ -119,7 +119,7 @@ message Course {
   uint32 size = 7;
 
   // Belong to CourseField
-  uint64 course_field_id = 8;
+  string course_field_id = 8;
 
   // Has many relationships CourseTimetableWeek
   repeated CourseTimetableWeek course_timetable_weeks = 9;
@@ -139,8 +139,8 @@ message Course {
 }
 
 message User {
-  // @gotags: gorm:"primaryKey"
-  uint64 id = 1;
+  // @gotags: gorm:"primary_key;type:varchar(16);default:uuid()"
+  string id = 1;
 
   // Many to many relationships Course
   // @gotags: gorm:"many2many:user_courses"

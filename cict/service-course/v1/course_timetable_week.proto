@@ -55,11 +55,11 @@ message MutateCourseTimetableWeekRequest {
 }
 
 message MutateCourseTimetableWeekResponse {
-  uint64 mutated_id = 1;
+  string mutated_id = 1;
 }
 
 message GetCourseTimetableWeekRequest {
-  uint64 id = 1;
+  string id = 1;
 }
 
 message GetCourseTimetableWeekResponse {
@@ -75,11 +75,11 @@ message ListCourseTimetableWeekResponse {
 }
 
 message CourseTimetableWeek {
-  // @gotags: gorm:"primaryKey"
-  uint64 id = 1;
+  // @gotags: gorm:"primary_key;type:varchar(16);default:uuid()"
+  string id = 1;
 
   // Belong to relationship
-  uint64 course_id = 2;
+  string course_id = 2;
 
   // @gotags: gorm:"<-"
   uint32 week = 3;

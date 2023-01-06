@@ -8,10 +8,12 @@ option go_package = "github.com/cictapis/cict-auth/cict/service_auth/v1;service_
 import "cict/service-auth/v1/translation.proto";
 import "cict/service-auth/v1/user_slim.proto";
 
-message Facade {
+message MdWrapper {
   UserSlim user_slim = 1;
 
   string session_id = 2;
 
-  Translation trans = 3;
+  string translation = 3;
+
+  string csrf_token = 4;
 }

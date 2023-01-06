@@ -55,13 +55,13 @@ message MutateCourseFieldRequest {
 }
 
 message MutateCourseFieldResponse {
-  uint64 mutated_id = 1;
+  string mutated_id = 1;
 
   string msg = 2;
 }
 
 message GetCourseFieldRequest {
-  uint64 id = 1;
+  string id = 1;
 }
 
 message GetCourseFieldResponse {
@@ -77,8 +77,8 @@ message ListCourseFieldResponse {
 }
 
 message CourseField {
-  // @gotags: gorm:"primaryKey"
-  uint64 id = 1;
+  // @gotags: gorm:"primary_key;type:varchar(16);default:uuid()"
+  string id = 1;
 
   // @gotags: gorm:"<-"
   string name = 2;
@@ -93,11 +93,11 @@ message CourseField {
   int64 created_at = 5;
 
   // @gotags: json:"created_by_id"
-  uint64 created_by_id = 6;
+  string created_by_id = 6;
 
   // @gotags: json:"updated_by_id"
-  uint64 updated_by_id = 7;
+  string updated_by_id = 7;
 
   // @gotags: json:"owned_by_id"
-  uint64 owned_by_id = 8;
+  string owned_by_id = 8;
 }

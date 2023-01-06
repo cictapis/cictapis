@@ -63,11 +63,11 @@ message MutateExamScheduleRequest {
 }
 
 message MutateExamScheduleResponse {
-  uint64 mutatedId = 1;
+  string mutatedId = 1;
 }
 
 message GetExamScheduleRequest {
-  uint64 id = 1;
+  string id = 1;
 }
 
 message GetExamScheduleResponse {
@@ -83,7 +83,7 @@ message ListExamScheduleResponse {
 }
 
 message GetUpcomingExamScheduleRequest {
-  uint64 course_id = 1;
+  string course_id = 1;
 }
 
 message GetUpcomingExamScheduleResponse {
@@ -91,8 +91,8 @@ message GetUpcomingExamScheduleResponse {
 }
 
 message ExamSchedule {
-  // @gotags: gorm:"primaryKey"
-  uint64 id = 1;
+  // @gotags: gorm:"primary_key;type:varchar(16);default:uuid()"
+  string id = 1;
 
   // @gotags: gorm:"<-"
   string name = 2;
@@ -104,7 +104,7 @@ message ExamSchedule {
   string exam_date = 4;
 
   // Belong to relationships Course
-  uint64 course_id = 5;
+  string course_id = 5;
 
   // @gotags: gorm:"autoUpdateTime:nano"
   int64 updated_at = 6;

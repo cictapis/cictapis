@@ -54,11 +54,11 @@ message MutateCourseTimetableDayRequest {
 }
 
 message MutateCourseTimetableDayResponse {
-  uint64 mutated_id = 1;
+  string mutated_id = 1;
 }
 
 message GetCourseTimetableDayRequest {
-  uint64 id = 1;
+  string id = 1;
 }
 
 message GetCourseTimetableDayResponse {
@@ -74,8 +74,8 @@ message ListCourseTimetableDayResponse {
 }
 
 message CourseTimetableDay {
-  // @gotags: gorm:"primaryKey"
-  uint64 id = 1;
+  // @gotags: gorm:"primary_key;type:varchar(16);default:uuid()"
+  string id = 1;
 
   // @gotags: gorm:"<-"
   uint32 day = 2;
@@ -84,7 +84,7 @@ message CourseTimetableDay {
   bool active = 3;
 
   // Belong to relationship CourseTimetableWeek
-  uint64 course_timetable_week_id = 4;
+  string course_timetable_week_id = 4;
 
   // @gotags: gorm:"autoUpdateTime:nano"
   int64 updated_at = 5;

@@ -37,7 +37,7 @@ message AuthenticateSessionResponse {
 message Session {
   string id = 1;
 
-  uint64 user_id = 2;
+  string user_id = 2;
 
   string email = 3;
 

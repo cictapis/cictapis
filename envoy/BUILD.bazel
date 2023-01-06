@@ -9,7 +9,6 @@ proto_descriptor(
     "//cict/common/v1:annotations.proto",
     "//cict/common/v1:config.proto",
     "//cict/common/v1:enum_crud_policy.proto",
-    "//cict/common/v1:enum_locale.proto",
     "//cict/common/v1:enum_mask_behavior.proto",
     "//cict/common/v1:enum_mutate_operation.proto",
     "//cict/common/v1:paginate.proto",
@@ -17,8 +16,9 @@ proto_descriptor(
     "//cict/service-auth/v1:enum_authenticate_third_party.proto",
     "//cict/service-auth/v1:enum_system_role.proto",
     "//cict/service-auth/v1:enum_user_status.proto",
-    "//cict/service-auth/v1:facade.proto",
+    "//cict/service-auth/v1:md_wrapper.proto",
     "//cict/service-auth/v1:profile.proto",
+    "//cict/service-auth/v1:secure.proto",
     # SessionService serve internal cluster's services, do not export in envoy proxy
     # "//cict/service-auth/v1:session.proto",
     "//cict/service-auth/v1:translation.proto",

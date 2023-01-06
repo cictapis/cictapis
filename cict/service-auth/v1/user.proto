@@ -28,7 +28,17 @@ service UserService {
     };
   }
 
-  rpc Logout(google.protobuf.Empty) returns (google.protobuf.Empty) {
+  rpc GoogleLogin(GoogleLoginRequest) returns (GoogleLoginResponse) {
+    option (google.api.http) = {
+      post: "/api/service_auth/v1/user/google_login",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANONYMOUS,
+    };
+  }
+
+  rpc Logout(LogoutRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post: "/api/service_auth/v1/user/logout",
       body: "*"
@@ -83,12 +93,38 @@ message LoginRequest {
   string password = 2;
 
   string validate_password = 3;
+
+  string csrf_token = 4;
 }
 
 message LoginResponse {
+  option (common.v1.default_mask) = {
+    paths: ["id","authenticate_third_party","avatar","system_role","email","name","regis_username","user_status","updated_at","created_at","created_by_id","updated_by_id","owned_by_id"]
+  };
+
   User user = 1;
 
   string session_id = 2;
+}
+
+message GoogleLoginRequest {
+  string id_token = 1;
+
+  string csrf_token = 2;
+}
+
+message GoogleLoginResponse {  
+  option (common.v1.default_mask) = {
+    paths: ["id","authenticate_third_party","avatar","system_role","email","name","regis_username","user_status","updated_at","created_at","created_by_id","updated_by_id","owned_by_id"]
+  };
+
+  User user = 1;
+
+  string session_id = 2;
+}
+
+message LogoutRequest {
+  string csrf_token = 1;
 }
 
 message MutateUserRequest {
@@ -99,10 +135,11 @@ message MutateUserRequest {
   }
 
   bool partial_failure = 4;
+
+  string csrf_token = 5;
 }
 
 message MutateUserCreate {
-
   option (common.v1.default_mask) = {
     paths: ["authenticate_third_party","avatar","email","name","password","regis_username","user_status"]
   };
@@ -132,6 +169,8 @@ message UpdateUserRequest {
   google.protobuf.FieldMask mask = 4;
 
   bool partial_failure = 5;
+
+  string csrf_token = 6;
 }
 
 message UpdateUserResponse {
@@ -139,12 +178,11 @@ message UpdateUserResponse {
 }
 
 message GetUserRequest {
-
   option (common.v1.default_mask) = {
     paths: ["id","authenticate_third_party","avatar","email","name","regis_username","user_status","updated_at","created_at","created_by_id","updated_by_id","owned_by_id"]
   };
 
-  uint64 id = 1;
+  string id = 1;
 
   common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 2;
 
@@ -158,9 +196,8 @@ message GetUserResponse {
 }
 
 message ListUserRequest {
-
   option (common.v1.default_mask) = {
-    paths: ["id","authenticate_third_party","avatar","email","name","regis_username","user_status","updated_at","created_at","created_by_id","updated_by_id","owned_by_id"]
+    paths: ["id","authenticate_third_party","avatar","system_role","email","name","regis_username","user_status","updated_at","created_at","created_by_id","updated_by_id","owned_by_id"]
   };
 
   common.v1.Paginate paginate = 1;
@@ -175,8 +212,8 @@ message ListUserResponse {
 }
 
 message User {
-  // @gotags: gorm:"primary_key"
-  uint64 id = 1;
+  // @gotags: gorm:"primary_key;type:varchar(16);default:uuid()"
+  string id = 1;
 
   EnumAuthenticateThirdParty.AuthenticateThirdParty authenticate_third_party = 2;
 
@@ -200,9 +237,9 @@ message User {
   // @gotags: gorm:"autoCreateTime:nano"
   int64 created_at = 101;
 
-  uint64 created_by_id = 102;
+  string created_by_id = 102;
 
-  uint64 updated_by_id = 103;
+  string updated_by_id = 103;
 
-  uint64 owned_by_id = 104;
+  string owned_by_id = 104;
 }

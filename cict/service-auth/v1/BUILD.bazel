@@ -21,8 +21,8 @@ proto_library(
 )
 
 proto_library(
-  name = "facade_proto",
-  srcs = ["facade.proto"],
+  name = "md_wrapper_proto",
+  srcs = ["md_wrapper.proto"],
   deps = [
     ":translation_proto",
     ":user_slim_proto",
@@ -33,6 +33,16 @@ proto_library(
   name = "profile_proto",
   srcs = ["profile.proto"],
   deps = []
+)
+
+proto_library(
+  name = "secure_proto",
+  srcs = ["secure.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:empty_proto",
+    "//cict/common/v1:annotations_proto",
+  ]
 )
 
 proto_library(

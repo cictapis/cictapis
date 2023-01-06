@@ -23,11 +23,11 @@ service CourseTimetable {
 }
 
 message GetUserTimetableRequest {
-  uint64 user_id = 1;
+  string user_id = 1;
 
-  uint64 course_id = 2;
+  string course_id = 2;
 
-  uint64 week_id = 3;
+  string week_id = 3;
 }
 
 message GetUserTimetableResponse {

@@ -38,5 +38,13 @@ message Translation {
 
   string grpc_permission_denied = 16;
 
+  string grpc_csrf = 18;
+
   string vld_confirm_password_not_match = 17;
+}
+
+message TranslationFactory {
+  Translation vi = 1;
+
+  Translation en = 2;
 }
