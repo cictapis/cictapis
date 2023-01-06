@@ -11,6 +11,31 @@ import "google/protobuf/empty.proto";
 import "cict/common/v1/annotations.proto";
 
 service FileService {
+  // WARNING: gRPC-Web spec currently does not support client-side streaming
+  // This is unlikely to change until new whatwg fetch/streams API lands in browsers.
+  // Web browser will use SmallUpload request instead.
+  // For more detail: https://github.com/grpc/grpc-web/issues/1205
+  rpc LargeUpload(stream UploadRequest) returns(UploadResponse) {
+    option (google.api.http) = {
+      post: "/api/service_file_uploader/v1/uploader/large_upload",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: AUTH,
+    };
+  }
+
+  // 4 MB maximum in unary request; if more, it will fail
+  rpc SmallUpload(UploadRequest) returns(UploadResponse) {
+    option (google.api.http) = {
+      post: "/api/service_file_uploader/v1/uploader/small_uploader",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: AUTH,
+    };
+  }
+
   rpc DeleteFile(DeleteFileRequest) returns(google.protobuf.Empty) {
     option (google.api.http) = {
       post: "/api/service_file_uploader/v1/uploader/delete_file/{id}",
@@ -20,6 +45,16 @@ service FileService {
       crud_policy: AUTH,
     };
   }
+}
+
+message UploadRequest {
+  string filename = 1;
+
+  bytes content = 2;
+}
+
+message UploadResponse {
+  string id = 1;
 }
 
 message DeleteFileRequest {

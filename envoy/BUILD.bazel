@@ -37,7 +37,6 @@ proto_descriptor(
     "//cict/service-dormitory/v1:user.proto",
 
     "//cict/service-file-uploader/v1:file.proto",
-    "//cict/service-file-uploader/v1:uploader.proto",
   ],
   out = "cict.descriptor",
   external_deps = [

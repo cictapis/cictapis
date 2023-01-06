@@ -212,7 +212,7 @@ message ListUserResponse {
 }
 
 message User {
-  // @gotags: gorm:"primary_key;type:varchar(16);default:uuid()"
+  // @gotags: gorm:"primary_key;type:varchar(36);default:(uuid())"
   string id = 1;
 
   EnumAuthenticateThirdParty.AuthenticateThirdParty authenticate_third_party = 2;

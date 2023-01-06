@@ -74,7 +74,7 @@ message ListExamScoreResponse {
 }
 
 message ExamScore {  
-  // @gotags: gorm:"primary_key;type:varchar(16);default:uuid()"
+  // @gotags: gorm:"primary_key;type:varchar(36);default:(uuid())"
   string id = 1;
 
   // @gotags: gorm:"<-"

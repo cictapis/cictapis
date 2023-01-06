@@ -6,7 +6,6 @@ go_proto_library(
   importpath = "github.com/cictapis/cict-auth/cict/service-file-uploader/v1",
   protos = [
     "@com_github_cict_cictapis//cict/service-file-uploader/v1:file_proto",
-    "@com_github_cict_cictapis//cict/service-file-uploader/v1:uploader_proto",
   ],
   deps = [
     "//google/api:google_api_annotations_go_proto",
