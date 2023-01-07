@@ -1,0 +1,151 @@
+syntax = "proto3";
+
+package cict.service_mail.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-mail/cict/service_mail/v1;service_mail";
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/paginate.proto";
+import "cict/service-mail/v1/file_slim.proto";
+
+service TemplateService {
+  rpc MutateTemplate(MutateTemplateRequest) returns(MutateTemplateResponse) {
+    option (google.api.http) = {
+      post: "/api/service_auth/v1/template/mutate_template",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: ADMIN,
+    };
+  }
+
+  rpc GetTemplate(GetTemplateRequest) returns(GetTemplateResponse) {
+    option (google.api.http) = {
+      get: "/api/service_mail/v1/template/get_template",
+    };
+    option (common.v1.cict) = {
+      crud_policy: ADMIN,
+    };
+  }
+
+  rpc ListTemplate(ListTemplateRequest) returns(ListTemplateResponse) {
+    option (google.api.http) = {
+      get: "/api/service_mail/v1/template/list_template",
+    };
+    option (common.v1.cict) = {
+      crud_policy: ADMIN,
+    };
+  }
+}
+
+message MutateTemplateRequest {
+  oneof operation {
+    MutateTemplateCreate create= 1;
+
+    MutateTemplateUpdate update = 2;
+
+    MutateTemplateDelete delete = 3;
+  }
+}
+
+message MutateTemplateCreate {
+  option (common.v1.default_mask) = {
+    paths: ["content", "attached_files.web_content_link", "attached_files.origin_id", "attached_files.template_id"]
+  };
+
+  repeated Template templates = 1;
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 3;
+
+  google.protobuf.FieldMask mask = 4;
+
+  bool partial_failure = 5;
+}
+
+message MutateTemplateUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["content", "attached_files.web_content_link", "attached_files.origin_id", "attached_files.template_id"]
+  };
+
+  repeated string ids = 1;
+
+  Template template = 2;
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 3;
+
+  google.protobuf.FieldMask mask = 4;
+
+  bool partial_failure = 5;
+}
+
+message MutateTemplateDelete {
+  repeated string ids = 1;
+
+  bool partial_failure = 2;
+}
+
+message MutateTemplateResponse {
+  int64 affected_rows = 1;
+}
+
+message GetTemplateRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id", "content", "attached_files.id", "attached_files.web_content_link", "attached_files.origin_id", "attached_files.template_id"]
+  };
+
+  string id = 1;
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 2;
+
+  google.protobuf.FieldMask mask = 3;
+}
+
+message GetTemplateResponse {
+  Template template = 1;
+}
+
+message ListTemplateRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id", "content", "attached_files.id", "attached_files.web_content_link", "attached_files.origin_id", "attached_files.template_id"]
+  };
+
+  common.v1.Paginate paginate = 1;
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 2;
+
+  google.protobuf.FieldMask mask = 3;
+}
+
+message ListTemplateResponse {
+  repeated Template templates = 1; 
+}
+
+message Template {
+  // @gotags: gorm:"type:varchar(36);default(uuid())"
+  string id = 1;
+
+  string content = 2;
+
+  // Has many relationship
+  repeated FileSlim attached_files = 3;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updated_at = 100;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 created_at = 101;
+
+  // @gotags: gorm:"type:varchar(36);default(uuid())"
+  string created_by_id = 102;
+
+  // @gotags: gorm:"type:varchar(36);default(uuid())"
+  string updated_by_id = 103;
+
+  // @gotags: gorm:"type:varchar(36);default(uuid())"
+  string owned_by_id = 104;
+}

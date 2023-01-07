@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package cict.common.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-mail/cict/common/v1;common";
+
+import "cict/common/v1/user_slim.proto";
+
+message MdWrapper {
+  UserSlim user_slim = 1;
+
+  string session_id = 2;
+
+  string translation = 3;
+
+  string csrf_token = 4;
+}

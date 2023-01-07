@@ -3,7 +3,7 @@ syntax = "proto3";
 package cict.common.v1;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/cict-auth/cict/common/v1";
+option go_package = "github.com/cictapis/cict-mail/cict/common/v1;common";
 
 message Config {
   TelemetryConfig otlp_config = 1;
@@ -19,6 +19,8 @@ message Config {
   ServiceEndpointConfig service_course_endpoint_config = 7;
 
   ServiceEndpointConfig service_file_uploader_endpoint_config = 8;
+
+  ServiceEndpointConfig service_mail_endpoint_config = 14;
 
   DatabaseConfig database_config = 9;
 

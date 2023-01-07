@@ -3,7 +3,7 @@ syntax = "proto3";
 package cict.service_course.v1;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/cict-auth/cict/service_course/v1;service_course";
+option go_package = "github.com/cictapis/cict-mail/cict/service_course/v1;service_course";
 
 import "google/api/annotations.proto";
 

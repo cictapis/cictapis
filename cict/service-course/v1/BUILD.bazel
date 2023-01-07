@@ -56,11 +56,9 @@ proto_library(
     "@com_google_protobuf//:empty_proto",
     "@com_google_protobuf//:field_mask_proto",
     "//cict/common/v1:annotations_proto",
-    "//cict/common/v1:enum_mutate_operation_proto",
     "//cict/common/v1:paginate_proto",
     ":course_timetable_week_proto",
     ":exam_schedule_proto",
-    ":exam_score_proto",
   ]
 )
 

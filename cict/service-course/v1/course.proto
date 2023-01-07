@@ -3,18 +3,16 @@ syntax = "proto3";
 package cict.service_course.v1;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/cict-auth/cict/service_course/v1;service_course";
+option go_package = "github.com/cictapis/cict-mail/cict/service_course/v1;service_course";
 
 import "google/api/annotations.proto";
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/empty.proto";
 
 import "cict/common/v1/annotations.proto";
-import "cict/common/v1/enum_mutate_operation.proto";
 import "cict/common/v1/paginate.proto";
 import "cict/service-course/v1/course_timetable_week.proto";
 import "cict/service-course/v1/exam_schedule.proto";
-import "cict/service-course/v1/exam_score.proto";
 
 service CourseService {
   rpc MutateCourse(MutateCourseRequest) returns (MutateCourseResponse) {
@@ -57,8 +55,6 @@ service CourseService {
 }
 
 message MutateCourseRequest {
-  common.v1.EnumMutateOperation.MutateOperation mutate_operation = 1;
-
   repeated MutateCourseOperation operations = 2;
 
   bool partial_failure = 3;

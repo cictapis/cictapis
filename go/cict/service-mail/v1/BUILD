@@ -1,0 +1,17 @@
+load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
+
+go_proto_library(
+  name = "cict_service_mail_v1_go_proto",
+  compilers = ["@io_bazel_rules_go//proto:go_grpc"],
+  importpath = "github.com/cictapis/cict-mail/cict/service-mail/v1",
+  protos = [
+    "@com_github_cict_cictapis//cict/service-mail/v1:file_slim_proto",
+    "@com_github_cict_cictapis//cict/service-mail/v1:mail_proto",
+    "@com_github_cict_cictapis//cict/service-mail/v1:template_proto",
+  ],
+  deps = [
+    "//google/api:google_api_annotations_go_proto",
+    "//cict/common/v1:cict_common_v1_go_proto",
+  ],
+  visibility = ["//visibility:public"]
+)

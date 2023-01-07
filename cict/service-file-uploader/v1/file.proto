@@ -3,7 +3,7 @@ syntax = "proto3";
 package cict.service_file_uploader.v1;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/cict-auth/cict/service_file_uploader/v1;service_file_uploader";
+option go_package = "github.com/cictapis/cict-mail/cict/service_file_uploader/v1;service_file_uploader";
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
@@ -17,7 +17,7 @@ service FileService {
   // For more detail: https://github.com/grpc/grpc-web/issues/1205
   rpc LargeUpload(stream UploadRequest) returns(UploadResponse) {
     option (google.api.http) = {
-      post: "/api/service_file_uploader/v1/uploader/large_upload",
+      post: "/api/service_file_uploader/v1/file/large_upload",
       body: "*"
     };
     option (common.v1.cict) = {
@@ -28,7 +28,7 @@ service FileService {
   // 4 MB maximum in unary request; if more, it will fail
   rpc SmallUpload(UploadRequest) returns(UploadResponse) {
     option (google.api.http) = {
-      post: "/api/service_file_uploader/v1/uploader/small_uploader",
+      post: "/api/service_file_uploader/v1/file/small_uploader",
       body: "*"
     };
     option (common.v1.cict) = {
@@ -38,7 +38,7 @@ service FileService {
 
   rpc DeleteFile(DeleteFileRequest) returns(google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/api/service_file_uploader/v1/uploader/delete_file/{id}",
+      post: "/api/service_file_uploader/v1/file/delete_file/{id}",
       body: "*"
     };
     option (common.v1.cict) = {

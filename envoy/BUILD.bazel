@@ -10,18 +10,17 @@ proto_descriptor(
     "//cict/common/v1:config.proto",
     "//cict/common/v1:enum_crud_policy.proto",
     "//cict/common/v1:enum_mask_behavior.proto",
-    "//cict/common/v1:enum_mutate_operation.proto",
+    "//cict/common/v1:enum_system_role.proto",
+    "//cict/common/v1:md_wrapper.proto",
     "//cict/common/v1:paginate.proto",
+    "//cict/common/v1:translation.proto",
+    "//cict/common/v1:user_slim.proto",
 
     "//cict/service-auth/v1:enum_authenticate_third_party.proto",
-    "//cict/service-auth/v1:enum_system_role.proto",
     "//cict/service-auth/v1:enum_user_status.proto",
-    "//cict/service-auth/v1:md_wrapper.proto",
     "//cict/service-auth/v1:profile.proto",
     # SessionService serve internal cluster's services, do not export in envoy proxy
     # "//cict/service-auth/v1:session.proto",
-    "//cict/service-auth/v1:translation.proto",
-    "//cict/service-auth/v1:user_slim.proto",
     "//cict/service-auth/v1:user.proto",
 
     "//cict/service-course/v1:course_field.proto",
@@ -36,6 +35,10 @@ proto_descriptor(
     "//cict/service-dormitory/v1:user.proto",
 
     "//cict/service-file-uploader/v1:file.proto",
+
+    "//cict/service-mail/v1:file_slim.proto",
+    "//cict/service-mail/v1:mail.proto",
+    "//cict/service-mail/v1:template.proto",    
   ],
   out = "cict.descriptor",
   external_deps = [

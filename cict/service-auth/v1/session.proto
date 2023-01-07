@@ -3,13 +3,13 @@ syntax = "proto3";
 package cict.service_auth.v1;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/cict-auth/cict/service_auth/v1;service_auth";
+option go_package = "github.com/cictapis/cict-mail/cict/service_auth/v1;service_auth";
 
 import "google/api/annotations.proto";
 
 import "cict/common/v1/annotations.proto";
-import "cict/service-auth/v1/enum_system_role.proto";
-import "cict/service-auth/v1/user_slim.proto";
+import "cict/common/v1/user_slim.proto";
+import "cict/common/v1/enum_system_role.proto";
 
 service SessionService {
   rpc AuthenticateSession(AuthenticateSessionRequest) returns (AuthenticateSessionResponse) {
@@ -31,7 +31,7 @@ message AuthenticateSessionRequest {
 
 message AuthenticateSessionResponse {
   // Don't use session as response becase session will contain more secret info.
-  UserSlim user_slim = 1;
+  common.v1.UserSlim user_slim = 1;
 }
 
 message Session {
@@ -43,5 +43,5 @@ message Session {
 
   string name = 4;
 
-  EnumSystemRole.SystemRole system_role = 5;
+  common.v1.EnumSystemRole.SystemRole system_role = 5;
 }

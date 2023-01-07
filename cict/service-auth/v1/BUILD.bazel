@@ -9,24 +9,9 @@ proto_library(
 )
 
 proto_library(
-  name = "enum_system_role_proto",
-  srcs = ["enum_system_role.proto"],
-  deps = []
-)
-
-proto_library(
   name = "enum_user_status_proto",
   srcs = ["enum_user_status.proto"],
   deps = []
-)
-
-proto_library(
-  name = "md_wrapper_proto",
-  srcs = ["md_wrapper.proto"],
-  deps = [
-    ":translation_proto",
-    ":user_slim_proto",
-  ]
 )
 
 proto_library(
@@ -41,23 +26,9 @@ proto_library(
   deps = [
     "@go_googleapis//google/api:annotations_proto",
     "//cict/common/v1:annotations_proto",
-    ":enum_system_role_proto",
-    ":user_slim_proto",
+    "//cict/common/v1:enum_system_role_proto",
+    "//cict/common/v1:user_slim_proto",
   ]
-)
-
-proto_library(
-  name = "translation_proto",
-  srcs = ["translation.proto"],
-  deps = []
-)
-
-proto_library(
-  name = "user_slim_proto",
-  srcs = ["user_slim.proto"],
-  deps = [
-    ":enum_system_role_proto",
-  ],
 )
 
 proto_library(
@@ -69,10 +40,9 @@ proto_library(
     "@com_google_protobuf//:empty_proto",
     "//cict/common/v1:annotations_proto",
     "//cict/common/v1:enum_mask_behavior_proto",
-    "//cict/common/v1:enum_mutate_operation_proto",
+    "//cict/common/v1:enum_system_role_proto",
     "//cict/common/v1:paginate_proto",
     ":enum_authenticate_third_party_proto",
-    ":enum_system_role_proto",
     ":enum_user_status_proto",
   ]
 )
