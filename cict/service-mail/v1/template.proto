@@ -126,7 +126,7 @@ message ListTemplateResponse {
 }
 
 message Template {
-  // @gotags: gorm:"type:varchar(36);default(uuid())"
+  // @gotags: gorm:"type:varchar(36);default:(uuid())"
   string id = 1;
 
   string content = 2;
@@ -140,12 +140,12 @@ message Template {
   // @gotags: gorm:"autoCreateTime:nano"
   int64 created_at = 101;
 
-  // @gotags: gorm:"type:varchar(36);default(uuid())"
+  // @gotags: gorm:"type:varchar(36)"
   string created_by_id = 102;
 
-  // @gotags: gorm:"type:varchar(36);default(uuid())"
+  // @gotags: gorm:"type:varchar(36)"
   string updated_by_id = 103;
 
-  // @gotags: gorm:"type:varchar(36);default(uuid())"
+  // @gotags: gorm:"type:varchar(36)"
   string owned_by_id = 104;
 }

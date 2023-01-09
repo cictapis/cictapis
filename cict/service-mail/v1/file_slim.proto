@@ -6,7 +6,7 @@ option cc_enable_arenas = true;
 option go_package = "github.com/cictapis/cict-mail/cict/service_mail/v1;service_mail";
 
 message FileSlim {
-  // @gotags: gorm:"primary_key;type:varchar(36);default(uuid())"
+  // @gotags: gorm:"primary_key;type:varchar(36);default:(uuid())"
   string id = 1;
   
   string web_content_link = 2;
@@ -22,9 +22,9 @@ message FileSlim {
   // @gotags: gorm:"autoCreateTime:nano"
   int64 created_at = 101;
 
-  // @gotags: gorm:"type:varchar(36);default(uuid())"
+  // @gotags: gorm:"type:varchar(36)"
   string created_by_id = 102;
 
-  // @gotags: gorm:"type:varchar(36);default(uuid())"
+  // @gotags: gorm:"type:varchar(36)"
   string updated_by_id = 103;
 }
