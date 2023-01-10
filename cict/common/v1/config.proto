@@ -177,6 +177,8 @@ message KafkaTopicsConfig {
   KafkaTopic user_mutate = 1;
 
   KafkaTopic user_update = 2;
+
+  KafkaTopic mail_send = 3;
 }
 
 message Smtp {
