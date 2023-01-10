@@ -24,13 +24,15 @@ message Config {
 
   DatabaseConfig database_config = 9;
 
-  MetadataConfig metadata_config = 10;
+  StringKeyConfig string_key_config = 10;
 
   GoogleCredentialConfig google_credential_config = 11;
 
   KafkaConfig kafka_config = 12;
 
   KafkaTopicsConfig kafka_topics_config = 13;
+
+  Smtp smtp = 15;
 }
 
 message TelemetryConfig {
@@ -65,7 +67,7 @@ message DatabaseConfig {
   bool migrations = 6;
 }
 
-message MetadataConfig {
+message StringKeyConfig {
   string session_id = 1;
 
   string user_slim = 2;
@@ -118,13 +120,39 @@ message GoogleCredentialConfig {
     string client_x509_cert_url = 10;
   }
 
+  message GoogleOauth {
+    message Credentials {
+      string client_id = 1;
+
+      string project_id = 2;
+
+      string auth_uri = 3;
+
+      string token_uri = 4;
+
+      string auth_provider_x509_cert_url = 5;
+
+      string client_secret = 6;
+
+      repeated string javascript_origins = 7;
+
+      repeated string redirect_uris = 8;
+    }
+
+    Credentials web = 1;
+
+    Credentials installed = 2;
+  }
+
   message GoogleDrive {
     string root_dir_id = 1;
   }
 
   GoogleServiceAccount google_service_account = 1;
 
-  GoogleDrive google_drive = 2;
+  GoogleOauth google_oauth = 2;
+
+  GoogleDrive google_drive = 3;
 }
 
 message KafkaConfig {
@@ -149,4 +177,14 @@ message KafkaTopicsConfig {
   KafkaTopic user_mutate = 1;
 
   KafkaTopic user_update = 2;
+}
+
+message Smtp {
+  string host = 1;
+
+  int32 port = 2;
+
+  string username = 3;
+
+  string password = 4;
 }
