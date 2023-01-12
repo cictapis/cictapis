@@ -1,0 +1,172 @@
+syntax = "proto3";
+
+package cict.service_notification.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-mail/cict/service_notification/v1;service_notification";
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/empty.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/paginate.proto";
+
+service NotificationService {
+  rpc SubscribeNotification(google.protobuf.Empty) returns (stream SubscribeNotificationResponse) {
+    option (google.api.http) = {
+      get: "/api/service_notification/v1/notification/subscribe_notification"
+    };
+    option (common.v1.cict) = {
+      crud_policy: AUTH,
+    };
+  }
+
+  rpc CreateNotification(CreateNotificationRequest) returns (CreateNotificationResponse) {
+    option (google.api.http) = {
+      post: "/api/service_notification/v1/notification/create_notification",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: SYSTEM,
+    };
+  }
+
+  rpc MutateNotification(MutateNotificationRequest) returns (MutateNotificationResponse) {
+    option (google.api.http) = {
+      post: "/api/service_notification/v1/notification/mutate_notification",
+      body: "*"
+    };
+  }
+
+  rpc GetNotification(GetNotificationRequest) returns (GetNotificationResponse) {
+    option (google.api.http) = {
+      get: "/api/service_notifcation/v1/notification/get_notification"
+    };
+    option (common.v1.cict) = {
+      crud_policy: AUTH,
+    };
+  }
+
+  rpc ListNotification(ListNotificationRequest) returns (ListNotificationResponse) {
+    option (google.api.http) = {
+      get: "/api/service_notification/v1/notification/list_notification"
+    };
+    option (common.v1.cict) = {
+      crud_policy: AUTH,
+    };
+  };
+}
+
+message SubscribeNotificationResponse {
+  uint32 notification_count = 1;
+}
+
+message CreateNotificationRequest {
+  option (common.v1.default_mask) = {
+    paths: ["message", "link"]
+  };
+
+  repeated Notification notifications = 1;
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 2;
+
+  google.protobuf.FieldMask mask = 3;
+
+  bool partial_failure = 4;
+}
+
+message CreateNotificationResponse {
+  int64 created_rows = 1;
+}
+
+message MutateNotificationRequest {
+  oneof operation {
+    MutateNotificationUpdate update = 1;
+
+    MutateNotificationDelete delete = 2;
+  }
+}
+
+message MutateNotificationUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["message", "link"]
+  };
+
+  repeated string ids = 1;
+
+  Notification notification = 2;
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 3;
+
+  bool partial_failure = 4;
+}
+
+message MutateNotificationDelete {
+  repeated string ids = 1;
+
+  bool partial_failure = 2;
+}
+
+message MutateNotificationResponse {
+ int64 affected_rows = 1;
+}
+
+message GetNotificationRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id", "message", "link"]
+  };
+
+  string id = 1;
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 2;
+
+  google.protobuf.FieldMask mask = 3;
+}
+
+message GetNotificationResponse {
+  Notification notification = 1;
+}
+
+message ListNotificationRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id", "message", "link"]
+  };
+
+  common.v1.Paginate paginate = 1;
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 2;
+
+  google.protobuf.FieldMask mask = 3;
+}
+
+message ListNotificationResponse {
+  repeated Notification notifications = 1;
+}
+
+message Notification {
+  // @gotags: gorm:"type:varchar(36);default:(uuid())"
+  string id = 1;
+
+  string message = 2;
+
+  string link = 3;
+
+  bool notified = 4;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updated_at = 100;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 created_at = 101;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string created_by_id = 102;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string updated_by_id = 103;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string owned_by_id = 104;
+}
