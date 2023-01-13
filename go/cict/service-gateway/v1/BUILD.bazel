@@ -1,7 +1,7 @@
 load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
 
 go_proto_library(
-  name = "cict_service_notification_v1_go_proto",
+  name = "cict_service_gateway_v1_go_proto",
   compilers = ["@io_bazel_rules_go//proto:go_grpc"],
   importpath = "github.com/cictapis/cict-mail/cict/service-gateway/v1",
   protos = [
