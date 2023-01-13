@@ -21,6 +21,8 @@ message Config {
   ServiceEndpointConfig service_file_uploader_endpoint_config = 8;
 
   ServiceEndpointConfig service_mail_endpoint_config = 14;
+  
+  ServiceEndpointConfig service_gateway_endpoint_config = 16;
 
   DatabaseConfig database_config = 9;
 
