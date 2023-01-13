@@ -60,7 +60,7 @@ service NotificationService {
 }
 
 message SubscribeNotificationResponse {
-  uint32 notification_count = 1;
+  int64 notification_count = 1;
 }
 
 message CreateNotificationRequest {

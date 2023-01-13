@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package cict.service_publisher.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-mail/cict/service_gateway/v1;service_gateway";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+import "cict/common/v1/annotations.proto";
+
+service PublisherService {
+  rpc PublishMessage(PublishMessageRequest) returns(google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/api/service_gateway/v1/publisher/publish_message",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: SYSTEM,
+    };
+  }
+}
+
+message PublishMessageRequest {
+  Message message = 1;
+}
+
+message Message {
+  string topic = 1;
+
+  bytes content = 2;
+}
