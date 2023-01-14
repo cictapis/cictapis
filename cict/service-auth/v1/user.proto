@@ -84,6 +84,17 @@ service UserService {
       crud_policy: USER,
     };
   }
+
+  // Cict-reporter use this api to get data for reports
+  // This api shouldn't expose to global.
+  rpc PdfReportUser(PdfReportUserRequest) returns (PdfReportUserResponse) {
+    option (google.api.http) = {
+      get: "/api/service_auth/v1/user/pdf_report"
+    };
+    option (common.v1.cict) = {
+      crud_policy: SYSTEM,
+    };
+  }
 }
 
 message LoginRequest {
@@ -193,6 +204,23 @@ message ListUserRequest {
 }
 
 message ListUserResponse {
+  repeated User users = 1;
+}
+
+message PdfReportUserRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","authenticate_third_party","avatar","system_role","email","name","regis_username","user_status","updated_at","created_at","created_by_id","updated_by_id","owned_by_id"]
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  // Unused parameter
+  string param = 3;
+}
+
+message PdfReportUserResponse {
   repeated User users = 1;
 }
 
