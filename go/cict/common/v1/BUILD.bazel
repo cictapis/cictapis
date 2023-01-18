@@ -3,7 +3,7 @@ load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
 go_proto_library(
   name = "cict_common_v1_go_proto",
   compilers = ["@io_bazel_rules_go//proto:go_grpc"],
-  importpath = "github.com/cictapis/cict-mail/cict/common/v1",
+  importpath = "github.com/cictapis/cict-reporter/cict/common/v1",
   protos = [
     "@com_github_cict_cictapis//cict/common/v1:annotations_proto",
     "@com_github_cict_cictapis//cict/common/v1:config_proto",

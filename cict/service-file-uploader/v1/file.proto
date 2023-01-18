@@ -3,7 +3,10 @@ syntax = "proto3";
 package cict.service_file_uploader.v1;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/cict-mail/cict/service_file_uploader/v1;service_file_uploader";
+option go_package = "github.com/cictapis/cict-reporter/cict/service_file_uploader/v1;service_file_uploader";
+option java_multiple_files = false;
+option java_outer_classname = "FileProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.servicefileuploader.v1";
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
@@ -48,9 +51,12 @@ service FileService {
 }
 
 message UploadRequest {
-  string filename = 1;
+  string file_name = 1;
 
-  bytes content = 2;
+  bytes file_content = 2;
+
+  // Determine if service notifify upload result to client through notification_service.
+  bool is_notify = 3;
 }
 
 message UploadResponse {

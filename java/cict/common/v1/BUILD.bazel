@@ -1,0 +1,18 @@
+load("@rules_proto_grpc//java:defs.bzl", "java_grpc_library")
+
+java_grpc_library(
+  name = "cict_common_v1_java_proto",
+  protos = [
+    "@com_github_cict_cictapis//cict/common/v1:annotations_proto",
+    "@com_github_cict_cictapis//cict/common/v1:config_proto",
+    "@com_github_cict_cictapis//cict/common/v1:enum_crud_policy_proto",
+    "@com_github_cict_cictapis//cict/common/v1:enum_mask_behavior_proto",
+    "@com_github_cict_cictapis//cict/common/v1:enum_system_role_proto",
+    "@com_github_cict_cictapis//cict/common/v1:md_wrapper_proto",
+    "@com_github_cict_cictapis//cict/common/v1:paginate_proto",
+    "@com_github_cict_cictapis//cict/common/v1:translation_proto",
+    "@com_github_cict_cictapis//cict/common/v1:user_slim_proto",
+  ],
+  deps = [],
+  visibility = ["//visibility:public"]
+)

@@ -24,7 +24,7 @@ proto_library(
   name = "session_proto",
   srcs = ["session.proto"],
   deps = [
-    "@go_googleapis//google/api:annotations_proto",
+    "//google/api:annotations_proto",
     "//cict/common/v1:annotations_proto",
     "//cict/common/v1:enum_system_role_proto",
     "//cict/common/v1:user_slim_proto",
@@ -35,7 +35,7 @@ proto_library(
   name = "user_proto",
   srcs = ["user.proto"],
   deps = [
-    "@go_googleapis//google/api:annotations_proto",
+    "//google/api:annotations_proto",
     "@com_google_protobuf//:field_mask_proto",
     "@com_google_protobuf//:empty_proto",
     "//cict/common/v1:annotations_proto",

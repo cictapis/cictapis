@@ -17,8 +17,8 @@ syntax = "proto3";
 package google.api;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/cict-mail/google/api/annotations;annotations";
-option java_multiple_files = true;
+option go_package = "github.com/cictapis/cict-reporter/google/api/annotations;annotations";
+option java_multiple_files = false;
 option java_outer_classname = "HttpProto";
 option java_package = "com.google.api";
 option objc_class_prefix = "GAPI";

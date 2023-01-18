@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package cict.service_reporter.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-reporter/cict/service_reporter/v1;service_reporter";
+option java_multiple_files = false;
+option java_outer_classname = "ReporterProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.servicereporter.v1";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+import "cict/common/v1/annotations.proto";
+
+service ReporterService {
+  rpc GetReporter (GetReporterRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      get: "/api/service_reporter/v1/reporter/get"
+    };
+    option (common.v1.cict) = {
+      crud_policy: AUTH,
+    };
+  }
+}
+
+message GetReporterRequest {
+  int64 template_id = 1;
+}

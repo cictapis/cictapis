@@ -1,0 +1,14 @@
+load("@rules_proto_grpc//java:defs.bzl", "java_grpc_library")
+
+java_grpc_library(
+  name = "cict_service_reporter_v1_java_proto",
+  protos = [
+    "@com_github_cict_cictapis//cict/service-reporter/v1:reporter_proto",
+    "@com_github_cict_cictapis//cict/service-reporter/v1:template_proto"
+  ],
+  deps = [
+    "//google/api:google_api_annotations_java_proto",
+    "//cict/common/v1:cict_common_v1_java_proto",
+  ],
+  visibility = ["//visibility:public"]
+)

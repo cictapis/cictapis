@@ -3,7 +3,10 @@ syntax = "proto3";
 package cict.service_notification.v1;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/cict-mail/cict/service_notification/v1;service_notification";
+option go_package = "github.com/cictapis/cict-reporter/cict/service_notification/v1;service_notification";
+option java_multiple_files = false;
+option java_outer_classname = "NotificationProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.servicenotification.v1";
 
 import "google/api/annotations.proto";
 import "google/protobuf/field_mask.proto";
@@ -25,7 +28,7 @@ service NotificationService {
 
   rpc CreateNotification(CreateNotificationRequest) returns (CreateNotificationResponse) {
     option (google.api.http) = {
-      post: "/api/service_notification/v1/notification/create_notification",
+      post: "/api/service_notification/v1/notification/create",
       body: "*"
     };
     option (common.v1.cict) = {
@@ -35,8 +38,11 @@ service NotificationService {
 
   rpc MutateNotification(MutateNotificationRequest) returns (MutateNotificationResponse) {
     option (google.api.http) = {
-      post: "/api/service_notification/v1/notification/mutate_notification",
+      post: "/api/service_notification/v1/notification/mutate",
       body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: ADMIN,
     };
   }
 

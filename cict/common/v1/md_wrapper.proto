@@ -3,7 +3,10 @@ syntax = "proto3";
 package cict.common.v1;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/cict-mail/cict/common/v1;common";
+option go_package = "github.com/cictapis/cict-reporter/cict/common/v1;common";
+option java_multiple_files = false;
+option java_outer_classname = "MdWrapperProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.common.v1";
 
 import "cict/common/v1/user_slim.proto";
 

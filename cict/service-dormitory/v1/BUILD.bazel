@@ -6,7 +6,7 @@ proto_library(
   name = "registration_form_proto",
   srcs = ["registration_form.proto"],
   deps = [
-    "@go_googleapis//google/api:annotations_proto",
+    "//google/api:annotations_proto",
     "@com_google_protobuf//:field_mask_proto",
     "//cict/common/v1:annotations_proto",
     "//cict/common/v1:paginate_proto",

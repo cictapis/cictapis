@@ -1,0 +1,18 @@
+load("@rules_proto_grpc//java:defs.bzl", "java_grpc_library")
+
+java_grpc_library(
+  name = "cict_service_course_v1_java_proto",
+  protos = [
+    "@com_github_cict_cictapis//cict/service-course/v1:course_field_proto",
+    "@com_github_cict_cictapis//cict/service-course/v1:course_timetable_day_proto",
+    "@com_github_cict_cictapis//cict/service-course/v1:course_timetable_week_proto",
+    "@com_github_cict_cictapis//cict/service-course/v1:course_timetable_proto",
+    "@com_github_cict_cictapis//cict/service-course/v1:course_proto",
+    "@com_github_cict_cictapis//cict/service-course/v1:exam_schedule_proto",
+    "@com_github_cict_cictapis//cict/service-course/v1:exam_score_proto",
+  ],
+  deps = [
+    "//google/api:google_api_annotations_java_proto",
+    "//cict/common/v1:cict_common_v1_java_proto",
+  ]
+)
