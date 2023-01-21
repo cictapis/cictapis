@@ -22,6 +22,8 @@ message Config {
   Kafka kafka = 6;
 
   Smtp smtp = 7;
+
+  Const const = 8;
 }
 
 message Endpoint {
@@ -79,7 +81,9 @@ message Database {
 
   string password = 5;
 
-  bool migrate = 6;
+  string database = 6;
+
+  bool migrate = 7;
 }
 
 message Redis {
@@ -88,12 +92,6 @@ message Redis {
   string password = 3;
 
   int32 database = 4;
-
-  int32 min_idl_conns = 5;
-
-  int32 pool_size = 6;
-
-  int32 pool_timeout = 7;
 
   int32 session_timeout = 8;
 }
@@ -190,4 +188,14 @@ message Smtp {
   string username = 2;
 
   string password = 3;
+}
+
+message Const {
+  string session_id = 1;
+
+  string locale = 2;
+
+  string md_wrapper = 3;
+
+  string user_slim = 4;
 }
