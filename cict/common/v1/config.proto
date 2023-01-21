@@ -22,10 +22,14 @@ message Config {
   ServiceEndpointConfig service_course_endpoint_config = 7;
 
   ServiceEndpointConfig service_file_uploader_endpoint_config = 8;
-
-  ServiceEndpointConfig service_mail_endpoint_config = 14;
   
   ServiceEndpointConfig service_gateway_endpoint_config = 16;
+  
+  ServiceEndpointConfig service_mail_endpoint_config = 14;
+
+  ServiceEndpointConfig service_notification_endpoint_config = 17;
+
+  ServiceEndpointConfig service_reporter_endpoint_config = 18;
 
   DatabaseConfig database_config = 9;
 
