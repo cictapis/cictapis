@@ -9,93 +9,85 @@ option java_outer_classname = "ConfigProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.common.v1";
 
 message Config {
-  TelemetryConfig otlp_config = 1;
+  Monitoring monitoring = 1;
 
-  TelemetryConfig jaeger_config = 2;
+  Services services = 2;
 
-  RedisConfig redis_config = 4;
+  Database database = 3;
 
-  ServiceEndpointConfig server_config = 5;
+  Redis redis = 4;
 
-  ServiceEndpointConfig service_auth_endpoint_config = 6;
+  Google google = 5;
 
-  ServiceEndpointConfig service_course_endpoint_config = 7;
+  Kafka kafka = 6;
 
-  ServiceEndpointConfig service_file_uploader_endpoint_config = 8;
+  Smtp smtp = 7;
+}
+
+message Endpoint {
+  string address = 1;
   
-  ServiceEndpointConfig service_gateway_endpoint_config = 16;
-  
-  ServiceEndpointConfig service_mail_endpoint_config = 14;
-
-  ServiceEndpointConfig service_notification_endpoint_config = 17;
-
-  ServiceEndpointConfig service_reporter_endpoint_config = 18;
-
-  DatabaseConfig database_config = 9;
-
-  StringKeyConfig string_key_config = 10;
-
-  GoogleCredentialConfig google_credential_config = 11;
-
-  KafkaConfig kafka_config = 12;
-
-  KafkaTopicsConfig kafka_topics_config = 13;
-
-  Smtp smtp = 15;
-}
-
-message TelemetryConfig {
-  string address = 1;
-
   int32 port = 2;
 
-  bool use_ssl_credentials = 3;
-
-  string ssl_credentials_ca_cert_path = 4;
+  string name = 3;
 }
 
-message ServiceEndpointConfig {
-  string address = 1;
+message Monitoring {
+  Endpoint telemetry_endpoint = 1;
 
-  int32 port = 2;
-
-  string alias_name = 3;
+  Endpoint jaeger_endpoint = 2;
 }
 
-message DatabaseConfig {
-  string address = 1;
+message Services {
+  Endpoint service_auth_endpoint = 1;
 
-  int32 port = 2;
+  Endpoint service_course_endpoint = 2;
 
-  string username = 3;
+  Endpoint service_file_uploader_endpoint = 3;
 
-  string password = 4;
+  Endpoint service_gateway_endpoint = 4;
 
-  string database = 5;
+  Endpoint service_mail_endpoint = 5;
 
-  bool migrations = 6;
+  Endpoint service_notification_endpoint = 6;
+
+  Endpoint service_reporter_endpoint = 7;
 }
 
-message StringKeyConfig {
-  string session_id = 1;
+message Database {
+  enum Kind {
+    MYSQL = 0;
 
-  string user_slim = 2;
+    MONGODB = 1;
 
-  string locale = 3;
+    POSTGRES = 2;
 
-  string tracer = 4;
+    MARIADB = 3;
+  }
 
-  string md_wrapper = 5;
+  enum Adapter {
+    MINDSDB = 0;
+  }
+
+  Kind kind = 1;
+
+  Adapter adapter = 2;
+
+  Endpoint endpoint = 3;
+
+  string username = 4;
+
+  string password = 5;
+
+  bool migrate = 6;
 }
 
-message RedisConfig {
-  string address = 1;
+message Redis {
+  Endpoint endpoint = 1;
 
-  int32 port = 2;
+  string password = 3;
 
-  string redis_password = 3;
-
-  int32 redis_db = 4;
+  int32 database = 4;
 
   int32 min_idl_conns = 5;
 
@@ -106,8 +98,8 @@ message RedisConfig {
   int32 session_timeout = 8;
 }
 
-message GoogleCredentialConfig {
-  message GoogleServiceAccount {
+message Google {
+  message ServiceAccount {
     string type = 1;
   
     string project_id = 2;
@@ -129,7 +121,7 @@ message GoogleCredentialConfig {
     string client_x509_cert_url = 10;
   }
 
-  message GoogleOauth {
+  message Oauth {
     message Credentials {
       string client_id = 1;
 
@@ -153,18 +145,34 @@ message GoogleCredentialConfig {
     Credentials installed = 2;
   }
 
-  message GoogleDrive {
+  message Drive {
     string root_dir_id = 1;
   }
 
-  GoogleServiceAccount google_service_account = 1;
+  ServiceAccount service_account = 1;
 
-  GoogleOauth google_oauth = 2;
+  Oauth oauth = 2;
 
-  GoogleDrive google_drive = 3;
+  Drive drive = 3;
 }
 
-message KafkaConfig {
+message Kafka {
+  message Topics {
+    message Topic {
+      string topic_name = 1;
+  
+      int32 partitions = 2;
+      
+      int32 replication_factor = 3;
+    }
+
+    Topic user_mutate = 1;
+  
+    Topic user_update = 2;
+  
+    Topic mail_send = 3;
+  }
+
   repeated string brokers = 1;
 
   string group_id = 2;
@@ -172,30 +180,14 @@ message KafkaConfig {
   bool init_topic = 3;
 
   int32 max_pool_size = 4;
-}
 
-message KafkaTopicsConfig {
-  message KafkaTopic {
-    string topic_name = 1;
-
-    int32 partitions = 2;
-    
-    int32 replication_factor = 3;
-  }
-
-  KafkaTopic user_mutate = 1;
-
-  KafkaTopic user_update = 2;
-
-  KafkaTopic mail_send = 3;
+  Topics topics = 5;
 }
 
 message Smtp {
-  string host = 1;
+  Endpoint endpoint = 1;
 
-  int32 port = 2;
+  string username = 2;
 
-  string username = 3;
-
-  string password = 4;
+  string password = 3;
 }
