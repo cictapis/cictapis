@@ -3,12 +3,12 @@ syntax = "proto3";
 package cict.common.v1;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/cict-reporter/cict/common/v1;common";
+option go_package = "github.com/cictapis/cict-auth/cict/common/v1;common";
 option java_multiple_files = false;
-option java_outer_classname = "TranslationProto";
+option java_outer_classname = "ErrorLocalProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.common.v1";
 
-message Translation {
+message ErrorLocale {
   string grpc_ok = 1;
 
   string grpc_cancelled = 2;
@@ -28,7 +28,7 @@ message Translation {
   string grpc_failed_precondition = 9;
 
   string grpc_aborted = 10;
-  
+
   string grpc_out_of_range = 11;
 
   string grpc_internal = 12;
@@ -40,12 +40,4 @@ message Translation {
   string grpc_unauthenticated = 15;
 
   string grpc_permission_denied = 16;
-
-  string vld_confirm_password_not_match = 17;
-}
-
-message TranslationFactory {
-  Translation vi = 1;
-
-  Translation en = 2;
 }

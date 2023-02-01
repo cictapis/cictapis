@@ -8,7 +8,7 @@ on:
     branches: [ master ]
 
 jobs:
-  check_build_all:
+  verify_descriptor:
 
     runs-on: ubuntu-latest
 
@@ -17,5 +17,23 @@ jobs:
       - uses: bazelbuild/setup-bazelisk@v2
       - name: Build proto descriptor
         run: bazel build //envoy/...
+
+  verify_go:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: bazelbuild/setup-bazelisk@v2
       - name: Build target go
         run: cd go && bazel build //...
+
+  verify_java:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: bazelbuild/setup-bazelisk@v2
+      - name: Build target java
+        run: cd java && bazel build //...

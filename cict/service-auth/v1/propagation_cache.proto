@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package cict.service_auth.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_auth/v1;service_auth";
+option java_multiple_files = false;
+option java_outer_classname = "PropagationCacheProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceauth.v1";
+
+import "cict/service-auth/v1/role_accessibility.proto";
+import "cict/service-auth/v1/session.proto";
+
+// Propagation cache is data, which transferred from middleware to handler
+message PropagationCache {
+  Session session = 1;
+
+  RoleAccessibility role_accessibility = 2;
+
+  string locale = 3;
+
+  string workspace_id = 4;
+}

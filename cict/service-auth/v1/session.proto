@@ -3,7 +3,7 @@ syntax = "proto3";
 package cict.service_auth.v1;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/cict-reporter/cict/service_auth/v1;service_auth";
+option go_package = "github.com/cictapis/cict-auth/cict/service_auth/v1;service_auth";
 option java_multiple_files = false;
 option java_outer_classname = "SessionProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.serviceauth.v1";
@@ -11,8 +11,9 @@ option java_package = "com.github.cictapis.cict_reporter.cict.serviceauth.v1";
 import "google/api/annotations.proto";
 
 import "cict/common/v1/annotations.proto";
-import "cict/common/v1/user_slim.proto";
-import "cict/common/v1/enum_system_role.proto";
+import "cict/service-auth/v1/enum_scope.proto";
+import "cict/service-auth/v1/role_accessibility.proto";
+import "cict/service-auth/v1/workspace_user.proto";
 
 service SessionService {
   rpc AuthenticateSession(AuthenticateSessionRequest) returns (AuthenticateSessionResponse) {
@@ -30,21 +31,21 @@ message AuthenticateSessionRequest {
   string session_id = 1;
 
   common.v1.AnnotationsCictMethodOptions cict_annotations = 2;
+
+  // The requested service scope
+  EnumScope.Scope scope = 3;
+
+  string workspace_id = 4;
 }
 
 message AuthenticateSessionResponse {
-  // Don't use session as response becase session will contain more secret info.
-  common.v1.UserSlim user_slim = 1;
+  Session session = 1;
+
+  RoleAccessibility role_accessibility = 2;
 }
 
 message Session {
   string id = 1;
 
-  string user_id = 2;
-
-  string email = 3;
-
-  string name = 4;
-
-  common.v1.EnumSystemRole.SystemRole system_role = 5;
+  User user = 2;
 }

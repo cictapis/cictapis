@@ -3,8 +3,14 @@ load("@rules_proto//proto:defs.bzl", "proto_library")
 package(default_visibility = ["//visibility:public"])
 
 proto_library(
-  name = "enum_authenticate_third_party_proto",
-  srcs = ["enum_authenticate_third_party.proto"],
+  name = "enum_scope_role_proto",
+  srcs = ["enum_scope_role.proto"],
+  deps = []
+)
+
+proto_library(
+  name = "enum_scope_proto",
+  srcs = ["enum_scope.proto"],
   deps = []
 )
 
@@ -15,9 +21,46 @@ proto_library(
 )
 
 proto_library(
-  name = "profile_proto",
-  srcs = ["profile.proto"],
+  name = "error_locale_proto",
+  srcs = ["error_locale.proto"],
   deps = []
+)
+
+proto_library(
+  name = "locale_proto",
+  srcs = ["locale.proto"],
+  deps = [
+    "//cict/common/v1:error_locale_proto",
+    ":error_locale_proto"
+  ]
+)
+
+proto_library(
+  name = "propagation_cache_proto",
+  srcs = ["propagation_cache.proto"],
+  deps = [
+    ":role_accessibility_proto",
+    ":session_proto",
+  ]
+)
+
+proto_library(
+  name = "role_accessibility_proto",
+  srcs = ["role_accessibility.proto"],
+  deps = []
+)
+
+proto_library(
+  name = "scope_proto",
+  srcs = ["scope.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:field_mask_proto",
+    "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mask_behavior_proto",
+    ":enum_scope_role_proto",
+    ":enum_scope_proto",
+  ]
 )
 
 proto_library(
@@ -26,23 +69,23 @@ proto_library(
   deps = [
     "//google/api:annotations_proto",
     "//cict/common/v1:annotations_proto",
-    "//cict/common/v1:enum_system_role_proto",
-    "//cict/common/v1:user_slim_proto",
+    ":enum_scope_proto",
+    ":role_accessibility_proto",
+    ":workspace_user_proto",
   ]
 )
 
 proto_library(
-  name = "user_proto",
-  srcs = ["user.proto"],
+  name = "workspace_user_proto",
+  srcs = ["workspace_user.proto"],
   deps = [
     "//google/api:annotations_proto",
     "@com_google_protobuf//:field_mask_proto",
     "@com_google_protobuf//:empty_proto",
     "//cict/common/v1:annotations_proto",
     "//cict/common/v1:enum_mask_behavior_proto",
-    "//cict/common/v1:enum_system_role_proto",
     "//cict/common/v1:paginate_proto",
-    ":enum_authenticate_third_party_proto",
     ":enum_user_status_proto",
+    ":scope_proto",
   ]
 )

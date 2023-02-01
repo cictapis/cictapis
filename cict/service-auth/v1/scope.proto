@@ -1,0 +1,102 @@
+syntax = "proto3";
+
+package cict.service_auth.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_auth/v1;service_auth";
+option java_multiple_files = false;
+option java_outer_classname = "ScopeProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceauth.v1";
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/service-auth/v1/enum_scope_role.proto";
+import "cict/service-auth/v1/enum_scope.proto";
+
+service ScopeService {
+  rpc MutateScope (MutateScopeRequest) returns (MutateScopeResponse) {
+    option (google.api.http) = {
+      post: "/api/service_auth/v1/scope/mutate",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: WORKSPACE_OWNER,
+    };
+  }
+}
+
+message MutateScopeRequest {
+  MutateScopeCreate create = 1;
+
+  MutateScopeUpdate update = 2;
+
+  MutateScopeDelete delete = 3;
+
+  string user_id = 4;
+
+  bool partial_failure = 5;
+}
+
+message MutateScopeCreate {
+  option (common.v1.default_mask) = {
+    paths: ["scope","role"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  repeated Scope scopes = 3;
+}
+
+message MutateScopeUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["scope","role"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  Scope scope = 3;
+
+  repeated string ids = 4;
+}
+
+message MutateScopeDelete {
+  repeated string ids = 1;
+}
+
+message MutateScopeResponse {
+  int64 affected_rows = 1;
+}
+
+message Scope {
+  // @gotags: gorm:"primary_key;type:varchar(36);default:(uuid())"
+  string id = 1;
+
+  EnumScope.Scope scope = 2;
+
+  EnumScopeRole.ScopeRole role = 3;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updated_at = 100;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 created_at = 101;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string created_by_id = 102;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string updated_by_id = 103;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string owned_by_id = 104;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string workspace_id = 105;
+}

@@ -3,7 +3,7 @@ syntax = "proto3";
 package cict.service_course.v1;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/cict-reporter/cict/service_course/v1;service_course";
+option go_package = "github.com/cictapis/cict-auth/cict/service_course/v1;service_course";
 option java_multiple_files = false;
 option java_outer_classname = "CourseProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.servicecourse.v1";
@@ -24,7 +24,7 @@ service CourseService {
       body: "*"
     };
     option (common.v1.cict) = {
-      crud_policy: ADMIN,
+      crud_policy: SCOPE_ADMIN,
     };
   }
 
@@ -52,7 +52,7 @@ service CourseService {
       body: "*"
     };
     option (common.v1.cict) = {
-      crud_policy: USER,
+      crud_policy: SCOPE_USER,
     };
   }
 }

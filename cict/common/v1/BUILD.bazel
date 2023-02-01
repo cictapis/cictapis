@@ -31,44 +31,13 @@ proto_library(
 )
 
 proto_library(
-  name = "enum_system_role_proto",
-  srcs = ["enum_system_role.proto"],
+  name = "error_locale_proto",
+  srcs = ["error_locale.proto"],
   deps = []
-)
-
-proto_library(
-  name = "md_wrapper_proto",
-  srcs = ["md_wrapper.proto"],
-  deps = [
-    ":user_slim_proto",
-  ]
-)
-
-proto_library(
-  name = "facade_proto",
-  srcs = ["facade.proto"],
-  deps = [
-    ":translation_proto",
-    ":user_slim_proto",
-  ]
 )
 
 proto_library(
   name = "paginate_proto",
   srcs = ["paginate.proto"],
   deps = []
-)
-
-proto_library(
-  name = "translation_proto",
-  srcs = ["translation.proto"],
-  deps = []
-)
-
-proto_library(
-  name = "user_slim_proto",
-  srcs = ["user_slim.proto"],
-  deps = [
-    ":enum_system_role_proto",
-  ],
 )

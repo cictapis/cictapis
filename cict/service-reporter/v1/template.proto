@@ -3,17 +3,14 @@ syntax = "proto3";
 package cict.service_reporter.v1;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/cict-reporter/cict/service_reporter/v1;service_reporter";
+option go_package = "github.com/cictapis/cict-auth/cict/service_reporter/v1;service_reporter";
 option java_multiple_files = false;
 option java_outer_classname = "TemplateProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.servicereporter.v1";
 
 import "google/api/annotations.proto";
-import "google/protobuf/field_mask.proto";
-import "google/protobuf/empty.proto";
 
 import "cict/common/v1/annotations.proto";
-import "cict/common/v1/enum_mask_behavior.proto";
 import "cict/common/v1/paginate.proto";
 
 service TemplateService {
@@ -23,7 +20,7 @@ service TemplateService {
       body: "*"
     };
     option (common.v1.cict) = {
-      crud_policy: ADMIN,
+      crud_policy: SCOPE_ADMIN,
     };
   }
 
@@ -79,19 +76,12 @@ message GetTemplateResponse {
 message Template {
   // @gotags: gorm:"type:varchar(36);default:(uuid())"
   int64 id = 1;
-  
+
   string title = 2;
 
   string jasper_report_jrxml = 3;
 
   string data_source_api = 4;
-
-  // A string contains roles, which can access template reporter.
-  // Each element is enum_system_role and seperate by ';'.
-  // Example: 
-  //    - Value: '2,3'
-  //    - Explaination: Only Admin and supper user can access this template.
-  string system_roles = 5;
 
   // @gotags: gorm:"autoUpdateTime:nano"
   int64 updated_at = 100;

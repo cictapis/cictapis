@@ -7,11 +7,8 @@ java_grpc_library(
     "@com_github_cict_cictapis//cict/common/v1:config_proto",
     "@com_github_cict_cictapis//cict/common/v1:enum_crud_policy_proto",
     "@com_github_cict_cictapis//cict/common/v1:enum_mask_behavior_proto",
-    "@com_github_cict_cictapis//cict/common/v1:enum_system_role_proto",
-    "@com_github_cict_cictapis//cict/common/v1:md_wrapper_proto",
+    "@com_github_cict_cictapis//cict/common/v1:error_locale_proto",
     "@com_github_cict_cictapis//cict/common/v1:paginate_proto",
-    "@com_github_cict_cictapis//cict/common/v1:translation_proto",
-    "@com_github_cict_cictapis//cict/common/v1:user_slim_proto",
   ],
   deps = [],
   visibility = ["//visibility:public"]
