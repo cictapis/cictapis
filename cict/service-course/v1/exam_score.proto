@@ -3,7 +3,7 @@ syntax = "proto3";
 package cict.service_course.v1;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/cict-reporter/cict/service_course/v1;service_course";
+option go_package = "github.com/cictapis/cict-auth/cict/service_course/v1;service_course";
 option java_multiple_files = false;
 option java_outer_classname = "ExamScoreProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.servicecourse.v1";
@@ -21,7 +21,7 @@ service ExamScoreService {
       body: "*",
     };
     option (common.v1.cict) = {
-      crud_policy: ADMIN,
+      crud_policy: SCOPE_ADMIN,
     };
   }
 
@@ -76,7 +76,7 @@ message ListExamScoreResponse {
   repeated ExamScore exam_scores = 1;
 }
 
-message ExamScore {  
+message ExamScore {
   // @gotags: gorm:"primary_key;type:varchar(36);default:(uuid())"
   string id = 1;
 

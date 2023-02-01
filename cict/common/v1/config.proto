@@ -3,7 +3,7 @@ syntax = "proto3";
 package cict.common.v1;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/cict-reporter/cict/common/v1;common";
+option go_package = "github.com/cictapis/cict-auth/cict/common/v1;common";
 option java_multiple_files = false;
 option java_outer_classname = "ConfigProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.common.v1";
@@ -28,7 +28,7 @@ message Config {
 
 message Endpoint {
   string address = 1;
-  
+
   int32 port = 2;
 }
 
@@ -97,23 +97,23 @@ message Redis {
 message Google {
   message ServiceAccount {
     string type = 1;
-  
+
     string project_id = 2;
-  
+
     string private_key_id = 3;
-  
+
     string private_key = 4;
-  
+
     string client_email = 5;
-  
+
     string client_id = 6;
-  
+
     string auth_uri = 7;
-  
+
     string token_uri = 8;
-  
+
     string auth_provider_x509_cert_url = 9;
-  
+
     string client_x509_cert_url = 10;
   }
 
@@ -156,16 +156,16 @@ message Kafka {
   message Topics {
     message Topic {
       string topic_name = 1;
-  
+
       int32 partitions = 2;
-      
+
       int32 replication_factor = 3;
     }
 
     Topic user_mutate = 1;
-  
+
     Topic user_update = 2;
-  
+
     Topic mail_send = 3;
   }
 
@@ -193,7 +193,9 @@ message Const {
 
   string locale = 2;
 
-  string md_wrapper = 3;
+  string propagation_cache = 3;
 
-  string user_slim = 4;
+  string user = 4;
+
+  string workspace_id = 5;
 }

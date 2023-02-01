@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package cict.service_auth.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_auth/v1;service_auth";
+option java_multiple_files = false;
+option java_outer_classname = "RoleAccessibilityProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceauth.v1";
+
+// Prove by Karnaugh Map role accessibility can work with formular:
+// f = id.(access_contr + owned.owned_contr + workspace.workspace_contr + owned.workspace.owned_workspace_contr)
+message RoleAccessibility {
+  bool accessibility_controller = 1;
+
+  string owned_by_id = 2;
+
+  bool owner_controller = 3;
+
+  string workspace_id = 4;
+
+  bool workspace_controller = 5;
+
+  bool owner_x_workspace_controller = 6;
+}

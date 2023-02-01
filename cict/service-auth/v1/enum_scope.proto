@@ -5,17 +5,27 @@ package cict.service_auth.v1;
 option cc_enable_arenas = true;
 option go_package = "github.com/cictapis/cict-auth/cict/service_auth/v1;service_auth";
 option java_multiple_files = false;
-option java_outer_classname = "EnumUserStatusProto";
+option java_outer_classname = "EnumScopeProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.serviceauth.v1";
 
-message EnumUserStatus {
-  enum UserStatus {
+message EnumScope {
+  enum Scope {
     UNSPECIFIED = 0;
 
-    ACTIVE = 1;
+    AUTH_SCOPE = 1;
 
-    NEED_EMAIL_VERIFICATION = 2;
+    COURSE_SCOPE = 2;
 
-    DEACTIVE = 3;
+    DORMITORY_SCOPE = 3;
+
+    FILE_UPLOADER_SCOPE = 4;
+
+    GATEWAY_SCOPE = 5;
+
+    MAIL_SCOPE = 6;
+
+    NOTIFICATION_SCOPE = 7;
+
+    REPORTER_SCOPE = 8;
   }
 }

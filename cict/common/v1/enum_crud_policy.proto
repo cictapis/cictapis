@@ -3,7 +3,7 @@ syntax = "proto3";
 package cict.common.v1;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/cict-reporter/cict/common/v1;common";
+option go_package = "github.com/cictapis/cict-auth/cict/common/v1;common";
 option java_multiple_files = false;
 option java_outer_classname = "EnumCrudPolicyProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.common.v1";
@@ -14,26 +14,32 @@ message EnumCrudPolicy {
     UNSPECIFIED = 0;
 
     // Supper user can operate data.
-    SUPPER_USER = 1;
+    SUPPERUSER = 1;
+
+    // Workspace owner and supperuser can operate data.
+    WORKSPACE_OWNER = 2;
+
+    // Anyone in the same workspace can operate data
+    WORKSPACE_ISOLATION = 3;
 
     // Admin can operate data
-    // Supper user can operate data.
-    ADMIN = 2;
+    // Supperuser, workspace owner can operate data.
+    SCOPE_ADMIN = 4;
 
     // User can operate data
     // Admin, supperuser can operate data
-    USER = 3;
+    SCOPE_USER = 5;
 
     // Auth user can operate
-    AUTH = 4;
+    AUTH = 6;
 
     // Anonymous user can operate.
-    ANONYMOUS = 5;
+    ANONYMOUS = 7;
 
     // Anyone can operate.
-    ANYONE = 6;
+    ANYONE = 8;
 
     // System can operate.
-    SYSTEM = 7;
+    SYSTEM = 9;
   }
 }

@@ -3,7 +3,7 @@ syntax = "proto3";
 package cict.service_dormitory.v1;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/cict-reporter/cict/service_dormitory/v1;service_dormitory";
+option go_package = "github.com/cictapis/cict-auth/cict/service_dormitory/v1;service_dormitory";
 option java_multiple_files = false;
 option java_outer_classname = "RegistrationFormProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.servicedormitory.v1";
@@ -21,7 +21,7 @@ service RegistrationFormService {
       body: "*"
     };
     option (common.v1.cict) = {
-      crud_policy: USER,
+      crud_policy: SCOPE_USER,
     };
   }
 
@@ -30,7 +30,7 @@ service RegistrationFormService {
       get: "/api/service_dormitory/v1/registration_form/get"
     };
     option (common.v1.cict) = {
-      crud_policy: USER,
+      crud_policy: SCOPE_USER,
     };
   }
 
@@ -39,7 +39,7 @@ service RegistrationFormService {
       get: "/api/service_dormitory/v1/registration_form/list"
     };
     option (common.v1.cict) = {
-      crud_policy: USER,
+      crud_policy: SCOPE_USER,
     };
   }
 }

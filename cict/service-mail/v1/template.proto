@@ -3,7 +3,7 @@ syntax = "proto3";
 package cict.service_mail.v1;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/cict-reporter/cict/service_mail/v1;service_mail";
+option go_package = "github.com/cictapis/cict-auth/cict/service_mail/v1;service_mail";
 option java_multiple_files = false;
 option java_outer_classname = "TemplateProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.servicemail.v1";
@@ -23,7 +23,7 @@ service TemplateService {
       body: "*"
     };
     option (common.v1.cict) = {
-      crud_policy: ADMIN,
+      crud_policy: SCOPE_ADMIN,
     };
   }
 
@@ -32,7 +32,7 @@ service TemplateService {
       get: "/api/service_mail/v1/template/get_template",
     };
     option (common.v1.cict) = {
-      crud_policy: ADMIN,
+      crud_policy: SCOPE_ADMIN,
     };
   }
 
@@ -41,7 +41,7 @@ service TemplateService {
       get: "/api/service_mail/v1/template/list_template",
     };
     option (common.v1.cict) = {
-      crud_policy: ADMIN,
+      crud_policy: SCOPE_ADMIN,
     };
   }
 }
@@ -125,7 +125,7 @@ message ListTemplateRequest {
 }
 
 message ListTemplateResponse {
-  repeated Template templates = 1; 
+  repeated Template templates = 1;
 }
 
 message Template {
