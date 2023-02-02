@@ -12,21 +12,25 @@ import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 
 import "cict/common/v1/annotations.proto";
+import "cict/service-mail/v1/enum_built_in_template.proto";
 
 service MailService {
-  rpc SendMail (SendMailRequest) returns (google.protobuf.Empty) {
+  // Send email with user's input content
+  rpc SendContentMail(SendContentMailRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/api/service_mail/v1/mail/send"
-      body: "*"
+      post: "/api/service_mail/v1/mail/send_content",
+      body: "*",
     };
     option (common.v1.cict) = {
-      crud_policy: SCOPE_ADMIN,
+      crud_policy: AUTH,
     };
   }
 
-  rpc SendResetPasswordMail(SendResetPasswordMailRequest) returns (google.protobuf.Empty) {
+  // Send email with prepared template
+  rpc SendTemplateMail(SendTemplateMailRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/api/service_mail/v1/mail/send_reset_password"
+      post: "/api/service_mail/v1/mail/send_template",
+      body: "*",
     };
     option (common.v1.cict) = {
       crud_policy: AUTH,
@@ -34,20 +38,32 @@ service MailService {
   }
 }
 
-message SendMailRequest {
+message SendContentMailRequest {
   repeated string dst_mail_address = 1;
 
   string subject = 2;
 
-  oneof option {
-    string content = 3;
+  string content = 3;
 
-    string template_id = 4;
-  }
-
-  repeated string attached_files = 5;
+  repeated string attached_files = 4;
 }
 
-message SendResetPasswordMailRequest {
+message SendTemplateMailRequest {
+  oneof by {
+    SendTemplateMailByTemplateId template_id = 1;
 
+    SendTemplateMailByBuiltInTemplate built_in_template = 2;
+  }
+}
+
+message SendTemplateMailByTemplateId {
+  repeated string dst_mail_address = 1;
+
+  string template_id = 2;
+}
+
+message SendTemplateMailByBuiltInTemplate {
+  repeated string dst_mail_address = 1;
+
+  EnumBuiltInTemplate.BuiltInTemplate built_in_template = 3;
 }

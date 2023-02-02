@@ -3,9 +3,24 @@ load("@rules_proto//proto:defs.bzl", "proto_library")
 package(default_visibility = ["//visibility:public"])
 
 proto_library(
-  name = "file_slim_proto",
-  srcs = ["file_slim.proto"],
+  name = "enum_built_in_template_proto",
+  srcs = ["enum_built_in_template.proto"],
   deps = []
+)
+
+proto_library(
+  name = "error_locale_proto",
+  srcs = ["error_locale.proto"],
+  deps = []
+)
+
+proto_library(
+  name = "locale_proto",
+  srcs = ["locale.proto"],
+  deps = [
+    "//cict/common/v1:error_locale_proto",
+    ":error_locale_proto",
+  ]
 )
 
 proto_library(
@@ -15,6 +30,7 @@ proto_library(
     "//google/api:annotations_proto",
     "@com_google_protobuf//:empty_proto",
     "//cict/common/v1:annotations_proto",
+    ":enum_built_in_template_proto",
   ]
 )
 
@@ -27,6 +43,6 @@ proto_library(
     "//cict/common/v1:annotations_proto",
     "//cict/common/v1:enum_mask_behavior_proto",
     "//cict/common/v1:paginate_proto",
-    ":file_slim_proto",
+    ":enum_built_in_template_proto",
   ]
 )

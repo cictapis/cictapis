@@ -14,7 +14,7 @@ import "google/protobuf/field_mask.proto";
 import "cict/common/v1/annotations.proto";
 import "cict/common/v1/enum_mask_behavior.proto";
 import "cict/common/v1/paginate.proto";
-import "cict/service-mail/v1/file_slim.proto";
+import "cict/service-mail/v1/enum_built_in_template.proto";
 
 service TemplateService {
   rpc MutateTemplate(MutateTemplateRequest) returns(MutateTemplateResponse) {
@@ -32,7 +32,7 @@ service TemplateService {
       get: "/api/service_mail/v1/template/get_template",
     };
     option (common.v1.cict) = {
-      crud_policy: SCOPE_ADMIN,
+      crud_policy: AUTH,
     };
   }
 
@@ -41,55 +41,49 @@ service TemplateService {
       get: "/api/service_mail/v1/template/list_template",
     };
     option (common.v1.cict) = {
-      crud_policy: SCOPE_ADMIN,
+      crud_policy: AUTH,
     };
   }
 }
 
 message MutateTemplateRequest {
-  oneof operation {
-    MutateTemplateCreate create= 1;
+  MutateTemplateCreate create = 1;
 
-    MutateTemplateUpdate update = 2;
+  MutateTemplateUpdate update = 2;
 
-    MutateTemplateDelete delete = 3;
-  }
+  MutateTemplateDelete delete = 3;
+
+  bool partial_failure = 4;
 }
 
 message MutateTemplateCreate {
   option (common.v1.default_mask) = {
-    paths: ["content", "attached_files.web_content_link", "attached_files.origin_id", "attached_files.template_id"]
+    paths: ["subject","content","attached_files"]
   };
 
-  repeated Template templates = 1;
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
 
-  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 3;
+  google.protobuf.FieldMask mask = 2;
 
-  google.protobuf.FieldMask mask = 4;
-
-  bool partial_failure = 5;
+  repeated Template templates = 3;
 }
 
 message MutateTemplateUpdate {
   option (common.v1.default_mask) = {
-    paths: ["content", "attached_files.web_content_link", "attached_files.origin_id", "attached_files.template_id"]
+    paths: ["subject","content","attached_files"]
   };
 
-  repeated string ids = 1;
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
 
-  Template template = 2;
+  google.protobuf.FieldMask mask = 2;
 
-  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 3;
+  Template template = 3;
 
-  google.protobuf.FieldMask mask = 4;
-
-  bool partial_failure = 5;
+  repeated string ids = 4;
 }
 
 message MutateTemplateDelete {
   repeated string ids = 1;
-
-  bool partial_failure = 2;
 }
 
 message MutateTemplateResponse {
@@ -98,14 +92,14 @@ message MutateTemplateResponse {
 
 message GetTemplateRequest {
   option (common.v1.default_mask) = {
-    paths: ["id", "content", "attached_files.id", "attached_files.web_content_link", "attached_files.origin_id", "attached_files.template_id"]
+    paths: ["id","subject","content","attached_files"]
   };
 
-  string id = 1;
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
 
-  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 2;
+  google.protobuf.FieldMask mask = 2;
 
-  google.protobuf.FieldMask mask = 3;
+  string id = 3;
 }
 
 message GetTemplateResponse {
@@ -114,14 +108,14 @@ message GetTemplateResponse {
 
 message ListTemplateRequest {
   option (common.v1.default_mask) = {
-    paths: ["id", "content", "attached_files.id", "attached_files.web_content_link", "attached_files.origin_id", "attached_files.template_id"]
+    paths: ["id","subject","content"]
   };
 
-  common.v1.Paginate paginate = 1;
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
 
-  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 2;
+  google.protobuf.FieldMask mask = 2;
 
-  google.protobuf.FieldMask mask = 3;
+  common.v1.Paginate paginate = 3;
 }
 
 message ListTemplateResponse {
@@ -132,10 +126,14 @@ message Template {
   // @gotags: gorm:"type:varchar(36);default:(uuid())"
   string id = 1;
 
-  string content = 2;
+  string subject = 2;
 
-  // Has many relationship
-  repeated FileSlim attached_files = 3;
+  string content = 3;
+
+  // list of web_content_link files seperated by semicolon
+  string attached_files = 4;
+
+  EnumBuiltInTemplate.BuiltInTemplate built_in_template = 5;
 
   // @gotags: gorm:"autoUpdateTime:nano"
   int64 updated_at = 100;
@@ -151,4 +149,7 @@ message Template {
 
   // @gotags: gorm:"type:varchar(36)"
   string owned_by_id = 104;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string workspace_id = 105;
 }

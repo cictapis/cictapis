@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package cict.service_mail.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_mail/v1;service_mail";
+option java_multiple_files = false;
+option java_outer_classname = "ErrorLocaleProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.servicefileuploader.v1";
+
+message ErrorLocale {
+}
