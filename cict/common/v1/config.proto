@@ -164,9 +164,7 @@ message Kafka {
 
     Topic user_mutate = 1;
 
-    Topic user_update = 2;
-
-    Topic mail_send = 3;
+    Topic mail_send = 2;
   }
 
   repeated string brokers = 1;
