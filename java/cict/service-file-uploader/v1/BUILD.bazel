@@ -3,7 +3,9 @@ load("@rules_proto_grpc//java:defs.bzl", "java_grpc_library")
 java_grpc_library(
   name = "cict_service_file_uploader_v1_java_proto",
   protos = [
+    "@com_github_cict_cictapis//cict/service-file-uploader/v1:error_locale_proto",
     "@com_github_cict_cictapis//cict/service-file-uploader/v1:file_proto",
+    "@com_github_cict_cictapis//cict/service-file-uploader/v1:locale_proto",
   ],
   deps = [
     "//google/api:google_api_annotations_java_proto",
