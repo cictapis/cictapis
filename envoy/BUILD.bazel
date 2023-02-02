@@ -35,7 +35,9 @@ proto_descriptor(
     "//cict/service-dormitory/v1:registration_form.proto",
     "//cict/service-dormitory/v1:user.proto",
 
+    "//cict/service-file-uploader/v1:error_locale.proto",
     "//cict/service-file-uploader/v1:file.proto",
+    "//cict/service-file-uploader/v1:locale.proto",
 
     "//cict/service-mail/v1:file_slim.proto",
     "//cict/service-mail/v1:mail.proto",

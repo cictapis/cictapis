@@ -11,7 +11,7 @@ option java_package = "com.github.cictapis.cict_reporter.cict.servicemail.v1";
 message FileSlim {
   // @gotags: gorm:"primary_key;type:varchar(36);default:(uuid())"
   string id = 1;
-  
+
   string web_content_link = 2;
 
   string origin_id = 3;
