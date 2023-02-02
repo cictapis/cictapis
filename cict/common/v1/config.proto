@@ -52,6 +52,8 @@ message Services {
   Endpoint service_notification_endpoint = 6;
 
   Endpoint service_reporter_endpoint = 7;
+
+  Endpoint service_listener_endpoint = 8;
 }
 
 message Database {
