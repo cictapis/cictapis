@@ -5,6 +5,8 @@ go_proto_library(
   compilers = ["@io_bazel_rules_go//proto:go_grpc"],
   importpath = "github.com/cictapis/cict-auth/cict/service-notification/v1",
   protos = [
+    "@com_github_cict_cictapis//cict/service-notification/v1:error_locale_proto",
+    "@com_github_cict_cictapis//cict/service-notification/v1:locale_proto",
     "@com_github_cict_cictapis//cict/service-notification/v1:notification_proto",
   ],
   deps = [

@@ -44,6 +44,10 @@ proto_descriptor(
     "//cict/service-mail/v1:locale.proto",
     "//cict/service-mail/v1:mail.proto",
     "//cict/service-mail/v1:template.proto",
+
+    "//cict/service-notification/v1:error_locale.proto",
+    "//cict/service-notification/v1:locale.proto",
+    "//cict/service-notification/v1:notification.proto",
   ],
   out = "cict.descriptor",
   external_deps = [
