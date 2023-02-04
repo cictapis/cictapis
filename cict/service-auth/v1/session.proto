@@ -13,7 +13,9 @@ import "google/api/annotations.proto";
 import "cict/common/v1/annotations.proto";
 import "cict/service-auth/v1/enum_scope.proto";
 import "cict/service-auth/v1/role_accessibility.proto";
-import "cict/service-auth/v1/workspace_user.proto";
+import "cict/service-auth/v1/scope.proto";
+import "cict/service-auth/v1/user.proto";
+import "cict/service-auth/v1/workspace.proto";
 
 service SessionService {
   rpc AuthenticateSession(AuthenticateSessionRequest) returns (AuthenticateSessionResponse) {
@@ -48,4 +50,8 @@ message Session {
   string id = 1;
 
   User user = 2;
+
+  repeated Workspace workspaces = 3;
+
+  repeated Scope scopes = 4;
 }

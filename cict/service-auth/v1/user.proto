@@ -1,0 +1,260 @@
+syntax = "proto3";
+
+package cict.service_auth.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_auth/v1;service_auth";
+option java_multiple_files = false;
+option java_outer_classname = "UserProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceauth.v1";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/paginate.proto";
+import "cict/service-auth/v1/enum_user_status.proto";
+import "cict/service-auth/v1/scope.proto";
+
+// Supperuser and workspace owner cannot grant user-service scope_admin for others
+service UserService {
+  // Used to login to system
+  rpc Login(LoginRequest) returns (LoginResponse) {
+    option (google.api.http) = {
+      post: "/api/service_auth/v1/user/login",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANONYMOUS,
+    };
+  }
+
+  // Rpc's used to login with agu email domain
+  // Used google login api in client and send token to server to verify account.
+  rpc GoogleLogin(GoogleLoginRequest) returns (GoogleLoginResponse) {
+    option (google.api.http) = {
+      post: "/api/service_auth/v1/user/google_login",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANONYMOUS,
+    };
+  }
+
+  // Destroy current session
+  rpc Logout(google.protobuf.Empty) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/api/service_auth/v1/user/logout",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: AUTH,
+    };
+  }
+
+  rpc ListUser(ListUserRequest) returns (ListUserResponse) {
+    option (google.api.http) = {
+      get: "/api/service_auth/v1/user/list",
+    };
+    option (common.v1.cict) = {
+      crud_policy: WORKSPACE_ISOLATION,
+    };
+  }
+
+  rpc GetUser(GetUserRequest) returns (GetUserResponse) {
+    option (google.api.http) = {
+      get: "/api/service_auth/v1/user/get"
+    };
+    option (common.v1.cict) = {
+      crud_policy: WORKSPACE_ISOLATION,
+    };
+  }
+
+  rpc ResetPassword(ResetPasswordRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/api/service_auth/v1/user/reset_password"
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANYONE,
+    };
+  }
+
+  rpc VerificationResetPassword(VerificationResetPasswordRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/api/service_auth/v1/user/verification_reset_password"
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANYONE,
+    };
+  }
+
+  rpc MutateUser(MutateUserRequest) returns (MutateUserResponse) {
+    option (google.api.http) = {
+      post: "/api/service_auth/v1/user/mutate",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_USER,
+    };
+  }
+}
+
+message LoginRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","avatar","email","name","user_status","updated_at","created_at","created_by_id","updated_by_id"]
+  };
+
+  string email = 1;
+
+  string password = 2;
+}
+
+message LoginResponse {
+  User user = 1;
+
+  string session_id = 2;
+}
+
+message GoogleLoginRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","avatar","email","name","user_status","updated_at","created_at","created_by_id","updated_by_id"]
+  };
+
+  string id_token = 1;
+}
+
+message GoogleLoginResponse {
+
+  User user = 1;
+
+  string session_id = 2;
+}
+
+message ListUserRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","avatar","email","name","user_status","updated_at","created_at","created_by_id","updated_by_id"]
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  common.v1.Paginate paginate = 3;
+}
+
+message ListUserResponse {
+  repeated User users = 1;
+}
+
+message GetUserRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","avatar","email","name","user_status","updated_at","created_at","created_by_id","updated_by_id"]
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  // Query string
+  string id = 3;
+}
+
+message GetUserResponse {
+  User user = 1;
+}
+
+message ResetPasswordRequest {
+  string email = 1;
+}
+
+message VerificationResetPasswordRequest {
+  string email = 1;
+
+  string new_password = 2;
+
+  // Received from email
+  string verification_code = 3;
+}
+
+message MutateUserRequest {
+  oneof operation {
+    MutateUserUpdate update = 1;
+
+    MutateUserDelete delete = 2;
+
+    MutateUserChangePassword change_password = 3;
+  }
+}
+
+message MutateUserUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["name","avatar"]
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  User user = 3;
+
+  string id = 4;
+}
+
+message MutateUserDelete {
+  string id = 1;
+}
+
+message MutateUserChangePassword {
+  option (common.v1.default_mask) = {
+    paths: ["id","password"]
+  };
+
+  User user = 1;
+
+  // actor's old password need providing
+  string validate_password = 2;
+}
+
+message MutateUserResponse {
+  string affected_id = 1;
+}
+
+message User {
+  // @gotags: gorm:"primary_key;type:varchar(36);default:(uuid())"
+  string id = 1;
+
+  string email = 2;
+
+  string password = 3;
+
+  string name = 4;
+
+  string avatar = 5;
+
+  EnumUserStatus.UserStatus user_status = 7;
+
+  bool is_supper_user = 8;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updated_at = 100;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 created_at = 101;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string created_by_id = 102;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string updated_by_id = 103;
+
+  // Data belong to owned_by_id
+  // @gotags: gorm:"type:varchar(36)"
+  string owned_by_id = 104;
+
+  // Data belong to workspace_id
+  //
+  // @gotags: gorm:"type:varchar(36)"
+  string workspace_id = 105;
+}
