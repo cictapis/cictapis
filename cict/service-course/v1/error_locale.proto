@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package cict.service_course.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_course/v1;service_course";
+option java_multiple_files = false;
+option java_outer_classname = "ErrorLocaleProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.servicecourse.v1";
+
+message ErrorLocale {
+  string license_expire = 1;
+
+  string user_not_in_workspace = 2;
+
+  string invalid_confirmation_password = 3;
+}
