@@ -1,12 +1,18 @@
+protoc := $(shell find ../bazel-out/ -type f -name "protoc")
 .PHONY: dart
 dart:
-	@../bazel-out/host/bin/external/com_google_protobuf/protoc \
-		--dart_out=grpc:build \
-		-I../ -I../google -I../bazel-cictapis/external/com_google_protobuf/src \
+	@mkdir -p build
+	@$(protoc) --dart_out=grpc:build \
+		-I../ -I../bazel-cictapis/external/com_google_protobuf/src \
+		../google/api/*.proto
+	@$(protoc) --dart_out=grpc:build \
+		-I../ -I../bazel-cictapis/external/com_google_protobuf/src \
 		../cict/*/v1/*.proto
 
-.PHONY: build_descriptor
+	@rm -rf ../../../cict
+	@rm -rf ../../../google
+	@cp -r build/* ../../../
 build_descriptor:
-	cd .. && bazel build //envoy/...
+	@cd .. && bazel build //envoy/...
 
 ready: build_descriptor dart
