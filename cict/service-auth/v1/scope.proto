@@ -26,6 +26,15 @@ service ScopeService {
       crud_policy: WORKSPACE_OWNER,
     };
   }
+
+  rpc ListScope (ListScopeRequest) returns (ListScopeResponse) {
+    option (google.api.http) = {
+      get: "/api/service_auth/v1/scope/list",
+    };
+    option (common.v1.cict) = {
+      crud_policy: WORKSPACE_ISOLATION,
+    };
+  }
 }
 
 message MutateScopeRequest {
@@ -72,6 +81,22 @@ message MutateScopeDelete {
 
 message MutateScopeResponse {
   int64 affected_rows = 1;
+}
+
+message ListScopeRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","scope","role"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  string user_id = 3;
+}
+
+message ListScopeResponse {
+  repeated Scope scopes = 1;
 }
 
 message Scope {

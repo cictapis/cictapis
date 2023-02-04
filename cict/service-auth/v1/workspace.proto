@@ -1,0 +1,174 @@
+syntax = "proto3";
+
+package cict.service_auth.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_auth/v1;service_auth";
+option java_multiple_files = false;
+option java_outer_classname = "WorkspaceProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceauth.v1";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/paginate.proto";
+
+service WorkspaceService {
+  // Register new workspace.
+  rpc RegisterUniversityWorkspace (RegisterUniversityWorkspaceRequest) returns (RegisterUniversityWorkspaceResponse) {
+    option (google.api.http) = {
+      post: "/api/service_auth/v1/workspace/register_university",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: AUTH
+    };
+  }
+
+  // Update, delete or add new user to workspace
+  rpc MutateWorkspace (MutateWorkspaceRequest) returns (MutateWorkspaceResponse) {
+    option (google.api.http) = {
+      post: "/api/service_auth/v1/workspace/mutate",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: WORKSPACE_OWNER
+    };
+  }
+
+  rpc ListWorkspace (ListWorkspaceRequest) returns (ListWorkspaceResponse) {
+    option (google.api.http) = {
+      get: "/api/service_auth/v1/workspace/list",
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANYONE,
+    };
+  }
+
+  rpc GetWorkspace (GetWorkspaceRequest) returns (GetWorkspaceResponse) {
+    option (google.api.http) = {
+      get: "/api/service_auth/v1/workspace/get",
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANYONE,
+    };
+  }
+}
+
+
+message RegisterUniversityWorkspaceRequest {
+  option (common.v1.default_mask) = {
+    paths: ["name"]
+  };
+
+  Workspace workspace = 1;
+}
+
+message RegisterUniversityWorkspaceResponse {
+  string workspace_id = 1;
+}
+
+message MutateWorkspaceRequest {
+  oneof operation {
+    MutateWorkspaceUpdate update = 1;
+
+    MutateWorkspaceDelete delete = 2;
+  }
+}
+
+message MutateWorkspaceUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["name"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  Workspace workspace = 3;
+
+  string id = 4;
+}
+
+message MutateWorkspaceDelete {
+  Workspace Workspace = 1;
+}
+
+message MutateWorkspaceResponse {
+  string affected_id = 1;
+}
+
+message ListWorkspaceRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","name","is_trial_workspace","expire_at","is_block","default_scopes","updated_at","created_at","created_by_id","updated_by_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  common.v1.Paginate paginate = 3;
+}
+
+message ListWorkspaceResponse {
+  repeated Workspace workspaces = 1;
+}
+
+message GetWorkspaceRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","name","is_trial_workspace","expire_at","is_block","default_scopes","updated_at","created_at","created_by_id","updated_by_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  // Query string.
+  string id = 3;
+}
+
+message GetWorkspaceResponse {
+  Workspace workspace = 1;
+}
+
+message Workspace {
+  // @gotags: gorm:"primary_key;type:varchar(36);default:(uuid())"
+  string id = 1;
+
+  // @gotags: gorm:"unique;not null"
+  string name = 2;
+
+  // By default, created user'll belong to default_workspace
+  bool default_workspace = 4;
+
+  bool is_trial_workspace = 5;
+
+  string license_key = 6;
+
+  int64 expire_at = 7;
+
+  // Determine if workspace is block
+  bool is_block = 8;
+
+  // EnumScope list which is seperated by semicolon.
+  // Example: "AUTH_SCOPE;COURSE_SCOPE"
+  string default_scopes = 9;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updated_at = 100;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 created_at = 101;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string created_by_id = 102;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string updated_by_id = 103;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string owned_by_id = 104;
+}

@@ -12,7 +12,9 @@ java_grpc_library(
     "@com_github_cict_cictapis//cict/service-auth/v1:role_accessibility_proto",
     "@com_github_cict_cictapis//cict/service-auth/v1:scope_proto",
     "@com_github_cict_cictapis//cict/service-auth/v1:session_proto",
+    "@com_github_cict_cictapis//cict/service-auth/v1:user_proto",
     "@com_github_cict_cictapis//cict/service-auth/v1:workspace_user_proto",
+    "@com_github_cict_cictapis//cict/service-auth/v1:workspace_proto",
   ],
   deps = [
     "//google/api:google_api_annotations_java_proto",

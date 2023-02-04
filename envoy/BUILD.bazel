@@ -22,7 +22,9 @@ proto_descriptor(
     "//cict/service-auth/v1:role_accessibility.proto",
     "//cict/service-auth/v1:scope.proto",
     "//cict/service-auth/v1:session.proto",
+    "//cict/service-auth/v1:user.proto",
     "//cict/service-auth/v1:workspace_user.proto",
+    "//cict/service-auth/v1:workspace.proto",
 
     "//cict/service-course/v1:course_field.proto",
     "//cict/service-course/v1:course_timetable_day.proto",
