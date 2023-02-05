@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package cict.service_academic.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
+option java_multiple_files = false;
+option java_outer_classname = "EnumCategoryProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
+
+message EnumCategoryType {
+  enum CategoryType {
+    UNSPECIFIED = 0;
+
+    ACRONYM = 1;
+
+    CAMPUS = 2;
+
+    FACULTY = 3;
+
+    MAJOR = 4;
+
+    TYPE_OF_EDUCATION = 5;
+  }
+}

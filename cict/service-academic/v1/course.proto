@@ -1,0 +1,100 @@
+syntax = "proto3";
+
+package cict.service_academic.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
+option java_multiple_files = false;
+option java_outer_classname = "CourseProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
+
+import "cict/service-academic/v1/campus.proto";
+import "cict/service-academic/v1/class.proto";
+import "cict/service-academic/v1/enum_course_status.proto";
+import "cict/service-academic/v1/enum_study_period.proto";
+import "cict/service-academic/v1/staff.proto";
+import "cict/service-academic/v1/subject.proto";
+
+// Học phần
+message Course {
+  // @gotags: gorm:"not null;unique;type:varchar(36);default:(uuid())"
+  string id = 1;
+
+  // NHHK
+  // @gotags: gorm:"primaryKey;type:varchar(10)"
+  string school_year_semester = 2;
+
+  // MaMH
+  // @gotags: gorm:"primaryKey;type:varchar(50)"
+  string subject_id = 3;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE"
+  Subject subject = 4;
+
+  // Lop
+  // @gotags: gorm:"primaryKey;type:varchar(50)"
+  string class_id = 5;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE"
+  Class class = 6;
+
+  // MaCB
+  // @gotags: gorm:"primaryKey;type:varchar(50)"
+  string lecturer_id = 7;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE"
+  Staff lecturer = 8;
+
+  // Nhom
+  // @gotags: gorm:primaryKey;type:varchar(5)
+  string group = 9;
+
+  // Thu
+  // Date in week represent by a number from 2 to 8 means Monday to Sunday
+  uint8 date = 10;
+
+  // TietBD
+  uint8 class_start = 11;
+
+  // SoTiet
+  uint8 num_of_classes = 12;
+
+  // MaPH
+  // @gotags: gorm:"type:varchar(10)"
+  string room_code = 13;
+
+  // Buoi hoc
+  EnumStudyPeriod.StudyPeriod study_period = 14;
+
+  // MaCS
+  // @gotags: gorm:"type:varchar(50)"
+  string campus_id = 15;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL"
+  Campus campus = 16;
+
+  // TuanHoc
+  // @gotags: gorm:"type:varchar(100)"
+  string week_of_study = 17;
+
+  // Status
+  EnumCourseStatus.CourseStatus course_status = 18;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updated_at = 100;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 created_at = 101;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string created_by_id = 102;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string updated_by_id = 103;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string owned_by_id = 104;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string workspace_id = 105;
+}

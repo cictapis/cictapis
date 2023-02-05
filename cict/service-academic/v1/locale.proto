@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package cict.service_academic.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
+option java_multiple_files = false;
+option java_outer_classname = "LocaleProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
+
+import "cict/common/v1/error_locale.proto";
+import "cict/service-academic/v1/error_locale.proto";
+
+message Locale {
+  common.v1.ErrorLocale grpc_error = 1;
+
+  service_academic.v1.ErrorLocale service_error = 2;
+}
+
+message LocaleFactory {
+  Locale vi = 1;
+
+  Locale en = 2;
+}

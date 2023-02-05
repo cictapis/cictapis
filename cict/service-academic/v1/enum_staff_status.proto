@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package cict.service_academic.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
+option java_multiple_files = false;
+option java_outer_classname = "EnumStaffStatusProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
+
+message EnumStaffStatus {
+  enum StaffStatus {
+    UNSPECIFIED = 0;
+
+    ON_PROGRESS = 1;
+
+    TERMINATED = 2;
+  }
+}

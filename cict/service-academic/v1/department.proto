@@ -1,0 +1,171 @@
+syntax = "proto3";
+
+package cict.service_academic.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
+option java_multiple_files = false;
+option java_outer_classname = "DepartmentProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/paginate.proto";
+import "cict/service-academic/v1/faculty.proto";
+import "cict/service-academic/v1/staff.proto";
+
+service DepartmentService {
+  rpc MutateDepartment (MutateDepartmentRequest) returns (MutateDepartmentResponse) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/department/mutate",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_ADMIN,
+    };
+  }
+
+  rpc GetDepartment (GetDepartmentRequest) returns (GetDepartmentResponse) {
+    option (google.api.http) = {
+      get: "/api/service_academic/v1/department/get",
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANYONE,
+    };
+  }
+
+  rpc ListDepartment (ListDepartmentRequest) returns (ListDepartmentResponse) {
+    option (google.api.http) = {
+      get: "/api/service_academic/v1/department/list",
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANYONE,
+    };
+  }
+}
+
+message MutateSujectRequest {
+  MutateDepartmentCreate create = 1;
+
+  MutateDepartmentUpdate update = 2;
+
+  MutateDepartmentDelete delete = 3;
+
+  bool partial_failure = 4;
+}
+
+message MutateDepartmentCreate {
+  option (common.v1.default_mask) = {
+    paths: ["code","name","faculty_id","head_of_department_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  repeated Department departments = 3;
+}
+
+message MutateDepartmentUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["code","name","faculty_id","head_of_department_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  Department department = 3;
+
+  repeated string ids = 4;
+}
+
+message MutateDepartmentDelete {
+  repeated string ids = 1;
+}
+
+message MutateDepartmentResponse {
+  int64 affected_rows = 1;
+}
+
+message GetDepartmentRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","code","name","faculty_id","head_of_department_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  oneof by {
+    string id = 3;
+
+    string code = 4;
+  }
+}
+
+message GetDepartmentResponse {
+  Department department = 1;
+}
+
+message ListDepartmentRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","code","name","faculty_id","head_of_department_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  common.v1.Paginate paginate = 3;
+}
+
+message ListDepartmentResponse {
+  repeated Department departments = 1;
+}
+
+// Bộ môn
+message Department {
+  // MaBM
+  // @gotags: gorm:"primaryKey;type:varchar(50);"
+  string id = 1;
+
+  // TenBM
+  // @gotags: gorm:"nvarchar(200)"
+  string name = 2;
+
+  // MaKH
+  // @gotags: gorm:"varchar(50)"
+  string faculty_id = 3;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE;OnDelete:CASCADE"
+  Faculty faculty = 4;
+
+  // TruongBM
+  // @gotags: gorm:"varchar(50)"
+  string head_of_department_id = 5;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL"
+  Staff head_of_department = 6;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updated_at = 100;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 created_at = 101;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string created_by_id = 102;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string updated_by_id = 103;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string owned_by_id = 104;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string workspace_id = 105;
+}

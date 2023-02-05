@@ -1,0 +1,95 @@
+syntax = "proto3";
+
+package cict.service_academic.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
+option java_multiple_files = false;
+option java_outer_classname = "ClassProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
+
+import "cict/service-academic/v1/acronym.proto";
+import "cict/service-academic/v1/campus.proto";
+import "cict/service-academic/v1/faculty.proto";
+import "cict/service-academic/v1/major.proto";
+import "cict/service-academic/v1/type_of_education.proto";
+
+// Lop
+message Class {
+  // MaLop
+  // @gotags: gorm:"primary_key;type:varchar(50);"
+  string id = 1;
+
+  // TenLop
+  // @gotags: gorm:"type:nvarchar(200)"
+  string name = 2;
+
+  // NamVao
+  int32 year_of_adminission = 3;
+
+  // HocKyVao
+  int32 semester_of_adminission = 4;
+
+  // NienKhoa
+  string school_years = 5;
+
+  // HeNC
+  bool is_advance_system = 6;
+
+  // MaKhoi
+  // @gotags: gorm:"type:varchar(50)"
+  string education_program_id = 7;
+
+  // MaKH
+  // @gotags: gorm:"type:varchar(36)"
+  string faculty_id = 8;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"
+  Faculty faculty = 9;
+
+  // MaNg
+  // @gotags: gorm:"type:varchar(36)"
+  string major_id = 10;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"
+  Major major = 11;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string type_of_education_id = 10;
+
+  // MaHeDT
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"
+  TypeOfEducation type_of_education = 11;
+
+  // MaQC
+  // @gotags: gorm:"type:varchar(50)"
+  string acronym_id = 11;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"
+  Acronym acronym = 12;
+
+  // MaCoSo
+  // @gotags: gorm:"type:varchar(36)"
+  string campus_id = 12;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"
+  Campus campus = 13;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updated_at = 100;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 created_at = 101;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string created_by_id = 102;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string updated_by_id = 103;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string owned_by_id = 104;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string workspace_id = 105;
+}

@@ -58,7 +58,6 @@ service WorkspaceService {
   }
 }
 
-
 message RegisterUniversityWorkspaceRequest {
   option (common.v1.default_mask) = {
     paths: ["name"]

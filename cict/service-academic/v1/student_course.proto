@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package cict.service_academic.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
+option java_multiple_files = false;
+option java_outer_classname = "StudentCourseProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
+
+import "cict/service-academic/v1/course.proto";
+import "cict/service-academic/v1/student.proto";
+
+// Join table student and course registration
+// Join table use composite primary key
+message StudentCourse {
+  // @gotags: gorm:"not null;unique;type:varchar(36);default:(uuid())"
+  string id = 1;
+
+  // HocPhanGV_Id
+  // @gotags: gorm:"primaryKey;type:varchar(36)"
+  string course_id = 1;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE"
+  Course course = 2;
+
+  // MaDK
+  // @gotags: gorm:"primaryKey;type:varchar(50)"
+  string student_id = 3;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE"
+  Student student = 4;
+
+  // DonGiaHP
+  float unit_price = 5;
+
+  // MienGiam
+  float tuition_reduction = 6;
+
+  // PhaiDong
+  float need_paying = 7;
+
+  // CAITHIEN
+  bool is_improvement = 8;
+
+  // NHHK
+  // @gotags: gorm:"type:varchar(10)"
+  string school_year_semester = 9;
+
+  // SVThu
+  int32 registration_index = 10;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updated_at = 100;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 created_at = 101;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string created_by_id = 102;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string updated_by_id = 103;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string owned_by_id = 104;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string workspace_id = 105;
+}
