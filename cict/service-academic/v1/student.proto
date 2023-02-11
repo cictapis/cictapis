@@ -1,0 +1,332 @@
+syntax = "proto3";
+
+package cict.service_academic.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
+option java_multiple_files = false;
+option java_outer_classname = "StudentProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/paginate.proto";
+import "cict/service-academic/v1/enum_gender.proto";
+import "cict/service-academic/v1/enum_student_status.proto";
+import "cict/service-academic/v1/class.proto";
+import "cict/service-academic/v1/specilization.proto";
+import "cict/service-auth/v1/user.proto";
+
+service StudentService {
+  rpc AdminMutatestudent (AdminMutateStudentRequest) returns (AdminMutateStudentResponse) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/student/admin_mutate",
+      body: "*",
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_ADMIN,
+    };
+  }
+
+  rpc UserMutateStudent (UserMutateStudentRequest) returns (UserMutateStudentResponse) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/student/mutate",
+      body: "*",
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_USER,
+    };
+  }
+
+  rpc GetStudent (GetStudentRequest) returns (GetStudentResponse) {
+    option (google.api.http) = {
+      get: "/api/service_academic/v1/student/get",
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_USER,
+    };
+  }
+
+  rpc ListStudent (ListStudentRequest) returns (ListStudentResponse) {
+    option (google.api.http) = {
+      get: "/api/service_academic/v1/student/list"
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_ADMIN,
+    };
+  }
+
+  // Return public data of students
+  rpc SearchStudent (SearchStudentRequest) returns (SearchStudentResponse) {
+    option (google.api.http) = {
+      get: "/api/service_academic/v1/student/search"
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANYONE,
+    };
+  }
+}
+
+message AdminMutateStudentRequest {
+  // Register new user, add user to workspace, and create student info profile
+  service_auth.v1.RegisterUserRequest create = 1;
+
+  AdminMutateStudentUpdate update = 2;
+
+  bool partial_failure = 3;
+}
+
+message AdminMutateStudentUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["main_class_id","main_specilization_id","main_min_credits","main_max_credits","sub_class_id","sub_specilization_id","sub_min_credits","sub_max_credits","current_semester_tuition_debt","old_semester_tution_debt","student_status"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  Student student = 3;
+
+  repeated string ids = 4;
+}
+
+
+message AdminMutateStudentResponse {
+  int64 affected_rows = 1;
+}
+
+message UserMutateStudentRequest {
+  // Update profile data
+  UserMutateStudentUpdate update = 1;
+
+  google.protobuf.Empty leave_workspace = 2;
+}
+
+message UserMutateStudentUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["name","date_of_birth","phone_number","gender","birth_place","bank_account","identity_card_number","citizen_identification_number","father_name","father_occupation","father_phone_number","mother_name","mother_occupation","mother_phone_number","temporary_address","permanant_address"]
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  Student student = 3;
+
+  string id = 4;
+}
+
+message UserMutateStudentResponse {
+  string affected_id = 1;
+}
+
+message GetStudentRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","name","date_of_birth","email","phone_number","gender","birth_place","bank_account","identidy_card_number","citizen_identification_number","father_name","father_occupation","father_phone_number","mother_name","mother_occupation","mother_phone_number","temporary_address","permanant_address","main_class_id","main_specilization_id","main_min_credits","main_max_credits","sub_class_id","sub_specilization_id","sub_min_credits","sub_max_credits","current_semester_tuition_debt","old_semester_tution_debt","student_status"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  string id = 3;
+}
+
+message GetStudentResponse {
+  Student student = 1;
+}
+
+message ListStudentRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","name","date_of_birth","email","phone_number","gender","birth_place","bank_account","identidy_card_number","citizen_identification_number","father_name","father_occupation","father_phone_number","mother_name","mother_occupation","mother_phone_number","temporary_address","permanant_address","main_class_id","main_specilization_id","main_min_credits","main_max_credits","sub_class_id","sub_specilization_id","sub_min_credits","sub_max_credits","current_semester_tuition_debt","old_semester_tution_debt","student_status"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  common.v1.Paginate paginate = 3;
+
+  string main_class_id = 4;
+
+  string  main_specilization_id = 5;
+
+  string sub_class_id = 6;
+
+  string sub_specilization_id = 7;
+
+  string student_status = 8;
+}
+
+message ListStudentResponse {
+  repeated Student students = 1;
+}
+
+message SearchStudentRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","name","date_of_birth","email","gender","main_class_id","main_specilization_id","sub_class_id","sub_specilization_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  common.v1.Paginate paginate = 3;
+
+  string main_class_id = 4;
+
+  string  main_specilization_id = 5;
+
+  string sub_class_id = 6;
+
+  string sub_specilization_id = 7;
+
+  string student_status = 8;
+}
+
+message SearchStudentResponse {
+  repeated Student students = 1;
+}
+
+// Sinh viên
+message Student {
+  // MaSV
+  // @gotags: gorm:"primaryKey;type:varchar(50);"
+  string id = 1;
+
+  // HoTenSV
+  // @gotags: gorm:"type:nvarchar(200)"
+  string name = 2;
+
+  // NgaySinh
+  // @gotags: gorm:"type:varchar(10)"
+  string date_of_birth = 4;
+
+  // EmailSV2
+  // @gotags: gorm:"type:varchar(300)"
+  string email = 5;
+
+  // TelSV2
+  // @gotags: gorm:"type:varchar(20)"
+  string phone_number = 6;
+
+  // phai
+  EnumGender.Gender gender = 7;
+
+  // noisinh
+  // @gotags: gorm:"type:nvarchar(500)"
+  string birth_place = 8;
+
+  // SoTKNH
+  // @gotags: gorm:"type:varchar(50)"
+  string bank_account = 9;
+
+  // SoCMND
+  // @gotags: gorm:"type:varchar(20)"
+  string identidy_card_number = 10;
+
+  // @gotags: gorm:"type:varchar(20)"
+  string citizen_identification_number = 11;
+
+  // HoTenCha
+  // @gotags: gorm:"type:nvarchar(100)"
+  string father_name = 12;
+
+  // NgheCha
+  // @gotags: gorm:"type:nvarchar(100)"
+  string father_occupation = 13;
+
+  // DienThGD
+  // @gotags: gorm:"type:varchar(20)"
+  string father_phone_number = 14;
+
+  // HoTenMe
+  // @gotags: gorm:"type:nvarchar(100)"
+  string mother_name = 15;
+
+  // NgheMe
+  // @gotags: gorm:"type:nvarchar(100)"
+  string mother_occupation = 16;
+
+  // @gotags: gorm:"type:varchar(20)"
+  string mother_phone_number = 17;
+
+  // DiaChiGD1
+  // @gotags: gorm:"type:nvarchar(500)"
+  string temporary_address = 18;
+
+  // DiaChiGD2
+  // @gotags: gorm:"type:nvarchar(500)"
+  string permanant_address = 19;
+
+  // MaLop
+  // @gotags: gorm:"type:varchar(50)"
+  string main_class_id = 20;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"
+  Class main_class = 21;
+
+  // MaChNg
+  // @gotags: gorm:"type:varchar(50)"
+  string main_specilization_id = 22;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"
+  Specilization main_specilization = 23;
+
+  // SoTCMin
+  int32 main_min_credits = 24;
+
+  // SoTCMax
+  int32 main_max_credits = 25;
+
+  // TenLop2
+  // @gotags: gorm:"type:varchar(50)"
+  string sub_class_id = 26;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"
+  Class sub_class = 27;
+
+  // MaChNg
+  // @gotags: gorm:"type:varchar(50)"
+  string sub_specilization_id = 28;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"
+  Specilization sub_specilization = 29;
+
+  // sotcmin2
+  int32 sub_min_credits = 30;
+
+  // sotcmax2
+  int32 sub_max_credits = 31;
+
+  // pdhocphihk
+  float current_semester_tuition_debt = 32;
+
+  // nohkcu
+  float old_semester_tution_debt = 33;
+
+  // hiendien
+  EnumStudentStatus.StudentStatus student_status = 34;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updated_at = 100;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 created_at = 101;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string created_by_id = 102;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string updated_by_id = 103;
+
+  // @gotags: gorm:"unique;type:varchar(36)"
+  string owned_by_id = 104;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string workspace_id = 105;
+}

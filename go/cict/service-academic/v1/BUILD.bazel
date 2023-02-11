@@ -1,0 +1,40 @@
+load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
+
+go_proto_library(
+  name = "cict_service_academic_v1_go_proto",
+  compilers = ["@io_bazel_rules_go//proto:go_grpc"],
+  importpath = "github.com/cictapis/cict-auth/cict/service_academic/v1",
+  protos = [
+    "@com_github_cict_cictapis//cict/service-academic/v1:acronym_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:campus_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:class_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:course_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:department_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:education_program_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:enum_academic_classification_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:enum_course_status_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:enum_gender_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:enum_staff_status_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:enum_student_status_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:enum_study_period_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:error_locale_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:faculty_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:locale_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:major_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:process_point_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:semester_final_point_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:semester_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:specilization_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:staff_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:student_course_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:student_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:subject_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:type_of_education_proto",
+  ],
+  deps = [
+    "//google/api:google_api_annotations_go_proto",
+    "//cict/common/v1:cict_common_v1_go_proto",
+    "//cict/service-auth/v1:cict_service_auth_v1_go_proto"
+  ],
+  visibility = ["//visibility:public"]
+)

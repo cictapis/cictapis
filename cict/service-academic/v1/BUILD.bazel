@@ -1,0 +1,290 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+
+package(default_visibility = ["//visibility:public"])
+
+proto_library(
+  name = "acronym_proto",
+  srcs = ["acronym.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:field_mask_proto",
+    "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mask_behavior_proto",
+    "//cict/common/v1:paginate_proto",
+  ]
+)
+
+proto_library(
+  name = "campus_proto",
+  srcs = ["campus.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:field_mask_proto",
+    "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mask_behavior_proto",
+    "//cict/common/v1:paginate_proto",
+  ]
+)
+
+proto_library(
+  name = "class_proto",
+  srcs = ["class.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:field_mask_proto",
+    "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mask_behavior_proto",
+    "//cict/common/v1:paginate_proto",
+    ":acronym_proto",
+    ":campus_proto",
+    ":faculty_proto",
+    ":major_proto",
+    ":type_of_education_proto",
+  ]
+)
+
+proto_library(
+  name = "course_proto",
+  srcs = ["course.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:field_mask_proto",
+    "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mask_behavior_proto",
+    "//cict/common/v1:paginate_proto",
+    ":campus_proto",
+    ":class_proto",
+    ":enum_course_status_proto",
+    ":enum_study_period_proto",
+    ":major_proto",
+    ":semester_proto",
+    ":staff_proto",
+    ":subject_proto",
+    ":type_of_education_proto",
+  ]
+)
+
+proto_library(
+  name = "department_proto",
+  srcs = ["department.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:field_mask_proto",
+    "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mask_behavior_proto",
+    "//cict/common/v1:paginate_proto",
+    ":faculty_proto",
+    ":staff_proto",
+  ]
+)
+
+proto_library(
+  name = "education_program_proto",
+  srcs = ["education_program.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:field_mask_proto",
+    "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mask_behavior_proto",
+    "//cict/common/v1:paginate_proto",
+    ":class_proto",
+    ":semester_proto",
+    ":subject_proto",
+  ]
+)
+
+proto_library(
+  name = "enum_academic_classification_proto",
+  srcs = ["enum_academic_classification.proto"],
+  deps = []
+)
+
+proto_library(
+  name = "enum_course_status_proto",
+  srcs = ["enum_course_status.proto"],
+  deps = []
+)
+
+proto_library(
+  name = "enum_gender_proto",
+  srcs = ["enum_gender.proto"],
+  deps = []
+)
+
+proto_library(
+  name = "enum_staff_status_proto",
+  srcs = ["enum_staff_status.proto"],
+  deps = []
+)
+
+proto_library(
+  name = "enum_student_status_proto",
+  srcs = ["enum_student_status.proto"],
+  deps = []
+)
+
+proto_library(
+  name = "enum_study_period_proto",
+  srcs = ["enum_study_period.proto"],
+  deps = []
+)
+
+proto_library(
+  name = "error_locale_proto",
+  srcs = ["error_locale.proto"],
+  deps = []
+)
+
+proto_library(
+  name = "faculty_proto",
+  srcs = ["faculty.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:field_mask_proto",
+    "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mask_behavior_proto",
+    "//cict/common/v1:paginate_proto",
+  ]
+)
+
+proto_library(
+  name = "locale_proto",
+  srcs = ["locale.proto"],
+  deps = [
+    "//cict/common/v1:error_locale_proto",
+    ":error_locale_proto",
+  ]
+)
+
+proto_library(
+  name = "major_proto",
+  srcs = ["major.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:field_mask_proto",
+    "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mask_behavior_proto",
+    "//cict/common/v1:paginate_proto",
+  ]
+)
+
+proto_library(
+  name = "process_point_proto",
+  srcs = ["process_point.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:field_mask_proto",
+    "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mask_behavior_proto",
+    "//cict/common/v1:paginate_proto",
+    ":course_proto",
+    ":semester_proto",
+    ":student_proto",
+    ":subject_proto",
+  ]
+)
+
+proto_library(
+  name = "semester_final_point_proto",
+  srcs = ["semester_final_point.proto"],
+  deps = [
+    ":enum_academic_classification_proto",
+    ":semester_proto",
+    ":student_proto",
+  ]
+)
+
+proto_library(
+  name = "semester_proto",
+  srcs = ["semester.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:field_mask_proto",
+    "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mask_behavior_proto",
+    "//cict/common/v1:paginate_proto",
+  ]
+)
+
+proto_library(
+  name = "specilization_proto",
+  srcs = ["specilization.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:field_mask_proto",
+    "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mask_behavior_proto",
+    "//cict/common/v1:paginate_proto",
+    ":major_proto",
+  ]
+)
+
+proto_library(
+  name = "staff_proto",
+  srcs = ["staff.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:empty_proto",
+    "@com_google_protobuf//:field_mask_proto",
+    "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mask_behavior_proto",
+    "//cict/common/v1:paginate_proto",
+    ":enum_gender_proto",
+    ":enum_staff_status_proto",
+    ":faculty_proto",
+    "//cict/service-auth/v1:user_proto",
+  ]
+)
+
+proto_library(
+  name = "student_course_proto",
+  srcs = ["student_course.proto"],
+  deps = [
+    ":course_proto",
+    ":semester_proto",
+    ":student_proto",
+  ]
+)
+
+proto_library(
+  name = "student_proto",
+  srcs = ["student.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:empty_proto",
+    "@com_google_protobuf//:field_mask_proto",
+    "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mask_behavior_proto",
+    "//cict/common/v1:paginate_proto",
+    ":enum_gender_proto",
+    ":enum_student_status_proto",
+    ":class_proto",
+    ":specilization_proto",
+    "//cict/service-auth/v1:user_proto",
+  ]
+)
+
+proto_library(
+  name = "subject_proto",
+  srcs = ["subject.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:field_mask_proto",
+    "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mask_behavior_proto",
+    "//cict/common/v1:paginate_proto",
+    ":department_proto",
+  ]
+)
+
+proto_library(
+  name = "type_of_education_proto",
+  srcs = ["type_of_education.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:field_mask_proto",
+    "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mask_behavior_proto",
+    "//cict/common/v1:paginate_proto",
+  ]
+)

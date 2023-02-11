@@ -1,0 +1,127 @@
+syntax = "proto3";
+
+package cict.service_academic.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
+option java_multiple_files = false;
+option java_outer_classname = "SemesterProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/paginate.proto";
+
+service SemesterService {
+  rpc MutateSemester (MutateSemesterRequest) returns (MutateSemesterResponse) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/semester/mutate",
+      body: "*",
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_ADMIN,
+    };
+  }
+
+  rpc ListSemester (ListSemesterRequest) returns (ListSemesterResponse) {
+    option (google.api.http) = {
+      get: "/api/service_academic/v1/semester/list"
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANYONE,
+    };
+  }
+}
+
+message MutateSemesterRequest {
+  MutateSemesterCreate create = 1;
+
+  MutateSemesterUpdate update = 2;
+
+  MutateSemesterDelete delete = 3;
+
+  bool partial_failure = 4;
+}
+
+message MutateSemesterCreate {
+  option (common.v1.default_mask) = {
+    paths: ["id","name","is_current"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  repeated Semester semesters = 3;
+}
+
+message MutateSemesterUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["name","is_current"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  Semester semester = 3;
+
+  repeated string ids = 4;
+}
+
+message MutateSemesterDelete {
+  repeated string ids = 1;
+}
+
+message MutateSemesterResponse {
+  int64 affected_rows = 1;
+}
+
+message ListSemesterRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","name","is_current"]
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  common.v1.Paginate paginate = 3;
+}
+
+message ListSemesterResponse {
+  repeated Semester semesters = 1;
+}
+
+// Học kỳ, HocKy
+message Semester {
+  // MaHK: 20201
+  // @gotags: gorm:"primaryKey;type:varchar(6)"
+  string id = 1;
+
+  // @gotags: gorm:"type:varchar(200)"
+  string name = 2;
+
+  bool is_current = 3;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updated_at = 100;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 created_at = 101;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string created_by_id = 102;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string updated_by_id = 103;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string owned_by_id = 104;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string workspace_id = 105;
+}

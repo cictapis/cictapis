@@ -96,7 +96,7 @@ message RegisterCourseRequest {
 }
 
 message Course {
-  // @gotags: gorm:"primary_key;type:varchar(36);default:(uuid())"
+  // @gotags: gorm:"primaryKey;type:varchar(36);default:(uuid())"
   string id = 1;
 
   // @gotags: gorm:"<-"
@@ -138,7 +138,7 @@ message Course {
 }
 
 message User {
-  // @gotags: gorm:"primary_key;type:varchar(36);default:(uuid())"
+  // @gotags: gorm:"primaryKey;type:varchar(36);default:(uuid())"
   string id = 1;
 
   // Many to many relationships Course

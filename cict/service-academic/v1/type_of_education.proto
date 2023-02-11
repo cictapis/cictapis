@@ -1,0 +1,123 @@
+syntax = "proto3";
+
+package cict.service_academic.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
+option java_multiple_files = false;
+option java_outer_classname = "TypeOfEducationProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/paginate.proto";
+
+service TypeOfEducationService {
+  rpc MutateTypeOfEducation (MutateTypeOfEducationRequest) returns (MutateTypeOfEducationResponse) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/type_of_education/mutate",
+      body: "*",
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_ADMIN,
+    };
+  }
+
+  rpc ListTypeOfEducation (ListTypeOfEducationRequest) returns (ListTypeOfEducationResponse) {
+    option (google.api.http) = {
+      get: "/api/service_academic/v1/type_of_education/list"
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANYONE,
+    };
+  }
+}
+
+message MutateTypeOfEducationRequest {
+  MutateTypeOfEducationCreate create = 1;
+
+  MutateTypeOfEducationUpdate update = 2;
+
+  MutateTypeOfEducationDelete delete = 3;
+
+  bool partial_failure = 4;
+}
+
+message MutateTypeOfEducationCreate {
+  option (common.v1.default_mask) = {
+    paths: ["id","name"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  repeated TypeOfEducation type_of_educations = 3;
+}
+
+message MutateTypeOfEducationUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["name"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  TypeOfEducation type_of_education = 3;
+
+  repeated string ids = 4;
+}
+
+message MutateTypeOfEducationDelete {
+  repeated string ids = 1;
+}
+
+message MutateTypeOfEducationResponse {
+  int64 affected_rows = 1;
+}
+
+message ListTypeOfEducationRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","name"]
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  common.v1.Paginate paginate = 3;
+}
+
+message ListTypeOfEducationResponse {
+  repeated TypeOfEducation type_of_educations = 1;
+}
+
+// Hệ đào tạo
+message TypeOfEducation {
+  // @gotags: gorm:"primaryKey;type:varchar(50);"
+  string id = 1;
+
+  string name = 2;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updated_at = 100;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 created_at = 101;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string created_by_id = 102;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string updated_by_id = 103;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string owned_by_id = 104;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string workspace_id = 105;
+}

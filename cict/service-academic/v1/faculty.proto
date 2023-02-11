@@ -1,111 +1,107 @@
 syntax = "proto3";
 
-package cict.service_auth.v1;
+package cict.service_academic.v1;
 
 option cc_enable_arenas = true;
-option go_package = "github.com/cictapis/cict-auth/cict/service_auth/v1;service_auth";
+option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
 option java_multiple_files = false;
-option java_outer_classname = "ScopeProto";
-option java_package = "com.github.cictapis.cict_reporter.cict.serviceauth.v1";
+option java_outer_classname = "FacultyProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
 
 import "google/api/annotations.proto";
 import "google/protobuf/field_mask.proto";
 
 import "cict/common/v1/annotations.proto";
 import "cict/common/v1/enum_mask_behavior.proto";
-import "cict/service-auth/v1/enum_scope_role.proto";
-import "cict/service-auth/v1/enum_scope.proto";
+import "cict/common/v1/paginate.proto";
 
-service ScopeService {
-  rpc MutateScope (MutateScopeRequest) returns (MutateScopeResponse) {
+service FacultyService {
+  rpc MutateFaculty (MutateFacultyRequest) returns (MutateFacultyResponse) {
     option (google.api.http) = {
-      post: "/api/service_auth/v1/scope/mutate",
-      body: "*"
+      post: "/api/service_academic/v1/faculty/mutate",
+      body: "*",
     };
     option (common.v1.cict) = {
-      crud_policy: WORKSPACE_OWNER,
+      crud_policy: SCOPE_ADMIN,
     };
   }
 
-  rpc ListScope (ListScopeRequest) returns (ListScopeResponse) {
+  rpc ListFaculty (ListFacultyRequest) returns (ListFacultyResponse) {
     option (google.api.http) = {
-      get: "/api/service_auth/v1/scope/list",
+      get: "/api/service_academic/v1/faculty/list"
     };
     option (common.v1.cict) = {
-      crud_policy: WORKSPACE_ISOLATION,
+      crud_policy: ANYONE,
     };
   }
 }
 
-message MutateScopeRequest {
-  MutateScopeCreate create = 1;
+message MutateFacultyRequest {
+  MutateFacultyCreate create = 1;
 
-  MutateScopeUpdate update = 2;
+  MutateFacultyUpdate update = 2;
 
-  MutateScopeDelete delete = 3;
+  MutateFacultyDelete delete = 3;
 
-  string user_id = 4;
-
-  bool partial_failure = 5;
+  bool partial_failure = 4;
 }
 
-message MutateScopeCreate {
+message MutateFacultyCreate {
   option (common.v1.default_mask) = {
-    paths: ["scope","role"],
+    paths: ["id","name"],
   };
 
   common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
 
   google.protobuf.FieldMask mask = 2;
 
-  repeated Scope scopes = 3;
+  repeated Faculty faculties = 3;
 }
 
-message MutateScopeUpdate {
+message MutateFacultyUpdate {
   option (common.v1.default_mask) = {
-    paths: ["scope","role"],
+    paths: ["name"],
   };
 
   common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
 
   google.protobuf.FieldMask mask = 2;
 
-  Scope scope = 3;
+  Faculty faculty = 3;
 
   repeated string ids = 4;
 }
 
-message MutateScopeDelete {
+message MutateFacultyDelete {
   repeated string ids = 1;
 }
 
-message MutateScopeResponse {
+message MutateFacultyResponse {
   int64 affected_rows = 1;
 }
 
-message ListScopeRequest {
+message ListFacultyRequest {
   option (common.v1.default_mask) = {
-    paths: ["id","scope","role"],
+    paths: ["id","name"]
   };
 
   common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
 
   google.protobuf.FieldMask mask = 2;
 
-  string user_id = 3;
+  common.v1.Paginate paginate = 3;
 }
 
-message ListScopeResponse {
-  repeated Scope scopes = 1;
+message ListFacultyResponse {
+  repeated Faculty faculties = 1;
 }
 
-message Scope {
-  // @gotags: gorm:"primaryKey;type:varchar(36);default:(uuid())"
+message Faculty {
+  // @gotags: gorm:"primaryKey;type:varchar(50);"
   string id = 1;
 
-  EnumScope.Scope scope = 2;
-
-  EnumScopeRole.ScopeRole role = 3;
+  // @gotags: gorm:"type:nvarchar(200)"
+  string name = 2;
 
   // @gotags: gorm:"autoUpdateTime:nano"
   int64 updated_at = 100;

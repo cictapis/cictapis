@@ -1,0 +1,196 @@
+syntax = "proto3";
+
+package cict.service_academic.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
+option java_multiple_files = false;
+option java_outer_classname = "ClassProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/paginate.proto";
+import "cict/service-academic/v1/acronym.proto";
+import "cict/service-academic/v1/campus.proto";
+import "cict/service-academic/v1/faculty.proto";
+import "cict/service-academic/v1/major.proto";
+import "cict/service-academic/v1/type_of_education.proto";
+
+service ClassService {
+  rpc MutateClass (MutateClassRequest) returns (MutateClassResponse) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/class/mutate",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_ADMIN,
+    };
+  }
+
+  rpc ListClass (ListClassRequest) returns (ListClassResponse) {
+    option (google.api.http) = {
+      get: "/api/service_academic/v1/class/list",
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANYONE,
+    };
+  }
+}
+
+message MutateClassRequest {
+  MutateClassCreate create = 1;
+
+  MutateClassUpdate update = 2;
+
+  MutateClassDelete delete = 3;
+
+  bool partial_failure = 4;
+}
+
+message MutateClassCreate {
+  option (common.v1.default_mask) = {
+    paths: ["id","name","faculty_id","head_of_class_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  repeated Class classs = 3;
+}
+
+message MutateClassUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["name","faculty_id","head_of_class_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  Class class = 3;
+
+  repeated string ids = 4;
+}
+
+message MutateClassDelete {
+  repeated string ids = 1;
+}
+
+message MutateClassResponse {
+  int64 affected_rows = 1;
+}
+
+message ListClassRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","name","faculty_id","head_of_class_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  common.v1.Paginate paginate = 3;
+
+  // Parameter faculty_id
+  string faculty_id = 4;
+
+  // Parameter major_id
+  string major_id = 5;
+
+  // Parameter type_of_education
+  string type_of_education = 6;
+
+  // Parameter campus_id
+  string campus_id = 7;
+}
+
+message ListClassResponse {
+  repeated Class classs = 1;
+}
+
+// Lop
+message Class {
+  // MaLop
+  // @gotags: gorm:"primaryKey;type:varchar(50);"
+  string id = 1;
+
+  // TenLop
+  // @gotags: gorm:"type:nvarchar(200)"
+  string name = 2;
+
+  // NamVao
+  int32 year_of_adminission = 3;
+
+  // HocKyVao
+  int32 semester_of_adminission = 4;
+
+  // NienKhoa
+  string school_years = 5;
+
+  // HeNC
+  bool is_advance_system = 6;
+
+  // MaKhoi
+  // One class has many education program item.
+  // Using class here for avoiding cycling import in protocol buffers.
+  // @gotags: gorm:"type:varchar(50)"
+  string education_program_id = 7;
+
+  // MaKH
+  // @gotags: gorm:"type:varchar(36)"
+  string faculty_id = 8;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"
+  Faculty faculty = 9;
+
+  // MaNg
+  // @gotags: gorm:"type:varchar(36)"
+  string major_id = 10;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"
+  Major major = 11;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string type_of_education_id = 12;
+
+  // MaHeDT
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"
+  TypeOfEducation type_of_education = 13;
+
+  // MaQC
+  // @gotags: gorm:"type:varchar(50)"
+  string acronym_id = 14;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"
+  Acronym acronym = 15;
+
+  // MaCoSo
+  // @gotags: gorm:"type:varchar(36)"
+  string campus_id = 16;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"
+  Campus campus = 17;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updated_at = 100;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 created_at = 101;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string created_by_id = 102;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string updated_by_id = 103;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string owned_by_id = 104;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string workspace_id = 105;
+}

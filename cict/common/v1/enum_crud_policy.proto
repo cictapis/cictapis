@@ -26,7 +26,7 @@ message EnumCrudPolicy {
     // Supperuser, workspace owner can operate data.
     SCOPE_ADMIN = 4;
 
-    // User can operate data
+    // User can operate self's data
     // Admin, supperuser can operate data
     SCOPE_USER = 5;
 

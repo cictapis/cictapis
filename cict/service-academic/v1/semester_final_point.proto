@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package cict.service_academic.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
+option java_multiple_files = false;
+option java_outer_classname = "SemesterFinalPointProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
+
+import "cict/service-academic/v1/enum_academic_classification.proto";
+import "cict/service-academic/v1/semester.proto";
+import "cict/service-academic/v1/student.proto";
+
+// Điểm tổng kế học kỳ, DiemTKHK
+message SemesterFinalPoint {
+  // @gotags: gorm:"primaryKey,type:varchar(6)"
+  string semester_id = 1;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE"
+  Semester semester = 2;
+
+  // @gotags: gorm:"primaryKey;type:varchar(50);"
+  string student_id = 3;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE"
+  Student student = 4;
+
+  // @gotags: gorm:"type:varchar(5)
+  string semester_gpa_10 = 5;
+
+  // @gotags: gorm:"type:varchar(5)"
+  string semester_gpa_4 = 6;
+
+  // @gotags: gorm:"type:varchar(5)"
+  string cumulative_gpa_10 = 7;
+
+  // @gotags: gorm:"type:"
+  string cumulative_gpa_4 = 8;
+
+  float earned_semester_credits = 9;
+
+  float registered_semester_credits = 10;
+
+  float earned_cumulative_credits = 11;
+
+  float register_cumulative_credits = 12;
+
+  EnumAcademicClassification.AcademicClassification academic_classification = 13;
+}

@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package cict.service_academic.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
+option java_multiple_files = false;
+option java_outer_classname = "EnumCourseStatusProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
+
+message EnumCourseStatus {
+  enum CourseStatus {
+    UNSPECIFIED = 0;
+
+    REGISTRATION_CLOSE = 1;
+
+    REGISTRATION_OPEN = 2;
+
+    REGISTRATION_FULL = 3;
+
+    CANCELED = 4;
+  }
+}

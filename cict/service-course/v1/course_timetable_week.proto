@@ -78,7 +78,7 @@ message ListCourseTimetableWeekResponse {
 }
 
 message CourseTimetableWeek {
-  // @gotags: gorm:"primary_key;type:varchar(36);default:(uuid())"
+  // @gotags: gorm:"primaryKey;type:varchar(36);default:(uuid())"
   string id = 1;
 
   // Belong to relationship

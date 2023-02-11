@@ -1,0 +1,141 @@
+syntax = "proto3";
+
+package cict.service_academic.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
+option java_multiple_files = false;
+option java_outer_classname = "EducationProgramProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/paginate.proto";
+import "cict/service-academic/v1/class.proto";
+import "cict/service-academic/v1/semester.proto";
+import "cict/service-academic/v1/subject.proto";
+
+service EducationProgramService {
+  rpc MutateEducationProgram (MutateEducationProgramRequest) returns (MutateEducationProgramResponse) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/education_program/mutate",
+      body: "*",
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_ADMIN,
+    };
+  }
+
+  rpc ListEducationProgram (ListEducationProgramRequest) returns (ListEducationProgramResponse) {
+    option (google.api.http) = {
+      get: "/api/service_academic/v1/education_program/list"
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANYONE,
+    };
+  }
+}
+
+message MutateEducationProgramRequest {
+  MutateEducationProgramCreate create = 1;
+
+  MutateEducationProgramUpdate update = 2;
+
+  MutateEducationProgramDelete delete = 3;
+
+  bool partial_failure = 4;
+}
+
+message MutateEducationProgramCreate {
+  option (common.v1.default_mask) = {
+    paths: ["id","subject_id","semester_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  repeated EducationProgram education_programs = 3;
+}
+
+message MutateEducationProgramUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["subject_id","semester_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  EducationProgram education_program = 3;
+
+  repeated string ids = 4;
+}
+
+message MutateEducationProgramDelete {
+  repeated string ids = 1;
+}
+
+message MutateEducationProgramResponse {
+  int64 affected_rows = 1;
+}
+
+message ListEducationProgramRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","subject_id","semester_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  common.v1.Paginate paginate = 3;
+}
+
+message ListEducationProgramResponse {
+  repeated EducationProgram education_programs = 1;
+}
+
+// Chương trình đào tạo
+message EducationProgram {
+  // @gotags: gorm:"primaryKey;type:varchar(50);"
+  string id = 1;
+
+  // @gotags: gorm:"type:varchar(50)"
+  string subject_id = 2;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE"
+  Subject subject = 3;
+
+  // NH, HK
+  // @gotags: gorm:"type:varchar(6)"
+  string semester_id = 4;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE"
+  Semester semester = 5;
+
+  // One class has many education program item.
+  // Using class here for avoiding cycling import in protocol buffers.
+  Class class = 6;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updated_at = 100;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 created_at = 101;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string created_by_id = 102;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string updated_by_id = 103;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string owned_by_id = 104;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string workspace_id = 105;
+}

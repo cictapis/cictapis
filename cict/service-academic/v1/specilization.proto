@@ -1,0 +1,134 @@
+syntax = "proto3";
+
+package cict.service_academic.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
+option java_multiple_files = false;
+option java_outer_classname = "SpecilizationProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/paginate.proto";
+import "cict/service-academic/v1/major.proto";
+
+service SpecilizationService {
+  rpc MutateSpecilization (MutateSpecilizationRequest) returns (MutateSpecilizationResponse) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/specilization/mutate",
+      body: "*",
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_ADMIN,
+    };
+  }
+
+  rpc ListSpecilization (ListSpecilizationRequest) returns (ListSpecilizationResponse) {
+    option (google.api.http) = {
+      get: "/api/service_academic/v1/specilization/list"
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANYONE,
+    };
+  }
+}
+
+message MutateSpecilizationRequest {
+  MutateSpecilizationCreate create = 1;
+
+  MutateSpecilizationUpdate update = 2;
+
+  MutateSpecilizationDelete delete = 3;
+
+  bool partial_failure = 4;
+}
+
+message MutateSpecilizationCreate {
+  option (common.v1.default_mask) = {
+    paths: ["id","name","major_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  repeated Specilization specilizations = 3;
+}
+
+message MutateSpecilizationUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["name","major_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  Specilization specilization = 3;
+
+  repeated string ids = 4;
+}
+
+message MutateSpecilizationDelete {
+  repeated string ids = 1;
+}
+
+message MutateSpecilizationResponse {
+  int64 affected_rows = 1;
+}
+
+message ListSpecilizationRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","name","major_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  common.v1.Paginate paginate = 3;
+
+  // Parameter major_id
+  string major_id = 4;
+}
+
+message ListSpecilizationResponse {
+  repeated Specilization specilizations = 1;
+}
+
+// Chuyên ngành
+message Specilization {
+  // @gotags: gorm:"primaryKey;type:varchar(50);"
+  string id = 1;
+
+  // @gotags: gorm:"type:nvarchar(200)"
+  string name = 2;
+
+  // @gotags: gorm:"type:varchar(50)"
+  string major_id = 3;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADED;"
+  Major major = 4;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updated_at = 100;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 created_at = 101;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string created_by_id = 102;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string updated_by_id = 103;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string owned_by_id = 104;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string workspace_id = 105;
+}

@@ -1,0 +1,155 @@
+syntax = "proto3";
+
+package cict.service_academic.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
+option java_multiple_files = false;
+option java_outer_classname = "SubjectProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/paginate.proto";
+import "cict/service-academic/v1/department.proto";
+
+service SubjectService {
+  rpc MutateSubject (MutateSubjectRequest) returns (MutateSubjectResponse) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/subject/mutate",
+      body: "*",
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_ADMIN,
+    };
+  }
+
+  rpc ListSubject (ListSubjectRequest) returns (ListSubjectResponse) {
+    option (google.api.http) = {
+      get: "/api/service_academic/v1/subject/list"
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANYONE,
+    };
+  }
+}
+
+message MutateSubjectRequest {
+  MutateSubjectCreate create = 1;
+
+  MutateSubjectUpdate update = 2;
+
+  MutateSubjectDelete delete = 3;
+
+  bool partial_failure = 4;
+}
+
+message MutateSubjectCreate {
+  option (common.v1.default_mask) = {
+    paths: ["id","name","department_id","credits","tuition_level","tuition_coefficient","ts","registration_type","subject_nature"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  repeated Subject subjects = 3;
+}
+
+message MutateSubjectUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["name","department_id","credits","tuition_level","tuition_coefficient","ts","registration_type","subject_nature"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  Subject subject = 3;
+
+  repeated string ids = 4;
+}
+
+message MutateSubjectDelete {
+  repeated string ids = 1;
+}
+
+message MutateSubjectResponse {
+  int64 affected_rows = 1;
+}
+
+message ListSubjectRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","name","department_id","credits","tuition_level","tuition_coefficient","ts","registration_type","subject_nature"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  common.v1.Paginate paginate = 3;
+
+  // Parameter department_id
+  string department_id = 4;
+}
+
+message ListSubjectResponse {
+  repeated Subject subjects = 1;
+}
+
+// Môn học, MonHoc
+message Subject {
+  // MaMH
+  // @gotags: gorm:"primaryKey;type:varchar(50);"
+  string id = 1;
+
+  // TenMH
+  // @gotags: gorm:"type:nvarchar(200)"
+  string name = 2;
+
+  // MaBM
+  // @gotags: gorm:"type:varchar(50)"
+  string department_id = 3;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE;OnDelete:CASCADE"
+  Department department = 4;
+
+  // SoTC
+  uint32 credits = 5;
+
+  // MucHP
+  uint32 tuition_level = 6;
+
+  // HesoHP
+  float tuition_coefficient = 7;
+
+  // ts
+  uint32 ts = 8;
+
+  // loaidkmh
+  uint32 registration_type = 9;
+
+  // TinhChatMH
+  uint32 subject_nature = 10;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updated_at = 100;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 created_at = 101;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string created_by_id = 102;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string updated_by_id = 103;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string owned_by_id = 104;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string workspace_id = 105;
+}

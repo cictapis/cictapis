@@ -1,0 +1,246 @@
+syntax = "proto3";
+
+package cict.service_academic.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
+option java_multiple_files = false;
+option java_outer_classname = "StaffProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/paginate.proto";
+import "cict/service-academic/v1/enum_gender.proto";
+import "cict/service-academic/v1/enum_staff_status.proto";
+import "cict/service-academic/v1/faculty.proto";
+import "cict/service-auth/v1/user.proto";
+
+// Public profile of staff
+service StaffService {
+  rpc AdminMutateStaff (AdminMutateStaffRequest) returns (AdminMutateStaffResponse) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/staff/admin_mutate",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_ADMIN,
+    };
+  }
+
+  rpc UserMutateStaff (UserMutateStaffRequest) returns (UserMutateStaffResponse) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/staff/user_mutate",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_USER,
+    };
+  }
+
+  rpc GetStaff (GetStaffRequest) returns (GetStaffResponse) {
+    option (google.api.http) = {
+      get: "/api/service_academic/v1/staff/get"
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANYONE,
+    };
+  }
+
+  rpc ListStaff (ListStaffRequest) returns (ListStaffResponse) {
+    option (google.api.http) = {
+      get: "/api/service_academic/v1/staff/list"
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_ADMIN,
+    };
+  }
+
+  // Public api search working staff by faculty
+  rpc SearchStaff (SearchStaffRequest) returns (SearchStaffResponse) {
+    option (google.api.http) = {
+      get: "/api/service_academic/v1/staff/search"
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANYONE,
+    };
+  }
+}
+
+message AdminMutateStaffRequest {
+  // Register new user, add user to workspace, and create staff info profile.
+  service_auth.v1.RegisterUserRequest create = 1;
+
+  AdminMutateStaffUpdate update = 2;
+
+  bool partial_failure = 3;
+}
+
+message AdminMutateStaffUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["staff_status"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  Staff staff = 3;
+
+  repeated string ids = 4;
+}
+
+message AdminMutateStaffResponse {
+  int64 affected_rows = 1;
+}
+
+message UserMutateStaffRequest {
+  UserMutateStaffUpdate update = 1;
+
+  google.protobuf.Empty leave_workspace = 2;
+}
+
+message UserMutateStaffUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["name","email","phone_number","date_of_birth","gender","academic_degree","decision_number","decision_date","faculty_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  Staff staff = 3;
+
+  string id = 4;
+}
+
+message UserMutateStaffResponse {
+  string affected_id = 1;
+}
+
+message GetStaffRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","name","email","phone_number","date_of_birth","gender","staff_status","academic_degree","decision_number","decision_date","faculty_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  string id = 3;
+}
+
+message GetStaffResponse {
+  Staff staff = 1;
+}
+
+message ListStaffRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","name","email","phone_number","date_of_birth","gender","staff_status","academic_degree","decision_number","decision_date","faculty_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  common.v1.Paginate paginate = 3;
+
+  // faculty_id can be emptied or not.
+  string faculty_id = 4;
+}
+
+message ListStaffResponse {
+  repeated Staff staffs = 1;
+}
+
+message SearchStaffRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","name","email","phone_number","date_of_birth","gender","staff_status","academic_degree","decision_number","decision_date","faculty_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  // Search by id
+  string id = 3;
+
+  // Search by name
+  string name = 4;
+
+  // Search by facility_id
+  string facility_id = 5;
+}
+
+message SearchStaffResponse {
+  repeated Staff staffs = 1;
+}
+
+// Cán bộ
+message Staff {
+  // MaCB
+  // @gotags: gorm:"primaryKey;type:varchar(50);"
+  string id = 1;
+
+  // TenCB
+  // @gotags: gorm:"type:nvarchar(200)"
+  string name = 2;
+
+  // EmailCB1
+  // @gotags: gorm:"type:varchar(300)"
+  string email = 3;
+
+  // TelCB1
+  // @gotags: gorm:"type:varchar(20)"
+  string phone_number = 4;
+
+  // ngsinhcb
+  // @gotags: gorm:"type:varchar(10)"
+  string date_of_birth = 5;
+
+  // PhaiNV
+  EnumGender.Gender gender = 6;
+
+  // HienDien
+  EnumStaffStatus.StaffStatus staff_status = 7;
+
+  // mahhhv
+  // @gotags: gorm:"type:varchar(10)"
+  string academic_degree = 8;
+
+  // SoQDinh
+  // @gotags: gorm:"type:varchar(100)"
+  string decision_number = 9;
+
+  // NgayQD
+  // @gotags: gorm:"type:varchar(10)"
+  string decision_date = 10;
+
+  // gvkhoa
+  // @gotags: gorm:"type:varchar(50)"
+  string faculty_id = 11;
+
+  Faculty faculty = 12;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updated_at = 100;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 created_at = 101;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string created_by_id = 102;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string updated_by_id = 103;
+
+  // @gotags: gorm:"unique;type:varchar(36)"
+  string owned_by_id = 104;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string workspace_id = 105;
+}
