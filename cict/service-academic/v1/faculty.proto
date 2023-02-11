@@ -5,11 +5,99 @@ package cict.service_academic.v1;
 option cc_enable_arenas = true;
 option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
 option java_multiple_files = false;
-option java_outer_classname = "SubjectProto";
+option java_outer_classname = "FacultyProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
 
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/paginate.proto";
+
+service FacultyService {
+  rpc MutateFaculty (MutateFacultyRequest) returns (MutateFacultyResponse) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/faculty/mutate",
+      body: "*",
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_ADMIN,
+    };
+  }
+
+  rpc ListFaculty (ListFacultyRequest) returns (ListFacultyResponse) {
+    option (google.api.http) = {
+      get: "/api/service_academic/v1/faculty/list"
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANYONE,
+    };
+  }
+}
+
+message MutateFacultyRequest {
+  MutateFacultyCreate create = 1;
+
+  MutateFacultyUpdate update = 2;
+
+  MutateFacultyDelete delete = 3;
+
+  bool partial_failure = 4;
+}
+
+message MutateFacultyCreate {
+  option (common.v1.default_mask) = {
+    paths: ["id","name"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  repeated Faculty faculties = 3;
+}
+
+message MutateFacultyUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["name"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  Faculty faculty = 3;
+
+  repeated string ids = 4;
+}
+
+message MutateFacultyDelete {
+  repeated string ids = 1;
+}
+
+message MutateFacultyResponse {
+  int64 affected_rows = 1;
+}
+
+message ListFacultyRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","name"]
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  common.v1.Paginate paginate = 3;
+}
+
+message ListFacultyResponse {
+  repeated Faculty faculties = 1;
+}
+
 message Faculty {
-  // @gotags: gorm:"primary_key;type:varchar(50);"
+  // @gotags: gorm:"primaryKey;type:varchar(50);"
   string id = 1;
 
   // @gotags: gorm:"type:nvarchar(200)"

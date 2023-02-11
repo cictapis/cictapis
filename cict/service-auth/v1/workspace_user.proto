@@ -16,7 +16,16 @@ import "cict/common/v1/annotations.proto";
 service WorkspaceUserService {
   rpc InviteUserToWorkspace(InviteUserToWorkspaceRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/api/service_auth/v1/workspace_user/invite",
+      post: "/api/service_auth/v1/workspace_user/invite_user_to_workspace",
+      body: "*",
+    };
+    option (common.v1.cict) = {
+      crud_policy: WORKSPACE_OWNER
+    };
+  }
+  rpc RemoveUserFromWorkspace(RemoveUserFromWorkspaceRequest) returns (RemoveUserFromWorkspaceResponse) {
+    option (google.api.http) = {
+      post: "/api/service_auth/v1/workspace_user/remove_user_from_workspace",
       body: "*",
     };
     option (common.v1.cict) = {
@@ -26,7 +35,15 @@ service WorkspaceUserService {
 }
 
 message InviteUserToWorkspaceRequest {
-  repeated string user_ids = 2;
+  repeated string user_ids = 1;
+}
+
+message RemoveUserFromWorkspaceRequest {
+
+}
+
+message RemoveUserFromWorkspaceResponse {
+
 }
 
 message WorkspaceUser {

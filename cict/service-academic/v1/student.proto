@@ -9,17 +9,22 @@ option java_outer_classname = "StudentProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
 
 import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
 
 import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/paginate.proto";
 import "cict/service-academic/v1/enum_gender.proto";
 import "cict/service-academic/v1/enum_student_status.proto";
 import "cict/service-academic/v1/class.proto";
 import "cict/service-academic/v1/specilization.proto";
+import "cict/service-auth/v1/user.proto";
 
 service StudentService {
-  rpc MutateStudent (MutateStudentRequest) returns (MutateStudentResponse) {
+  rpc AdminMutatestudent (AdminMutateStudentRequest) returns (AdminMutateStudentResponse) {
     option (google.api.http) = {
-      post: "/api/service_academic/v1/student/mutate",
+      post: "/api/service_academic/v1/student/admin_mutate",
       body: "*",
     };
     option (common.v1.cict) = {
@@ -27,13 +32,13 @@ service StudentService {
     };
   }
 
-  // Used for listing user in the same class or exam room.
-  rpc ListStudentSummary (ListStudentSummaryRequest) returns (ListStudentSummaryResponse) {
+  rpc UserMutateStudent (UserMutateStudentRequest) returns (UserMutateStudentResponse) {
     option (google.api.http) = {
-      get: "/api/service_academic/v1/student/list_summary",
+      post: "/api/service_academic/v1/student/mutate",
+      body: "*",
     };
     option (common.v1.cict) = {
-      crud_policy: WORKSPACE_ISOLATION,
+      crud_policy: SCOPE_USER,
     };
   }
 
@@ -55,55 +60,136 @@ service StudentService {
     };
   }
 
-  rpc UpdateStudentProfile (UpdateStudentProfileRequest) returns (UpdateStudentProfileResponse) {
+  // Return public data of students
+  rpc SearchStudent (SearchStudentRequest) returns (SearchStudentResponse) {
     option (google.api.http) = {
-      post: "/api/service_academic/v1/student/update_profile",
-      body: "*"
+      get: "/api/service_academic/v1/student/search"
     };
     option (common.v1.cict) = {
-      crud_policy: SCOPE_USER,
+      crud_policy: ANYONE,
     };
   }
 }
 
-message MutateStudentRequest {
+message AdminMutateStudentRequest {
+  // Register new user, add user to workspace, and create student info profile
+  service_auth.v1.RegisterUserRequest create = 1;
 
+  AdminMutateStudentUpdate update = 2;
+
+  bool partial_failure = 3;
 }
 
-message MutateStudentResponse {
+message AdminMutateStudentUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["main_class_id","main_specilization_id","main_min_credits","main_max_credits","sub_class_id","sub_specilization_id","sub_min_credits","sub_max_credits","current_semester_tuition_debt","old_semester_tution_debt","student_status"],
+  };
 
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  Student student = 3;
+
+  repeated string ids = 4;
 }
 
-message ListStudentSummaryRequest {
 
+message AdminMutateStudentResponse {
+  int64 affected_rows = 1;
 }
 
-message ListStudentSummaryResponse {
+message UserMutateStudentRequest {
+  // Update profile data
+  UserMutateStudentUpdate update = 1;
 
+  google.protobuf.Empty leave_workspace = 2;
+}
+
+message UserMutateStudentUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["name","date_of_birth","phone_number","gender","birth_place","bank_account","identity_card_number","citizen_identification_number","father_name","father_occupation","father_phone_number","mother_name","mother_occupation","mother_phone_number","temporary_address","permanant_address"]
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  Student student = 3;
+
+  string id = 4;
+}
+
+message UserMutateStudentResponse {
+  string affected_id = 1;
 }
 
 message GetStudentRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","name","date_of_birth","email","phone_number","gender","birth_place","bank_account","identidy_card_number","citizen_identification_number","father_name","father_occupation","father_phone_number","mother_name","mother_occupation","mother_phone_number","temporary_address","permanant_address","main_class_id","main_specilization_id","main_min_credits","main_max_credits","sub_class_id","sub_specilization_id","sub_min_credits","sub_max_credits","current_semester_tuition_debt","old_semester_tution_debt","student_status"],
+  };
 
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  string id = 3;
 }
 
 message GetStudentResponse {
-
+  Student student = 1;
 }
 
 message ListStudentRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","name","date_of_birth","email","phone_number","gender","birth_place","bank_account","identidy_card_number","citizen_identification_number","father_name","father_occupation","father_phone_number","mother_name","mother_occupation","mother_phone_number","temporary_address","permanant_address","main_class_id","main_specilization_id","main_min_credits","main_max_credits","sub_class_id","sub_specilization_id","sub_min_credits","sub_max_credits","current_semester_tuition_debt","old_semester_tution_debt","student_status"],
+  };
 
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  common.v1.Paginate paginate = 3;
+
+  string main_class_id = 4;
+
+  string  main_specilization_id = 5;
+
+  string sub_class_id = 6;
+
+  string sub_specilization_id = 7;
+
+  string student_status = 8;
 }
 
 message ListStudentResponse {
-
+  repeated Student students = 1;
 }
 
-message UpdateStudentProfileRequest {
+message SearchStudentRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","name","date_of_birth","email","gender","main_class_id","main_specilization_id","sub_class_id","sub_specilization_id"],
+  };
 
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  common.v1.Paginate paginate = 3;
+
+  string main_class_id = 4;
+
+  string  main_specilization_id = 5;
+
+  string sub_class_id = 6;
+
+  string sub_specilization_id = 7;
+
+  string student_status = 8;
 }
 
-message UpdateStudentProfileResponse {
-
+message SearchStudentResponse {
+  repeated Student students = 1;
 }
 
 // Sinh viên
@@ -215,16 +301,16 @@ message Student {
   int32 sub_min_credits = 30;
 
   // sotcmax2
-  int32 sub_max_credits = 28;
+  int32 sub_max_credits = 31;
 
   // pdhocphihk
-  float current_semester_tuition_debt = 29;
+  float current_semester_tuition_debt = 32;
 
   // nohkcu
-  float old_semester_tution_debt = 30;
+  float old_semester_tution_debt = 33;
 
   // hiendien
-  EnumStudentStatus.StudentStatus student_status = 31;
+  EnumStudentStatus.StudentStatus student_status = 34;
 
   // @gotags: gorm:"autoUpdateTime:nano"
   int64 updated_at = 100;
@@ -238,7 +324,7 @@ message Student {
   // @gotags: gorm:"type:varchar(36)"
   string updated_by_id = 103;
 
-  // @gotags: gorm:"type:varchar(36)"
+  // @gotags: gorm:"unique;type:varchar(36)"
   string owned_by_id = 104;
 
   // @gotags: gorm:"type:varchar(36)"

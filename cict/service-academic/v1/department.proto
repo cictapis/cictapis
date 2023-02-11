@@ -28,15 +28,6 @@ service DepartmentService {
     };
   }
 
-  rpc GetDepartment (GetDepartmentRequest) returns (GetDepartmentResponse) {
-    option (google.api.http) = {
-      get: "/api/service_academic/v1/department/get",
-    };
-    option (common.v1.cict) = {
-      crud_policy: ANYONE,
-    };
-  }
-
   rpc ListDepartment (ListDepartmentRequest) returns (ListDepartmentResponse) {
     option (google.api.http) = {
       get: "/api/service_academic/v1/department/list",
@@ -47,7 +38,7 @@ service DepartmentService {
   }
 }
 
-message MutateSujectRequest {
+message MutateDepartmentRequest {
   MutateDepartmentCreate create = 1;
 
   MutateDepartmentUpdate update = 2;
@@ -59,7 +50,7 @@ message MutateSujectRequest {
 
 message MutateDepartmentCreate {
   option (common.v1.default_mask) = {
-    paths: ["code","name","faculty_id","head_of_department_id"],
+    paths: ["id","name","faculty_id","head_of_department_id"],
   };
 
   common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
@@ -71,7 +62,7 @@ message MutateDepartmentCreate {
 
 message MutateDepartmentUpdate {
   option (common.v1.default_mask) = {
-    paths: ["code","name","faculty_id","head_of_department_id"],
+    paths: ["name","faculty_id","head_of_department_id"],
   };
 
   common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
@@ -91,29 +82,9 @@ message MutateDepartmentResponse {
   int64 affected_rows = 1;
 }
 
-message GetDepartmentRequest {
-  option (common.v1.default_mask) = {
-    paths: ["id","code","name","faculty_id","head_of_department_id"],
-  };
-
-  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
-
-  google.protobuf.FieldMask mask = 2;
-
-  oneof by {
-    string id = 3;
-
-    string code = 4;
-  }
-}
-
-message GetDepartmentResponse {
-  Department department = 1;
-}
-
 message ListDepartmentRequest {
   option (common.v1.default_mask) = {
-    paths: ["id","code","name","faculty_id","head_of_department_id"],
+    paths: ["id","name","faculty_id","head_of_department_id"],
   };
 
   common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
@@ -121,6 +92,8 @@ message ListDepartmentRequest {
   google.protobuf.FieldMask mask = 2;
 
   common.v1.Paginate paginate = 3;
+
+  string faculty_id = 4;
 }
 
 message ListDepartmentResponse {

@@ -9,8 +9,10 @@ option java_outer_classname = "StudentCourseProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
 
 import "cict/service-academic/v1/course.proto";
+import "cict/service-academic/v1/semester.proto";
 import "cict/service-academic/v1/student.proto";
 
+// HocPhanSV
 // Join table student and course registration
 // Join table use composite primary key
 message StudentCourse {
@@ -19,36 +21,39 @@ message StudentCourse {
 
   // HocPhanGV_Id
   // @gotags: gorm:"primaryKey;type:varchar(36)"
-  string course_id = 1;
+  string course_id = 2;
 
   // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE"
-  Course course = 2;
+  Course course = 3;
 
   // MaDK
   // @gotags: gorm:"primaryKey;type:varchar(50)"
-  string student_id = 3;
+  string student_id = 4;
 
   // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE"
-  Student student = 4;
+  Student student = 5;
 
   // DonGiaHP
-  float unit_price = 5;
+  float unit_price = 6;
 
   // MienGiam
-  float tuition_reduction = 6;
+  float tuition_reduction = 7;
 
   // PhaiDong
-  float need_paying = 7;
+  float need_paying = 8;
 
   // CAITHIEN
-  bool is_improvement = 8;
+  bool is_improvement = 9;
 
   // NHHK
-  // @gotags: gorm:"type:varchar(10)"
-  string school_year_semester = 9;
+  // @gotags: gorm:"type:varchar(6)"
+  string semester_id = 10;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"
+  Semester semester = 11;
 
   // SVThu
-  int32 registration_index = 10;
+  int32 registration_index = 12;
 
   // @gotags: gorm:"autoUpdateTime:nano"
   int64 updated_at = 100;

@@ -8,10 +8,98 @@ option java_multiple_files = false;
 option java_outer_classname = "AcronymProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
 
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/paginate.proto";
+
+service AcronymService {
+  rpc MutateAcronym (MutateAcronymRequest) returns (MutateAcronymResponse) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/acronym/mutate",
+      body: "*",
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_ADMIN,
+    };
+  }
+
+  rpc ListAcronym (ListAcronymRequest) returns (ListAcronymResponse) {
+    option (google.api.http) = {
+      get: "/api/service_academic/v1/acronym/list"
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANYONE,
+    };
+  }
+}
+
+message MutateAcronymRequest {
+  MutateAcronymCreate create = 1;
+
+  MutateAcronymUpdate update = 2;
+
+  MutateAcronymDelete delete = 3;
+
+  bool partial_failure = 4;
+}
+
+message MutateAcronymCreate {
+  option (common.v1.default_mask) = {
+    paths: ["id","name"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  repeated Acronym acronyms = 3;
+}
+
+message MutateAcronymUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["name"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  Acronym acronym = 3;
+
+  repeated string ids = 4;
+}
+
+message MutateAcronymDelete {
+  repeated string ids = 1;
+}
+
+message MutateAcronymResponse {
+  int64 affected_rows = 1;
+}
+
+message ListAcronymRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","name"]
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  common.v1.Paginate paginate = 3;
+}
+
+message ListAcronymResponse {
+  repeated Acronym acronyms = 1;
+}
+
 // TuDienQC
 message Acronym {
   // MaQC
-  // @gotags: gorm:"primary_key;type:varchar(50)"
+  // @gotags: gorm:"primaryKey;type:varchar(50)"
   string id = 1;
 
   // TenQC

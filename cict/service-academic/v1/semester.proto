@@ -5,7 +5,7 @@ package cict.service_academic.v1;
 option cc_enable_arenas = true;
 option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
 option java_multiple_files = false;
-option java_outer_classname = "SpecilizationProto";
+option java_outer_classname = "SemesterProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
 
 import "google/api/annotations.proto";
@@ -14,12 +14,11 @@ import "google/protobuf/field_mask.proto";
 import "cict/common/v1/annotations.proto";
 import "cict/common/v1/enum_mask_behavior.proto";
 import "cict/common/v1/paginate.proto";
-import "cict/service-academic/v1/major.proto";
 
-service SpecilizationService {
-  rpc MutateSpecilization (MutateSpecilizationRequest) returns (MutateSpecilizationResponse) {
+service SemesterService {
+  rpc MutateSemester (MutateSemesterRequest) returns (MutateSemesterResponse) {
     option (google.api.http) = {
-      post: "/api/service_academic/v1/specilization/mutate",
+      post: "/api/service_academic/v1/semester/mutate",
       body: "*",
     };
     option (common.v1.cict) = {
@@ -27,9 +26,9 @@ service SpecilizationService {
     };
   }
 
-  rpc ListSpecilization (ListSpecilizationRequest) returns (ListSpecilizationResponse) {
+  rpc ListSemester (ListSemesterRequest) returns (ListSemesterResponse) {
     option (google.api.http) = {
-      get: "/api/service_academic/v1/specilization/list"
+      get: "/api/service_academic/v1/semester/list"
     };
     option (common.v1.cict) = {
       crud_policy: ANYONE,
@@ -37,53 +36,53 @@ service SpecilizationService {
   }
 }
 
-message MutateSpecilizationRequest {
-  MutateSpecilizationCreate create = 1;
+message MutateSemesterRequest {
+  MutateSemesterCreate create = 1;
 
-  MutateSpecilizationUpdate update = 2;
+  MutateSemesterUpdate update = 2;
 
-  MutateSpecilizationDelete delete = 3;
+  MutateSemesterDelete delete = 3;
 
   bool partial_failure = 4;
 }
 
-message MutateSpecilizationCreate {
+message MutateSemesterCreate {
   option (common.v1.default_mask) = {
-    paths: ["id","name","major_id"],
+    paths: ["id","name","is_current"],
   };
 
   common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
 
   google.protobuf.FieldMask mask = 2;
 
-  repeated Specilization specilizations = 3;
+  repeated Semester semesters = 3;
 }
 
-message MutateSpecilizationUpdate {
+message MutateSemesterUpdate {
   option (common.v1.default_mask) = {
-    paths: ["name","major_id"],
+    paths: ["name","is_current"],
   };
 
   common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
 
   google.protobuf.FieldMask mask = 2;
 
-  Specilization specilization = 3;
+  Semester semester = 3;
 
   repeated string ids = 4;
 }
 
-message MutateSpecilizationDelete {
+message MutateSemesterDelete {
   repeated string ids = 1;
 }
 
-message MutateSpecilizationResponse {
+message MutateSemesterResponse {
   int64 affected_rows = 1;
 }
 
-message ListSpecilizationRequest {
+message ListSemesterRequest {
   option (common.v1.default_mask) = {
-    paths: ["id","name","major_id"],
+    paths: ["id","name","is_current"]
   };
 
   common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
@@ -91,28 +90,22 @@ message ListSpecilizationRequest {
   google.protobuf.FieldMask mask = 2;
 
   common.v1.Paginate paginate = 3;
-
-  // Parameter major_id
-  string major_id = 4;
 }
 
-message ListSpecilizationResponse {
-  repeated Specilization specilizations = 1;
+message ListSemesterResponse {
+  repeated Semester semesters = 1;
 }
 
-// Chuyên ngành
-message Specilization {
-  // @gotags: gorm:"primaryKey;type:varchar(50);"
+// Học kỳ, HocKy
+message Semester {
+  // MaHK: 20201
+  // @gotags: gorm:"primaryKey;type:varchar(6)"
   string id = 1;
 
-  // @gotags: gorm:"type:nvarchar(200)"
+  // @gotags: gorm:"type:varchar(200)"
   string name = 2;
 
-  // @gotags: gorm:"type:varchar(50)"
-  string major_id = 3;
-
-  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADED;"
-  Major major = 4;
+  bool is_current = 3;
 
   // @gotags: gorm:"autoUpdateTime:nano"
   int64 updated_at = 100;

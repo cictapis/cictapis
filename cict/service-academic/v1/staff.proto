@@ -9,6 +9,7 @@ option java_outer_classname = "StaffProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
 
 import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
 import "google/protobuf/field_mask.proto";
 
 import "cict/common/v1/annotations.proto";
@@ -17,15 +18,27 @@ import "cict/common/v1/paginate.proto";
 import "cict/service-academic/v1/enum_gender.proto";
 import "cict/service-academic/v1/enum_staff_status.proto";
 import "cict/service-academic/v1/faculty.proto";
+import "cict/service-auth/v1/user.proto";
 
+// Public profile of staff
 service StaffService {
-  rpc MutateStaff (MutateStaffRequest) returns (MutateStaffResponse) {
+  rpc AdminMutateStaff (AdminMutateStaffRequest) returns (AdminMutateStaffResponse) {
     option (google.api.http) = {
-      post: "/api/service_academic/v1/staff/mutate",
+      post: "/api/service_academic/v1/staff/admin_mutate",
       body: "*"
     };
     option (common.v1.cict) = {
       crud_policy: SCOPE_ADMIN,
+    };
+  }
+
+  rpc UserMutateStaff (UserMutateStaffRequest) returns (UserMutateStaffResponse) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/staff/user_mutate",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_USER,
     };
   }
 
@@ -58,31 +71,18 @@ service StaffService {
   }
 }
 
-message MutateStaffRequest {
-  MutateStaffCreate create = 1;
+message AdminMutateStaffRequest {
+  // Register new user, add user to workspace, and create staff info profile.
+  service_auth.v1.RegisterUserRequest create = 1;
 
-  MutateStaffUpdate update = 2;
+  AdminMutateStaffUpdate update = 2;
 
-  MutateStaffDelete delete = 3;
-
-  bool partial_failure = 4;
+  bool partial_failure = 3;
 }
 
-message MutateStaffCreate {
+message AdminMutateStaffUpdate {
   option (common.v1.default_mask) = {
-    paths: ["code","name","subject_id","phone_number","date_of_birth","gender","staff_status","academic_degree","decision_number","decision_date"],
-  };
-
-  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
-
-  google.protobuf.FieldMask mask = 2;
-
-  repeated Staff staffs = 3;
-}
-
-message MutateStaffUpdate {
-  option (common.v1.default_mask) = {
-    paths: ["code","name","subject_id","phone_number","date_of_birth","gender","staff_status","academic_degree","decision_number","decision_date"],
+    paths: ["staff_status"],
   };
 
   common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
@@ -94,17 +94,37 @@ message MutateStaffUpdate {
   repeated string ids = 4;
 }
 
-message MutateStaffDelete {
-  repeated string ids = 1;
+message AdminMutateStaffResponse {
+  int64 affected_rows = 1;
 }
 
-message MutateStaffResponse {
-  int64 affected_rows = 1;
+message UserMutateStaffRequest {
+  UserMutateStaffUpdate update = 1;
+
+  google.protobuf.Empty leave_workspace = 2;
+}
+
+message UserMutateStaffUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["name","email","phone_number","date_of_birth","gender","academic_degree","decision_number","decision_date","faculty_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  Staff staff = 3;
+
+  string id = 4;
+}
+
+message UserMutateStaffResponse {
+  string affected_id = 1;
 }
 
 message GetStaffRequest {
   option (common.v1.default_mask) = {
-    paths: ["id","code","name","subject_id","phone_number","date_of_birth","gender","staff_status","academic_degree","decision_number","decision_date"],
+    paths: ["id","name","email","phone_number","date_of_birth","gender","staff_status","academic_degree","decision_number","decision_date","faculty_id"],
   };
 
   common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
@@ -120,7 +140,7 @@ message GetStaffResponse {
 
 message ListStaffRequest {
   option (common.v1.default_mask) = {
-    paths: ["id","code","name","subject_id","phone_number","date_of_birth","gender","staff_status","academic_degree","decision_number","decision_date"],
+    paths: ["id","name","email","phone_number","date_of_birth","gender","staff_status","academic_degree","decision_number","decision_date","faculty_id"],
   };
 
   common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
@@ -128,6 +148,9 @@ message ListStaffRequest {
   google.protobuf.FieldMask mask = 2;
 
   common.v1.Paginate paginate = 3;
+
+  // faculty_id can be emptied or not.
+  string faculty_id = 4;
 }
 
 message ListStaffResponse {
@@ -136,18 +159,21 @@ message ListStaffResponse {
 
 message SearchStaffRequest {
   option (common.v1.default_mask) = {
-    paths: ["id","code","name","subject_id","phone_number","date_of_birth","gender","staff_status","academic_degree"],
+    paths: ["id","name","email","phone_number","date_of_birth","gender","staff_status","academic_degree","decision_number","decision_date","faculty_id"],
   };
 
   common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
 
   google.protobuf.FieldMask mask = 2;
 
-  oneof by {
-    string faculty_id = 1;
+  // Search by id
+  string id = 3;
 
-    string faculty_code = 2;
-  }
+  // Search by name
+  string name = 4;
+
+  // Search by facility_id
+  string facility_id = 5;
 }
 
 message SearchStaffResponse {
@@ -157,7 +183,7 @@ message SearchStaffResponse {
 // Cán bộ
 message Staff {
   // MaCB
-  // @gotags: gorm:"primary_key;type:varchar(50);"
+  // @gotags: gorm:"primaryKey;type:varchar(50);"
   string id = 1;
 
   // TenCB
@@ -212,7 +238,7 @@ message Staff {
   // @gotags: gorm:"type:varchar(36)"
   string updated_by_id = 103;
 
-  // @gotags: gorm:"type:varchar(36)"
+  // @gotags: gorm:"unique;type:varchar(36)"
   string owned_by_id = 104;
 
   // @gotags: gorm:"type:varchar(36)"

@@ -1,0 +1,117 @@
+syntax = "proto3";
+
+package cict.service_academic.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
+option java_multiple_files = false;
+option java_outer_classname = "ProcessPointProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/paginate.proto";
+import "cict/service-academic/v1/course.proto";
+import "cict/service-academic/v1/semester.proto";
+import "cict/service-academic/v1/student.proto";
+import "cict/service-academic/v1/subject.proto";
+
+service ProcessPointService {
+  rpc MutateProcessPoint (MutateProcessPointRequest) returns (MutateProcessPointResponse) {
+    option (google.api.http) = {
+      post: "/api/service-academic/v1/process_point/mutate",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_ADMIN,
+    };
+  }
+}
+
+message MutateProcessPointRequest {
+
+}
+
+message MutateProcessPointResponse {
+
+}
+
+// Điểm quá trình, Diem
+message ProcessPoint {
+  // NHHK
+  // @gotags: gorm:"primaryKey;type:varchar(6)"
+  string semester_id = 1;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"
+  Semester semester = 2;
+
+  // MaSV
+  // @gotags: gorm:"primaryKey;type:varchar(50)"
+  string student_id = 3;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"
+  Student student = 4;
+
+  // @gotags: gorm:"primaryKey;type:varchar(50);"
+  string subject_id = 5;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"
+  Subject subject = 6;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string course_id = 7;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"
+  Course course = 8;
+
+  // @gotags: gorm:"primaryKey;type:varchar(5)"
+  string group = 9;
+
+  // @gotags: gorm:"type:varchar(5)"
+  string process_point = 10;
+
+  float percent_process = 11;
+
+  // @gotags: gorm:"type:varchar(5)"
+  string exam_point_1 = 12;
+
+  // @gotags: gorm:"type:varchar(5)"
+  string exam_point_2 = 13;
+
+  // @gotags: gorm:"type:varchar(5)"
+  string exam_point_3 = 14;
+
+  float percent_exam = 15;
+
+  // @gotags: gorm:"type:varchar(5)"
+  string final_point_10 = 16;
+
+  // @gotags: gorm:"type:varchar(5)"
+  string final_point_4 = 17;
+
+  // @gotags: gorm:"type:varchar(5)"
+  string final_point_letter = 18;
+
+  bool is_passed = 19;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updated_at = 100;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 created_at = 101;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string created_by_id = 102;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string updated_by_id = 103;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string owned_by_id = 104;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string workspace_id = 105;
+}

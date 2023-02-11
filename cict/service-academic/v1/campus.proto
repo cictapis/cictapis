@@ -8,9 +8,97 @@ option java_multiple_files = false;
 option java_outer_classname = "CampusProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
 
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/paginate.proto";
+
+service CampusService {
+  rpc MutateCampus (MutateCampusRequest) returns (MutateCampusResponse) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/campus/mutate",
+      body: "*",
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_ADMIN,
+    };
+  }
+
+  rpc ListCampus (ListCampusRequest) returns (ListCampusResponse) {
+    option (google.api.http) = {
+      get: "/api/service_academic/v1/campus/list"
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANYONE,
+    };
+  }
+}
+
+message MutateCampusRequest {
+  MutateCampusCreate create = 1;
+
+  MutateCampusUpdate update = 2;
+
+  MutateCampusDelete delete = 3;
+
+  bool partial_failure = 4;
+}
+
+message MutateCampusCreate {
+  option (common.v1.default_mask) = {
+    paths: ["id","name"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  repeated Campus campuses = 3;
+}
+
+message MutateCampusUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["name"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  Campus campus = 3;
+
+  repeated string ids = 4;
+}
+
+message MutateCampusDelete {
+  repeated string ids = 1;
+}
+
+message MutateCampusResponse {
+  int64 affected_rows = 1;
+}
+
+message ListCampusRequest {
+  option (common.v1.default_mask) = {
+    paths: ["id","name"]
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  common.v1.Paginate paginate = 3;
+}
+
+message ListCampusResponse {
+  repeated Campus campuses = 1;
+}
+
 // CoSo
-message Basis {
-  // @gotags: gorm:"primary_key;type:varchar(50);"
+message Campus {
+  // @gotags: gorm:"primaryKey;type:varchar(50);"
   string id = 1;
 
   // @gotags: gorm:"type:nvarchar(200)"

@@ -20,6 +20,16 @@ import "cict/service-auth/v1/scope.proto";
 
 // Supperuser and workspace owner cannot grant user-service scope_admin for others
 service UserService {
+  rpc RegisterUser(RegisterUserRequest) returns (RegisterUserResponse) {
+    option (google.api.http) = {
+      post: "/api/service_auth/v1/user/register"
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: ANONYMOUS,
+    };
+  }
+
   // Used to login to system
   rpc Login(LoginRequest) returns (LoginResponse) {
     option (google.api.http) = {
@@ -99,6 +109,18 @@ service UserService {
       crud_policy: SCOPE_USER,
     };
   }
+}
+
+message RegisterUserRequest {
+  option (common.v1.default_mask) = {
+    paths: ["avatar","email","name","password","workspace_id"]
+  };
+
+  User user = 1;
+}
+
+message RegisterUserResponse {
+  string affected_id = 1;
 }
 
 message LoginRequest {
@@ -222,7 +244,7 @@ message MutateUserResponse {
 }
 
 message User {
-  // @gotags: gorm:"primary_key;type:varchar(36);default:(uuid())"
+  // @gotags: gorm:"primaryKey;type:varchar(36);default:(uuid())"
   string id = 1;
 
   string email = 2;
