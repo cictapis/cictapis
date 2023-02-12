@@ -72,17 +72,35 @@ service StaffService {
 }
 
 message AdminMutateStaffRequest {
-  // Register new user, add user to workspace, and create staff info profile.
-  service_auth.v1.RegisterUserRequest create = 1;
+  oneof operation {
+    // Register new user, add user to workspace, and create staff info profile.
+    AdminMutateStaffCreate create = 1;
 
-  AdminMutateStaffUpdate update = 2;
+    // Remove staffes from this workspace; this operation will not delete staff's data.
+    AdminMutateStaffRemoveFromWorkspace remove_from_workspace = 2;
 
-  bool partial_failure = 3;
+    // Rest operations will do in bulk write
+    AdminMutateStaffRest rest = 3;
+  }
+}
+
+message AdminMutateStaffCreate {
+  service_auth.v1.RegisterUserRequest register_user_request = 1;
+}
+
+message AdminMutateStaffRemoveFromWorkspace {
+  repeated string ids = 1;
+}
+
+message AdminMutateStaffRest {
+  AdminMutateStaffUpdate update = 1;
+
+  bool partial_failure = 2;
 }
 
 message AdminMutateStaffUpdate {
   option (common.v1.default_mask) = {
-    paths: ["staff_status"],
+    paths: ["name","email","phone_number","date_of_birth","gender","academic_degree","decision_number","decision_date","faculty_id","staff_status"],
   };
 
   common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
@@ -99,9 +117,11 @@ message AdminMutateStaffResponse {
 }
 
 message UserMutateStaffRequest {
-  UserMutateStaffUpdate update = 1;
+  oneof operation {
+    UserMutateStaffUpdate update = 1;
 
-  google.protobuf.Empty leave_workspace = 2;
+    UserMutateStaffLeaveWorkspace leave_workspace = 2;
+  }
 }
 
 message UserMutateStaffUpdate {
@@ -116,6 +136,10 @@ message UserMutateStaffUpdate {
   Staff staff = 3;
 
   string id = 4;
+}
+
+message UserMutateStaffLeaveWorkspace {
+  google.protobuf.Empty leave_workspace = 1;
 }
 
 message UserMutateStaffResponse {
