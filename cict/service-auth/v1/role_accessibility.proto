@@ -8,18 +8,17 @@ option java_multiple_files = false;
 option java_outer_classname = "RoleAccessibilityProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.serviceauth.v1";
 
-// Prove by Karnaugh Map role accessibility can work with formular:
-// f = id.(access_contr + owned.owned_contr + workspace.workspace_contr + owned.workspace.owned_x_workspace_contr)
+// Kanaugh map
 message RoleAccessibility {
-  bool accessibility_controller = 1;
+  string workspace_id = 1;
 
-  string owned_by_id = 2;
+  bool accessibility_controller = 2;
 
-  bool owner_controller = 3;
+  string owned_by_id = 3;
 
-  string workspace_id = 4;
+  bool owner_controller = 4;
 
-  bool workspace_controller = 5;
+  string not_owned_by_id = 5;
 
-  bool owner_x_workspace_controller = 6;
+  bool not_owned_by_id_controller = 6;
 }
