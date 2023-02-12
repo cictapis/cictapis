@@ -14,6 +14,7 @@ import "google/protobuf/field_mask.proto";
 
 import "cict/common/v1/annotations.proto";
 import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/enum_rpc_handle_status.proto";
 import "cict/common/v1/paginate.proto";
 import "cict/service-auth/v1/enum_user_status.proto";
 import "cict/service-auth/v1/scope.proto";
@@ -113,14 +114,16 @@ service UserService {
 
 message RegisterUserRequest {
   option (common.v1.default_mask) = {
-    paths: ["avatar","email","name","password","workspace_id"]
+    paths: ["id","avatar","email","name","password","workspace_id"]
   };
 
   User user = 1;
 }
 
 message RegisterUserResponse {
-  string affected_id = 1;
+  common.v1.EnumRpcHandleStatus.RpcHandleStatus rpc_handle_status = 1;
+
+  string affected_id = 2;
 }
 
 message LoginRequest {
@@ -240,7 +243,9 @@ message MutateUserChangePassword {
 }
 
 message MutateUserResponse {
-  string affected_id = 1;
+  common.v1.EnumRpcHandleStatus.RpcHandleStatus rpc_handle_status = 1;
+
+  string affected_id = 2;
 }
 
 message User {

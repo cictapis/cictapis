@@ -9,6 +9,7 @@ go_proto_library(
     "@com_github_cict_cictapis//cict/common/v1:config_proto",
     "@com_github_cict_cictapis//cict/common/v1:enum_crud_policy_proto",
     "@com_github_cict_cictapis//cict/common/v1:enum_mask_behavior_proto",
+    "@com_github_cict_cictapis//cict/common/v1:enum_rpc_handle_status_proto",
     "@com_github_cict_cictapis//cict/common/v1:error_locale_proto",
     "@com_github_cict_cictapis//cict/common/v1:paginate_proto",
   ],

@@ -9,12 +9,12 @@ option java_outer_classname = "WorkspaceUserProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.serviceauth.v1";
 
 import "google/api/annotations.proto";
-import "google/protobuf/empty.proto";
 
 import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_rpc_handle_status.proto";
 
 service WorkspaceUserService {
-  rpc InviteUserToWorkspace(InviteUserToWorkspaceRequest) returns (google.protobuf.Empty) {
+  rpc InviteUserToWorkspace(InviteUserToWorkspaceRequest) returns (InviteUserToWorkspaceResponse) {
     option (google.api.http) = {
       post: "/api/service_auth/v1/workspace_user/invite_user_to_workspace",
       body: "*",
@@ -23,6 +23,7 @@ service WorkspaceUserService {
       crud_policy: WORKSPACE_OWNER
     };
   }
+
   rpc RemoveUserFromWorkspace(RemoveUserFromWorkspaceRequest) returns (RemoveUserFromWorkspaceResponse) {
     option (google.api.http) = {
       post: "/api/service_auth/v1/workspace_user/remove_user_from_workspace",
@@ -38,12 +39,20 @@ message InviteUserToWorkspaceRequest {
   repeated string user_ids = 1;
 }
 
-message RemoveUserFromWorkspaceRequest {
+message InviteUserToWorkspaceResponse {
+  common.v1.EnumRpcHandleStatus.RpcHandleStatus rpc_handle_status = 1;
 
+  int64 affected_ids = 2;
+}
+
+message RemoveUserFromWorkspaceRequest {
+  repeated string user_ids = 1;
 }
 
 message RemoveUserFromWorkspaceResponse {
+  common.v1.EnumRpcHandleStatus.RpcHandleStatus rpc_handle_status = 1;
 
+  int64 affected_ids = 2;
 }
 
 message WorkspaceUser {

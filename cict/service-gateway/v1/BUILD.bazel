@@ -3,6 +3,27 @@ load("@rules_proto//proto:defs.bzl", "proto_library")
 package(default_visibility = ["//visibility:public"])
 
 proto_library(
+  name = "enum_kafka_topic_proto",
+  srcs = ["enum_kafka_topic.proto"],
+  deps = []
+)
+
+proto_library(
+  name = "error_locale_proto",
+  srcs = ["error_locale.proto"],
+  deps = []
+)
+
+proto_library(
+  name = "locale_proto",
+  srcs = ["locale.proto"],
+  deps = [
+    "//cict/common/v1:error_locale_proto",
+    ":error_locale_proto",
+  ]
+)
+
+proto_library(
   name = "publisher_proto",
   srcs = ["publisher.proto"],
   deps = [

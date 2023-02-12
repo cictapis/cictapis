@@ -9,14 +9,14 @@ option java_outer_classname = "MailProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.servicemail.v1";
 
 import "google/api/annotations.proto";
-import "google/protobuf/empty.proto";
 
 import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_rpc_handle_status.proto";
 import "cict/service-mail/v1/enum_built_in_template.proto";
 
 service MailService {
   // Send email with user's input content
-  rpc SendContentMail(SendContentMailRequest) returns (google.protobuf.Empty) {
+  rpc SendContentMail(SendContentMailRequest) returns (SendContentMailResponse) {
     option (google.api.http) = {
       post: "/api/service_mail/v1/mail/send_content",
       body: "*",
@@ -27,7 +27,7 @@ service MailService {
   }
 
   // Send email with prepared template
-  rpc SendTemplateMail(SendTemplateMailRequest) returns (google.protobuf.Empty) {
+  rpc SendTemplateMail(SendTemplateMailRequest) returns (SendTemplateMailResponse) {
     option (google.api.http) = {
       post: "/api/service_mail/v1/mail/send_template",
       body: "*",
@@ -48,6 +48,10 @@ message SendContentMailRequest {
   repeated string attached_files = 4;
 }
 
+message SendContentMailResponse {
+  common.v1.EnumRpcHandleStatus.RpcHandleStatus rpc_handle_status = 1;
+}
+
 message SendTemplateMailRequest {
   oneof by {
     SendTemplateMailByTemplateId template_id = 1;
@@ -66,4 +70,8 @@ message SendTemplateMailByBuiltInTemplate {
   repeated string dst_mail_address = 1;
 
   EnumBuiltInTemplate.BuiltInTemplate built_in_template = 3;
+}
+
+message SendTemplateMailResponse {
+  common.v1.EnumRpcHandleStatus.RpcHandleStatus rpc_handle_status = 1;
 }

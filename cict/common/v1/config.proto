@@ -157,29 +157,11 @@ message Google {
 }
 
 message Kafka {
-  message Topics {
-    message Topic {
-      string topic_name = 1;
-
-      int32 partitions = 2;
-
-      int32 replication_factor = 3;
-    }
-
-    Topic user_mutate = 1;
-
-    Topic mail_send = 2;
-  }
-
   repeated string brokers = 1;
 
   string group_id = 2;
 
-  bool init_topic = 3;
-
-  int32 max_pool_size = 4;
-
-  Topics topics = 5;
+  int32 max_pool_size = 3;
 }
 
 message Smtp {

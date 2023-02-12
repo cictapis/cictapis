@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package cict.service_gateway.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_gateway/v1;service_gateway";
+option java_multiple_files = false;
+option java_outer_classname = "EnumKafkaTopicProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.servicepublisher.v1";
+
+message EnumKafkaTopic {
+    enum KafkaTopic {
+        UNSPECIFIED = 0;
+
+        SERVICE_AUTH_USER_REGISTER_USER = 1;
+
+        SERVICE_AUTH_USER_MUTATE_USER = 2;
+
+        SERVICE_AUTH_WORKSPACE_USER_INVITE_USER_TO_WORKSPACE = 3;
+
+        SERVICE_AUTH_WORKSPACE_USER_REMOVE_USER_FROM_WORKSPACE = 4;
+
+        SERVICE_MAIL_MAIL_SEND_CONTENT_MAIL = 5;
+
+        SERVICE_MAIL_MAIL_SEND_TEMPLATE_MAIL = 6;
+    }
+}
