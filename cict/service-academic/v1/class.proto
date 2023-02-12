@@ -60,7 +60,7 @@ message MutateClassCreate {
 
   google.protobuf.FieldMask mask = 2;
 
-  repeated Class classs = 3;
+  repeated Class classes = 3;
 }
 
 message MutateClassUpdate {
@@ -110,7 +110,7 @@ message ListClassRequest {
 }
 
 message ListClassResponse {
-  repeated Class classs = 1;
+  repeated Class classes = 1;
 }
 
 // Lop
