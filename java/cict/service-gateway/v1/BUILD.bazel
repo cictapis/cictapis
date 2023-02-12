@@ -5,8 +5,8 @@ java_grpc_library(
   protos = [
     "@com_github_cict_cictapis//cict/service-gateway/v1:enum_kafka_topic_proto",
     "@com_github_cict_cictapis//cict/service-gateway/v1:error_locale_proto",
+    "@com_github_cict_cictapis//cict/service-gateway/v1:kafka_message_proto",
     "@com_github_cict_cictapis//cict/service-gateway/v1:locale_proto",
-    "@com_github_cict_cictapis//cict/service-gateway/v1:publisher_proto",
   ],
   deps = [
     "//google/api:google_api_annotations_java_proto",

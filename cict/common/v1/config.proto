@@ -162,6 +162,8 @@ message Kafka {
   string group_id = 2;
 
   int32 max_pool_size = 3;
+
+  string rpc_cict_topic_name = 4;
 }
 
 message Smtp {
