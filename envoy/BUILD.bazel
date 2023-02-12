@@ -71,7 +71,9 @@ proto_descriptor(
     "//cict/service-file-uploader/v1:locale.proto",
 
     "//cict/service-gateway/v1:enum_kafka_topic.proto",
-    "//cict/service-gateway/v1:publisher.proto",
+    "//cict/service-gateway/v1:error_locale.proto",
+    "//cict/service-gateway/v1:kafka_message.proto",
+    "//cict/service-gateway/v1:locale.proto",
 
     "//cict/service-mail/v1:enum_built_in_template.proto",
     "//cict/service-mail/v1:error_locale.proto",

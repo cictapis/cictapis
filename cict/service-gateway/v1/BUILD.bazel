@@ -15,20 +15,18 @@ proto_library(
 )
 
 proto_library(
+  name = "kafka_message_proto",
+  srcs = ["kafka_message.proto"],
+  deps = [
+    ":enum_kafka_topic_proto",
+  ]
+)
+
+proto_library(
   name = "locale_proto",
   srcs = ["locale.proto"],
   deps = [
     "//cict/common/v1:error_locale_proto",
     ":error_locale_proto",
-  ]
-)
-
-proto_library(
-  name = "publisher_proto",
-  srcs = ["publisher.proto"],
-  deps = [
-    "//google/api:annotations_proto",
-    "@com_google_protobuf//:empty_proto",
-    "//cict/common/v1:annotations_proto",
   ]
 )
