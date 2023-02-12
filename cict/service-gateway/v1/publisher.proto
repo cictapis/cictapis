@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package cict.service_publisher.v1;
+package cict.service_gateway.v1;
 
 option cc_enable_arenas = true;
 option go_package = "github.com/cictapis/cict-auth/cict/service_gateway/v1;service_gateway";
 option java_multiple_files = false;
-option java_outer_classname = "Publisher";
+option java_outer_classname = "PublisherProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.servicepublisher.v1";
 
 import "google/api/annotations.proto";

@@ -86,6 +86,7 @@ proto_library(
     "@com_google_protobuf//:field_mask_proto",
     "//cict/common/v1:annotations_proto",
     "//cict/common/v1:enum_mask_behavior_proto",
+    "//cict/common/v1:enum_rpc_handle_status_proto",
     "//cict/common/v1:paginate_proto",
     ":enum_user_status_proto",
     ":scope_proto",
@@ -97,8 +98,8 @@ proto_library(
   srcs = ["workspace_user.proto"],
   deps = [
     "//google/api:annotations_proto",
-    "@com_google_protobuf//:empty_proto",
     "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_rpc_handle_status_proto",
   ]
 )
 

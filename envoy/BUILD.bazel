@@ -10,6 +10,7 @@ proto_descriptor(
     "//cict/common/v1:config.proto",
     "//cict/common/v1:enum_crud_policy.proto",
     "//cict/common/v1:enum_mask_behavior.proto",
+    "//cict/common/v1:enum_rpc_handle_status.proto",
     "//cict/common/v1:error_locale.proto",
     "//cict/common/v1:paginate.proto",
 
@@ -68,6 +69,9 @@ proto_descriptor(
     "//cict/service-file-uploader/v1:error_locale.proto",
     "//cict/service-file-uploader/v1:file.proto",
     "//cict/service-file-uploader/v1:locale.proto",
+
+    "//cict/service-gateway/v1:enum_kafka_topic.proto",
+    "//cict/service-gateway/v1:publisher.proto",
 
     "//cict/service-mail/v1:enum_built_in_template.proto",
     "//cict/service-mail/v1:error_locale.proto",

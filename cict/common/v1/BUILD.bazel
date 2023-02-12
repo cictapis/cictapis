@@ -31,6 +31,12 @@ proto_library(
 )
 
 proto_library(
+  name = "enum_rpc_handle_status_proto",
+  srcs = ["enum_rpc_handle_status.proto"],
+  deps = []
+)
+
+proto_library(
   name = "error_locale_proto",
   srcs = ["error_locale.proto"],
   deps = []
