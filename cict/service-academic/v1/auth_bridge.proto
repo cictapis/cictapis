@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package cict.service_academic.v1;
+
+option cc_enable_arenas = true;
+option go_package = "github.com/cictapis/cict-auth/cict/service_academic/v1;service_academic";
+option java_multiple_files = false;
+option java_outer_classname = "AuthBridgeProto";
+option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+import "cict/common/v1/annotations.proto";
+
+service AuthBridgeService {
+  rpc InitialServiceAcademic(google.protobuf.Empty) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/api/service_auth/v1/bridge/initial_workspace",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: WORKSPACE_ISOLATION,
+    };
+  }
+}

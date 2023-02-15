@@ -68,6 +68,7 @@ proto_library(
   srcs = ["session.proto"],
   deps = [
     "//google/api:annotations_proto",
+    "@com_google_protobuf//:empty_proto",
     "//cict/common/v1:annotations_proto",
     ":enum_scope_proto",
     ":role_accessibility_proto",
