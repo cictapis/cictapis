@@ -15,6 +15,7 @@ proto_descriptor(
     "//cict/common/v1:paginate.proto",
 
     "//cict/service-academic/v1:acronym.proto",
+    "//cict/service-academic/v1:auth_bridge.proto",
     "//cict/service-academic/v1:campus.proto",
     "//cict/service-academic/v1:class.proto",
     "//cict/service-academic/v1:course.proto",

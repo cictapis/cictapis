@@ -9,6 +9,7 @@ option java_outer_classname = "SessionProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.serviceauth.v1";
 
 import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
 
 import "cict/common/v1/annotations.proto";
 import "cict/service-auth/v1/enum_scope.proto";
@@ -24,7 +25,17 @@ service SessionService {
       body: "*"
     };
     option (common.v1.cict) = {
-      crud_policy: SYSTEM
+      crud_policy: SYSTEM,
+    };
+  }
+
+  rpc UpdateSession(UpdateSessionRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/api/service_auth/v1/session/update",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: SYSTEM,
     };
   }
 }
@@ -46,6 +57,14 @@ message AuthenticateSessionResponse {
   RoleAccessibility role_accessibility = 2;
 }
 
+message UpdateSessionRequest {
+  option (common.v1.default_mask) = {
+    paths: ["academic_student_id","academic_teacher_id"]
+  };
+
+  Session session = 1;
+}
+
 message Session {
   string id = 1;
 
@@ -54,4 +73,8 @@ message Session {
   repeated Workspace workspaces = 3;
 
   repeated Scope scopes = 4;
+
+  string academic_student_id = 5;
+
+  string academic_teacher_id = 6;
 }

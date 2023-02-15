@@ -8,9 +8,123 @@ option java_multiple_files = false;
 option java_outer_classname = "StudentCourseProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
 
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+
+import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/enum_rpc_handle_status.proto";
+import "cict/common/v1/paginate.proto";
 import "cict/service-academic/v1/course.proto";
-import "cict/service-academic/v1/semester.proto";
 import "cict/service-academic/v1/student.proto";
+
+service StudentCourseService {
+  rpc AdminMutateStudentCourse (AdminMutateStudentCourseRequest) returns (AdminMutateStudentCourseResponse) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/student_course/admin_mutate",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_ADMIN,
+    };
+  }
+
+  rpc UserMutateStudentCourse (UserMutateStudentCourseRequest) returns (UserMutateStudentCourseResponse) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/student_course/user_mutate",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_USER,
+    };
+  }
+
+  rpc ListStudentCourse (ListStudentCourseRequest) returns (ListStudentCourseResponse) {
+    option (google.api.http) = {
+      get: "/api/service_academic/v1/student_course/list",
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_USER,
+    };
+  }
+}
+
+message AdminMutateStudentCourseRequest {
+  oneof operation {
+    AdminMutateStudentCourseUpdate update = 1;
+
+    AdminMutateStudentCourseDelete delete = 2;
+  }
+}
+
+message AdminMutateStudentCourseUpdate {
+  option (common.v1.default_mask) = {
+    paths: ["unit_price","tuition_reduction","need_paying","is_improvement","registration_index"]
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_bahavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  StudentCourse student_course = 3;
+
+  repeated string ids = 4;
+}
+
+message AdminMutateStudentCourseDelete {
+  repeated string ids = 1;
+}
+
+message AdminMutateStudentCourseResponse {
+  int64 affected_rows = 1;
+}
+
+message UserMutateStudentCourseRequest {
+  UserMutateStudentCourseCreate create = 1;
+
+  UserMutateStudentCourseDelete delete = 2;
+}
+
+message UserMutateStudentCourseCreate {
+  option (common.v1.default_mask) = {
+    paths: ["course_id"]
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  repeated StudentCourse student_courses = 3;
+}
+
+message UserMutateStudentCourseDelete {
+  repeated string ids = 1;
+}
+
+message UserMutateStudentCourseResponse {
+  common.v1.EnumRpcHandleStatus.RpcHandleStatus rpc_handle_status = 1;
+
+  int64 affected_rows = 2;
+}
+
+
+message ListStudentCourseRequest {
+  option (common.v1.default_mask) = {
+    paths: ["course_id","student_id","unit_price","tuition_reduction","need_paying","is_improvement","registration_index"]
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  common.v1.Paginate paginate = 3;
+
+  string student_id = 4;
+}
+
+message ListStudentCourseResponse {
+  repeated StudentCourse student_courses = 1;
+}
 
 // HocPhanSV
 // Join table student and course registration
@@ -45,15 +159,9 @@ message StudentCourse {
   // CAITHIEN
   bool is_improvement = 9;
 
-  // NHHK
-  // @gotags: gorm:"type:varchar(6)"
-  string semester_id = 10;
-
-  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"
-  Semester semester = 11;
-
   // SVThu
-  int32 registration_index = 12;
+  // @gotags: gorm:"autoIncrement"
+  int32 registration_index = 10;
 
   // @gotags: gorm:"autoUpdateTime:nano"
   int64 updated_at = 100;

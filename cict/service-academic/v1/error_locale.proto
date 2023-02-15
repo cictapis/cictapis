@@ -9,5 +9,5 @@ option java_outer_classname = "ErrorLocaleProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
 
 message ErrorLocale {
-
+  string course_capacity_exceeded = 1;
 }

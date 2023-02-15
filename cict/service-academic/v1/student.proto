@@ -9,7 +9,6 @@ option java_outer_classname = "StudentProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
 
 import "google/api/annotations.proto";
-import "google/protobuf/empty.proto";
 import "google/protobuf/field_mask.proto";
 
 import "cict/common/v1/annotations.proto";
@@ -72,12 +71,16 @@ service StudentService {
 }
 
 message AdminMutateStudentRequest {
+  oneof operation {
+    AdminMutateStudentCreate create = 1;
+
+    AdminMutateStudentUpdate update = 2;
+  }
+}
+
+message AdminMutateStudentCreate {
   // Register new user, add user to workspace, and create student info profile
-  service_auth.v1.RegisterUserRequest create = 1;
-
-  AdminMutateStudentUpdate update = 2;
-
-  bool partial_failure = 3;
+  service_auth.v1.RegisterUserRequest register_user_request = 1;
 }
 
 message AdminMutateStudentUpdate {
@@ -92,18 +95,21 @@ message AdminMutateStudentUpdate {
   Student student = 3;
 
   repeated string ids = 4;
-}
 
+  bool partial_failure = 5;
+}
 
 message AdminMutateStudentResponse {
   int64 affected_rows = 1;
 }
 
 message UserMutateStudentRequest {
-  // Update profile data
-  UserMutateStudentUpdate update = 1;
+  oneof operation {
+    // Update profile data
+    UserMutateStudentUpdate update = 1;
 
-  google.protobuf.Empty leave_workspace = 2;
+    UserMutateStudentLeaveWorkspace leave_workspace = 2;
+  }
 }
 
 message UserMutateStudentUpdate {
@@ -118,6 +124,10 @@ message UserMutateStudentUpdate {
   Student student = 3;
 
   string id = 4;
+}
+
+message UserMutateStudentLeaveWorkspace {
+  // Empty proto
 }
 
 message UserMutateStudentResponse {
@@ -159,7 +169,7 @@ message ListStudentRequest {
 
   string sub_specilization_id = 7;
 
-  string student_status = 8;
+  EnumStudentStatus.StudentStatus student_status = 8;
 }
 
 message ListStudentResponse {
@@ -185,7 +195,7 @@ message SearchStudentRequest {
 
   string sub_specilization_id = 7;
 
-  string student_status = 8;
+  EnumStudentStatus.StudentStatus student_status = 8;
 }
 
 message SearchStudentResponse {

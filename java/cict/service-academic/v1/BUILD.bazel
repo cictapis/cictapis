@@ -4,6 +4,7 @@ java_grpc_library(
   name = "cict_service_academic_v1_java_proto",
   protos = [
     "@com_github_cict_cictapis//cict/service-academic/v1:acronym_proto",
+    "@com_github_cict_cictapis//cict/service-academic/v1:auth_bridge_proto",
     "@com_github_cict_cictapis//cict/service-academic/v1:campus_proto",
     "@com_github_cict_cictapis//cict/service-academic/v1:class_proto",
     "@com_github_cict_cictapis//cict/service-academic/v1:course_proto",

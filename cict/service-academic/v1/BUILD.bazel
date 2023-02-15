@@ -15,6 +15,16 @@ proto_library(
 )
 
 proto_library(
+  name = "auth_bridge_proto",
+  srcs = ["auth_bridge.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:empty_proto",
+    "//cict/common/v1:annotations_proto",
+  ]
+)
+
+proto_library(
   name = "campus_proto",
   srcs = ["campus.proto"],
   deps = [
@@ -240,8 +250,13 @@ proto_library(
   name = "student_course_proto",
   srcs = ["student_course.proto"],
   deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:field_mask_proto",
+    "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mask_behavior_proto",
+    "//cict/common/v1:enum_rpc_handle_status_proto",
+    "//cict/common/v1:paginate_proto",
     ":course_proto",
-    ":semester_proto",
     ":student_proto",
   ]
 )
@@ -251,7 +266,6 @@ proto_library(
   srcs = ["student.proto"],
   deps = [
     "//google/api:annotations_proto",
-    "@com_google_protobuf//:empty_proto",
     "@com_google_protobuf//:field_mask_proto",
     "//cict/common/v1:annotations_proto",
     "//cict/common/v1:enum_mask_behavior_proto",
