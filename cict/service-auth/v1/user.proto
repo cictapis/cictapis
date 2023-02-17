@@ -252,10 +252,12 @@ message User {
   // @gotags: gorm:"primaryKey;type:varchar(36);default:(uuid())"
   string id = 1;
 
+  // @gotags: gorm:"uniqueIndex;not null"
   string email = 2;
 
   string password = 3;
 
+  // @gotags: gorm:"type:nvarchar(200)"
   string name = 4;
 
   string avatar = 5;
@@ -276,12 +278,9 @@ message User {
   // @gotags: gorm:"type:varchar(36)"
   string updated_by_id = 103;
 
-  // Data belong to owned_by_id
   // @gotags: gorm:"type:varchar(36)"
   string owned_by_id = 104;
 
-  // Data belong to workspace_id
-  //
   // @gotags: gorm:"type:varchar(36)"
   string workspace_id = 105;
 }

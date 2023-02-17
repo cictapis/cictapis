@@ -137,7 +137,7 @@ message Workspace {
   // @gotags: gorm:"primaryKey;type:varchar(36);default:(uuid())"
   string id = 1;
 
-  // @gotags: gorm:"unique;not null"
+  // @gotags: gorm:"unique;not null;type:nvarchar(200)"
   string name = 2;
 
   // By default, created user'll belong to default_workspace
@@ -153,7 +153,7 @@ message Workspace {
   bool is_block = 8;
 
   // EnumScope list which is seperated by semicolon.
-  // Example: "AUTH_SCOPE;COURSE_SCOPE"
+  // Example: "AUTH_SCOPE;ACADEMIC_SCOPE"
   string default_scopes = 9;
 
   // @gotags: gorm:"autoUpdateTime:nano"

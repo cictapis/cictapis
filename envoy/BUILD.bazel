@@ -54,19 +54,6 @@ proto_descriptor(
     "//cict/service-auth/v1:workspace_user.proto",
     "//cict/service-auth/v1:workspace.proto",
 
-    "//cict/service-course/v1:course_field.proto",
-    "//cict/service-course/v1:course_timetable_day.proto",
-    "//cict/service-course/v1:course_timetable_week.proto",
-    "//cict/service-course/v1:course_timetable.proto",
-    "//cict/service-course/v1:course.proto",
-    "//cict/service-course/v1:error_locale.proto",
-    "//cict/service-course/v1:exam_schedule.proto",
-    "//cict/service-course/v1:exam_score.proto",
-    "//cict/service-course/v1:locale.proto",
-
-    "//cict/service-dormitory/v1:registration_form.proto",
-    "//cict/service-dormitory/v1:user.proto",
-
     "//cict/service-file-uploader/v1:error_locale.proto",
     "//cict/service-file-uploader/v1:file.proto",
     "//cict/service-file-uploader/v1:locale.proto",

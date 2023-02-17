@@ -14,18 +14,16 @@ message EnumScope {
 
     AUTH_SCOPE = 1;
 
-    COURSE_SCOPE = 2;
+    ACADEMIC_SCOPE = 2;
 
-    DORMITORY_SCOPE = 3;
+    FILE_UPLOADER_SCOPE = 3;
 
-    FILE_UPLOADER_SCOPE = 4;
+    GATEWAY_SCOPE = 4;
 
-    GATEWAY_SCOPE = 5;
+    MAIL_SCOPE = 5;
 
-    MAIL_SCOPE = 6;
+    NOTIFICATION_SCOPE = 6;
 
-    NOTIFICATION_SCOPE = 7;
-
-    REPORTER_SCOPE = 8;
+    REPORTER_SCOPE = 7;
   }
 }
