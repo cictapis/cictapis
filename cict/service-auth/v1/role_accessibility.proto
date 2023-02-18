@@ -10,15 +10,25 @@ option java_package = "com.github.cictapis.cict_reporter.cict.serviceauth.v1";
 
 // Kanaugh map
 message RoleAccessibility {
-  string workspace_id = 1;
+  enum AccessType {
+    UNSPECIFIED = 0;
 
-  bool accessibility_controller = 2;
+    PRIVILEGED_ACCESS = 1;
+
+    WORKSPACE_ACCESS = 2;
+
+    OWNERSHIP_ACCESS = 3;
+
+    WORKSPACE_X_OWNERIP_ACCESS = 4;
+
+    WORKSPACE_X_NOT_OWNERSHIP_ACCESS = 5;
+  }
+
+  AccessType access_type = 1;
+
+  string workspace_id = 2;
 
   string owned_by_id = 3;
 
-  bool owner_controller = 4;
-
-  string not_owned_by_id = 5;
-
-  bool not_owned_by_id_controller = 6;
+  string not_owned_by_id = 4;
 }

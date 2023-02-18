@@ -74,7 +74,7 @@ proto_library(
     ":role_accessibility_proto",
     ":scope_proto",
     ":user_proto",
-    ":workspace_proto",
+    ":workspace_user_proto",
   ]
 )
 

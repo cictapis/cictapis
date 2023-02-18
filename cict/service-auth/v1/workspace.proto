@@ -56,6 +56,17 @@ service WorkspaceService {
       crud_policy: ANYONE,
     };
   }
+
+  // Put all workspace information to redis cache for many purpose,
+  // such as workspace data necessary for login authentication.
+  rpc SyncWorkspaceInRedis (google.protobuf.Empty) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      get: "/api/service_auth/v1/workspace/sync_in_redis",
+    };
+    option (common.v1.cict) = {
+      crud_policy: SYSTEM,
+    };
+  }
 }
 
 message RegisterUniversityWorkspaceRequest {
@@ -93,7 +104,7 @@ message MutateWorkspaceUpdate {
 }
 
 message MutateWorkspaceDelete {
-  Workspace Workspace = 1;
+  string id = 1;
 }
 
 message MutateWorkspaceResponse {
