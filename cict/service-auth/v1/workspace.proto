@@ -61,10 +61,21 @@ service WorkspaceService {
   // such as workspace data necessary for login authentication.
   rpc SyncWorkspaceInRedis (google.protobuf.Empty) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      get: "/api/service_auth/v1/workspace/sync_in_redis",
+      post: "/api/service_auth/v1/workspace/sync_in_redis",
+      body: "*",
     };
     option (common.v1.cict) = {
       crud_policy: SYSTEM,
+    };
+  }
+
+  rpc MutateWorkspaceInRedis (MutateWorkspaceInRedisRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/api/service_auth/v1/workspace/mutate_in_redis",
+      body: "*",
+    };
+    option (common.v1.cict) = {
+      crud_policy: SYSTEM
     };
   }
 }
@@ -142,6 +153,29 @@ message GetWorkspaceRequest {
 
 message GetWorkspaceResponse {
   Workspace workspace = 1;
+}
+
+message MutateWorkspaceInRedisRequest {
+  oneof operation {
+    MutateWorkspaceInRedisCreate create = 1;
+
+    MutateWorkspaceInRedisUpdate update = 2;
+
+    MutateWorkspaceInRediDelete delete = 3;
+  }
+}
+
+message MutateWorkspaceInRedisCreate {
+  Workspace workspace = 1;
+}
+
+message MutateWorkspaceInRedisUpdate {
+  // This is workspace id.
+  string id = 1;
+}
+
+message MutateWorkspaceInRediDelete {
+  string redis_id = 1;
 }
 
 message Workspace {

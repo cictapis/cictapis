@@ -39,6 +39,7 @@ proto_library(
   name = "propagation_cache_proto",
   srcs = ["propagation_cache.proto"],
   deps = [
+    "//cict/common/v1:enum_crud_policy_proto",
     ":role_accessibility_proto",
     ":session_proto",
   ]

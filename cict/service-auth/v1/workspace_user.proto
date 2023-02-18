@@ -81,7 +81,7 @@ message WorkspaceUser {
   // @gotags: gorm:"primaryKey;type:varchar(36)"
   string workspace_id = 1;
 
-  // @gotags: gorm:"primaryKey"
+  // @gotags: gorm:"primaryKey;type:varchar(36)"
   string user_id = 2;
 
   // @gotags: gorm:"autoUpdateTime:nano"

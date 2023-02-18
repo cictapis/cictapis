@@ -114,7 +114,7 @@ service UserService {
 
 message RegisterUserRequest {
   option (common.v1.default_mask) = {
-    paths: ["id","avatar","email","name","password","workspace_id"]
+    paths: ["avatar","email","name","password","workspace_id"]
   };
 
   User user = 1;
@@ -252,7 +252,7 @@ message User {
   // @gotags: gorm:"primaryKey;type:varchar(36);default:(uuid())"
   string id = 1;
 
-  // @gotags: gorm:"uniqueIndex;not null"
+  // @gotags: gorm:"uniqueIndex;not null;type:varchar(255)"
   string email = 2;
 
   string password = 3;

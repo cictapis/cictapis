@@ -184,4 +184,7 @@ message Const {
   string user = 4;
 
   string workspace_id = 5;
+
+  // Verify that request is sent from internal system.
+  string scope = 6;
 }
