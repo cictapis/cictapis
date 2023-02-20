@@ -8,67 +8,23 @@ option java_multiple_files = false;
 option java_outer_classname = "SessionProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.serviceauth.v1";
 
-import "google/api/annotations.proto";
-import "google/protobuf/empty.proto";
-
-import "cict/common/v1/annotations.proto";
-import "cict/service-auth/v1/enum_scope.proto";
-import "cict/service-auth/v1/role_accessibility.proto";
 import "cict/service-auth/v1/scope.proto";
 import "cict/service-auth/v1/user.proto";
 import "cict/service-auth/v1/workspace_user.proto";
 
-service SessionService {
-  // Context send session_id, workspace_id, locale, scope
-  rpc AuthenticateSession(AuthenticateSessionRequest) returns (AuthenticateSessionResponse) {
-    option (google.api.http) = {
-      post: "/api/service_auth/v1/session/authenticate_session",
-      body: "*"
-    };
-    option (common.v1.cict) = {
-      crud_policy: SYSTEM,
-    };
-  }
-
-  rpc UpdateSession(UpdateSessionRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/api/service_auth/v1/session/update",
-      body: "*"
-    };
-    option (common.v1.cict) = {
-      crud_policy: SYSTEM,
-    };
-  }
-}
-
-message AuthenticateSessionRequest {
-  common.v1.AnnotationsCictMethodOptions cict_annotations = 1;
-}
-
-message AuthenticateSessionResponse {
-  Session session = 1;
-
-  RoleAccessibility role_accessibility = 2;
-}
-
-message UpdateSessionRequest {
-  option (common.v1.default_mask) = {
-    paths: ["academic_student_id","academic_teacher_id"]
-  };
-
-  Session session = 1;
-}
-
 message Session {
+  // Session id, redis key, SID-uuid
   string id = 1;
 
-  User user = 2;
+  int64 expire_time = 2;
 
-  repeated WorkspaceUser workspace_users = 3;
+  User user = 3;
 
-  repeated Scope scopes = 4;
+  repeated WorkspaceUser workspace_users = 4;
 
-  string academic_student_id = 5;
+  repeated Scope scopes = 5;
 
-  string academic_teacher_id = 6;
+  string academic_student_id = 6;
+
+  string academic_teacher_id = 7;
 }

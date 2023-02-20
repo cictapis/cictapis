@@ -65,14 +65,22 @@ proto_library(
 )
 
 proto_library(
+  name = "session_manager_proto",
+  srcs = ["session_manager.proto"],
+  deps = [
+    "//google/api:annotations_proto",
+    "@com_google_protobuf//:field_mask_proto",
+    "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mask_behavior_proto",
+    ":role_accessibility_proto",
+    ":session_proto",
+  ]
+)
+
+proto_library(
   name = "session_proto",
   srcs = ["session.proto"],
   deps = [
-    "//google/api:annotations_proto",
-    "@com_google_protobuf//:empty_proto",
-    "//cict/common/v1:annotations_proto",
-    ":enum_scope_proto",
-    ":role_accessibility_proto",
     ":scope_proto",
     ":user_proto",
     ":workspace_user_proto",
