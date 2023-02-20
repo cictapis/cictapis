@@ -14,10 +14,12 @@ import "google/protobuf/field_mask.proto";
 
 import "cict/common/v1/annotations.proto";
 import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/enum_rpc_handle_status.proto";
 import "cict/common/v1/paginate.proto";
 
 service WorkspaceService {
   // Register new workspace.
+  // This api call through gateway and handle in background
   rpc RegisterUniversityWorkspace (RegisterUniversityWorkspaceRequest) returns (RegisterUniversityWorkspaceResponse) {
     option (google.api.http) = {
       post: "/api/service_auth/v1/workspace/register_university",
@@ -68,16 +70,6 @@ service WorkspaceService {
       crud_policy: SYSTEM,
     };
   }
-
-  rpc MutateWorkspaceInRedis (MutateWorkspaceInRedisRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/api/service_auth/v1/workspace/mutate_in_redis",
-      body: "*",
-    };
-    option (common.v1.cict) = {
-      crud_policy: SYSTEM
-    };
-  }
 }
 
 message RegisterUniversityWorkspaceRequest {
@@ -86,10 +78,15 @@ message RegisterUniversityWorkspaceRequest {
   };
 
   Workspace workspace = 1;
+
+  // User ignore this field.
+  string id = 2;
 }
 
 message RegisterUniversityWorkspaceResponse {
   string workspace_id = 1;
+
+  common.v1.EnumRpcHandleStatus.RpcHandleStatus rpc_handle_status = 2;
 }
 
 message MutateWorkspaceRequest {
@@ -120,6 +117,8 @@ message MutateWorkspaceDelete {
 
 message MutateWorkspaceResponse {
   string affected_id = 1;
+
+  common.v1.EnumRpcHandleStatus.RpcHandleStatus rpc_handle_status = 2;
 }
 
 message ListWorkspaceRequest {
@@ -153,29 +152,6 @@ message GetWorkspaceRequest {
 
 message GetWorkspaceResponse {
   Workspace workspace = 1;
-}
-
-message MutateWorkspaceInRedisRequest {
-  oneof operation {
-    MutateWorkspaceInRedisCreate create = 1;
-
-    MutateWorkspaceInRedisUpdate update = 2;
-
-    MutateWorkspaceInRediDelete delete = 3;
-  }
-}
-
-message MutateWorkspaceInRedisCreate {
-  Workspace workspace = 1;
-}
-
-message MutateWorkspaceInRedisUpdate {
-  // This is workspace id.
-  string id = 1;
-}
-
-message MutateWorkspaceInRediDelete {
-  string redis_id = 1;
 }
 
 message Workspace {
