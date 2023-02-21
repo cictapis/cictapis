@@ -19,7 +19,6 @@ import "cict/common/v1/paginate.proto";
 
 service WorkspaceService {
   // Register new workspace.
-  // This api call through gateway and handle in background
   rpc RegisterUniversityWorkspace (RegisterUniversityWorkspaceRequest) returns (RegisterUniversityWorkspaceResponse) {
     option (google.api.http) = {
       post: "/api/service_auth/v1/workspace/register_university",
@@ -78,9 +77,6 @@ message RegisterUniversityWorkspaceRequest {
   };
 
   Workspace workspace = 1;
-
-  // User ignore this field.
-  string id = 2;
 }
 
 message RegisterUniversityWorkspaceResponse {
