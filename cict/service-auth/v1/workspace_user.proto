@@ -59,6 +59,8 @@ message InviteUserToWorkspaceResponse {
 
 message AddUserToWorkspaceRequest {
   repeated string user_ids = 1;
+
+  string workspace_id = 2;
 }
 
 message AddUserToWorkspaceResponse {
@@ -69,6 +71,8 @@ message AddUserToWorkspaceResponse {
 
 message RemoveUserFromWorkspaceRequest {
   repeated string user_ids = 1;
+
+  string workspace_id = 2;
 }
 
 message RemoveUserFromWorkspaceResponse {

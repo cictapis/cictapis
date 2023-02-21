@@ -13,5 +13,5 @@ message ErrorLocale {
 
   string user_not_in_workspace = 2;
 
-  string invalid_confirmation_password = 3;
+  string invalid_password = 3;
 }
