@@ -35,7 +35,7 @@ message SemesterFinalPoint {
   // @gotags: gorm:"type:varchar(5)"
   string cumulative_gpa_10 = 7;
 
-  // @gotags: gorm:"type:"
+  // @gotags: gorm:"type:varchar(5)"
   string cumulative_gpa_4 = 8;
 
   float earned_semester_credits = 9;
