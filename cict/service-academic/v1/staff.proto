@@ -85,6 +85,8 @@ message AdminMutateStaffRequest {
 
 message AdminMutateStaffCreate {
   service_auth.v1.RegisterUserRequest register_user_request = 1;
+
+  string staff_id = 2;
 }
 
 message AdminMutateStaffRemoveFromWorkspace {

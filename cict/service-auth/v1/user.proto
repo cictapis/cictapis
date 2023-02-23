@@ -114,7 +114,7 @@ service UserService {
 
 message RegisterUserRequest {
   option (common.v1.default_mask) = {
-    paths: ["avatar","email","name","password","workspace_id"]
+    paths: ["avatar","email","name","password"]
   };
 
   User user = 1;
