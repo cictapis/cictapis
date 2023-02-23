@@ -13,6 +13,7 @@ import "google/protobuf/field_mask.proto";
 
 import "cict/common/v1/annotations.proto";
 import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/enum_rpc_handle_status.proto";
 import "cict/common/v1/paginate.proto";
 import "cict/service-academic/v1/enum_gender.proto";
 import "cict/service-academic/v1/enum_student_status.proto";
@@ -81,6 +82,9 @@ message AdminMutateStudentRequest {
 message AdminMutateStudentCreate {
   // Register new user, add user to workspace, and create student info profile
   service_auth.v1.RegisterUserRequest register_user_request = 1;
+
+  // User ignore this field.
+  string student_id = 2;
 }
 
 message AdminMutateStudentUpdate {
@@ -100,7 +104,13 @@ message AdminMutateStudentUpdate {
 }
 
 message AdminMutateStudentResponse {
-  int64 affected_rows = 1;
+  oneof result {
+    string affected_id = 1;
+
+    int64 affected_rows = 2;
+  }
+
+  common.v1.EnumRpcHandleStatus.RpcHandleStatus rpc_handle_status = 3;
 }
 
 message UserMutateStudentRequest {
@@ -132,6 +142,8 @@ message UserMutateStudentLeaveWorkspace {
 
 message UserMutateStudentResponse {
   string affected_id = 1;
+
+  common.v1.EnumRpcHandleStatus.RpcHandleStatus rpc_handle_status = 3;
 }
 
 message GetStudentRequest {

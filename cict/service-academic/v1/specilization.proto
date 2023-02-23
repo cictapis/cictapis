@@ -111,7 +111,7 @@ message Specilization {
   // @gotags: gorm:"type:varchar(50)"
   string major_id = 3;
 
-  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADED;"
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"
   Major major = 4;
 
   // @gotags: gorm:"autoUpdateTime:nano"

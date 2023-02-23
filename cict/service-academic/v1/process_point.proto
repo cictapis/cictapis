@@ -45,7 +45,7 @@ message ProcessPoint {
   // @gotags: gorm:"primaryKey;type:varchar(6)"
   string semester_id = 1;
 
-  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"
   Semester semester = 2;
 
   // MaSV
@@ -58,13 +58,13 @@ message ProcessPoint {
   // @gotags: gorm:"primaryKey;type:varchar(50);"
   string subject_id = 5;
 
-  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"
   Subject subject = 6;
 
   // @gotags: gorm:"type:varchar(36)"
   string course_id = 7;
 
-  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"
+  // @gotags: gorm:"references:id;constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"
   Course course = 8;
 
   // @gotags: gorm:"primaryKey;type:varchar(5)"

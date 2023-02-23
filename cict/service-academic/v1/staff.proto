@@ -14,6 +14,7 @@ import "google/protobuf/field_mask.proto";
 
 import "cict/common/v1/annotations.proto";
 import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/common/v1/enum_rpc_handle_status.proto";
 import "cict/common/v1/paginate.proto";
 import "cict/service-academic/v1/enum_gender.proto";
 import "cict/service-academic/v1/enum_staff_status.proto";
@@ -60,7 +61,6 @@ service StaffService {
     };
   }
 
-  // Public api search working staff by faculty
   rpc SearchStaff (SearchStaffRequest) returns (SearchStaffResponse) {
     option (google.api.http) = {
       get: "/api/service_academic/v1/staff/search"
@@ -79,23 +79,19 @@ message AdminMutateStaffRequest {
     // Remove staffes from this workspace; this operation will not delete staff's data.
     AdminMutateStaffRemoveFromWorkspace remove_from_workspace = 2;
 
-    // Rest operations will do in bulk write
-    AdminMutateStaffRest rest = 3;
+    AdminMutateStaffUpdate update = 3;
   }
 }
 
 message AdminMutateStaffCreate {
   service_auth.v1.RegisterUserRequest register_user_request = 1;
+
+  // User ignore this field.
+  string staff_id = 2;
 }
 
 message AdminMutateStaffRemoveFromWorkspace {
   repeated string ids = 1;
-}
-
-message AdminMutateStaffRest {
-  AdminMutateStaffUpdate update = 1;
-
-  bool partial_failure = 2;
 }
 
 message AdminMutateStaffUpdate {
@@ -110,10 +106,18 @@ message AdminMutateStaffUpdate {
   Staff staff = 3;
 
   repeated string ids = 4;
+
+  bool partial_failure = 5;
 }
 
 message AdminMutateStaffResponse {
-  int64 affected_rows = 1;
+  oneof result {
+    string affected_id = 1;
+
+    int64 affected_rows = 2;
+  }
+
+  common.v1.EnumRpcHandleStatus.RpcHandleStatus rpc_handle_status = 3;
 }
 
 message UserMutateStaffRequest {
@@ -144,6 +148,8 @@ message UserMutateStaffLeaveWorkspace {
 
 message UserMutateStaffResponse {
   string affected_id = 1;
+
+  common.v1.EnumRpcHandleStatus.RpcHandleStatus rpc_handle_status = 2;
 }
 
 message GetStaffRequest {

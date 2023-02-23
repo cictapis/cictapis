@@ -137,7 +137,7 @@ message StudentCourse {
   // @gotags: gorm:"primaryKey;type:varchar(36)"
   string course_id = 2;
 
-  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE"
+  // @gotags: gorm:"references:id;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"
   Course course = 3;
 
   // MaDK
@@ -160,8 +160,7 @@ message StudentCourse {
   bool is_improvement = 9;
 
   // SVThu
-  // @gotags: gorm:"autoIncrement"
-  int32 registration_index = 10;
+  uint32 registration_index = 10;
 
   // @gotags: gorm:"autoUpdateTime:nano"
   int64 updated_at = 100;
