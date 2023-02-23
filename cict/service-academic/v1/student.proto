@@ -82,9 +82,6 @@ message AdminMutateStudentRequest {
 message AdminMutateStudentCreate {
   // Register new user, add user to workspace, and create student info profile
   service_auth.v1.RegisterUserRequest register_user_request = 1;
-
-  // User ignore this field.
-  string student_id = 2;
 }
 
 message AdminMutateStudentUpdate {
