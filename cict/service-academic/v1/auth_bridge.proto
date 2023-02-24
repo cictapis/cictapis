@@ -19,6 +19,17 @@ import "cict/service-academic/v1/staff.proto";
 import "cict/service-academic/v1/student.proto";
 
 service AuthBridgeService {
+  rpc RegisterAcademicWorkspace(RegisterAcademicWorkspaceRequest) returns (RegisterAcademicWorkspaceResponse) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/auth_bridge/register_workspace",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: AUTH,
+    };
+  }
+
+  // @TYPE: Gateway
   rpc MutateAuthBridge(MutateAuthBridgeRequest) returns (MutateAuthBridgeResponse) {
     option (google.api.http) = {
       post: "/api/service_academic/v1/auth_bridge/mutate",
@@ -40,11 +51,23 @@ service AuthBridgeService {
   }
 }
 
+message RegisterAcademicWorkspaceRequest {
+  string workspace_name = 1;
+}
+
+message RegisterAcademicWorkspaceResponse {
+  string affected_id = 1;
+}
+
 message MutateAuthBridgeRequest {
   oneof operation {
+    // Only create auth bridge to database
     MutateAuthBridgeCreate create = 1;
 
     MutateAuthBridgeDelete delete = 2;
+
+    // Create auth bridge and insert to cache db
+    MutateAuthBridgeCreate graceful_create = 3;
   }
 }
 

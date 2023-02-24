@@ -18,7 +18,8 @@ import "cict/common/v1/enum_rpc_handle_status.proto";
 import "cict/common/v1/paginate.proto";
 
 service WorkspaceService {
-  // @TYPE: Gateway, generate id
+  // Internal system call to create workspace in demand, this rpc will create new workspace,
+  // and add workspace owner to current workspace; besides, add workspace to redis cache
   rpc RegisterWorkspace (RegisterWorkspaceRequest) returns (RegisterWorkspaceResponse) {
     option (google.api.http) = {
       post: "/api/service_auth/v1/workspace/register",
@@ -77,9 +78,6 @@ message RegisterWorkspaceRequest {
   };
 
   Workspace workspace = 1;
-
-  // Workspace id is generated at gateway, client ignore this field.
-  string workspace_id = 2;
 }
 
 message RegisterWorkspaceResponse {
