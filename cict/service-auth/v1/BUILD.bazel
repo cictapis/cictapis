@@ -70,9 +70,7 @@ proto_library(
   srcs = ["session_manager.proto"],
   deps = [
     "//google/api:annotations_proto",
-    "@com_google_protobuf//:field_mask_proto",
     "//cict/common/v1:annotations_proto",
-    "//cict/common/v1:enum_mask_behavior_proto",
     ":role_accessibility_proto",
     ":session_proto",
   ]
@@ -125,5 +123,6 @@ proto_library(
     "//cict/common/v1:enum_mask_behavior_proto",
     "//cict/common/v1:enum_rpc_handle_status_proto",
     "//cict/common/v1:paginate_proto",
+    ":user_proto",
   ]
 )

@@ -16,8 +16,11 @@ import "cict/common/v1/annotations.proto";
 import "cict/common/v1/enum_mask_behavior.proto";
 import "cict/common/v1/enum_rpc_handle_status.proto";
 import "cict/common/v1/paginate.proto";
+import "cict/service-auth/v1/user.proto";
 
 service WorkspaceService {
+  // Internal system call to create workspace in demand, this rpc will create new workspace,
+  // and add workspace owner to current workspace; besides, add workspace to redis cache
   rpc RegisterWorkspace (RegisterWorkspaceRequest) returns (RegisterWorkspaceResponse) {
     option (google.api.http) = {
       post: "/api/service_auth/v1/workspace/register",
@@ -72,12 +75,10 @@ service WorkspaceService {
 
 message RegisterWorkspaceRequest {
   option (common.v1.default_mask) = {
-    paths: ["name","default_scope"]
+    paths: ["name","default_scopes"]
   };
 
   Workspace workspace = 1;
-
-  string workspace_id = 2;
 }
 
 message RegisterWorkspaceResponse {
@@ -173,6 +174,9 @@ message Workspace {
   // EnumScope list which is seperated by semicolon.
   // Example: "AUTH_SCOPE;ACADEMIC_SCOPE"
   string default_scopes = 9;
+
+  // @gotags: gorm:"many2many:workspace_users;"
+  repeated User users = 10;
 
   // @gotags: gorm:"autoUpdateTime:nano"
   int64 updated_at = 100;

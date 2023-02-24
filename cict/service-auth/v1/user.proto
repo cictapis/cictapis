@@ -267,6 +267,9 @@ message User {
 
   bool is_supper_user = 8;
 
+  // @gotags: gorm:"many2many:scopes;"
+  repeated Scope scopes = 9;
+
   // @gotags: gorm:"autoUpdateTime:nano"
   int64 updated_at = 100;
 

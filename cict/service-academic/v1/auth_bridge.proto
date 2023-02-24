@@ -29,6 +29,7 @@ service AuthBridgeService {
     };
   }
 
+  // @TYPE: Gateway
   rpc MutateAuthBridge(MutateAuthBridgeRequest) returns (MutateAuthBridgeResponse) {
     option (google.api.http) = {
       post: "/api/service_academic/v1/auth_bridge/mutate",
@@ -55,20 +56,24 @@ message RegisterAcademicWorkspaceRequest {
 }
 
 message RegisterAcademicWorkspaceResponse {
-
+  string affected_id = 1;
 }
 
 message MutateAuthBridgeRequest {
   oneof operation {
+    // Only create auth bridge to database
     MutateAuthBridgeCreate create = 1;
 
     MutateAuthBridgeDelete delete = 2;
+
+    // Create auth bridge and insert to cache db
+    MutateAuthBridgeCreate graceful_create = 3;
   }
 }
 
 message MutateAuthBridgeCreate {
   option (common.v1.default_mask) = {
-    paths: ["id","student_id","staff_id"],
+    paths: ["id","student_id","staff_id","auth_bridge_type"],
   };
 
   common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
@@ -93,13 +98,13 @@ message AuthBridge {
   // @gotags: gorm:"type:varchar(50)"
   string student_id = 2;
 
-  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE"
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"
   Student student = 3;
 
   // @gotags: gorm:"type:varchar(50)"
   string staff_id = 4;
 
-  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE"
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"
   Staff staff = 5;
 
   EnumAuthBridgeType.AuthBridgeType auth_bridge_type = 6;

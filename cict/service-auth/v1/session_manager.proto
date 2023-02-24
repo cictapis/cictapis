@@ -9,10 +9,8 @@ option java_outer_classname = "SessionManagerProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.serviceauth.v1";
 
 import "google/api/annotations.proto";
-import "google/protobuf/field_mask.proto";
 
 import "cict/common/v1/annotations.proto";
-import "cict/common/v1/enum_mask_behavior.proto";
 import "cict/service-auth/v1/role_accessibility.proto";
 import "cict/service-auth/v1/session.proto";
 

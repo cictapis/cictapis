@@ -85,7 +85,7 @@ message MutateScopeResponse {
 
 message ListScopeRequest {
   option (common.v1.default_mask) = {
-    paths: ["id","scope","role"],
+    paths: ["scope","role","owned_by_id","workspace_id"],
   };
 
   common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
@@ -100,12 +100,9 @@ message ListScopeResponse {
 }
 
 message Scope {
-  // @gotags: gorm:"primaryKey;type:varchar(36);default:(uuid())"
-  string id = 1;
+  EnumScope.Scope scope = 1;
 
-  EnumScope.Scope scope = 2;
-
-  EnumScopeRole.ScopeRole role = 3;
+  EnumScopeRole.ScopeRole role = 2;
 
   // @gotags: gorm:"autoUpdateTime:nano"
   int64 updated_at = 100;
@@ -119,9 +116,9 @@ message Scope {
   // @gotags: gorm:"type:varchar(36)"
   string updated_by_id = 103;
 
-  // @gotags: gorm:"type:varchar(36)"
+  // @gotags: gorm:"primaryKey;type:varchar(36)"
   string owned_by_id = 104;
 
-  // @gotags: gorm:"type:varchar(36)"
+  // @gotags: gorm:"primaryKey;type:varchar(36)"
   string workspace_id = 105;
 }
