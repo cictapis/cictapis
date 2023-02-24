@@ -18,14 +18,13 @@ import "cict/common/v1/enum_rpc_handle_status.proto";
 import "cict/common/v1/paginate.proto";
 
 service WorkspaceService {
-  // Register new workspace.
-  rpc RegisterUniversityWorkspace (RegisterUniversityWorkspaceRequest) returns (RegisterUniversityWorkspaceResponse) {
+  rpc RegisterWorkspace (RegisterWorkspaceRequest) returns (RegisterWorkspaceResponse) {
     option (google.api.http) = {
-      post: "/api/service_auth/v1/workspace/register_university",
+      post: "/api/service_auth/v1/workspace/register",
       body: "*"
     };
     option (common.v1.cict) = {
-      crud_policy: AUTH
+      crud_policy: SYSTEM,
     };
   }
 
@@ -36,7 +35,7 @@ service WorkspaceService {
       body: "*"
     };
     option (common.v1.cict) = {
-      crud_policy: WORKSPACE_OWNER
+      crud_policy: WORKSPACE_OWNER,
     };
   }
 
@@ -71,15 +70,17 @@ service WorkspaceService {
   }
 }
 
-message RegisterUniversityWorkspaceRequest {
+message RegisterWorkspaceRequest {
   option (common.v1.default_mask) = {
-    paths: ["name"]
+    paths: ["name","default_scope"]
   };
 
   Workspace workspace = 1;
+
+  string workspace_id = 2;
 }
 
-message RegisterUniversityWorkspaceResponse {
+message RegisterWorkspaceResponse {
   string workspace_id = 1;
 
   common.v1.EnumRpcHandleStatus.RpcHandleStatus rpc_handle_status = 2;
