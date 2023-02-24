@@ -24,7 +24,7 @@ import "cict/service-auth/v1/user.proto";
 
 service StudentService {
   // @TYPE: Gateway
-  rpc InviteUserAsStudent (InviteUserAsStudentRequest) returns (google.protobuf.Empty) {
+  rpc InviteUserAsStudent (InviteUserAsStudentRequest) returns (InviteUserAsStudentResponse) {
     option (google.api.http) = {
       post: "/api/service_academic/v1/student/invite",
       body: "*",
@@ -89,6 +89,10 @@ message InviteUserAsStudentRequest {
   string user_id = 1;
 
   string student_id = 2;
+}
+
+message InviteUserAsStudentResponse {
+  common.v1.EnumRpcHandleStatus.RpcHandleStatus rpc_handle_status = 1;
 }
 
 message AdminMutateStudentRequest {

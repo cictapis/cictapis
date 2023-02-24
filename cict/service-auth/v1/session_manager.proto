@@ -39,6 +39,7 @@ service SessionManagerService {
     };
   }
 
+  // @TYPE: Gateway
   rpc MutateSession (MutateSessionRequest) returns (MutateSessionResponse) {
     option (google.api.http) = {
       post: "/api/service_auth/v1/session_manager/mutate_session",

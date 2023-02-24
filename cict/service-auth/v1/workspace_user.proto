@@ -15,6 +15,7 @@ import "cict/common/v1/enum_rpc_handle_status.proto";
 
 service WorkspaceUserService {
   // System direct add user to workspace
+  // @TYPE: Gateway
   rpc AddUserToWorkspace(AddUserToWorkspaceRequest) returns (AddUserToWorkspaceResponse) {
     option (google.api.http) = {
       post: "/api/service_auth/v1/workspace_user/add_user_to_workspace",
