@@ -24,6 +24,8 @@ message Config {
   Smtp smtp = 7;
 
   Const const = 8;
+
+  Prefix prefix = 9;
 }
 
 message Endpoint {
@@ -190,4 +192,14 @@ message Const {
 
   // Verify that request is sent from internal system.
   string scope = 6;
+}
+
+message Prefix {
+  string session_id_prefix = 1;
+
+  string session_manager_prefix = 2;
+
+  string workspace_id_prefix = 3;
+
+  string auth_bridge_prefix = 4;
 }

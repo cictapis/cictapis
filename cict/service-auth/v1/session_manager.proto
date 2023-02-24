@@ -63,16 +63,16 @@ message AuthenticateSessionResponse {
 message MutateSessionRequest {
   oneof operation {
     // Delete given session id
-    MutateSessionDelete delete = 2;
+    MutateSessionDelete delete = 1;
 
     // Performance penalty when get necessary data from database
-    MutateSessionGracefulCreate graceful_create = 3;
+    MutateSessionGracefulCreate graceful_create = 2;
 
     // Update existing session by getting necessary data from database
-    MutateSessionGracefulUpdate graceful_update = 4;
+    MutateSessionGracefulUpdate graceful_update = 3;
 
     // Delete all session of user
-    MutateSessionGracefulDelete graceful_delete = 5;
+    MutateSessionGracefulDelete graceful_delete = 4;
   }
 }
 

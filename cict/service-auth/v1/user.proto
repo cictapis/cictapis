@@ -176,7 +176,7 @@ message ListUserResponse {
 
 message GetUserRequest {
   option (common.v1.default_mask) = {
-    paths: ["id","avatar","email","name","user_status","updated_at","created_at","created_by_id","updated_by_id"]
+    paths: ["id","avatar","email","name","user_status","is_supper_user","updated_at","created_at","created_by_id","updated_by_id"]
   };
 
   common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
