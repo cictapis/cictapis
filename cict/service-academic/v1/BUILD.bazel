@@ -20,7 +20,12 @@ proto_library(
   deps = [
     "//google/api:annotations_proto",
     "@com_google_protobuf//:empty_proto",
+    "@com_google_protobuf//:field_mask_proto",
     "//cict/common/v1:annotations_proto",
+    "//cict/common/v1:enum_mask_behavior_proto",
+    ":enum_auth_bridge_type_proto",
+    ":staff_proto",
+    ":student_proto",
   ]
 )
 
@@ -105,6 +110,12 @@ proto_library(
 proto_library(
   name = "enum_academic_classification_proto",
   srcs = ["enum_academic_classification.proto"],
+  deps = []
+)
+
+proto_library(
+  name = "enum_auth_bridge_type_proto",
+  srcs = ["enum_auth_bridge_type.proto"],
   deps = []
 )
 

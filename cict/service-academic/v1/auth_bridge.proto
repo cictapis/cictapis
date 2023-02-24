@@ -10,17 +10,97 @@ option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
 
 import "cict/common/v1/annotations.proto";
+import "cict/common/v1/enum_mask_behavior.proto";
+import "cict/service-academic/v1/enum_auth_bridge_type.proto";
+import "cict/service-academic/v1/staff.proto";
+import "cict/service-academic/v1/student.proto";
 
 service AuthBridgeService {
-  rpc InitialServiceAcademic(google.protobuf.Empty) returns (google.protobuf.Empty) {
+  rpc MutateAuthBridge(MutateAuthBridgeRequest) returns (MutateAuthBridgeResponse) {
     option (google.api.http) = {
-      post: "/api/service_auth/v1/bridge/initial_workspace",
+      post: "/api/service_academic/v1/auth_bridge/mutate",
       body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: SYSTEM,
+    };
+  }
+
+  rpc InitAuthBridge(google.protobuf.Empty) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/auth_bridge/init",
+      body: "*",
     };
     option (common.v1.cict) = {
       crud_policy: WORKSPACE_ISOLATION,
     };
   }
+}
+
+message MutateAuthBridgeRequest {
+  oneof operation {
+    MutateAuthBridgeCreate create = 1;
+
+    MutateAuthBridgeDelete delete = 2;
+  }
+}
+
+message MutateAuthBridgeCreate {
+  option (common.v1.default_mask) = {
+    paths: ["id","student_id","staff_id"],
+  };
+
+  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
+
+  google.protobuf.FieldMask mask = 2;
+
+  AuthBridge auth_bridge = 3;
+}
+
+message MutateAuthBridgeDelete {
+  string id = 1;
+}
+
+message MutateAuthBridgeResponse {
+  string affected_id = 1;
+}
+
+message AuthBridge {
+  // @gotags: gorm:"primaryKey;type:varchar(36);default:(uuid())"
+  string id = 1;
+
+  // @gotags: gorm:"type:varchar(50)"
+  string student_id = 2;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE"
+  Student student = 3;
+
+  // @gotags: gorm:"type:varchar(50)"
+  string staff_id = 4;
+
+  // @gotags: gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE"
+  Staff staff = 5;
+
+  EnumAuthBridgeType.AuthBridgeType auth_bridge_type = 6;
+
+  // @gotags: gorm:"autoUpdateTime:nano"
+  int64 updated_at = 100;
+
+  // @gotags: gorm:"autoCreateTime:nano"
+  int64 created_at = 101;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string created_by_id = 102;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string updated_by_id = 103;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string owned_by_id = 104;
+
+  // @gotags: gorm:"type:varchar(36)"
+  string workspace_id = 105;
 }

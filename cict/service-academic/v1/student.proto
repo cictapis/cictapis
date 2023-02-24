@@ -22,6 +22,7 @@ import "cict/service-academic/v1/specilization.proto";
 import "cict/service-auth/v1/user.proto";
 
 service StudentService {
+  // @TYPE: Gateway
   rpc AdminMutatestudent (AdminMutateStudentRequest) returns (AdminMutateStudentResponse) {
     option (google.api.http) = {
       post: "/api/service_academic/v1/student/admin_mutate",
@@ -32,6 +33,7 @@ service StudentService {
     };
   }
 
+  // @TYPE: Gateway
   rpc UserMutateStudent (UserMutateStudentRequest) returns (UserMutateStudentResponse) {
     option (google.api.http) = {
       post: "/api/service_academic/v1/student/mutate",

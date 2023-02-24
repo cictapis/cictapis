@@ -23,6 +23,7 @@ import "cict/service-auth/v1/user.proto";
 
 // Public profile of staff
 service StaffService {
+  // @TYPE: Gateway
   rpc AdminMutateStaff (AdminMutateStaffRequest) returns (AdminMutateStaffResponse) {
     option (google.api.http) = {
       post: "/api/service_academic/v1/staff/admin_mutate",
@@ -33,6 +34,7 @@ service StaffService {
     };
   }
 
+  // @TYPE: Gateway
   rpc UserMutateStaff (UserMutateStaffRequest) returns (UserMutateStaffResponse) {
     option (google.api.http) = {
       post: "/api/service_academic/v1/staff/user_mutate",

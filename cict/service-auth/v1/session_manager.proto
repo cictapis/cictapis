@@ -62,9 +62,6 @@ message AuthenticateSessionResponse {
 
 message MutateSessionRequest {
   oneof operation {
-    // Update all session with given fields to update
-    MutateSessionUpdate update = 1;
-
     // Delete given session id
     MutateSessionDelete delete = 2;
 
@@ -77,20 +74,6 @@ message MutateSessionRequest {
     // Delete all session of user
     MutateSessionGracefulDelete graceful_delete = 5;
   }
-}
-
-message MutateSessionUpdate {
-  option (common.v1.default_mask) = {
-    paths: ["academic_student_id","academic_teacher_id"]
-  };
-
-  common.v1.EnumMaskBehavior.MaskBehavior mask_behavior = 1;
-
-  google.protobuf.FieldMask mask = 2;
-
-  string user_id = 3;
-
-  Session session = 4;
 }
 
 message MutateSessionDelete {

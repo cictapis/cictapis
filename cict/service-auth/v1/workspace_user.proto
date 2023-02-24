@@ -36,6 +36,7 @@ service WorkspaceUserService {
     };
   }
 
+  // Admin can remove user from current workspace
   rpc RemoveUserFromWorkspace(RemoveUserFromWorkspaceRequest) returns (RemoveUserFromWorkspaceResponse) {
     option (google.api.http) = {
       post: "/api/service_auth/v1/workspace_user/remove_user_from_workspace",
@@ -43,6 +44,17 @@ service WorkspaceUserService {
     };
     option (common.v1.cict) = {
       crud_policy: SCOPE_ADMIN
+    };
+  }
+
+  // Internal system delete user from workspace directly
+  rpc DeleteUserFromWorkspace(DeleteUserFromWorkspaceRequest) returns (DeleteUserFromWorkspaceResponse) {
+    option (google.api.http) = {
+      post: "/api/service_auth/v1/workspace_user/delete_user_from_workspace",
+      body: "*",
+    };
+    option (common.v1.cict) = {
+      crud_policy: SYSTEM,
     };
   }
 }
@@ -76,6 +88,18 @@ message RemoveUserFromWorkspaceRequest {
 }
 
 message RemoveUserFromWorkspaceResponse {
+  common.v1.EnumRpcHandleStatus.RpcHandleStatus rpc_handle_status = 1;
+
+  int64 affected_ids = 2;
+}
+
+message DeleteUserFromWorkspaceRequest {
+  repeated string user_ids = 1;
+
+  string workspace_id = 2;
+}
+
+message DeleteUserFromWorkspaceResponse {
   common.v1.EnumRpcHandleStatus.RpcHandleStatus rpc_handle_status = 1;
 
   int64 affected_ids = 2;

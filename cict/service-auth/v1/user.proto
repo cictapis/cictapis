@@ -21,6 +21,7 @@ import "cict/service-auth/v1/scope.proto";
 
 // Supperuser and workspace owner cannot grant user-service scope_admin for others
 service UserService {
+  // @TYPE: Gateway, considering.
   rpc RegisterUser(RegisterUserRequest) returns (RegisterUserResponse) {
     option (google.api.http) = {
       post: "/api/service_auth/v1/user/register"

@@ -22,6 +22,7 @@ proto_descriptor(
     "//cict/service-academic/v1:department.proto",
     "//cict/service-academic/v1:education_program.proto",
     "//cict/service-academic/v1:enum_academic_classification.proto",
+    "//cict/service-academic/v1:enum_auth_bridge_type.proto",
     "//cict/service-academic/v1:enum_course_status.proto",
     "//cict/service-academic/v1:enum_gender.proto",
     "//cict/service-academic/v1:enum_staff_status.proto",

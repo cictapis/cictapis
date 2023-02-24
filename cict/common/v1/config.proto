@@ -175,14 +175,17 @@ message Smtp {
 }
 
 message Const {
+  // User send session_id to server
   string session_id = 1;
 
+  // User send locale to server
   string locale = 2;
 
   string propagation_cache = 3;
 
   string user = 4;
 
+  // User send workspace_id to server
   string workspace_id = 5;
 
   // Verify that request is sent from internal system.

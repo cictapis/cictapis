@@ -8,6 +8,8 @@ option java_multiple_files = false;
 option java_outer_classname = "PropagationCacheProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.serviceauth.v1";
 
+import "google/protobuf/any.proto";
+
 import "cict/common/v1/enum_crud_policy.proto";
 import "cict/service-auth/v1/role_accessibility.proto";
 import "cict/service-auth/v1/session.proto";
@@ -26,4 +28,7 @@ message PropagationCache {
 
   // Use enum_scope for signature
   string scope = 6;
+
+  // Self service define to propagate data
+  google.protobuf.Any reserved_data = 7;
 }

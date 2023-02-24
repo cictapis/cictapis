@@ -23,8 +23,4 @@ message Session {
   repeated WorkspaceUser workspace_users = 4;
 
   repeated Scope scopes = 5;
-
-  string academic_student_id = 6;
-
-  string academic_teacher_id = 7;
 }
