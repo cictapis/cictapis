@@ -277,6 +277,7 @@ proto_library(
   srcs = ["student.proto"],
   deps = [
     "//google/api:annotations_proto",
+    "@com_google_protobuf//:empty_proto",
     "@com_google_protobuf//:field_mask_proto",
     "//cict/common/v1:annotations_proto",
     "//cict/common/v1:enum_mask_behavior_proto",

@@ -14,17 +14,6 @@ import "cict/common/v1/annotations.proto";
 import "cict/common/v1/enum_rpc_handle_status.proto";
 
 service WorkspaceUserService {
-  // Admin must invite user to workspace
-  rpc InviteUserToWorkspace(InviteUserToWorkspaceRequest) returns (InviteUserToWorkspaceResponse) {
-    option (google.api.http) = {
-      post: "/api/service_auth/v1/workspace_user/invite_user_to_workspace",
-      body: "*",
-    };
-    option (common.v1.cict) = {
-      crud_policy: SCOPE_ADMIN
-    };
-  }
-
   // System direct add user to workspace
   rpc AddUserToWorkspace(AddUserToWorkspaceRequest) returns (AddUserToWorkspaceResponse) {
     option (google.api.http) = {
@@ -33,17 +22,6 @@ service WorkspaceUserService {
     };
     option (common.v1.cict) ={
       crud_policy: SYSTEM,
-    };
-  }
-
-  // Admin can remove user from current workspace
-  rpc RemoveUserFromWorkspace(RemoveUserFromWorkspaceRequest) returns (RemoveUserFromWorkspaceResponse) {
-    option (google.api.http) = {
-      post: "/api/service_auth/v1/workspace_user/remove_user_from_workspace",
-      body: "*",
-    };
-    option (common.v1.cict) = {
-      crud_policy: SCOPE_ADMIN
     };
   }
 
@@ -59,16 +37,6 @@ service WorkspaceUserService {
   }
 }
 
-message InviteUserToWorkspaceRequest {
-  repeated string user_ids = 1;
-}
-
-message InviteUserToWorkspaceResponse {
-  common.v1.EnumRpcHandleStatus.RpcHandleStatus rpc_handle_status = 1;
-
-  int64 affected_ids = 2;
-}
-
 message AddUserToWorkspaceRequest {
   repeated string user_ids = 1;
 
@@ -76,18 +44,6 @@ message AddUserToWorkspaceRequest {
 }
 
 message AddUserToWorkspaceResponse {
-  common.v1.EnumRpcHandleStatus.RpcHandleStatus rpc_handle_status = 1;
-
-  int64 affected_ids = 2;
-}
-
-message RemoveUserFromWorkspaceRequest {
-  repeated string user_ids = 1;
-
-  string workspace_id = 2;
-}
-
-message RemoveUserFromWorkspaceResponse {
   common.v1.EnumRpcHandleStatus.RpcHandleStatus rpc_handle_status = 1;
 
   int64 affected_ids = 2;

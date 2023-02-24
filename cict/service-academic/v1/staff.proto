@@ -24,6 +24,17 @@ import "cict/service-auth/v1/user.proto";
 // Public profile of staff
 service StaffService {
   // @TYPE: Gateway
+  rpc InviteUserAsStaff (InviteUserAsStaffRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/staff/invite",
+      body: "*",
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_ADMIN,
+    };
+  }
+
+  // @TYPE: Gateway
   rpc AdminMutateStaff (AdminMutateStaffRequest) returns (AdminMutateStaffResponse) {
     option (google.api.http) = {
       post: "/api/service_academic/v1/staff/admin_mutate",
@@ -71,6 +82,12 @@ service StaffService {
       crud_policy: ANYONE,
     };
   }
+}
+
+message InviteUserAsStaffRequest {
+  string user_id = 1;
+
+  string staff_id = 2;
 }
 
 message AdminMutateStaffRequest {

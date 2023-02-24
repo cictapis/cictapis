@@ -9,6 +9,7 @@ option java_outer_classname = "StudentProto";
 option java_package = "com.github.cictapis.cict_reporter.cict.serviceacademic.v1";
 
 import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
 import "google/protobuf/field_mask.proto";
 
 import "cict/common/v1/annotations.proto";
@@ -22,6 +23,17 @@ import "cict/service-academic/v1/specilization.proto";
 import "cict/service-auth/v1/user.proto";
 
 service StudentService {
+  // @TYPE: Gateway
+  rpc InviteUserAsStudent (InviteUserAsStudentRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/student/invite",
+      body: "*",
+    };
+    option (common.v1.cict) = {
+      crud_policy: SCOPE_ADMIN,
+    };
+  }
+
   // @TYPE: Gateway
   rpc AdminMutatestudent (AdminMutateStudentRequest) returns (AdminMutateStudentResponse) {
     option (google.api.http) = {
@@ -71,6 +83,12 @@ service StudentService {
       crud_policy: ANYONE,
     };
   }
+}
+
+message InviteUserAsStudentRequest {
+  string user_id = 1;
+
+  string student_id = 2;
 }
 
 message AdminMutateStudentRequest {
