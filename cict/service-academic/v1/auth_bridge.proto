@@ -19,6 +19,16 @@ import "cict/service-academic/v1/staff.proto";
 import "cict/service-academic/v1/student.proto";
 
 service AuthBridgeService {
+  rpc RegisterAcademicWorkspace(RegisterAcademicWorkspaceRequest) returns (RegisterAcademicWorkspaceResponse) {
+    option (google.api.http) = {
+      post: "/api/service_academic/v1/auth_bridge/register_workspace",
+      body: "*"
+    };
+    option (common.v1.cict) = {
+      crud_policy: AUTH,
+    };
+  }
+
   rpc MutateAuthBridge(MutateAuthBridgeRequest) returns (MutateAuthBridgeResponse) {
     option (google.api.http) = {
       post: "/api/service_academic/v1/auth_bridge/mutate",
@@ -38,6 +48,14 @@ service AuthBridgeService {
       crud_policy: WORKSPACE_ISOLATION,
     };
   }
+}
+
+message RegisterAcademicWorkspaceRequest {
+  string workspace_name = 1;
+}
+
+message RegisterAcademicWorkspaceResponse {
+
 }
 
 message MutateAuthBridgeRequest {

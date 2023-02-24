@@ -18,7 +18,6 @@ import "cict/common/v1/enum_rpc_handle_status.proto";
 import "cict/common/v1/paginate.proto";
 
 service WorkspaceService {
-  // @TYPE: Gateway, generate id
   rpc RegisterWorkspace (RegisterWorkspaceRequest) returns (RegisterWorkspaceResponse) {
     option (google.api.http) = {
       post: "/api/service_auth/v1/workspace/register",
@@ -78,7 +77,6 @@ message RegisterWorkspaceRequest {
 
   Workspace workspace = 1;
 
-  // Workspace id is generated at gateway, client ignore this field.
   string workspace_id = 2;
 }
 
