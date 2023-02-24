@@ -24,7 +24,7 @@ import "cict/service-auth/v1/user.proto";
 // Public profile of staff
 service StaffService {
   // @TYPE: Gateway
-  rpc InviteUserAsStaff (InviteUserAsStaffRequest) returns (google.protobuf.Empty) {
+  rpc InviteUserAsStaff (InviteUserAsStaffRequest) returns (InviteUserAsStaffResponse) {
     option (google.api.http) = {
       post: "/api/service_academic/v1/staff/invite",
       body: "*",
@@ -88,6 +88,10 @@ message InviteUserAsStaffRequest {
   string user_id = 1;
 
   string staff_id = 2;
+}
+
+message InviteUserAsStaffResponse {
+  common.v1.EnumRpcHandleStatus.RpcHandleStatus rpc_handle_status = 1;
 }
 
 message AdminMutateStaffRequest {
