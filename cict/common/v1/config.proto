@@ -13,19 +13,21 @@ message Config {
 
   Services services = 2;
 
-  Database database = 3;
+  GrpcConfig grpc_config = 3;
 
-  Redis redis = 4;
+  Database database = 4;
 
-  Google google = 5;
+  Redis redis = 5;
 
-  Kafka kafka = 6;
+  Google google = 6;
 
-  Smtp smtp = 7;
+  Kafka kafka = 7;
 
-  Const const = 8;
+  Smtp smtp = 8;
 
-  Prefix prefix = 9;
+  Const const = 9;
+
+  Prefix prefix = 10;
 }
 
 message Endpoint {
@@ -38,6 +40,21 @@ message Monitoring {
   Endpoint telemetry_endpoint = 1;
 
   Endpoint jaeger_endpoint = 2;
+}
+
+message GrpcConfig {
+  // The number of max connection in connection pool can be connect to server at the same time, default is 100
+  int32 max_connections = 1;
+
+  // The duration of a connection can be idle before connection is closed, default is infinite
+  int32 max_connection_ide = 2;
+
+  // The duration time until server will send a ping to client to determine client still alive, default is 2 hours
+  int32 time = 3;
+
+  // After having pinged check, server still wait timeout, if there's no activity from client, the connection will be closed,
+  // Default is 20 second.
+  int32 timeout = 4;
 }
 
 message Services {
@@ -88,16 +105,24 @@ message Database {
   string database = 6;
 
   bool migrate = 7;
+
+  int32 max_idle_connection = 8;
+
+  int32 max_open_connection = 9;
 }
 
 message Redis {
   Endpoint endpoint = 1;
 
-  string password = 3;
+  string password = 2;
 
-  int32 database = 4;
+  int32 database = 3;
 
-  int32 session_timeout = 8;
+  int32 session_timeout = 4;
+
+  int32 max_idle_connection = 5;
+
+  int32 max_open_connection = 6;
 }
 
 message Google {
